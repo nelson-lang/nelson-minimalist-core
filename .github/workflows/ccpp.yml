@@ -19,77 +19,21 @@ jobs:
           brew install zlib
           brew install libtool
           brew install automake
-          brew install libffi
-          brew install icu4c
-          brew info open-mpi
-          brew install openmpi
           brew install pkg-config
           brew install pkgconfig
-          brew install gettext
-          brew link gettext --force
-          echo 'export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.zshrc
-          source ~/.zshrc
           brew install boost
-          brew install libxml2
-          brew upgrade cmake
-          brew install qt6
-          brew install fftw
-          brew install portaudio
-          brew install libsndfile
-          brew install taglib
-          brew install libgit2
-          brew install hdf5
-          brew install libmatio
           brew install eigen
-          brew install libomp
-          brew link libomp --force
-          brew install openblas
           export BUILD_ROOT=$(pwd);
-          cd /Users/runner/work/nelson;
-          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-macosx.git;
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python $GITHUB_WORKSPACE/tools/update_version/update_version.py
-
       - name: CMake
         run: |
           export PATH=/usr/local/opt/qt5/bin:$PATH
-          cmake -DCMAKE_BUILD_TYPE=Release -DWITHOUT_SLICOT_MODULE=ON -G "Unix Makefiles" .
+          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
       - name: make
         run: cmake --build . -- -j$(nproc)
-      - name: get module skeleton
-        run: cmake --build . -- get_module_skeleton
-      - name: build help
-        run: |
-          cmake --build . -- buildhelp
-      - name: minimal tests
-        run: |
-          export OMP_NUM_THREADS=1
-          cmake --build . -- tests_minimal
-      - name: package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo make install
-      - name: all benchs
-        run: |
-          cmake --build . -- benchs_all
-      - name: all tests
-        run: |
-          export OMP_NUM_THREADS=1
-          cmake --build . -- tests_all
-      - name: Copy artifacts
-        run: mkdir artifacts && mv tests_all*.* artifacts && mv benchs_all*.* artifacts && mv Nelson-*.tar.Z artifacts
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-macOS-BigSur-amd64-${{ env.PACKAGE_VERSION }}.${{ github.run_number }}
-          path: artifacts/
 
   BigSur:
     name: MacOS X BigSur
@@ -108,68 +52,20 @@ jobs:
           brew install libtool
           brew install automake
           brew install libffi
-          brew install icu4c
-          brew info open-mpi
-          brew install openmpi
           brew install pkg-config
           brew install pkgconfig
-          brew install gettext
-          echo 'export PATH="/usr/local/opt/gettext/bin:$PATH"' >> ~/.zshrc
-          source ~/.zshrc
           brew install boost
-          brew install libxml2
           brew upgrade cmake
-          brew install qt5
-          brew install fftw
-          brew install portaudio
-          brew install libsndfile
-          brew install taglib
-          brew install libgit2
-          brew install hdf5
-          brew install libmatio
           brew install eigen
-          brew install libomp
-          brew link libomp --force          
-          brew install openblas
           export BUILD_ROOT=$(pwd);
-          cd /Users/runner/work/nelson;
-          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-macosx.git;
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python $GITHUB_WORKSPACE/tools/update_version/update_version.py
       - name: CMake
         run: |
-          export PATH=/usr/local/opt/qt5/bin:$PATH
-          cmake -DCMAKE_BUILD_TYPE=Release -DWITHOUT_SLICOT_MODULE=ON -G "Unix Makefiles" .
+          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
       - name: make
         run: cmake --build . -- -j $(nproc)
-      - name: get module skeleton
-        run: cmake --build . -- get_module_skeleton
-      - name: build help
-        run: |
-          cmake --build . -- buildhelp
-      - name: minimal tests
-        run: cmake --build . -- tests_minimal
-      - name: package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo make install
-      - name: all benchs
-        run: cmake --build . -- benchs_all
-      - name: all tests
-        run: cmake --build . -- tests_all
-      - name: Copy artifacts
-        run: mkdir artifacts && mv tests_all*.* artifacts && mv benchs_all*.* artifacts && mv Nelson-*.tar.Z artifacts
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-macOS-BigSur-amd64-${{ env.PACKAGE_VERSION }}.${{ github.run_number }}
-          path: artifacts/
 
   Jammy:
     name: Ubuntu-22.04 Jammy
@@ -184,87 +80,20 @@ jobs:
           sudo apt -y install build-essential;
           sudo apt -y install apt-transport-https ca-certificates gnupg software-properties-common wget ;
           sudo apt -y install ninja-build;
-          sudo apt -y install xvfb;
-          sudo apt -y install libopenmpi-dev;
           sudo apt -y install autotools-dev;
           sudo apt -y install libtool;
           sudo apt -y install automake;
-          sudo apt -y install openmpi-bin;
-          sudo apt -y install gettext;
           sudo apt -y install pkg-config;
-          sudo apt -y install libffi-dev;
-          sudo apt -y install libicu-dev;
-          sudo apt -y install libxml2-dev;
-          sudo apt -y install liblapack-dev;
-          sudo apt -y install liblapacke-dev;
-          sudo apt -y install fftw3;
-          sudo apt -y install fftw3-dev;
-          sudo apt -y install libasound-dev;
-          sudo apt -y install portaudio19-dev;
-          sudo apt -y install libsndfile1-dev;
-          sudo apt -y install libtag1-dev;
-          sudo apt -y install alsa-utils;
-          sudo apt -y install libslicot-dev;
-          sudo apt -y install libsqlite3-dev;
-          sudo apt -y install libgl-dev;
-          sudo apt -y install hdf5-tools;
-          sudo apt -y install zlib1g-dev;
-          sudo apt -y install libcurl4-openssl-dev;
-          sudo apt -y install libgit2-dev;
           sudo apt -y install libboost-all-dev;
           sudo apt -y install libeigen3-dev;
-          sudo apt -y install libhdf5-dev;
-          sudo apt -y install libmatio-dev;
-          sudo apt -y install qt6-base-dev;
-          sudo apt -y install libqt6svg6-dev;
-          sudo apt -y install qt6-declarative-dev;
-          sudo apt -y install qt6-documentation-tools;
-          sudo apt -y install qml6-module-qtquick;
-          sudo apt -y install qml6-module-qtquick-templates;
-          sudo apt -y install qml6-module-qtquick-controls;
-          sudo apt -y install qml6-module-qtquick-window;
-          sudo apt -y install qml6-module-qtquick-dialogs;
-          sudo apt -y install qml6-module-qtqml-workerscript;
-          sudo apt -y install qml6-module-qtquick-layouts;
-          sudo apt -y install qt6-tools-dev;
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python $GITHUB_WORKSPACE/tools/update_version/update_version.py
       - name: CMake
-        run: cmake -DCMAKE_BUILD_TYPE=Release -DQTDIR="/usr/lib/qt6" -G "Ninja" .
+        run: cmake -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
       - name: make with Ninja
         run: cmake --build . -- -j $(nproc)
-      - name: get module skeleton
-        run: |
-          cmake --build . -- get_module_skeleton
-      - name: build help
-        run: |
-          cmake --build . -- buildhelp
-      - name: minimal tests
-        run: cmake --build . -- tests_minimal
-      - name: package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo ninja install
-      - name: all benchs
-        run: |
-          xvfb-run -a ninja benchs_all
-      - name: all tests
-        run: |
-          xvfb-run -a ninja tests_all
-      - name: Copy artifacts
-        run: mkdir artifacts && mv tests_all*.* artifacts && mv benchs_all*.* artifacts && mv Nelson-*.tar.Z artifacts
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-linux-ubuntu-22-04-amd64-${{env.PACKAGE_VERSION}}.${{ github.run_number }}
-          path: artifacts/
 
   Focal:
     name: Ubuntu-20.04 Focal
@@ -289,36 +118,10 @@ jobs:
           sudo ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
           cmake --version
           sudo apt -y install ninja-build;
-          sudo apt -y install xvfb;
-          sudo apt -y install libopenmpi-dev;
           sudo apt -y install autotools-dev;
           sudo apt -y install libtool;
           sudo apt -y install automake;
-          sudo apt -y install openmpi-bin;
-          sudo apt -y install gettext;
           sudo apt -y install pkg-config;
-          sudo apt -y install libffi-dev;
-          sudo apt -y install libicu-dev;
-          sudo apt -y install libxml2-dev;
-          sudo apt -y install liblapack-dev;
-          sudo apt -y install liblapacke-dev;
-          sudo apt -y install fftw3;
-          sudo apt -y install fftw3-dev;
-          sudo apt -y install libasound-dev;
-          sudo apt -y install portaudio19-dev;
-          sudo apt -y install libsndfile1-dev;
-          sudo apt -y install libtag1-dev;
-          sudo apt -y install alsa-utils;
-          sudo apt -y install libslicot-dev;
-          sudo apt -y install libsqlite3-dev;
-          sudo apt -y install libgl-dev;
-          sudo apt -y install hdf5-tools;
-          sudo apt -y install zlib1g-dev;
-          sudo apt -y install libcurl4-openssl-dev;
-          sudo apt -y install libgit2-dev;
-          sudo add-apt-repository --yes ppa:beineri/opt-qt-5.15.4-focal;
-          sudo apt update;
-          sudo apt -y install qt515base qt515svg qt515tools qt515quickcontrols2 qt515quickcontrols qt515declarative qt515wayland;
           sudo apt-get install -y libboost-all-dev;
           git clone https://gitlab.com/libeigen/eigen.git /tmp/eigen;
           mkdir /tmp/eigen-build;
@@ -329,54 +132,14 @@ jobs:
           cmake . /tmp/eigen;
           make -j4;
           sudo make install;
-          cd -;
-          git clone https://github.com/HDFGroup/hdf5.git /tmp/hdf5-1_10_5;
-          cd /tmp/hdf5-1_10_5;
-          git checkout hdf5-1_10_5;
-          ./configure --quiet --prefix=/usr/local --enable-shared --disable-deprecated-symbols --disable-hl --disable-strict-format-checks --disable-memory-alloc-sanity-check --disable-instrument --disable-parallel --disable-trace --disable-asserts --with-pic --with-default-api-version=v110 CFLAGS="-w";
-          sudo make install -C src;
-          git clone https://github.com/tbeu/matio /tmp/matio;
-          cd /tmp/matio;
-          git checkout v1.5.16;
-          cd /tmp/matio;
-          ./autogen.sh;
-          ./configure --enable-shared --enable-mat73=yes --enable-extended-sparse=no --with-pic --with-hdf5=/usr/local;
-          make;
-          sudo make install;
 
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python $GITHUB_WORKSPACE/tools/update_version/update_version.py
       - name: CMake
-        run: source /opt/qt515/bin/qt515-env.sh && cmake -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
+        run: cmake -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
       - name: make with Ninja
         run: cmake --build . -- -j $(nproc)
-      - name: get module skeleton
-        run: cmake --build . -- get_module_skeleton
-      - name: build help
-        run: cmake --build . -- buildhelp
-      - name: minimal tests
-        run: cmake --build . -- tests_minimal
-      - name: package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo ninja install
-      - name: all benchs
-        run: source /opt/qt515/bin/qt515-env.sh && xvfb-run -a ninja benchs_all
-      - name: all tests
-        run: source /opt/qt515/bin/qt515-env.sh && xvfb-run -a ninja tests_all
-      - name: Copy artifacts
-        run: mkdir artifacts && mv tests_all*.* artifacts && mv benchs_all*.* artifacts && mv Nelson-*.tar.Z artifacts
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-linux-ubuntu-20-04-amd64-${{env.PACKAGE_VERSION}}.${{ github.run_number }}
-          path: artifacts/
 
   ArchLinux:
     runs-on: ubuntu-latest
@@ -395,59 +158,17 @@ jobs:
           pacman -S pkg-config --noconfirm
           pacman -S boost-libs boost --noconfirm
           pacman -S cmake --noconfirm
-          pacman -S libffi --noconfirm
-          pacman -S icu --noconfirm
-          pacman -S qt5-base --noconfirm
-          pacman -S qt5-tools --noconfirm
-          pacman -S qt5-webkit --noconfirm
-          pacman -S libxml2 --noconfirm
-          pacman -S gcc --noconfirm
           pacman -S make --noconfirm
-          pacman -S blas --noconfirm
-          pacman -S lapack --noconfirm
-          pacman -S lapacke --noconfirm
-          pacman -S fftw --noconfirm
-          pacman -S openmpi --noconfirm
-          pacman -S hdf5 --noconfirm
-          pacman -S taglib --noconfirm
-          pacman -S portaudio --noconfirm
-          pacman -S libsndfile --noconfirm
-          pacman -S zlib --noconfirm
-          pacman -S curl --noconfirm
-          pacman -S libgit2 --noconfirm
-          pacman -S python3 --noconfirm
           git clone https://gitlab.com/libeigen/eigen.git /tmp/eigen
-          mkdir /tmp/eigen-build && cd /tmp/eigen && git checkout 3.4 && cd - && cd /tmp/eigen-build && cmake . /tmp/eigen && make -j4 && make install;        
-          git clone https://github.com/HDFGroup/hdf5.git /tmp/hdf5-1_12_1
-          cd /tmp/hdf5-1_12_1 && git checkout hdf5-1_12_1 && ./configure --quiet --enable-shared --disable-deprecated-symbols --disable-hl --disable-strict-format-checks --disable-memory-alloc-sanity-check --disable-instrument --disable-parallel --disable-trace --disable-asserts --with-pic --with-default-api-version=v112 CFLAGS="-w" && make install -C src
-          git clone https://github.com/tbeu/matio /tmp/matio
-          cd /tmp/matio && git checkout v1.5.21 && cd /tmp/matio && ./autogen.sh && ./configure --enable-shared --enable-mat73=yes --enable-extended-sparse=no --with-pic --with-hdf5=/tmp/hdf5-1_12_1/hdf5 && make && make install;
+          mkdir /tmp/eigen-build && cd /tmp/eigen && git checkout 3.4 && cd - && cd /tmp/eigen-build && cmake . /tmp/eigen && make -j4 && make install;
       - name: Trust repo directory
         run: git config --global --add safe.directory /__w/nelson/nelson
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-      - name: Update version
-        run: python3 $GITHUB_WORKSPACE/tools/update_version/update_version.py
       - name: CMake
-        run: cmake -DCMAKE_BUILD_TYPE=Release -DWITHOUT_SLICOT_MODULE=ON -G "Unix Makefiles" .
+        run: cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
       - name: Make
         run: cmake --build . -- -j $(nproc)
-      - name: Download module skeleton
-        run: cmake --build . -- get_module_skeleton
-      - name: Build help
-        run: cmake --build . -- buildhelp
-      - name: Minimal tests
-        run: cmake --build . -- tests_minimal
-      - name: Make package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo cmake --build . -- install
-      - name: Benchs
-        run: cmake --build . -- benchs_all_no_display
-      - name: Tests
-        run: cmake --build . -- tests_all_no_display
 
   Fedora:
     runs-on: ubuntu-latest
@@ -468,64 +189,18 @@ jobs:
           dnf install -y gcc-c++
           dnf install -y autoconf
           dnf install -y automake
-          dnf install -y openmpi-devel
-          dnf install -y gettext
           dnf install -y pkg-config
           dnf install -y cmake
-          dnf install -y libffi-devel
-          dnf install -y libicu-devel
-          dnf install -y libxml2-devel
-          dnf install -y lapack-devel
-          dnf install -y fftw3-devel
-          dnf install -y portaudio-devel
-          dnf install -y libsndfile-devel
-          dnf install -y jack-audio-connection-kit-devel
-          dnf install -y taglib-devel
-          dnf install -y qt6-qtbase-devel
-          dnf install -y qt6-qtdeclarative-devel
-          dnf install -y qt6-doctools
-          dnf install -y qt6-qtquickcontrols2
-          dnf install -y qt6-qttools
-          dnf install -y qt6-qttools-libs-help
-          dnf install -y qt6-qttools-devel
           dnf install -y boost-devel
-          dnf install -y zlib-devel
-          dnf install -y curl-devel
-          dnf install -y libgit2-devel
-          dnf install -y matio-devel
-          dnf install -y hdf5-devel
           dnf install -y eigen3-devel
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-      - name: Update version
-        run: |
-          python3 $GITHUB_WORKSPACE/tools/update_version/update_version.py
       - name: CMake
         run: |
-          export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH
-          export PATH=/usr/lib64/openmpi/bin:$PATH      
-          cmake -DCMAKE_BUILD_TYPE=Release -DWITHOUT_SLICOT_MODULE=ON -G "Unix Makefiles" .
+          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
       - name: Make
         run: |
-          export QTDIR_BINARIES="/usr/lib64/qt6/bin/" 
           cmake --build . -- -j $(nproc)
-      - name: Download module skeleton
-        run: cmake --build . -- get_module_skeleton
-      - name: Build help
-        run: cmake --build . -- buildhelp
-      - name: Minimal tests
-        run: |
-          cmake --build . -- tests_minimal
-      - name: Make package
-        run: cmake --build . -- package
-      - name: Install
-        run: sudo cmake --build . -- install
-      - name: Benchs
-        run: cmake --build . -- benchs_all_no_display
-      - name: Tests
-        run: cmake --build . -- tests_all_no_display
 
   Windows_win32:
     name: Windows 32 bits
@@ -539,44 +214,11 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Install Inno-setup
-        run: |
-          choco install InnoSetup
-
-      - name: Install MS-MPI
-        run: |
-          $null = mkdir c:/install
-          (new-object net.webclient).DownloadFile("https://download.microsoft.com/download/a/5/2/a5207ca5-1203-491a-8fb8-906fd68ae623/msmpisetup.exe", "C:\install\MSMpiSetup.exe")
-          C:/install/MSMpiSetup.exe -unattend -minimal
-        shell: powershell
-
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python %GITHUB_WORKSPACE%/tools/update_version/update_version.py
-
-      - name: Install Qt 5.15.2
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: "5.15.2"
-          host: "windows"
-          target: "desktop"
-          arch: "win32_msvc2019"
-          dir: "C:/install/QT5/"
-          install-deps: "true"
-          modules: "qtwebengine"
-          cached: "false"
-          setup-python: "false"
-
       - name: Install dependencies
         run: |
-          set QTDIR32=C:\install\QT5\Qt\5.15.2\msvc2019
-          set QTDIR=%QTDIR32%
           cd ..
           git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-win32.git
           cd nelson-thirdparty-win32
@@ -585,70 +227,10 @@ jobs:
 
       - name: Build Nelson
         run: |
-          set QTDIR32=C:\install\QT5\Qt\5.15.2\msvc2019
-          set QTDIR=%QTDIR32%
           SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;C:\Program Files (x86)\Inno Setup 6;%PATH%
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
           cd nelson
-          msbuild nelson.sln /p:Configuration=Release /p:Platform=win32 /target:"NelSon-gui" /m:4 /p:PreferredToolArchitecture=x64
-
-      - name: Download module skeleton
-        run: |
-          %GITHUB_WORKSPACE%/bin/win32/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/clone_module_skeleton/clone.m
-
-      - name: Build help
-        run: |
-          %GITHUB_WORKSPACE%/bin/win32/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/buildhelp/buildhelp.m
-
-      - name: Minimal tests
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          %GITHUB_WORKSPACE%/bin/win32/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/tests_minimal/runtests_minimal.m
-
-      - name: Inno setup
-        run: |
-          %GITHUB_WORKSPACE%/bin/win32/nelson-cli --noipc --quiet -e run('%GITHUB_WORKSPACE%/tools/innosetup/innosetup.m');exit"
-          iscc "%GITHUB_WORKSPACE%/tools/innosetup/Nelson.iss"
-
-      - name: Install Nelson with installer
-        run: |
-          %GITHUB_WORKSPACE%/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%-x86-32.exe /SP- /SILENT /DIR="c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%"
-
-      - name: Creates artifacts directory
-        run: |
-          $null = mkdir %GITHUB_WORKSPACE%/artifacts
-        shell: powershell
-
-      - name: Zip Nelson install directory
-        run: |
-          "C:/Program Files/7-Zip/7z" a -tzip -mx7 %GITHUB_WORKSPACE%/artifacts/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%-x86-32.zip c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%
-
-      - name: Tests moved in an long path name with space on windows
-        run: |
-          mv "c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%" "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%"
-
-      - name: Benchs
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          set PATH=C:\Program Files\Microsoft MPI\Bin;%PATH%
-          set TESTS_RESULT_DIR=%GITHUB_WORKSPACE%/artifacts
-          "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/bin/win32/nelson-cli" --noipc --quiet -f "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/tools/benchs_all/runbenchs_all.m"
-
-      - name: Tests
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          set PATH=C:\Program Files\Microsoft MPI\Bin;%PATH%
-          set TESTS_RESULT_DIR=%GITHUB_WORKSPACE%/artifacts
-          "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/bin/win32/nelson-cli" --noipc --quiet -f "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/tools/tests_all/runtests_all.m"
-
-      - name: Copy installer in artifacts directory
-        run: |
-          mv Nelson-*.exe artifacts
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-windows-win32-${{ env.PACKAGE_VERSION }}.${{ github.run_number }}
-          path: artifacts/
+          msbuild nelson.sln /p:Configuration=Release /p:Platform=win32 /target:"NelSon-cli" /m:4 /p:PreferredToolArchitecture=x64
 
   Windows_win64:
     name: Windows 64 bits
@@ -662,45 +244,11 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Install Inno-setup
-        run: |
-          choco install InnoSetup
-
-      - name: Install MS-MPI
-        run: |
-          $null = mkdir c:/install
-          (new-object net.webclient).DownloadFile("https://download.microsoft.com/download/a/5/2/a5207ca5-1203-491a-8fb8-906fd68ae623/msmpisetup.exe", "C:\install\MSMpiSetup.exe")
-          C:/install/MSMpiSetup.exe -unattend -minimal
-        shell: powershell
-
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Get package version
-        uses: nyaascii/package-version@v1
-
-      - name: Update version
-        run: |
-          python %GITHUB_WORKSPACE%/tools/update_version/update_version.py
-
-      - name: Install Qt 6.4.0
-        uses: jurplel/install-qt-action@v2
-        with:
-          version: "6.4.0"
-          host: "windows"
-          target: "desktop"
-          arch: "win64_msvc2019_64"
-          dir: "C:/install/QT6/"
-          install-deps: "true"
-          modules: "qtwebengine"
-          cached: "false"
-          setup-python: "false"
-
       - name: Install dependencies
         run: |
-          set QTDIR64=C:\install\QT6\Qt\6.4.0\msvc2019_64
-          set QTDIR=%QTDIR64%
-          cd ..
           git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-x64.git
           cd nelson-thirdparty-x64
           install.bat
@@ -708,67 +256,7 @@ jobs:
 
       - name: Build Nelson
         run: |
-          set QTDIR64=C:\install\QT6\Qt\6.4.0\msvc2019_64
-          set QTDIR=%QTDIR64%
           SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;C:\Program Files (x86)\Inno Setup 6;%PATH%
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvar64.bat"
           cd nelson
-          msbuild nelson.sln /p:Configuration=Release /p:Platform=x64 /target:"NelSon-gui" /m:4 /p:PreferredToolArchitecture=x64
-
-      - name: Download module skeleton
-        run: |
-          %GITHUB_WORKSPACE%/bin/x64/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/clone_module_skeleton/clone.m
-
-      - name: Build help
-        run: |
-          %GITHUB_WORKSPACE%/bin/x64/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/buildhelp/buildhelp.m
-
-      - name: Minimal tests
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          %GITHUB_WORKSPACE%/bin/x64/nelson-cli --noipc --quiet -f %GITHUB_WORKSPACE%/tools/tests_minimal/runtests_minimal.m
-
-      - name: Inno setup
-        run: |
-          %GITHUB_WORKSPACE%/bin/x64/nelson-cli --noipc --quiet -e run('%GITHUB_WORKSPACE%/tools/innosetup/innosetup.m');exit"
-          iscc "%GITHUB_WORKSPACE%/tools/innosetup/Nelson.iss"
-
-      - name: Install Nelson with installer
-        run: |
-          %GITHUB_WORKSPACE%/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%-x86-64.exe /SP- /SILENT /DIR="c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%"
-
-      - name: creates artifacts directory
-        run: |
-          $null = mkdir %GITHUB_WORKSPACE%/artifacts
-        shell: powershell
-
-      - name: Zip Nelson install directory
-        run: |
-          "C:/Program Files/7-Zip/7z" a -tzip -mx7 %GITHUB_WORKSPACE%/artifacts/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%-x86-64.zip c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%
-
-      - name: Tests moved in an long path name with space on windows
-        run: |
-          mv "c:/install/Nelson-${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%" "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%"
-
-      - name: Benchs
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          set PATH=C:\Program Files\Microsoft MPI\Bin;%PATH%
-          set TESTS_RESULT_DIR=%GITHUB_WORKSPACE%/artifacts
-          "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/bin/x64/nelson-cli" --noipc --quiet -f "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/tools/benchs_all/runbenchs_all.m"
-
-      - name: Tests
-        run: |
-          set NELSON_TERM_IS_UNICODE_SUPPORTED=TRUE
-          set PATH=C:\Program Files\Microsoft MPI\Bin;%PATH%
-          set TESTS_RESULT_DIR=%GITHUB_WORKSPACE%/artifacts
-          "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/bin/x64/nelson-cli" --noipc --quiet -f "c:/install/Nelson ${{ env.PACKAGE_VERSION }}.%GITHUB_RUN_NUMBER%/tools/tests_all/runtests_all.m"
-
-      - name: Copy installer in artifacts directory
-        run: |
-          mv Nelson-*.exe artifacts
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: nelson-github-action-artifacts-windows-amd64-${{ env.PACKAGE_VERSION }}.${{ github.run_number }}
-          path: artifacts/
+          msbuild nelson.sln /p:Configuration=Release /p:Platform=x64 /target:"NelSon-cli" /m:4 /p:PreferredToolArchitecture=x64

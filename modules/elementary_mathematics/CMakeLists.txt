@@ -12,7 +12,7 @@ set(module_library_name nlsElementary_mathematics)
 set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/include
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include)
+                    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 # ==============================================================================
 file(GLOB ELEMENTARY_MATHEMATICS_SRC
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
