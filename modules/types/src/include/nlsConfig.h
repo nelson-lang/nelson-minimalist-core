@@ -9,17 +9,30 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-// #define EIGEN_USE_BLAS
-// #define EIGEN_USE_LAPACKE_STRICT
-//=============================================================================
-#include <complex>
-//=============================================================================
-#pragma warning(disable : 4190)
-#ifndef lapack_complex_float
-#define lapack_complex_float std::complex<float>
+#if defined(_MSC_VER)
+#define EIGEN_USE_MKL
+#define EIGEN_USE_MKL_VML
+#define _NLS_WITH_VML
 #endif
 //=============================================================================
-#ifndef lapack_complex_double
-#define lapack_complex_double std::complex<double>
+#if (defined(_LP64) || defined(_WIN64))
+#define NLS_INDEX_TYPE_64
+#endif
+//=============================================================================
+#define CAT_3_STRINGS(a, b, c) a##b##c
+#ifdef _MSC_VER
+#ifdef _DEBUG
+#ifdef _WIN64
+#define BOOST_TARGET "vc143-mt-gd-x64-1_80"
+#else
+#define BOOST_TARGET "vc143-mt-gd-x32-1_80"
+#endif
+#else
+#ifdef _WIN64
+#define BOOST_TARGET "vc143-mt-x64-1_80"
+#else
+#define BOOST_TARGET "vc143-mt-x32-1_80"
+#endif
+#endif
 #endif
 //=============================================================================

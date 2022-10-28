@@ -1,10 +1,10 @@
 {
-  "name": "nelson",
+  "name": "nelson-kernel",
   "version": "0.6.10",
   "description": "Nelson, an array programming language",
   "copyright": "Copyright 2018-present Allan CORNET",
   "scripts": {
-    "prettier": "run-s prettier:standard prettier:xmldoc prettier:clang-format",
+    "prettier": "run-s prettier:standard prettier:clang-format",
     "prettier:standard": "prettier --write **/*.{js,json,yml,md}",
     "prettier:xmldoc": "prettier --write modules/*/help/*/xml/*.xml",
     "prettier:clang-format": "clang-format-launcher  --verbose",
