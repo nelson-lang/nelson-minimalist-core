@@ -10,6 +10,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 #include "ProgramOptions.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -211,25 +212,6 @@ ProgramOptions::parseOption(Option& op, bool& bFind)
 bool
 ProgramOptions::parse()
 {
-    // nelson --version
-    // nelson others_arguments --version others_arguments
-    // nelson --help
-    // nelson others_arguments --help others_arguments
-    // nelson --nostartup others_arguments (except nouserstartup)
-    // nelson others_arguments --nostartup others_arguments (except nouserstartup)
-    // nelson --nouserstartup others_arguments (except nostartup)
-    // nelson others_arguments --nouserstartup others_arguments (except nostartup)
-    // nelson --file filename others_arguments (except execute)
-    // nelson others_arguments --file filename others_arguments (except execute)
-    // nelson --execute command others_arguments (except file)
-    // nelson others_arguments --execute command (except file)
-    // nelson --language lang others_arguments
-    // nelson others_arguments --language lang others_arguments
-    // nelson --quiet others_arguments
-    // nelson others_arguments --quiet lang others_arguments
-    // nelson others_arguments --timeout 10
-    // nelson --noipc others_arguments (except noipc)
-
     bool bRes;
     Option helpOption(L"help", L"h", _W("display this help message"), false, false);
     Option versionOption(L"version", L"v", _W("display the version number"), false, false);

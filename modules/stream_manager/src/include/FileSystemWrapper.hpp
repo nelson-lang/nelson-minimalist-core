@@ -9,12 +9,8 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#ifdef _MSC_VER
-#define _WITH_BOOST_FILESYSTEM_
 #pragma warning(disable : 4251)
-#else
 #undef _WITH_BOOST_FILESYSTEM_
-#endif
 //=============================================================================
 #ifdef _WITH_BOOST_FILESYSTEM_
 #include <boost/filesystem.hpp>
