@@ -5,7 +5,6 @@
 - Prerequirements:
   Git for Windows
   Visual studio 2022 (C++)
-  Qt 5.15 or more for Windows
 
 - Creates Nelson main directory
   ```bash
@@ -27,7 +26,6 @@
   ```
 - Start the build:
   Goto Nelson directory
-  set QTDIR, QTDIR32, QTDIR64 environment variables
   launch win32-environment.bat (win32 build) or win64-environment.bat (win64 build)
   start build with VS 2022
 
