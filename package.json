@@ -8,7 +8,7 @@
     "prettier:standard": "prettier --write **/*.{js,json,yml,md}",
     "prettier:xmldoc": "prettier --write modules/*/help/*/xml/*.xml",
     "prettier:clang-format": "clang-format-launcher  --verbose",
-    "prettier:check": "run-s prettier:check:standard prettier:check:xmldoc prettier:check:clang-format",
+    "prettier:check": "run-s prettier:check:standard prettier:check:clang-format",
     "prettier:check:standard": "prettier --check **/*.{js,json,yml,md}",
     "prettier:check:xmldoc": "prettier --check modules/*/help/*/xml/*.xml",
     "prettier:check:clang-format": "clang-format-launcher -verify --verbose"
