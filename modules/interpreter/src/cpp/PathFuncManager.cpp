@@ -9,9 +9,6 @@
 //=============================================================================
 #include <cerrno>
 #include <boost/algorithm/string.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/foreach.hpp>
 #include <boost/format.hpp>
 #include <algorithm>
 #include <fstream>
@@ -576,55 +573,12 @@ PathFuncManager::loadUserPathFromFile()
 {
     std::wstring preferedUserPath = L"";
     std::wstring prefDir = getPreferencesPath();
-    std::wstring userPathFile = prefDir + L"/userpath.conf";
-    bool bIsFile = FileSystemWrapper::Path::is_regular_file(userPathFile);
-    if (bIsFile) {
-        std::string tmpline;
-#ifdef _MSC_VER
-        std::ifstream jsonFile(userPathFile);
-#else
-        std::ifstream jsonFile(wstring_to_utf8(userPathFile));
-#endif
-        if (jsonFile.is_open()) {
-            std::string jsonString;
-            while (safegetline(jsonFile, tmpline)) {
-                jsonString += tmpline + '\n';
-            }
-            jsonFile.close();
-            boost::property_tree::ptree pt;
-            std::istringstream is(jsonString);
-            try {
-                boost::property_tree::read_json(is, pt);
-                preferedUserPath = utf8_to_wstring(pt.get<std::string>("userpath"));
-            } catch (const boost::property_tree::json_parser::json_parser_error& je) {
-                je.message();
-            }
-        }
-    }
     return preferedUserPath;
 }
 //=============================================================================
 bool
 PathFuncManager::saveUserPathToFile()
 {
-    std::wstring up = L"";
-    if (_userPath != nullptr) {
-        up = _userPath->getPath();
-    }
-    std::wstring prefDir = getPreferencesPath();
-    std::wstring userPathFile = prefDir + L"/userpath.conf";
-    boost::property_tree::ptree pt;
-    pt.put("userpath", wstring_to_utf8(up));
-    std::ostringstream buf;
-    boost::property_tree::write_json(buf, pt, false);
-    std::string json = buf.str();
-#ifdef _MSC_VER
-    std::ofstream out(userPathFile);
-#else
-    std::ofstream out(wstring_to_utf8(userPathFile));
-#endif
-    out << json;
-    out.close();
     return true;
 }
 //=============================================================================
