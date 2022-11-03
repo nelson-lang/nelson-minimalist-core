@@ -15,7 +15,6 @@
 #include "Error.hpp"
 #include "EvaluateScriptFile.hpp"
 #include "ParserInterface.hpp"
-#include "IsEmptyScriptFile.hpp"
 #include "NelsonConfiguration.hpp"
 #include "ChangeDirectory.hpp"
 //=============================================================================
@@ -86,9 +85,6 @@ EvaluateScriptFile(Evaluator* eval, const std::wstring& filename, bool bChangeDi
     bool bNeedToRestoreDirectory = false;
 
     mustBeExistingFile(filename);
-    if (IsEmptyScriptFile(filename)) {
-        return true;
-    }
 
     FileSystemWrapper::Path initialDir = FileSystemWrapper::Path::current_path();
     FileSystemWrapper::Path fileToEvaluate(filename);

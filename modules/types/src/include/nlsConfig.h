@@ -7,21 +7,15 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#include "nlsConfig.h"
+#pragma once
 //=============================================================================
-int WINAPI
-DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
-{
-    switch (reason) {
-    case DLL_PROCESS_ATTACH:
-        break;
-    case DLL_PROCESS_DETACH:
-        break;
-    case DLL_THREAD_ATTACH:
-        break;
-    }
-    return 1;
-}
+#if defined(_MSC_VER)
+#define EIGEN_USE_MKL
+#define EIGEN_USE_MKL_VML
+#define _NLS_WITH_VML
+#endif
+//=============================================================================
+#if (defined(_LP64) || defined(_WIN64))
+#define NLS_INDEX_TYPE_64
+#endif
 //=============================================================================

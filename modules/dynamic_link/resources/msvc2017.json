@@ -1,9 +1,0 @@
-{
-  "ENVIRONMENT_VARIABLES": [
-    "PATH",
-    "LIB",
-    "LIBPATH",
-    "VS150COMNTOOLS",
-    "INCLUDE"
-  ]
-}

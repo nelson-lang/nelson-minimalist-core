@@ -15,41 +15,29 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
-#include <boost/interprocess/managed_shared_memory.hpp>
 #include <clocale>
 #include <sstream>
 #include "FileSystemWrapper.hpp"
 #include "StartNelson.h"
 #include "StartNelsonMainScript.hpp"
-#include "StartNelsonUserScript.hpp"
-#include "StartNelsonUserModules.hpp"
 #include "FinishNelsonMainScript.hpp"
-#include "FinishNelsonUserScript.hpp"
-#include "AddGateway.hpp"
 #include "EvaluateCommand.hpp"
 #include "EvaluateScriptFile.hpp"
 #include "Evaluator.hpp"
 #include "GetNelsonPath.hpp"
-#include "Localization.hpp"
 #include "MainEvaluator.hpp"
 #include "MaxOpenedFiles.hpp"
-#include "ModulesHelpers.hpp"
-#include "NelsonNamedMutex.hpp"
 #include "Nelson_VERSION.h"
 #include "ProgramOptions.hpp"
 #include "RecursionStack.hpp"
 #include "SetNelSonEnvironmentVariables.hpp"
-#include "TimeoutThread.hpp"
 #include "characters_encoding.hpp"
-#include "SioClientCommand.hpp"
 #include "WarningIds.hpp"
 #include "WarningEmitter.h"
 #include "ErrorEmitter.h"
 #include "NelsonPrint.hpp"
-#include "MxCall.h"
 #include "NelsonConfiguration.hpp"
-#include "FilesAssociation.hpp"
-#include "NelsonReadyNamedMutex.hpp"
+#include "Localization.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -196,23 +184,6 @@ NelsonMainStates(Evaluator* eval, bool haveNoStartup, bool haveNoUserStartup,
             goto FINISH;
         }
         eval->resetState();
-        bool loadUserModulesSucceeced = false;
-        if (!haveNoUserModules) {
-            loadUserModulesSucceeced = StartNelsonUserModules(eval);
-            eval->clearStacks();
-            if (eval->getState() == NLS_STATE_QUIT) {
-                goto FINISH;
-            }
-            eval->resetState();
-        }
-        if (!haveNoUserStartup && loadUserModulesSucceeced) {
-            StartNelsonUserScript(eval);
-            eval->clearStacks();
-            if (eval->getState() == NLS_STATE_QUIT) {
-                goto FINISH;
-            }
-            eval->resetState();
-        }
     }
     try {
         if (!commandToExecute.empty()) {
@@ -226,12 +197,6 @@ NelsonMainStates(Evaluator* eval, bool haveNoStartup, bool haveNoUserStartup,
         io->errorMessage(e.getMessage());
     }
     eval->isReadyToUse = true;
-    OpenFilesAssociated(
-        (NELSON_ENGINE_MODE)NelsonConfiguration::getInstance()->getNelsonEngineMode(), filesToOpen,
-        false);
-    LoadFilesAssociated(
-        (NELSON_ENGINE_MODE)NelsonConfiguration::getInstance()->getNelsonEngineMode(), filesToLoad,
-        false);
     while (eval->getState() != NLS_STATE_QUIT) {
         if (eval->getState() == NLS_STATE_ABORT) {
             eval->clearStacks();
@@ -239,12 +204,10 @@ NelsonMainStates(Evaluator* eval, bool haveNoStartup, bool haveNoUserStartup,
         eval->resetState();
         eval->evalCLI();
     }
-    closeIsReadyNelsonMutex((int)boost::interprocess::ipcdetail::get_current_process_id());
     eval->resetState();
 FINISH:
     if (!haveNoStartup) {
         if (!haveNoUserStartup) {
-            FinishNelsonUserScript(eval);
             eval->resetState();
         }
         FinishNelsonMainScript(eval);
@@ -276,30 +239,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
     if (po.haveVersion()) {
         displayVersion(_mode);
         return 0;
-    }
-    if (_mode == NELSON_ENGINE_MODE::GUI && !po.haveNoIpc()) {
-        bool wasSent = false;
-        if (po.haveFileToExecuteIPC()) {
-            std::wstring fileToExecuteIPC = po.getFileToExecuteIPC();
-            wstringVector fileToExecuteAsVector;
-            fileToExecuteAsVector.push_back(fileToExecuteIPC);
-            wasSent = ExecuteFilesAssociated(_mode, fileToExecuteAsVector, true);
-            if (wasSent) {
-                return 0;
-            }
-        }
-        if (po.haveOpenFiles()) {
-            wasSent = OpenFilesAssociated(_mode, po.getFilesToOpen(), true);
-            if (wasSent) {
-                return 0;
-            }
-        }
-        if (po.haveLoadFiles()) {
-            wasSent = LoadFilesAssociated(_mode, po.getFilesToLoad(), true);
-            if (wasSent) {
-                return 0;
-            }
-        }
     }
     if (!SetNelSonEnvironmentVariables()) {
         ErrorPathDetection(_mode);
@@ -344,9 +283,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
     wstringVector filesToLoad;
     std::wstring lang;
     bool bQuietMode = false;
-    if (po.haveTimeout()) {
-        createTimeoutThread(po.getTimeout());
-    }
     lang = po.getLanguage();
     if (po.haveCommandToExecute() && po.haveFileToExecute()) {
         ErrorCommandLineMessage_file_commmand(_mode);
@@ -388,7 +324,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
         setWarningEvaluator(eval);
         setErrorEvaluator(eval);
         setPrintInterface(eval->getInterface());
-        mexSetEvaluator(eval);
         eval->setQuietMode(bQuietMode);
         eval->setCommandLineArguments(args);
         if (lang != Localization::Instance()->getCurrentLanguage() && !lang.empty()) {
@@ -397,24 +332,10 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
             eval->setLastErrorException(e);
             io->errorMessage(e.getMessage());
         }
-        try {
-            AddGateway(eval, ConstructDynamicLibraryFullname(Nelson::GetRootPath(), L"core"));
-            AddGateway(
-                eval, ConstructDynamicLibraryFullname(Nelson::GetRootPath(), L"modules_manager"));
-            AddGateway(eval, ConstructDynamicLibraryFullname(Nelson::GetRootPath(), L"string"));
-        } catch (const Exception& e) {
-            Interface* io = eval->getInterface();
-            eval->setLastErrorException(e);
-            io->errorMessage(_W("Nelson cannot load base modules.\n"));
-        }
-        if (!socketIoURI.empty()) {
-            SioClientCommand::getInstance()->create(wstring_to_utf8(socketIoURI));
-        }
         exitCode = NelsonMainStates(eval, po.haveNoStartup(), po.haveNoUserStartup(),
             po.haveNoUserModules(), commandToExecute, fileToExecute, filesToOpen, filesToLoad);
         ::destroyMainEvaluator();
         clearWarningIdsList();
-        destroyTimeoutThread();
     } else {
         ErrorInterpreter(_mode);
     }
@@ -424,13 +345,13 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 static int
 StartNelsonInternalWithMutex(const wstringVector& args, NELSON_ENGINE_MODE _mode)
 {
-    if (!haveNelsonMutex()) {
-        openNelsonMutex();
-    }
+    // if (!haveNelsonMutex()) {
+    //     openNelsonMutex();
+    // }
     int exitCode = StartNelsonInternal(args, _mode);
-    if (haveNelsonMutex()) {
-        closeNelsonMutex();
-    }
+    // if (haveNelsonMutex()) {
+    //     closeNelsonMutex();
+    // }
     return exitCode;
 }
 //=============================================================================
