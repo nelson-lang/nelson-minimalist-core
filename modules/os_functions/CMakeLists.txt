@@ -11,11 +11,11 @@ set(module_name os_functions)
 set(module_library_name nlsOs_functions)
 # ==============================================================================
 include_directories(
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
@@ -34,7 +34,7 @@ target_link_libraries(
   nlsApi_nelson
   nlsNelson_manager
   nlsStream_manager
-  ${BOOST_LIBRARIES})
+  nlsCommons)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

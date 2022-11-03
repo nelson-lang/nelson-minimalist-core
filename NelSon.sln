@@ -74,6 +74,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsCharacters_encoding",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsLocalization", "modules\localization\no-src\c\no-nlsLocalization.vcxproj", "{DA17003A-28F0-4AC2-B9F5-80A46387811B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsCommons", "modules\commons\src\c\nlsCommons.vcxproj", "{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -250,6 +252,14 @@ Global
 		{DA17003A-28F0-4AC2-B9F5-80A46387811B}.Release|Win32.Build.0 = Release|Win32
 		{DA17003A-28F0-4AC2-B9F5-80A46387811B}.Release|x64.ActiveCfg = Release|x64
 		{DA17003A-28F0-4AC2-B9F5-80A46387811B}.Release|x64.Build.0 = Release|x64
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Debug|Win32.Build.0 = Debug|Win32
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Debug|x64.ActiveCfg = Debug|x64
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Debug|x64.Build.0 = Debug|x64
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|Win32.ActiveCfg = Release|Win32
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|Win32.Build.0 = Release|Win32
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|x64.ActiveCfg = Release|x64
+		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

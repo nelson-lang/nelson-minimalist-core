@@ -13,7 +13,6 @@ set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
 include_directories(
   ${EIGEN3_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
@@ -35,6 +34,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../time/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../ipc/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../sio_client/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../sio_client/src/socket_io/src)
 # ==============================================================================
@@ -56,7 +56,7 @@ target_link_libraries(
   nlsNelson_manager
   nlsLocalization
   nlsI18n
-  ${BOOST_LIBRARIES}
+  nlsCommons 
   ${LIBRT})
 # ==============================================================================
 set_target_properties(

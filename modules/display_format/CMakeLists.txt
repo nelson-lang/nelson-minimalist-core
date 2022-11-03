@@ -12,6 +12,8 @@ set(module_library_name nlsDisplay_format)
 # ==============================================================================
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_mathematics/src/include
@@ -19,9 +21,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/fmt/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${Boost_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR})
 # ==============================================================================
 file(GLOB DISPLAY_FORMAT_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
@@ -31,13 +31,13 @@ add_library(${module_library_name} SHARED ${DISPLAY_FORMAT_SRC})
 target_link_libraries(
   ${module_library_name}
   nlsTypes
+  nlsCommons
   nlsCharacters_encoding
   nlsError_manager
   nlsNelson_manager
   nlsStream_manager
   nlsElementary_mathematics
-  nlsI18n
-  ${BOOST_LIBRARIES})
+  nlsI18n)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

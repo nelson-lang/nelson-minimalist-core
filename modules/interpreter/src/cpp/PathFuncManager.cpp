@@ -8,10 +8,9 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include <cerrno>
-#include <boost/algorithm/string.hpp>
-#include <boost/format.hpp>
 #include <algorithm>
 #include <fstream>
+#include "StringHelpers.hpp"
 #include "PathFuncManager.hpp"
 #include "characters_encoding.hpp"
 #include "MacroFunctionDef.hpp"
@@ -415,9 +414,9 @@ PathFuncManager::getPathNameAsString()
         }
     }
 #ifdef _MSC_VER
-    if (boost::algorithm::ends_with(p, L";"))
+    if (StringHelpers::ends_with(p, L";"))
 #else
-    if (boost::algorithm::ends_with(p, L":"))
+    if (StringHelpers::ends_with(p, L":"))
 #endif
     {
         p.pop_back();

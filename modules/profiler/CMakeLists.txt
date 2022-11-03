@@ -16,11 +16,11 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
-  ${Boost_INCLUDE_DIRS})
+  ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
 # ==============================================================================
 file(GLOB PROFILER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 # ==============================================================================
@@ -30,11 +30,11 @@ target_link_libraries(
   ${module_library_name}
   nlsApi_nelson
   nlsError_manager
+  nlsCommons
   nlsStream_manager
   nlsCharacters_encoding
   nlsI18n
-  nlsTypes
-  ${BOOST_LIBRARIES})
+  nlsTypes)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

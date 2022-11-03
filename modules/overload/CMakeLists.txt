@@ -11,7 +11,6 @@ set(module_name overload)
 set(module_library_name nlsOverload)
 # ==============================================================================
 include_directories(
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include

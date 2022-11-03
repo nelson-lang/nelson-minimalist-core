@@ -15,8 +15,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-  ${Boost_INCLUDE_DIRS})
+  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 # ==============================================================================
 file(GLOB API_NELSON_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 # ==============================================================================

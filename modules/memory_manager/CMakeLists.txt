@@ -11,11 +11,11 @@ set(module_name memory_manager)
 set(module_library_name nlsMemory_manager)
 # ==============================================================================
 include_directories(
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
@@ -25,8 +25,13 @@ file(GLOB MEMORY_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${MEMORY_MANAGER_SRC})
 # ==============================================================================
-target_link_libraries(${module_library_name} nlsCharacters_encoding
-                      nlsInterpreter nlsError_manager nlsI18n nlsTypes)
+target_link_libraries(${module_library_name} 
+  nlsCharacters_encoding
+  nlsInterpreter
+  nlsError_manager
+  nlsI18n
+  nlsCommons
+  nlsTypes)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

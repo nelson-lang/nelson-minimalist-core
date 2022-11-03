@@ -12,7 +12,6 @@ set(module_library_name nlsInterpreter)
 # ==============================================================================
 include_directories(
   ${EIGEN3_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/src/grammar
   ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
@@ -20,7 +19,8 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../display_format/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/fmt/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../files_folders_functions/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
@@ -48,8 +48,8 @@ target_link_libraries(
   nlsTypes
   nlsI18n
   nlsOs_functions
-  nlsProfiler
-  ${BOOST_LIBRARIES})
+  nlsCommons
+  nlsProfiler)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

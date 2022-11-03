@@ -21,7 +21,6 @@ jobs:
           brew install automake
           brew install pkg-config
           brew install pkgconfig
-          brew install boost
           brew install eigen
           export BUILD_ROOT=$(pwd);
 
@@ -54,7 +53,6 @@ jobs:
           brew install libffi
           brew install pkg-config
           brew install pkgconfig
-          brew install boost
           brew upgrade cmake
           brew install eigen
           export BUILD_ROOT=$(pwd);
@@ -84,7 +82,6 @@ jobs:
           sudo apt -y install libtool;
           sudo apt -y install automake;
           sudo apt -y install pkg-config;
-          sudo apt -y install libboost-all-dev;
           sudo apt -y install libeigen3-dev;
 
       - name: Checkout
@@ -122,7 +119,6 @@ jobs:
           sudo apt -y install libtool;
           sudo apt -y install automake;
           sudo apt -y install pkg-config;
-          sudo apt-get install -y libboost-all-dev;
           git clone https://gitlab.com/libeigen/eigen.git /tmp/eigen;
           mkdir /tmp/eigen-build;
           cd /tmp/eigen;
@@ -156,7 +152,6 @@ jobs:
           pacman -S gawk --noconfirm
           pacman -S m4 --noconfirm
           pacman -S pkg-config --noconfirm
-          pacman -S boost-libs boost --noconfirm
           pacman -S cmake --noconfirm
           pacman -S make --noconfirm
           git clone https://gitlab.com/libeigen/eigen.git /tmp/eigen
@@ -191,7 +186,6 @@ jobs:
           dnf install -y automake
           dnf install -y pkg-config
           dnf install -y cmake
-          dnf install -y boost-devel
           dnf install -y eigen3-devel
       - name: Checkout repository
         uses: actions/checkout@v3

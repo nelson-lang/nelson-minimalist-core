@@ -7,7 +7,6 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include <boost/function.hpp>
 #include <cstdio>
 #include "SparseDynamicFunctions.hpp"
 #include "dynamic_library.hpp"

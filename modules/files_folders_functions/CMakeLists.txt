@@ -11,13 +11,13 @@ set(module_name files_folders_functions)
 set(module_library_name nlsFiles_folders_functions)
 # ==============================================================================
 include_directories(
-  ${Boost_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/fmt/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
@@ -36,7 +36,7 @@ target_link_libraries(
   nlsTypes
   nlsI18n
   nlsInterpreter
-  ${BOOST_LIBRARIES})
+  nlsCommons)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

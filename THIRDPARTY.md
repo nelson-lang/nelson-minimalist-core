@@ -17,3 +17,11 @@ A modern formatting library
 > <https://fmt.dev/latest/index.html>
 
 > <https://github.com/fmtlib/fmt/blob/master/LICENSE.rst> MIT license
+
+- stduuid
+
+A C++17 cross-platform implementation for UUIDs
+
+> <https://github.com/mariusbancila/stduuid>
+
+> <https://github.com/mariusbancila/stduuid/blob/master/LICENSE> MIT license

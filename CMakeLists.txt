@@ -78,12 +78,6 @@ include(Eigen3Config)
 # ==============================================================================
 find_package(PkgConfig REQUIRED)
 # ==============================================================================
-list (APPEND
-  boost_components)
-find_package(
-  Boost 1.64.0
-  COMPONENTS ${boost_components} REQUIRED)
-# ==============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   set(BIN_DIRECTORY ${PROJECT_BINARY_DIR}/bin/linux)
 endif()

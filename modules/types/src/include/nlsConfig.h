@@ -19,20 +19,3 @@
 #define NLS_INDEX_TYPE_64
 #endif
 //=============================================================================
-#define CAT_3_STRINGS(a, b, c) a##b##c
-#ifdef _MSC_VER
-#ifdef _DEBUG
-#ifdef _WIN64
-#define BOOST_TARGET "vc143-mt-gd-x64-1_80"
-#else
-#define BOOST_TARGET "vc143-mt-gd-x32-1_80"
-#endif
-#else
-#ifdef _WIN64
-#define BOOST_TARGET "vc143-mt-x64-1_80"
-#else
-#define BOOST_TARGET "vc143-mt-x32-1_80"
-#endif
-#endif
-#endif
-//=============================================================================
