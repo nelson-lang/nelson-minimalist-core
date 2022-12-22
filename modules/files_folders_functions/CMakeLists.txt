@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name files_folders_functions)
@@ -25,15 +24,16 @@ include_directories(
 # ==============================================================================
 file(GLOB FILES_FOLDERS_FUNCTIONS_SRC
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER FILES_FOLDERS_FUNCTIONS_SRC EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${FILES_FOLDERS_FUNCTIONS_SRC})
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
-  nlsStream_manager
   nlsCharacters_encoding
+  nlsCommons
   nlsError_manager
-  nlsTypes
   nlsI18n
   nlsInterpreter
   nlsCommons)

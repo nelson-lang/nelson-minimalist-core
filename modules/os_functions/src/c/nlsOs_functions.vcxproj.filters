@@ -24,10 +24,10 @@
     <ClCompile Include="..\cpp\SearchVariableEnvironment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dllMain.c">
+    <ClCompile Include="..\cpp\AddPathToEnvironmentVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\AddPathToEnvironmentVariable.cpp">
+    <ClCompile Include="..\cpp\dllMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

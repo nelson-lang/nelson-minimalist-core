@@ -168,8 +168,11 @@ bin/macos/*-exec
 /tools/buildhelp/win32/Debug
 /tools/buildhelp/Release
 /tools/buildhelp/Debug
+/tools/doxygen/nelson_doxygen
+/tools/doxygen/nelson_doxygen.zip
 ################################################################################
-/modules/core/src/include/Nelson_VERSION.h
+/modules/commons/src/include/Nelson_VERSION.h
+/modules/commons/src/include/nlsBuildConfig.h
 /modules/*/src/c/*/x64
 /modules/*/src/c/*/Debug
 /modules/*/src/c/*/Release
@@ -213,4 +216,8 @@ package-lock.json
 node_modules/
 ################################################################################
 .qt/
+################################################################################
+modules/mex/examples/rust-mex-builder/helloworld/Cargo.lock
+modules/mex/examples/rust-mex-builder/helloworld/build.rs
+modules/mex/examples/rust-mex-builder/helloworld/target/
 ################################################################################

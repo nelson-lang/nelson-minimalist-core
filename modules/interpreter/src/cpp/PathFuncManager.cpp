@@ -10,8 +10,8 @@
 #include <cerrno>
 #include <algorithm>
 #include <fstream>
-#include "StringHelpers.hpp"
 #include "PathFuncManager.hpp"
+#include "StringHelpers.hpp"
 #include "characters_encoding.hpp"
 #include "MacroFunctionDef.hpp"
 #include "ParserInterface.hpp"
@@ -336,7 +336,7 @@ PathFuncManager::clearUserPath(bool saveToFile)
 void
 PathFuncManager::resetUserPath()
 {
-    std::wstring prefDir = getPreferencesPath();
+    std::wstring prefDir = NelsonConfiguration::getInstance()->getNelsonPreferencesDirectory();
     std::wstring userPathFile = prefDir + L"/userpath.conf";
     FileSystemWrapper::Path p(userPathFile);
     FileSystemWrapper::Path::remove(p);
@@ -513,7 +513,7 @@ PathFuncManager::userpathCompute()
         std::wstring prefDir;
         std::wstring userPathFile;
         try {
-            prefDir = getPreferencesPath();
+            prefDir = NelsonConfiguration::getInstance()->getNelsonPreferencesDirectory();
         } catch (const Exception&) {
             prefDir.clear();
         }
@@ -560,24 +560,22 @@ PathFuncManager::userpathCompute()
 }
 //=============================================================================
 std::wstring
-PathFuncManager::getPreferencesPath()
-{
-#define NELSON_PREFERENCES_PATH_ENV L"NELSON_PREFERENCES_PATH"
-    std::wstring prefPath = GetVariableEnvironment(NELSON_PREFERENCES_PATH_ENV, L"");
-    return prefPath;
-}
-//=============================================================================
-std::wstring
 PathFuncManager::loadUserPathFromFile()
 {
     std::wstring preferedUserPath = L"";
-    std::wstring prefDir = getPreferencesPath();
+    std::wstring prefDir = NelsonConfiguration::getInstance()->getNelsonPreferencesDirectory();
+    std::wstring userPathFile = prefDir + L"/userpath.conf";
+    bool bIsFile = FileSystemWrapper::Path::is_regular_file(userPathFile);
     return preferedUserPath;
 }
 //=============================================================================
 bool
 PathFuncManager::saveUserPathToFile()
 {
+    std::wstring up = L"";
+    if (_userPath != nullptr) {
+        up = _userPath->getPath();
+    }
     return true;
 }
 //=============================================================================

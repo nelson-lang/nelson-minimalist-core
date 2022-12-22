@@ -34,19 +34,19 @@ include_directories(
 # ==============================================================================
 file(GLOB INTERPRETER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar/*.cpp")
+list(FILTER INTERPRETER_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${INTERPRETER_SRC})
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
   nlsCharacters_encoding
+  nlsCommons
+  nlsDisplay_format
+  nlsError_manager
+  nlsI18n
   nlsNelson_manager
   nlsOperators
-  nlsError_manager
-  nlsStream_manager
-  nlsDisplay_format
-  nlsTypes
-  nlsI18n
   nlsOs_functions
   nlsCommons
   nlsProfiler)

@@ -25,6 +25,7 @@ include_directories(
   ${EIGEN3_INCLUDE_DIR})
 # ==============================================================================
 file(GLOB DISPLAY_FORMAT_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER DISPLAY_FORMAT_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${DISPLAY_FORMAT_SRC})
 # ==============================================================================
@@ -33,9 +34,7 @@ target_link_libraries(
   nlsTypes
   nlsCommons
   nlsCharacters_encoding
-  nlsError_manager
   nlsNelson_manager
-  nlsStream_manager
   nlsElementary_mathematics
   nlsI18n)
 # ==============================================================================

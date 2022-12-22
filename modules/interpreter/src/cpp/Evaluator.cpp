@@ -14,6 +14,7 @@
 #include <cerrno>
 #include <iostream>
 #include <cmath>
+#include "StringHelpers.hpp"
 #include "Evaluator.hpp"
 #include "Exception.hpp"
 #include "LessEquals.hpp"
@@ -40,7 +41,6 @@
 #include "FileParser.hpp"
 #include "MainEvaluator.hpp"
 #include "CommandQueue.hpp"
-#include "Error.hpp"
 #include "VertCatOperator.hpp"
 #include "HorzCatOperator.hpp"
 #include "PathFuncManager.hpp"
@@ -54,6 +54,8 @@
 #include "NotEquals.hpp"
 #include "PathFuncManager.hpp"
 #include "Error.hpp"
+#include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 #include "VertCat.hpp"
 #include "HorzCat.hpp"
 #include "PathFuncManager.hpp"

@@ -10,6 +10,7 @@
 #include "CheckIfWhileCondition.hpp"
 #include <Eigen/Sparse>
 #include "Error.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

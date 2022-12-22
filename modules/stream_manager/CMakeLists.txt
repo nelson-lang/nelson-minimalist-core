@@ -3,14 +3,11 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name stream_manager)
 set(module_library_name nlsStream_manager)
-# ==============================================================================
-add_definitions(-DFMT_EXPORT)
 # ==============================================================================
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
@@ -26,17 +23,17 @@ include_directories(
   ${EIGEN3_INCLUDE_DIR})
 # ==============================================================================
 file(GLOB STREAM_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/src/*.cc")
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/src/*.cc")
+list(FILTER STREAM_MANAGER_SRC EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${STREAM_MANAGER_SRC})
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
-  nlsTypes
   nlsCharacters_encoding
+  nlsCommons
   nlsError_manager
-  nlsNelson_manager
-  nlsElementary_mathematics
   nlsI18n
   nlsCommons)
 # ==============================================================================

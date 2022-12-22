@@ -16,6 +16,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/include
 # ==============================================================================
 file(GLOB ELEMENTARY_MATHEMATICS_SRC
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER ELEMENTARY_MATHEMATICS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${ELEMENTARY_MATHEMATICS_SRC})
 # ==============================================================================

@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -22,7 +21,7 @@ project(Nelson)
 # ==============================================================================
 set(Nelson_VERSION_MAJOR_DEFAULT 0)
 set(Nelson_VERSION_MINOR_DEFAULT 6)
-set(Nelson_VERSION_MAINTENANCE_DEFAULT 10)
+set(Nelson_VERSION_MAINTENANCE_DEFAULT 11)
 set(Nelson_VERSION_BUILD_DEFAULT 0)
 # ==============================================================================
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,11 +36,29 @@ option(MINIMAL_BUILD "Build mininal Nelson " OFF)
 option(WITHOUT_OPENMP "Disable OpenMP" OFF)
 # ==============================================================================
 option(ENABLE_CLANG_TIDY "Analyze code with clang-tidy." OFF)
-option(ENABLE_CLANG_TIDY_FIX  "Analyze code with clang-tidy and fix errors." OFF)
+option(ENABLE_CLANG_TIDY_FIX "Analyze code with clang-tidy and fix errors." OFF)
 # ==============================================================================
 option(ENABLE_PACKAGING "Build Nelson for packaging" OFF)
 # ==============================================================================
 message(STATUS "Build Nelson for packaging: ${ENABLE_PACKAGING}")
+# ==============================================================================
+if(WITHOUT_OPENMP)
+  message(STATUS "OpenMP disabled.")
+endif()
+# ==============================================================================
+if(MINIMAL_BUILD)
+  message(STATUS "Minimal build.")
+endif()
+# ==============================================================================
+foreach(mod ${optional_modules})
+  if(WITHOUT_${mod}_MODULE)
+    message(STATUS "${mod} module disabled.")
+  endif()
+endforeach(mod)
+# ==============================================================================
+if(LGPL_ONLY OR (WITHOUT_FFTW_MODULE AND WITHOUT_SLICOT_MODULE))
+  message(STATUS "LGPL v3.x: enabled.")
+endif()
 # ==============================================================================
 if(POLICY CMP0068)
   cmake_policy(SET CMP0068 NEW)
@@ -51,7 +68,7 @@ set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/")
 set(BUILD_SHARED_LIBS "true")
 # ==============================================================================
-include (VersionConfig)
+include(VersionConfig)
 # ==============================================================================
 include(C17Config)
 # ==============================================================================
@@ -74,6 +91,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   endif()
 endif()
 # ==============================================================================
+configure_file("${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h.in"
+                 "${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h")
+# ==============================================================================
 include(Eigen3Config)
 # ==============================================================================
 find_package(PkgConfig REQUIRED)
@@ -83,7 +103,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif()
 # =============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-include(MacOsConfig)
+  include(MacOsConfig)
 endif()
 # ==============================================================================
 set(INSTALL_DIRECTORY

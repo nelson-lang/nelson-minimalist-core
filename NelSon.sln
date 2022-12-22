@@ -57,7 +57,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CMakeLists.txt = CMakeLists.txt
 		modules\CMakeLists.txt = modules\CMakeLists.txt
 		CMake\FindEigen3.cmake = CMake\FindEigen3.cmake
-		modules\types\src\include\nlsConfig.h = modules\types\src\include\nlsConfig.h
+		CMake\FindFFTW.cmake = CMake\FindFFTW.cmake
+		CMake\Findicu.cmake = CMake\Findicu.cmake
+		CMake\FindLAPACKE.cmake = CMake\FindLAPACKE.cmake
+		CMake\Findlibffi.cmake = CMake\Findlibffi.cmake
+		CMake\FindLibSndFile.cmake = CMake\FindLibSndFile.cmake
+		CMake\FindMATIO.cmake = CMake\FindMATIO.cmake
+		CMake\FindMKL.cmake = CMake\FindMKL.cmake
+		CMake\FindOpenBLAS.cmake = CMake\FindOpenBLAS.cmake
+		CMake\FindPortaudio.cmake = CMake\FindPortaudio.cmake
+		CMake\FindTaglib.cmake = CMake\FindTaglib.cmake
+		etc\finish.m = etc\finish.m
+		modules\modules.iss = modules\modules.iss
+		modules\modules.m = modules\modules.m
+		modules\modules.m.in = modules\modules.m.in
+		modules\modules.m.vc = modules\modules.m.vc
+		tools\innosetup\Nelson.iss = tools\innosetup\Nelson.iss
+		modules\commons\src\include\Nelson_VERSION.h.vc = modules\commons\src\include\Nelson_VERSION.h.vc
+		modules\commons\src\include\nlsBuildConfig.h.vc = modules\commons\src\include\nlsBuildConfig.h.vc
+		etc\startup.m = etc\startup.m
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsNelson_manager", "modules\nelson_manager\src\c\nlsNelson_manager.vcxproj", "{E467B14F-0D56-4237-B649-EB5572B5E731}"
@@ -75,6 +93,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsLocalization", "modules\localization\no-src\c\no-nlsLocalization.vcxproj", "{DA17003A-28F0-4AC2-B9F5-80A46387811B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsCommons", "modules\commons\src\c\nlsCommons.vcxproj", "{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsMex", "modules\mex\no-src\c\no-nlsMex.vcxproj", "{F274199D-43E9-4606-889D-426D5A01D188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -260,6 +280,14 @@ Global
 		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|Win32.Build.0 = Release|Win32
 		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|x64.ActiveCfg = Release|x64
 		{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}.Release|x64.Build.0 = Release|x64
+		{F274199D-43E9-4606-889D-426D5A01D188}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F274199D-43E9-4606-889D-426D5A01D188}.Debug|Win32.Build.0 = Debug|Win32
+		{F274199D-43E9-4606-889D-426D5A01D188}.Debug|x64.ActiveCfg = Debug|x64
+		{F274199D-43E9-4606-889D-426D5A01D188}.Debug|x64.Build.0 = Debug|x64
+		{F274199D-43E9-4606-889D-426D5A01D188}.Release|Win32.ActiveCfg = Release|Win32
+		{F274199D-43E9-4606-889D-426D5A01D188}.Release|Win32.Build.0 = Release|Win32
+		{F274199D-43E9-4606-889D-426D5A01D188}.Release|x64.ActiveCfg = Release|x64
+		{F274199D-43E9-4606-889D-426D5A01D188}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

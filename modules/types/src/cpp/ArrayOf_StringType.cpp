@@ -12,8 +12,10 @@
 #include <limits>
 #include "ArrayOf.hpp"
 #include "Data.hpp"
-#include "Error.hpp"
 #include "characters_encoding.hpp"
+#include "Error.hpp"
+#include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name engine)
@@ -39,6 +38,8 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../sio_client/src/socket_io/src)
 # ==============================================================================
 file(GLOB ENGINE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER ENGINE_SRC EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${ENGINE_SRC})
 # ==============================================================================
@@ -52,11 +53,12 @@ target_link_libraries(
   nlsInterpreter
   nlsTerminal
   nlsCharacters_encoding
+  nlsCommons
+  nlsCore
+  nlsError_manager
   nlsMemory_manager
-  nlsNelson_manager
-  nlsLocalization
   nlsI18n
-  nlsCommons 
+  nlsLocalization 
   ${LIBRT})
 # ==============================================================================
 set_target_properties(

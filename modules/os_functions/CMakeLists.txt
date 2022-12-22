@@ -22,16 +22,17 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 # ==============================================================================
 file(GLOB OS_FUNCTIONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER OS_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${OS_FUNCTIONS_SRC})
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
+  nlsApi_nelson
   nlsCharacters_encoding
-  nlsTypes
+  nlsCommons
   nlsError_manager
   nlsI18n
-  nlsApi_nelson
   nlsNelson_manager
   nlsStream_manager
   nlsCommons)

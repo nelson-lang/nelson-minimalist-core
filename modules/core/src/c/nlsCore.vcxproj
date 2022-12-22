@@ -180,17 +180,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\include\GetNelsonPath.hpp" />
     <ClInclude Include="..\..\src\include\nlsCore_exports.h" />
+    <ClInclude Include="..\cpp\ComputeNelsonBinariesPath.hpp" />
+    <ClInclude Include="..\cpp\ComputeNelsonPath.hpp" />
+    <ClInclude Include="..\cpp\ComputePreferencesPath.hpp" />
     <ClInclude Include="..\include\EvaluateCommand.hpp" />
     <ClInclude Include="..\include\EvaluateInterface.hpp" />
     <ClInclude Include="..\include\EvaluateScriptFile.hpp" />
     <ClInclude Include="..\include\GetNelsonBinariesPath.hpp" />
-    <ClInclude Include="..\include\Nelson_VERSION.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
       <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
+      <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
       <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
@@ -221,33 +225,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\ComputeNelsonBinariesPath.cpp" />
+    <ClCompile Include="..\cpp\ComputeNelsonPath.cpp" />
+    <ClCompile Include="..\cpp\ComputeNelsonPaths.cpp" />
+    <ClCompile Include="..\cpp\ComputePreferencesPath.cpp" />
+    <ClCompile Include="..\cpp\dllMain.cpp" />
     <ClCompile Include="..\cpp\EvaluateInterface.cpp" />
     <ClCompile Include="..\cpp\EvaluateCommand.cpp" />
     <ClCompile Include="..\cpp\EvaluateScriptFile.cpp" />
-    <ClCompile Include="..\cpp\GetNelsonBinariesPath.cpp" />
-    <ClCompile Include="..\cpp\GetNelsonPath.cpp" />
-    <ClCompile Include="dllMain.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\module.iss" />
-    <CustomBuild Include="..\include\Nelson_VERSION.h.vc">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h"</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copy $(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copy $(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copy $(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\core\src\include\Nelson_VERSION.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copy $(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)modules\core\src\include\Nelson_VERSION.h</Outputs>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />

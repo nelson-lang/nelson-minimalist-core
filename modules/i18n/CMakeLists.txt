@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name i18n)
@@ -18,6 +17,8 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include)
 # ==============================================================================
 file(GLOB I18N_SRC "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/*.cpp")
+list(FILTER I18N_SRC EXCLUDE REGEX
+"${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${I18N_SRC})
 # ==============================================================================

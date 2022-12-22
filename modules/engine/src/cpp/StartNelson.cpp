@@ -24,7 +24,6 @@
 #include "EvaluateCommand.hpp"
 #include "EvaluateScriptFile.hpp"
 #include "Evaluator.hpp"
-#include "GetNelsonPath.hpp"
 #include "MainEvaluator.hpp"
 #include "MaxOpenedFiles.hpp"
 #include "Nelson_VERSION.h"
@@ -38,6 +37,8 @@
 #include "NelsonPrint.hpp"
 #include "NelsonConfiguration.hpp"
 #include "Localization.hpp"
+#include "ComputeNelsonPaths.hpp"
+#include "i18n.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -226,6 +227,7 @@ static int
 StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 {
     int exitCode = -1;
+    ComputesNelsonPaths();
     NelsonConfiguration::getInstance()->setNelsonEngineMode(_mode);
     ProgramOptions po(args, _mode);
     if (!po.isValid()) {
@@ -345,13 +347,7 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 static int
 StartNelsonInternalWithMutex(const wstringVector& args, NELSON_ENGINE_MODE _mode)
 {
-    // if (!haveNelsonMutex()) {
-    //     openNelsonMutex();
-    // }
     int exitCode = StartNelsonInternal(args, _mode);
-    // if (haveNelsonMutex()) {
-    //     closeNelsonMutex();
-    // }
     return exitCode;
 }
 //=============================================================================

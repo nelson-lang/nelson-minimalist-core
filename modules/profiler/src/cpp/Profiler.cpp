@@ -7,15 +7,17 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "StringHelpers.hpp"
+#include <chrono>
 #include <iomanip>
 #include <tuple>
 #include <iostream>
 #include <fstream>
+#include "StringHelpers.hpp"
 #include "Profiler.hpp"
 #include "Evaluator.hpp"
 #include "characters_encoding.hpp"
 #include "FileSystemWrapper.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -495,7 +497,6 @@ Profiler::coverageAnalyzer(
 
     int keywords = 0;
 
-    size_t res = 0;
     for (const std::string& line : functionContent) {
         std::string temp = StringHelpers::trim_copy(line);
         if (temp.empty() || StringHelpers::starts_with(temp, "%")) {

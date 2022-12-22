@@ -12,6 +12,8 @@
 #include "DotLeftDivide.hpp"
 #include "LinearEquationSolver.hpp"
 #include "Warning.hpp"
+#include "Error.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

@@ -23,6 +23,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include)
 # ==============================================================================
 file(GLOB ERROR_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER ERROR_MANAGER_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${ERROR_MANAGER_SRC})
 # ==============================================================================

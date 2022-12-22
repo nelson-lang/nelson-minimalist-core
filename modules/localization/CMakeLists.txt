@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name localization)
@@ -15,6 +14,8 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include)
 # ==============================================================================
 file(GLOB LOCALIZATION_SRC "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/*.cpp")
+list(FILTER LOCALIZATION_SRC EXCLUDE REGEX
+"${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${LOCALIZATION_SRC})
 # ==============================================================================

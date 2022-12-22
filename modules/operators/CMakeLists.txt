@@ -3,8 +3,7 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN
-# SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name operators)
@@ -14,6 +13,7 @@ include_directories(
   ${EIGEN3_INCLUDE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../integer/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
@@ -27,21 +27,19 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
 # ==============================================================================
 file(GLOB OPERATORS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER OPERATORS_SRC EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${OPERATORS_SRC})
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
   nlsApi_nelson
+  nlsElementary_mathematics
   nlsError_manager
-  nlsCharacters_encoding
   nlsI18n
   nlsTypes
-  ${BLAS_LIBRARIES}
-  ${LAPACK_LIBRARIES}
-  ${LAPACKE_LIBRARIES}
-  ${MAC_LAPACKE_LIBRARY}
-  ${OpenMP_CXX_LIBRARIES})
+  ${NELSON_BLAS_LAPACKX_LIBRARIES})
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

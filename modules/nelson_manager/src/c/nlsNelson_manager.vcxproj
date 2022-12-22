@@ -186,7 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\NelsonConfiguration.cpp" />
-    <ClCompile Include="dllMain.c" />
+    <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">

@@ -20,6 +20,9 @@
 #include "characters_encoding.hpp"
 #include "Profiler.hpp"
 #include "ProfilerHelpers.hpp"
+#include "Error.hpp"
+#include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

@@ -9,8 +9,9 @@
 //=============================================================================
 #include <cstdio>
 #include "SparseDynamicFunctions.hpp"
-#include "dynamic_library.hpp"
+#include "DynamicLibrary.hpp"
 #include "Error.hpp"
+#include "i18n.hpp"
 //=============================================================================
 static library_handle nlsSparseHandleDynamicLibrary = nullptr;
 static bool bFirstDynamicLibraryCall = true;
