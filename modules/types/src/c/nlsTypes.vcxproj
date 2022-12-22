@@ -284,9 +284,6 @@
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\module.iss" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
