@@ -13,7 +13,6 @@
 #include "EvaluateScriptFile.hpp"
 #include "Interface.hpp"
 #include "NelsonConfiguration.hpp"
-#include "GatewaysManager.hpp"
 #include "i18n.hpp"
 //=============================================================================
 bool
@@ -41,7 +40,6 @@ FinishNelsonMainScript(Evaluator* eval)
                     fwprintf(stderr, L"%ls", errmsg.c_str());
                 }
             }
-            GatewaysManager::getInstance()->destroy(eval);
             return true;
         }
         return false;

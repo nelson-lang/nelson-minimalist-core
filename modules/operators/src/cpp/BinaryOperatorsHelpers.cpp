@@ -8,6 +8,9 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "BinaryOperatorsHelpers.hpp"
+#include "Error.hpp"
+#include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

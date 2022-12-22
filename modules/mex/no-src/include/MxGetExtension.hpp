@@ -9,17 +9,46 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-// #define EIGEN_USE_BLAS
-// #define EIGEN_USE_LAPACKE_STRICT
+#include <string>
 //=============================================================================
-#include <complex>
+namespace Nelson {
 //=============================================================================
-#pragma warning(disable : 4190)
-#ifndef lapack_complex_float
-#define lapack_complex_float std::complex<float>
+/**
+ * Get current platform MEX file extension
+ */
+static std::wstring
+getMexExtension()
+{
+    std::wstring mexext;
+#ifdef _MSC_VER
+#ifdef _WIN64
+    mexext = L"nexw64";
+#else
+#ifdef _WIN32
+    mexext = L"nexw32";
 #endif
-//=============================================================================
-#ifndef lapack_complex_double
-#define lapack_complex_double std::complex<double>
 #endif
+#else
+#if defined(__APPLE__) || defined(__MACH__)
+#ifdef __x86_64__
+    mexext = L"nexmaci64";
+#else
+#if defined(__arm64__) || defined(__aarch64__)
+    mexext = L"nexmacm1";
+#else
+    mexext = L"nexmaci";
+#endif
+#endif
+#else
+#ifdef __x86_64__
+    mexext = L"nexa64";
+#else
+    mexext = L"nexglx";
+#endif
+#endif
+#endif
+    return mexext;
+}
+//=============================================================================
+}
 //=============================================================================

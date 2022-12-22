@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\MxMemory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\dllMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,7 +34,10 @@
     <ClInclude Include="..\include\NLSMEX_EXPORTS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\MxMemory.h">
+    <ClInclude Include="..\include\MxCall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MxGetExtension.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

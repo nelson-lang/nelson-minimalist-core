@@ -10,7 +10,7 @@ rem # LICENCE_BLOCK_END
 rem =============================================================================
 SETLOCAL ENABLEEXTENSIONS
 SET PARENT=%~dp0
-SET DEFAULT_NELSON_MODE="-gui"
+SET DEFAULT_NELSON_MODE="-cli"
 SET NELSON_MODE=%DEFAULT_NELSON_MODE%
 SET "START_CMD=start "Nelson" "
 
@@ -18,13 +18,13 @@ SET "START_CMD=start "Nelson" "
 SET CURRENT_ARG=%~1
 
 IF "%CURRENT_ARG%"=="-adv-cli" (
-    SET NELSON_MODE="-adv-cli"
+    SET NELSON_MODE="-cli"
     SET START_CMD=
     GOTO NEXT
 )
 
 IF "%CURRENT_ARG%"=="-sio-cli" (
-    SET NELSON_MODE="-sio-cli"
+    SET NELSON_MODE="-cli"
     SET START_CMD=
     GOTO NEXT
 )
@@ -36,7 +36,7 @@ IF "%CURRENT_ARG%"=="-cli" (
 )
 
 IF "%CURRENT_ARG%"=="-gui" (
-    SET NELSON_MODE="-gui"
+    SET NELSON_MODE="-cli"
     GOTO NEXT
 )
 
