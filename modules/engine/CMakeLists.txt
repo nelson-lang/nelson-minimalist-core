@@ -29,7 +29,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../gui/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../localization/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../time/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../ipc/src/include

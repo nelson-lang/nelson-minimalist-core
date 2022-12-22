@@ -27,7 +27,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../operators/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../os_functions/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../profiler/src/include)

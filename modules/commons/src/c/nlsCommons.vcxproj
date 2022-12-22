@@ -179,7 +179,6 @@
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\module.iss" />
     <CustomBuild Include="..\include\Nelson_VERSION.h.vc">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
