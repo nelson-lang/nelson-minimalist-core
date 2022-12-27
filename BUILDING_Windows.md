@@ -26,7 +26,7 @@
   ```
 - Start the build:
   Goto Nelson directory
-  launch win32-environment.bat (win32 build) or win64-environment.bat (win64 build)
+  launch Nelson.sln
   start build with VS 2022
 
 [Previous (Building)](BUILDING.md)
