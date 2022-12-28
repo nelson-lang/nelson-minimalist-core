@@ -229,7 +229,7 @@ static void
 addHardcodedBuiltin()
 {
     Nelson::BuiltInFunctionDefManager::getInstance()->add("addpath",
-        (ptrBuiltin)Nelson::FunctionsGateway::addpathBuiltin, 1, 0, L"", L"functions_manager",
+        (ptrBuiltin)Nelson::FunctionsGateway::addpathBuiltin, 1, -1, L"", L"functions_manager",
         (size_t)CPP_BUILTIN_WITH_EVALUATOR, true);
 }
 //=============================================================================

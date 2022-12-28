@@ -15,8 +15,8 @@
 //=============================================================================
 namespace Nelson::FunctionsGateway {
 //=============================================================================
-    NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP ArrayOfVector
-    addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP ArrayOfVector
+addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
 //=============================================================================
 } // namespace Nelson
 //=============================================================================
