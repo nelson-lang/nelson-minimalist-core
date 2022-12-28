@@ -242,11 +242,11 @@ jobs:
           install.bat
           cd ..
 
-      - name: Build nelson-kernel
+      - name: Build nelson-minimalist-core
         run: |
           SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;%PATH%
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x86
-          cd nelson-kernel
+          cd nelson-minimalist-core
           msbuild NelSon.sln /p:Configuration=Release /p:Platform=win32 /target:"NelSon-cli" /m:4 /p:PreferredToolArchitecture=x64
 
   Windows_win64:
@@ -272,9 +272,9 @@ jobs:
           install.bat
           cd ..
 
-      - name: Build nelson-kernel
+      - name: Build nelson-minimalist-core
         run: |
           SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;%PATH%
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          cd nelson-kernel
+          cd nelson-minimalist-core
           msbuild NelSon.sln /p:Configuration=Release /p:Platform=x64 /target:"NelSon-cli" /m:4 /p:PreferredToolArchitecture=x64
