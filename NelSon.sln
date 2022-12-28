@@ -86,6 +86,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsCommons", "modules\commo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsMex", "modules\mex\no-src\c\no-nlsMex.vcxproj", "{F274199D-43E9-4606-889D-426D5A01D188}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsFunctions_manager_builtin", "modules\functions_manager\builtin\c\nlsFunctions_manager_builtin.vcxproj", "{A30B923A-0434-4E0F-91D4-95009775AB80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -278,6 +280,14 @@ Global
 		{F274199D-43E9-4606-889D-426D5A01D188}.Release|Win32.Build.0 = Release|Win32
 		{F274199D-43E9-4606-889D-426D5A01D188}.Release|x64.ActiveCfg = Release|x64
 		{F274199D-43E9-4606-889D-426D5A01D188}.Release|x64.Build.0 = Release|x64
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Debug|Win32.Build.0 = Debug|Win32
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Debug|x64.ActiveCfg = Debug|x64
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Debug|x64.Build.0 = Debug|x64
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|Win32.ActiveCfg = Release|Win32
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|Win32.Build.0 = Release|Win32
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|x64.ActiveCfg = Release|x64
+		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

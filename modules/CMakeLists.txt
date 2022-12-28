@@ -26,6 +26,7 @@ list(
   os_functions
   interpreter
   profiler
+  functions_manager
   files_folders_functions
   core
   memory_manager
