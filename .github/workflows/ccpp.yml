@@ -234,6 +234,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: |
+          cd ..
+          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-win32.git
+          cd nelson-thirdparty-win32
+          install.bat
+          cd ..
+
       - name: Build nelson-minimalist-core
         run: |
           SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;%PATH%
@@ -255,6 +263,14 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          cd ..
+          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-x64.git
+          cd nelson-thirdparty-x64
+          install.bat
+          cd ..
 
       - name: Build nelson-minimalist-core
         run: |
