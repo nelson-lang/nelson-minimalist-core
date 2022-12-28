@@ -239,8 +239,6 @@ jobs:
           cd ..
           git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-win32.git
           cd nelson-thirdparty-win32
-          install.bat
-          cd ..
 
       - name: Build nelson-minimalist-core
         run: |
@@ -268,9 +266,6 @@ jobs:
         run: |
           cd ..
           git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-x64.git
-          cd nelson-thirdparty-x64
-          install.bat
-          cd ..
 
       - name: Build nelson-minimalist-core
         run: |
