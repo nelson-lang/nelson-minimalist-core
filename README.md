@@ -20,7 +20,7 @@ If you found this project useful, please consider [starring it on GitHub !!!](ht
 
 ## License
 
-Nelson's kernel is delivered under lgpl v3.0:
+Nelson's minimal core is delivered under lgpl v3.0:
 
 - [![License (GNU Lesser General Public License (LGPL) v3.0)](<https://img.shields.io/badge/License-GNU%20Lesser%20General%20Public%20License%20(LGPL)%20v3.0-blue.svg?style=flat-square>)](https://opensource.org/licenses/LGPL-3.0)
 

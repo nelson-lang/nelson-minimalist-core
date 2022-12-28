@@ -15,7 +15,7 @@
 namespace Nelson {
 //=============================================================================
 bool
-ArrayOf::isGraphicObject() const
+ArrayOf::isGraphicsObject() const
 {
     if (dp) {
         return (dp->dataClass == NLS_GO_HANDLE);
@@ -24,29 +24,29 @@ ArrayOf::isGraphicObject() const
 }
 //=============================================================================
 ArrayOf
-ArrayOf::graphicObjectConstructor(void* ptrObject)
+ArrayOf::graphicsObjectConstructor(go_handle graphicsObjectHandle)
 {
     nelson_handle* ptr = static_cast<nelson_handle*>(ArrayOf::allocateArrayOf(NLS_GO_HANDLE, 1));
     Dimensions dims(1, 1);
-    ptr[0] = PTR_TO_NELSON_HANDLE(ptrObject);
+    ptr[0] = (nelson_handle)graphicsObjectHandle;
     ArrayOf res = ArrayOf(NLS_GO_HANDLE, dims, (void*)ptr);
     return res;
 }
 //=============================================================================
-void*
-ArrayOf::getContentAsGraphicObjectScalar() const
+go_handle
+ArrayOf::getContentAsGraphicsObjectScalar() const
 {
-    if (!isGraphicObject()) {
-        Error(_W("Expected an graphic object."));
+    if (!isGraphicsObject()) {
+        Error(_W("Expected an graphics object."));
     }
     if (!isScalar()) {
-        Error(_W("Expected an graphic object scalar."));
+        Error(_W("Expected an graphics object scalar."));
     }
     nelson_handle* qp = (nelson_handle*)getDataPointer();
     if (qp == nullptr) {
         Error(_W("Expected a valid handle."));
     }
-    return (void*)NELSON_HANDLE_TO_PTR(qp[0]);
+    return (go_handle)(qp[0]);
 }
 //=============================================================================
 }
