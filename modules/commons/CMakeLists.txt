@@ -13,19 +13,18 @@ set(module_library_name nlsCommons)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/src/include
                     ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/stduuid
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include)
+                    ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include)
 # ==============================================================================
 add_definitions(-DFMT_EXPORT)
 # ==============================================================================
 file(GLOB COMMONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/src/*.cc")
-list(FILTER COMMONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
+list(FILTER COMMONS_SRC EXCLUDE REGEX
+"${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${COMMONS_SRC})
 # ==============================================================================
-target_link_libraries(${module_library_name}
-  ${CMAKE_DL_LIBS}
-  nlsCharacters_encoding)
+target_link_libraries(${module_library_name} nlsCharacters_encoding)
 # ==============================================================================
 set_target_properties(
   ${module_library_name}

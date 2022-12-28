@@ -16,8 +16,8 @@
 #include "Profiler.hpp"
 #include "Evaluator.hpp"
 #include "characters_encoding.hpp"
-#include "HtmlExporter.hpp"
 #include "FileSystemWrapper.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -75,7 +75,7 @@ Profiler::tic()
     if (!profileOn) {
         return 0;
     }
-    return now();
+    return 0;
 }
 //=============================================================================
 void
@@ -83,22 +83,6 @@ Profiler::toc(uint64 tic, const internalProfileFunction& stack)
 {
     if (!profileOn) {
         return;
-    }
-    if (std::get<1>(stack) == "profile") {
-        return;
-    }
-
-    uint64 t = now();
-    uint64 diff_time = t - tic;
-
-    size_t id = hash(stack);
-    auto search = profileMap.find(id);
-    if (search != profileMap.end()) {
-        std::get<1>(search->second) = std::get<1>(search->second) + 1;
-        std::get<2>(search->second) = std::get<2>(search->second) + diff_time;
-    } else {
-        profileMap.insert(std::make_pair(id, std::make_tuple(stack, 1, diff_time, index)));
-        index++;
     }
 }
 //=============================================================================
@@ -261,8 +245,7 @@ Profiler::info(Profiler::Profile_Sort_Type sortOption)
 uint64
 Profiler::now()
 {
-    std::chrono::nanoseconds ns = std::chrono::high_resolution_clock::now().time_since_epoch();
-    return uint64(static_cast<std::uint64_t>(ns.count()));
+    return 0;
 }
 //=============================================================================
 size_t
@@ -385,72 +368,6 @@ Profiler::save(
     const std::wstring& destinationDirectory, const std::wstring& moduleProfilerPath,
     std::wstring& errorMessage)
 {
-    std::wstring profileDirectory = destinationDirectory;
-    if (!FileSystemWrapper::Path::is_directory(profileDirectory)
-        && !FileSystemWrapper::Path::is_regular_file(profileDirectory)) {
-        std::string message;
-        if (!FileSystemWrapper::Path::create_directory(profileDirectory, message)) {
-            errorMessage = utf8_to_wstring(message);
-            return;
-        }
-    }
-    // filename, line, time, calls
-    std::vector<std::tuple<std::string, uint64, uint64, uint64>> flatProfile;
-    // filename, line, name, nbcalls, tottime, percall
-    for (std::tuple<std::string, uint64, std::string, uint64, uint64, uint64> element :
-        profileInfo) {
-        std::tuple<std::string, uint64, uint64, uint64> value = std::make_tuple(
-            std::get<0>(element), std::get<1>(element), std::get<3>(element), std::get<4>(element));
-        bool found = false;
-        for (auto& k : flatProfile) {
-            if ((std::get<0>(value) == std::get<0>(k)) && (std::get<1>(value) == std::get<1>(k))) {
-                found = true;
-                std::get<3>(k) = std::get<3>(k) + std::get<3>(value);
-            }
-        }
-        if (!found) {
-            flatProfile.push_back(value);
-        }
-    }
-
-    std::unordered_map<std::wstring, std::wstring> filenameIndex;
-
-    size_t idx = 0;
-    for (auto& k : flatProfile) {
-        std::wstring filename = utf8_to_wstring(std::get<0>(k));
-        auto it = filenameIndex.find(filename);
-        if (it == filenameIndex.end()) {
-            std::wstring destination
-                = profileDirectory + L"/file" + std::to_wstring(idx) + L".html";
-            filenameIndex.insert(std::make_pair(filename, destination));
-            idx++;
-        }
-    }
-
-    std::vector<std::tuple<std::wstring, std::wstring, int, double, double>> indexData;
-
-    for (const std::pair<std::wstring, std::wstring>& element : filenameIndex) {
-        stringVector functionContent = readFunction(element.first);
-        std::tuple<int, double> res
-            = computeBasicFileStats(flatProfile, functionContent, element.first);
-
-        std::vector<std::tuple<int, std::string, int, double>> fiveSlowerLines
-            = getFiveLinesConsumingMostTime(flatProfile, element.first, functionContent);
-
-        std::tuple<int, int, int, int, int, double> coverage
-            = coverageAnalyzer(flatProfile, element.first, functionContent);
-
-        indexData.emplace_back(element.first, element.second, std::get<0>(res), std::get<1>(res),
-            std::get<5>(coverage));
-
-        std::vector<std::tuple<int, double>> lineInfo
-            = getInfoForContent(flatProfile, element.first, functionContent.size());
-
-        generateProfileFileHtml(element.first, functionContent, fiveSlowerLines, coverage, lineInfo,
-            std::get<0>(res), std::get<1>(res), element.second);
-    }
-    generateProfileIndexHtml(profileDirectory + L"/index.html", indexData);
-    copyHtmlDependencies(moduleProfilerPath, profileDirectory);
 }
 //=============================================================================
 static int

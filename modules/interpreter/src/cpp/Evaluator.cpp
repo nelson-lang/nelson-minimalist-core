@@ -8,8 +8,8 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include <boost/interprocess/managed_shared_memory.hpp>
 #include <algorithm>
+#include "StringHelpers.hpp"
 #include <cstdio>
 #include <cerrno>
 #include <iostream>
@@ -41,7 +41,6 @@
 #include "FileParser.hpp"
 #include "MainEvaluator.hpp"
 #include "CommandQueue.hpp"
-#include "ProcessEventsDynamicFunction.hpp"
 #include "VertCatOperator.hpp"
 #include "HorzCatOperator.hpp"
 #include "PathFuncManager.hpp"
@@ -54,9 +53,9 @@
 #include "OverloadRequired.hpp"
 #include "NotEquals.hpp"
 #include "PathFuncManager.hpp"
-#include "ProcessEventsDynamicFunction.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 #include "VertCat.hpp"
 #include "HorzCat.hpp"
 #include "PathFuncManager.hpp"
@@ -73,7 +72,6 @@
 #include "ProfilerHelpers.hpp"
 #include "ClassToString.hpp"
 #include "IsValidVariableName.hpp"
-#include "NelsonReadyNamedMutex.hpp"
 #include "AsciiToDouble.hpp"
 #include "MException.hpp"
 #include "FileSystemWrapper.hpp"
@@ -1779,9 +1777,6 @@ Evaluator::statementType(AbstractSyntaxTreePtr t, bool printIt)
         std::wstring cmd;
         commandQueue.get(cmd);
         evaluateString(cmd);
-    }
-    if (haveEventsLoop()) {
-        ProcessEventsDynamicFunctionWithoutWait();
     }
     if (t == nullptr) {
         return;
@@ -4155,12 +4150,6 @@ Evaluator::buildPrompt()
 static bool doOnce = true;
 //=============================================================================
 void
-setNamedMutexNelsonReady()
-{
-    openIsReadyNelsonMutex((int)boost::interprocess::ipcdetail::get_current_process_id());
-}
-//=============================================================================
-void
 Evaluator::evalCLI()
 {
     while (true) {
@@ -4171,7 +4160,6 @@ Evaluator::evalCLI()
         commandQueue.get(commandLine);
         if (commandLine.empty()) {
             if (doOnce) {
-                setNamedMutexNelsonReady();
                 doOnce = false;
             }
             commandLine = io->getLine(buildPrompt());

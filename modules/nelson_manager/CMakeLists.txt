@@ -10,7 +10,7 @@ set(module_name nelson_manager)
 set(module_library_name nlsNelson_manager)
 # ==============================================================================
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/include
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include)
+${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include)
 # ==============================================================================
 file(GLOB NELSON_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER NELSON_MANAGER_SRC EXCLUDE REGEX
