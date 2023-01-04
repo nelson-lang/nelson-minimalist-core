@@ -6,10 +6,6 @@
 # LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  message(SEND_ERROR "On Windows, please uses Visual studio solution.")
-endif()
-# ==============================================================================
 message(
   STATUS
     "CMake version ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION}"
