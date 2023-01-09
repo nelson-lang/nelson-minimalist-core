@@ -10,22 +10,26 @@
 set(module_name error_manager)
 set(module_library_name nlsError_manager)
 # ==============================================================================
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include)
-# ==============================================================================
 file(GLOB ERROR_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER ERROR_MANAGER_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${ERROR_MANAGER_SRC})
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
+)
 # ==============================================================================
 target_link_libraries(${module_library_name} 
   nlsCharacters_encoding 
@@ -39,5 +43,14 @@ set_target_properties(
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR})
 # ==============================================================================
-install(TARGETS ${module_library_name} LIBRARY DESTINATION ${LIBRARY_OUTPUT})
+include(GNUInstallDirs)
+install(
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
 # ==============================================================================

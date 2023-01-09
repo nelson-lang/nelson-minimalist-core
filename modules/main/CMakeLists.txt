@@ -32,18 +32,27 @@ add_custom_target(
   ${BUILD_ALL_LOCALIZATION_ACTION}
   DEPENDS ${executableList})
 # ==============================================================================
-install(FILES ${BIN_DIRECTORY}/nelson DESTINATION ${LIBRARY_OUTPUT} PERMISSIONS 
-  WORLD_EXECUTE WORLD_READ 
-  GROUP_EXECUTE GROUP_READ 
-  OWNER_EXECUTE OWNER_READ OWNER_WRITE)
+include(GNUInstallDirs)
+install(
+  FILES ${BIN_DIRECTORY}/nelson
+  DESTINATION ${CMAKE_INSTALL_BINDIR}
+  PERMISSIONS 
+    WORLD_EXECUTE WORLD_READ 
+    GROUP_EXECUTE GROUP_READ 
+    OWNER_EXECUTE OWNER_READ OWNER_WRITE)
 
-install(FILES ${BIN_DIRECTORY}/nelson-cli DESTINATION ${LIBRARY_OUTPUT} PERMISSIONS
-  WORLD_EXECUTE WORLD_READ 
-  GROUP_EXECUTE GROUP_READ 
-  OWNER_EXECUTE OWNER_READ OWNER_WRITE)
+install(
+  FILES ${BIN_DIRECTORY}/nelson-cli
+  DESTINATION ${CMAKE_INSTALL_BINDIR}
+  PERMISSIONS
+    WORLD_EXECUTE WORLD_READ 
+    GROUP_EXECUTE GROUP_READ 
+    OWNER_EXECUTE OWNER_READ OWNER_WRITE)
 
 # ==============================================================================
-install(TARGETS nelson-cli-exec RUNTIME DESTINATION ${LIBRARY_OUTPUT})
+install(
+  TARGETS nelson-cli-exec
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 # ==============================================================================
 install(
   DIRECTORY ${CMAKE_SOURCE_DIR}/modules/${module_name}/help

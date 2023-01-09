@@ -10,22 +10,21 @@
 set(module_name os_functions)
 set(module_library_name nlsOs_functions)
 # ==============================================================================
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
-# ==============================================================================
 file(GLOB OS_FUNCTIONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER OS_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} SHARED ${OS_FUNCTIONS_SRC})
-# ==============================================================================
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+)
 target_link_libraries(
   ${module_library_name}
   nlsApi_nelson
@@ -44,5 +43,14 @@ set_target_properties(
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR})
 # ==============================================================================
-install(TARGETS ${module_library_name} LIBRARY DESTINATION ${LIBRARY_OUTPUT})
+include(GNUInstallDirs)
+install(
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
 # ==============================================================================

@@ -9,15 +9,25 @@
 set(module_name nelson_manager)
 set(module_library_name nlsNelson_manager)
 # ==============================================================================
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/include
-${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include)
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/include
+#${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include)
 # ==============================================================================
 file(GLOB NELSON_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER NELSON_MANAGER_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${NELSON_MANAGER_SRC})
-# ==============================================================================
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include
+)
 target_link_libraries(${module_library_name} nlsCharacters_encoding)
 # ==============================================================================
 set_target_properties(
@@ -27,5 +37,14 @@ set_target_properties(
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR})
 # ==============================================================================
-install(TARGETS ${module_library_name} LIBRARY DESTINATION ${LIBRARY_OUTPUT})
+include(GNUInstallDirs)
+install(
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
 # ==============================================================================
