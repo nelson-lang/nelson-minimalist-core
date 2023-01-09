@@ -31,21 +31,46 @@ add_custom_target(
   DEPENDS ${executableList})
 # ==============================================================================
 include(GNUInstallDirs)
-install(
-    FILES ${CMAKE_SOURCE_DIR}/script/nelson
-  DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PERMISSIONS 
-    WORLD_EXECUTE WORLD_READ 
-    GROUP_EXECUTE GROUP_READ 
-    OWNER_EXECUTE OWNER_READ OWNER_WRITE)
+set(NELSON_SCRIPT_DIR "")
+if(UNIX)
+  if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set(NELSON_SCRIPT_DIR linux)
+  else()
+    set(NELSON_SCRIPT_DIR macOS)
+  endif()
+  
+  install(
+      FILES ${CMAKE_SOURCE_DIR}/script/${NELSON_SCRIPT_DIR}/nelson
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PERMISSIONS 
+      WORLD_EXECUTE WORLD_READ 
+      GROUP_EXECUTE GROUP_READ 
+      OWNER_EXECUTE OWNER_READ OWNER_WRITE
+  )
 
-install(
-    FILES ${CMAKE_SOURCE_DIR}/script/nelson-cli
-  DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PERMISSIONS
-    WORLD_EXECUTE WORLD_READ 
-    GROUP_EXECUTE GROUP_READ 
-    OWNER_EXECUTE OWNER_READ OWNER_WRITE)
+  install(
+      FILES ${CMAKE_SOURCE_DIR}/script/${NELSON_SCRIPT_DIR}/nelson-cli
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PERMISSIONS
+      WORLD_EXECUTE WORLD_READ 
+      GROUP_EXECUTE GROUP_READ 
+      OWNER_EXECUTE OWNER_READ OWNER_WRITE
+  )
+else()
+  if(CMAKE_SIZE_OF_VOID_P EQUAL 4) 
+    set(NELSON_SCRIPT_DIR win32)
+  else()
+    set(NELSON_SCRIPT_DIR x64)
+  endif()
+  install(
+      FILES ${CMAKE_SOURCE_DIR}/script/${NELSON_SCRIPT_DIR}/nelson.bat
+    DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PERMISSIONS 
+      WORLD_EXECUTE WORLD_READ 
+      GROUP_EXECUTE GROUP_READ 
+      OWNER_EXECUTE OWNER_READ OWNER_WRITE
+  )
+endif()
 
 # ==============================================================================
 install(

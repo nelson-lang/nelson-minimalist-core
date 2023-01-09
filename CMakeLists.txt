@@ -87,6 +87,8 @@ endif()
 # ==============================================================================
 configure_file("${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h.in"
                  "${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h")
+set(Nelson_VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE})
 # ==============================================================================
 include(Eigen3Config)
 # ==============================================================================
@@ -98,8 +100,33 @@ endif()
 # ==============================================================================
 include(PackageConfig)
 include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 set(NELSON_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for nelsonConfig.cmake")
 set(NELSON_DOC_INSTALL_DIR "${CMAKE_DATA_ROOTDIR}/${PROJECT_NAME}/doc" CACHE STRING "install path for Nelson doc files")
 # ==============================================================================
 add_subdirectory(modules)
 # ==============================================================================
+
+configure_package_config_file(
+    ${PROJECT_NAME}Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    VERSION ${Nelson_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)
+install(
+    EXPORT ${PROJECT_NAME}-targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)
