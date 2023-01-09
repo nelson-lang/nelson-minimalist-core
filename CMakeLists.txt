@@ -102,34 +102,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   include(MacOsConfig)
 endif()
 # ==============================================================================
-set(INSTALL_DIRECTORY
-    "${CMAKE_INSTALL_PREFIX}Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}"
-)
-# ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  set(LIBRARY_OUTPUT
-      "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/bin/macOS/"
-  )
-else()
-  set(LIBRARY_OUTPUT
-      "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/bin/linux/"
-  )
-endif()
-set(ROOT_OUTPUT
-    "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/"
-)
-# ==============================================================================
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-# ==============================================================================
 include(PackageConfig)
+include(GNUInstallDirs)
+set(NELSON_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for nelsonConfig.cmake")
+set(NELSON_DOC_INSTALL_DIR "${CMAKE_DATA_ROOTDIR}/${PROJECT_NAME}/doc" CACHE STRING "install path for Nelson doc files")
 # ==============================================================================
 add_subdirectory(modules)
-# ==============================================================================
-install(FILES ${CMAKE_SOURCE_DIR}/CHANGELOG.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/CONTRIBUTORS.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/README.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/THIRDPARTY.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/CLA.md DESTINATION ${ROOT_OUTPUT})
 # ==============================================================================

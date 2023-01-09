@@ -9,8 +9,6 @@
 # ==============================================================================
 set(module_name main)
 # ==============================================================================
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include)
-# ==============================================================================
 file(GLOB MAINCLI_SRC "${CMAKE_CURRENT_SOURCE_DIR}/nelson_cli/*.cpp")
 # ==============================================================================
 add_executable(nelson-cli-exec ${MAINCLI_SRC})
@@ -56,7 +54,7 @@ install(
 # ==============================================================================
 install(
   DIRECTORY ${CMAKE_SOURCE_DIR}/modules/${module_name}/help
-  DESTINATION ${ROOT_OUTPUT}/modules/${module_name}
+  DESTINATION ${NELSON_DOC_INSTALL_DIR}/modules/${module_name}
   FILES_MATCHING
   PATTERN "*.qch"
   PATTERN "xml" EXCLUDE
