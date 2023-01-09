@@ -70,8 +70,6 @@ include(C17Config)
 # ==============================================================================
 include(clang-tidy)
 # ==============================================================================
-include(TreeConfig)
-# ==============================================================================
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH ".")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
