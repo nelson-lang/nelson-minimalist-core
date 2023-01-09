@@ -32,7 +32,7 @@ add_custom_target(
 # ==============================================================================
 include(GNUInstallDirs)
 install(
-  FILES ${BIN_DIRECTORY}/nelson
+    FILES ${CMAKE_SOURCE_DIR}/script/nelson
   DESTINATION ${CMAKE_INSTALL_BINDIR}
   PERMISSIONS 
     WORLD_EXECUTE WORLD_READ 
@@ -40,7 +40,7 @@ install(
     OWNER_EXECUTE OWNER_READ OWNER_WRITE)
 
 install(
-  FILES ${BIN_DIRECTORY}/nelson-cli
+    FILES ${CMAKE_SOURCE_DIR}/script/nelson-cli
   DESTINATION ${CMAKE_INSTALL_BINDIR}
   PERMISSIONS
     WORLD_EXECUTE WORLD_READ 

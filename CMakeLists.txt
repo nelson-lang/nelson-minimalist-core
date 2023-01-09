@@ -94,10 +94,6 @@ include(Eigen3Config)
 # ==============================================================================
 find_package(PkgConfig REQUIRED)
 # ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  set(BIN_DIRECTORY ${PROJECT_BINARY_DIR}/bin/linux)
-endif()
-# =============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   include(MacOsConfig)
 endif()
