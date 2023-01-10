@@ -9,27 +9,28 @@
 set(module_name types)
 set(module_library_name nlsTypes)
 # ==============================================================================
-include_directories(
-  ${EIGEN3_INCLUDE_DIR}
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_mathematics/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include)
-# ==============================================================================
 file(GLOB TYPES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER TYPES_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${TYPES_SRC})
-# ==============================================================================
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${EIGEN3_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
+)
 target_link_libraries(
   ${module_library_name}
   nlsCharacters_encoding
@@ -45,18 +46,25 @@ target_link_libraries(
   ${MAC_LAPACKE_LIBRARY}
   ${OpenMP_CXX_LIBRARIES})
 # ==============================================================================
+file(GLOB TYPES_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${TYPES_HEADER}"
+)
 # ==============================================================================
-install(TARGETS ${module_library_name} LIBRARY DESTINATION ${LIBRARY_OUTPUT})
+include(GNUInstallDirs)
 install(
-  DIRECTORY ${CMAKE_SOURCE_DIR}/modules/${module_name}/src/include
-  DESTINATION ${ROOT_OUTPUT}/modules/${module_name}/src
-  FILES_MATCHING
-  PATTERN "*.h"
-  PATTERN "*.hpp")
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
 # ==============================================================================

@@ -10,28 +10,55 @@
 set(module_name commons)
 set(module_library_name nlsCommons)
 # ==============================================================================
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-                    ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/stduuid
-                    ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include)
-# ==============================================================================
-add_definitions(-DFMT_EXPORT)
-# ==============================================================================
 file(GLOB COMMONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/src/*.cc")
 list(FILTER COMMONS_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} SHARED ${COMMONS_SRC})
-# ==============================================================================
+target_compile_definitions(${module_library_name} PRIVATE FMT_EXPORT)
+set(COMMONS_INCLUDE_DIRS
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include
+)
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    "$<BUILD_INTERFACE:${COMMONS_INCLUDE_DIRS}>"
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/stduuid
+)
 target_link_libraries(${module_library_name} nlsCharacters_encoding)
 # ==============================================================================
+file(GLOB COMMONS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${COMMONS_HEADER}"
+)
 # ==============================================================================
-install(TARGETS ${module_library_name} LIBRARY DESTINATION ${LIBRARY_OUTPUT})
+include(GNUInstallDirs)
+install(
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
+# Because PUBLIC_HEADER does not preserve the folder structure and 
+# FILE_SET option is not available before CMake 3.23
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include/fmt
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+)
 # ==============================================================================

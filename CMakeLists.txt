@@ -6,10 +6,6 @@
 # LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
 # LICENCE_BLOCK_END
 # ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  message(SEND_ERROR "On Windows, please uses Visual studio solution.")
-endif()
-# ==============================================================================
 message(
   STATUS
     "CMake version ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION}"
@@ -74,8 +70,6 @@ include(C17Config)
 # ==============================================================================
 include(clang-tidy)
 # ==============================================================================
-include(TreeConfig)
-# ==============================================================================
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH ".")
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -93,47 +87,46 @@ endif()
 # ==============================================================================
 configure_file("${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h.in"
                  "${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h")
+set(Nelson_VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE})
 # ==============================================================================
 include(Eigen3Config)
 # ==============================================================================
 find_package(PkgConfig REQUIRED)
 # ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  set(BIN_DIRECTORY ${PROJECT_BINARY_DIR}/bin/linux)
-endif()
-# =============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   include(MacOsConfig)
 endif()
 # ==============================================================================
-set(INSTALL_DIRECTORY
-    "${CMAKE_INSTALL_PREFIX}Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}"
-)
-# ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  set(LIBRARY_OUTPUT
-      "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/bin/macOS/"
-  )
-else()
-  set(LIBRARY_OUTPUT
-      "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/bin/linux/"
-  )
-endif()
-set(ROOT_OUTPUT
-    "Nelson-${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}/"
-)
-# ==============================================================================
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIRECTORY})
-# ==============================================================================
 include(PackageConfig)
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+set(NELSON_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for nelsonConfig.cmake")
+set(NELSON_DOC_INSTALL_DIR "${CMAKE_DATA_ROOTDIR}/${PROJECT_NAME}/doc" CACHE STRING "install path for Nelson doc files")
 # ==============================================================================
 add_subdirectory(modules)
 # ==============================================================================
-install(FILES ${CMAKE_SOURCE_DIR}/CHANGELOG.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/CONTRIBUTORS.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/README.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/THIRDPARTY.md DESTINATION ${ROOT_OUTPUT})
-install(FILES ${CMAKE_SOURCE_DIR}/CLA.md DESTINATION ${ROOT_OUTPUT})
-# ==============================================================================
+
+configure_package_config_file(
+    ${PROJECT_NAME}Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    VERSION ${Nelson_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)
+install(
+    EXPORT ${PROJECT_NAME}-targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
+)

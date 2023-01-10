@@ -10,7 +10,6 @@
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   EXECUTE_PROCESS(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCH)
   message("macOS architecture: ${ARCH}")
-  set(BIN_DIRECTORY ${PROJECT_BINARY_DIR}/bin/macOS)
   set(CMAKE_OSX_ARCHITECTURES "${ARCH}")
   set(MAC_FRAMEWORK_FOUNDATION_LIBRARY "-framework Foundation")
   set(MAC_FRAMEWORK_APPKIT_LIBRARY "-framework AppKit")
