@@ -24,7 +24,6 @@ target_include_directories(
     ${module_library_name}
     PRIVATE
     ${EIGEN3_INCLUDE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include
 )
 target_link_libraries(
@@ -43,12 +42,16 @@ target_link_libraries(
   nlsI18n
   ${MAC_FRAMEWORK_FOUNDATION_LIBRARY})
 # ==============================================================================
+file(GLOB CORE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${CORE_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(

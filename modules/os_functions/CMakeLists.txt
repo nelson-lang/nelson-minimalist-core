@@ -36,12 +36,16 @@ target_link_libraries(
   nlsStream_manager
   nlsCommons)
 # ==============================================================================
+file(GLOB OS_FUNCTIONS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${OS_FUNCTIONS_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(

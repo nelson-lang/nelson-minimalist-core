@@ -46,12 +46,16 @@ target_link_libraries(
   ${MAC_LAPACKE_LIBRARY}
   ${OpenMP_CXX_LIBRARIES})
 # ==============================================================================
+file(GLOB TYPES_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${TYPES_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(

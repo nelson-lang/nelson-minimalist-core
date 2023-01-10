@@ -30,12 +30,16 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
 )
 # ==============================================================================
+file(GLOB ELEMENTARY_MATHEMATICS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${ELEMENTARY_MATHEMATICS_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(

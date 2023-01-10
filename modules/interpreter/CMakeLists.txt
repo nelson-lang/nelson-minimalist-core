@@ -25,7 +25,6 @@ target_include_directories(
     ${module_library_name}
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/grammar
-    ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
     ${EIGEN3_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
@@ -48,12 +47,16 @@ target_link_libraries(
   nlsCommons
   nlsProfiler)
 # ==============================================================================
+file(GLOB INTERPRETER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${INTERPRETER_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(

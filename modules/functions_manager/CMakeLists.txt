@@ -26,7 +26,6 @@ target_include_directories(
     ${module_library_builtin_name}
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
 )
 # ==============================================================================
 target_link_libraries(
@@ -41,12 +40,16 @@ target_link_libraries(
   nlsCommons
   nlsFiles_folders_functions)
 # ==============================================================================
+file(GLOB FUNCTIONS_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.h")
 set_target_properties(
   ${module_library_builtin_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR})
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${FILES_FOLDERS_FUNCTIONS_HEADER}"
+)
 # ==============================================================================
 include(GNUInstallDirs)
 install(
