@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- [#16](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/16): text_completion code imported.
+
 - [#13](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/13): cmake packaging (Thanks to JohanMabille).
 
 - [#11](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/11): plug 'addpath' builtin.
