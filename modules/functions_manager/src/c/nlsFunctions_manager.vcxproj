@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{A30B923A-0434-4E0F-91D4-95009775AB80}</ProjectGuid>
+    <ProjectGuid>{EFAB75F2-31F1-4531-9D51-491772741ECE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nlsFunctions_manager_builtin</RootNamespace>
+    <RootNamespace>nlsFunctions_manager</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,11 +93,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/mex/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -114,11 +113,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/mex/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -137,11 +135,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/mex/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -162,11 +159,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/mex/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -180,44 +176,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\addpathBuiltin.cpp" />
+    <ClCompile Include="..\cpp\What.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\api_nelson\src\c\nlsApi_nelson.vcxproj">
-      <Project>{1c76cdc6-19d8-429a-9ec1-817ad139f80d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
-      <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
-      <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\files_folders_functions\src\c\nlsFiles_folders_functions.vcxproj">
-      <Project>{09c19e7e-35fc-41b6-8f7f-dbc2efd87b3b}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
-      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
+    <ClInclude Include="..\..\src\include\nlsFunctions_manager_exports.h" />
+    <ClInclude Include="..\include\What.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
       <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\stream_manager\src\c\nlsStream_manager.vcxproj">
-      <Project>{1b461db6-82ea-4436-a674-d2975f184b90}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
-      <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\c\nlsFunctions_manager.vcxproj">
-      <Project>{efab75f2-31f1-4531-9d51-491772741ece}</Project>
+    <ProjectReference Include="..\..\..\nelson_manager\src\c\nlsNelson_manager.vcxproj">
+      <Project>{e467b14f-0d56-4237-b649-eb5572b5e731}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\addpathBuiltin.hpp" />
-    <ClInclude Include="..\include\nlsFunctions_manager_builtin_exports.h" />
+    <None Include="..\..\module.iss" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

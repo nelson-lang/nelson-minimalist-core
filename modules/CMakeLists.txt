@@ -31,6 +31,7 @@ list(
   core
   memory_manager
   overload
+  text_completion
   terminal
   engine)
 # ==============================================================================

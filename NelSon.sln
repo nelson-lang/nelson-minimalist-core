@@ -88,6 +88,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "no-nlsMex", "modules\mex\no
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsFunctions_manager_builtin", "modules\functions_manager\builtin\c\nlsFunctions_manager_builtin.vcxproj", "{A30B923A-0434-4E0F-91D4-95009775AB80}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsFunctions_manager", "modules\functions_manager\src\c\nlsFunctions_manager.vcxproj", "{EFAB75F2-31F1-4531-9D51-491772741ECE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -288,6 +290,14 @@ Global
 		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|Win32.Build.0 = Release|Win32
 		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|x64.ActiveCfg = Release|x64
 		{A30B923A-0434-4E0F-91D4-95009775AB80}.Release|x64.Build.0 = Release|x64
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Debug|Win32.Build.0 = Debug|Win32
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Debug|x64.ActiveCfg = Debug|x64
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Debug|x64.Build.0 = Debug|x64
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Release|Win32.ActiveCfg = Release|Win32
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Release|Win32.Build.0 = Release|Win32
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Release|x64.ActiveCfg = Release|x64
+		{EFAB75F2-31F1-4531-9D51-491772741ECE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
