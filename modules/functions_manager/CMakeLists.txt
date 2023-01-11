@@ -10,6 +10,32 @@ set(module_name functions_manager)
 set(module_library_name nlsFunctions_manager)
 set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
+file(GLOB FUNCTIONS_MANAGER
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER FUNCTIONS_MANAGER EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
+# ==============================================================================
+add_library(${module_library_name} SHARED ${FUNCTIONS_MANAGER})
+target_include_directories(
+    ${module_library_name}
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
+    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+)
+target_include_directories(
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
+# ==============================================================================
+target_link_libraries(
+  ${module_library_name}
+  nlsInterpreter
+)
+# ==============================================================================
+
+
+
 file(GLOB FUNCTIONS_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER FUNCTIONS_MANAGER_BUILTIN EXCLUDE REGEX
@@ -53,7 +79,7 @@ set_target_properties(
 # ==============================================================================
 include(GNUInstallDirs)
 install(
-    TARGETS ${module_library_builtin_name}
+    TARGETS ${module_library_builtin_name} ${module_library_name}
     EXPORT ${PROJECT_NAME}-targets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
