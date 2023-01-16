@@ -74,7 +74,7 @@ set_target_properties(
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${FILES_FOLDERS_FUNCTIONS_HEADER}"
+    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}"
 )
 # ==============================================================================
 include(GNUInstallDirs)
