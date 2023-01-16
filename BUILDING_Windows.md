@@ -26,7 +26,7 @@
   ```
 - Start the build:
   Goto Nelson directory
-  launch Nelson.sln
+  launch nelson-minimalist-core.sln
   start build with VS 2022
 
 [Previous (Building)](BUILDING.md)

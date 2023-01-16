@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [#11](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/11): plug 'addpath' builtin.
 
+### Changed
+
+- nelson.sln renamed to nelson-minimalist-core.sln
+
 ## 0.6.12
 
 ### Fixed
