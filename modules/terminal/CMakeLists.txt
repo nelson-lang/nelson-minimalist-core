@@ -15,7 +15,7 @@ file(GLOB TERMINAL_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/BasicTerminal.cpp"
 list(FILTER TERMINAL_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${TERMINAL_SRC})
+add_library(${module_library_name} ${TERMINAL_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

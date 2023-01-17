@@ -14,7 +14,7 @@ file(GLOB INTERPRETER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar/*.cpp")
 list(FILTER INTERPRETER_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
-add_library(${module_library_name} SHARED ${INTERPRETER_SRC})
+add_library(${module_library_name} ${INTERPRETER_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

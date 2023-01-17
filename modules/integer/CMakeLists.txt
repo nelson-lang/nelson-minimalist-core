@@ -27,7 +27,7 @@ file(GLOB INTEGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER INTEGER_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${INTEGER_SRC})
+add_library(${module_library_name} ${INTEGER_SRC})
 # ==============================================================================
 target_link_libraries(${module_library_name}
   nlsCharacters_encoding

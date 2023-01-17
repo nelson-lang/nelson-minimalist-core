@@ -14,7 +14,7 @@ file(GLOB OPERATORS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER OPERATORS_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${OPERATORS_SRC})
+add_library(${module_library_name} ${OPERATORS_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

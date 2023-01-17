@@ -13,7 +13,7 @@ set(module_library_name nlsApi_nelson)
 file(GLOB API_NELSON_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER API_NELSON_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
-add_library(${module_library_name} SHARED ${API_NELSON_SRC})
+add_library(${module_library_name} ${API_NELSON_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

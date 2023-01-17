@@ -13,7 +13,7 @@ file(GLOB LOCALIZATION_SRC "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/*.cpp")
 list(FILTER LOCALIZATION_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${LOCALIZATION_SRC})
+add_library(${module_library_name} ${LOCALIZATION_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC
