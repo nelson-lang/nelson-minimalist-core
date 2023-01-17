@@ -176,11 +176,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\MyDomainCode.cpp" />
     <ClCompile Include="..\cpp\What.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\include\nlsFunctions_manager_exports.h" />
+    <ClInclude Include="..\include\MyDomainCode.hpp" />
     <ClInclude Include="..\include\What.hpp" />
   </ItemGroup>
   <ItemGroup>

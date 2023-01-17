@@ -33,9 +33,6 @@ target_link_libraries(
   nlsInterpreter
 )
 # ==============================================================================
-
-
-
 file(GLOB FUNCTIONS_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER FUNCTIONS_MANAGER_BUILTIN EXCLUDE REGEX
@@ -51,11 +48,13 @@ target_include_directories(
 target_include_directories(
     ${module_library_builtin_name}
     PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
 )
 # ==============================================================================
 target_link_libraries(
   ${module_library_builtin_name}
+  ${module_library_name}
   nlsCharacters_encoding
   nlsError_manager
   nlsStream_manager

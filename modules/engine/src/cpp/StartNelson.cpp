@@ -41,6 +41,7 @@
 #include "i18n.hpp"
 #include "BuiltInFunctionDefManager.hpp"
 #include "addpathBuiltin.hpp"
+#include "mycodeBuiltin.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -230,6 +231,9 @@ addHardcodedBuiltin()
 {
     Nelson::BuiltInFunctionDefManager::getInstance()->add("addpath",
         (ptrBuiltin)Nelson::FunctionsGateway::addpathBuiltin, 1, -1, L"", L"functions_manager",
+        (size_t)CPP_BUILTIN_WITH_EVALUATOR, true);
+    Nelson::BuiltInFunctionDefManager::getInstance()->add("mycode",
+        (ptrBuiltin)Nelson::FunctionsGateway::mycodeBuiltin, 1, -1, L"", L"functions_manager",
         (size_t)CPP_BUILTIN_WITH_EVALUATOR, true);
 }
 //=============================================================================
