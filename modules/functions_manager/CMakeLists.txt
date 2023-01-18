@@ -15,7 +15,7 @@ file(GLOB FUNCTIONS_MANAGER
 list(FILTER FUNCTIONS_MANAGER EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${FUNCTIONS_MANAGER})
+add_library(${module_library_name} ${FUNCTIONS_MANAGER})
 target_include_directories(
     ${module_library_name}
     PUBLIC
@@ -33,15 +33,12 @@ target_link_libraries(
   nlsInterpreter
 )
 # ==============================================================================
-
-
-
 file(GLOB FUNCTIONS_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER FUNCTIONS_MANAGER_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_builtin_name} SHARED ${FUNCTIONS_MANAGER_BUILTIN})
+add_library(${module_library_builtin_name} ${FUNCTIONS_MANAGER_BUILTIN})
 target_include_directories(
     ${module_library_builtin_name}
     PUBLIC

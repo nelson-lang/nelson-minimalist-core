@@ -15,7 +15,7 @@ file(GLOB COMMONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
 list(FILTER COMMONS_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${COMMONS_SRC})
+add_library(${module_library_name} ${COMMONS_SRC})
 target_compile_definitions(${module_library_name} PRIVATE FMT_EXPORT)
 set(COMMONS_INCLUDE_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include

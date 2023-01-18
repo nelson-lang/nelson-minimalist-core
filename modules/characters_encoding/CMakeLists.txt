@@ -13,7 +13,7 @@ file(GLOB CHARACTERS_ENCODING_SRC "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/*.cpp"
 list(FILTER CHARACTERS_ENCODING_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${CHARACTERS_ENCODING_SRC})
+add_library(${module_library_name} ${CHARACTERS_ENCODING_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

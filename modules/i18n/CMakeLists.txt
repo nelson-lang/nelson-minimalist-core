@@ -13,7 +13,7 @@ file(GLOB I18N_SRC "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/*.cpp")
 list(FILTER I18N_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} SHARED ${I18N_SRC})
+add_library(${module_library_name} ${I18N_SRC})
 target_include_directories(
     ${module_library_name}
     PUBLIC

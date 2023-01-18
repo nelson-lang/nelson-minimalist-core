@@ -36,6 +36,8 @@ option(ENABLE_CLANG_TIDY_FIX "Analyze code with clang-tidy and fix errors." OFF)
 # ==============================================================================
 option(ENABLE_PACKAGING "Build Nelson for packaging" OFF)
 # ==============================================================================
+option(BUILD_SHARED_LIBS "Build modules as shared libraries" ON)
+# ==============================================================================
 message(STATUS "Build Nelson for packaging: ${ENABLE_PACKAGING}")
 # ==============================================================================
 if(WITHOUT_OPENMP)
@@ -60,9 +62,10 @@ if(POLICY CMP0068)
   cmake_policy(SET CMP0068 NEW)
 endif()
 # ==============================================================================
-set(CMAKE_BUILD_TYPE "Debug")
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug")
+endif ()
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/")
-set(BUILD_SHARED_LIBS "true")
 # ==============================================================================
 include(VersionConfig)
 # ==============================================================================
