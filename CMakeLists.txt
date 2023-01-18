@@ -93,8 +93,7 @@ configure_file("${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h
 set(Nelson_VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE})
 # ==============================================================================
-include(Eigen3Config)
-# ==============================================================================
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(PkgConfig REQUIRED)
 # ==============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
