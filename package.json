@@ -1,7 +1,7 @@
 {
-  "name": "nelson",
-  "version": "0.6.12",
-  "description": "Nelson, an array programming language",
+  "name": "nelson-minimalist-core",
+  "version": "0.1.0",
+  "description": "Nelson, an array programming language (minimalist-core)",
   "copyright": "Copyright 2018-present Allan CORNET",
   "scripts": {
     "prettier": "run-s prettier:standard prettier:clang-format",
@@ -32,20 +32,7 @@
     "excludePathContains": [
       ".git",
       "node_modules",
-      "modules/f2c/src/c/libf2c",
-      "modules/f2c/tests/dgemm.c",
-      "modules/f2c/src/c/libf2c/",
-      "modules/f2c/src/c/f2c/",
-      "modules/help_tools/src/c/hoedown",
-      "modules/file_archiver/src/c/minizip",
       "modules/commons/src/fmt/include/fmt",
-      "modules/files_folders_functions/src/include/dtl/",
-      "modules/sio_client/src/socket_io",
-      "modules/modules_manager/src/c/semver",
-      "modules/interpreter/src/include/fast_float",
-      "modules/fftw/src/cpp/fftw3.h",
-      "modules/core/src/include/picoSHA2/picosha2.h",
-      "modules/parallel/src/include/BS_thread_pool.hpp",
       "modules/interpreter/src/grammar/NelSonParser.cpp",
       "modules/characters_encoding/src/cpp/simdutf"
     ]

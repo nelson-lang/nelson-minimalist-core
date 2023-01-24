@@ -16,8 +16,8 @@ cmake_minimum_required(VERSION 3.9)
 project(Nelson)
 # ==============================================================================
 set(Nelson_VERSION_MAJOR_DEFAULT 0)
-set(Nelson_VERSION_MINOR_DEFAULT 6)
-set(Nelson_VERSION_MAINTENANCE_DEFAULT 12)
+set(Nelson_VERSION_MINOR_DEFAULT 1)
+set(Nelson_VERSION_MAINTENANCE_DEFAULT 0)
 set(Nelson_VERSION_BUILD_DEFAULT 0)
 # ==============================================================================
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
