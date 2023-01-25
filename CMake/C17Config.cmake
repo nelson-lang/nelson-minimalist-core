@@ -11,8 +11,7 @@ include(Clang-cxx-dev-tools)
 # ==============================================================================
 include(CheckCXXCompilerFlag)
 # ==============================================================================
-check_cxx_compiler_flag("-std=c++17" COMPILER_SUPPORTS_CXX17)
-if(COMPILER_SUPPORTS_CXX17)
+if("${CMAKE_CXX_COMPILE_FEATURES}" MATCHES "cxx_std_17")
   set(CMAKE_CXX_STANDARD 17)
 else()
   message(
