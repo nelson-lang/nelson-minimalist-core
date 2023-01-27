@@ -48,6 +48,7 @@ target_link_libraries(
   nlsLocalization 
   nlsFunctions_manager_builtin
   nlsDisplay_format_builtin
+  nlsTrigonometric_functions_builtin
   ${LIBRT})
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
