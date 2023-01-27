@@ -74,7 +74,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsProfiler", "modules\prof
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsOperators", "modules\operators\src\c\nlsOperators.vcxproj", "{1D03D6F8-862D-4AFF-9857-CD73CB9B3D8B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsDisplay_format_builtin", "modules\display_format\builtin\c\nlsDisplay_format_builtin.vcxproj", "{c2034cb9-7acd-4b87-9f89-ddfe0fdecc62}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsDisplay_format_builtin", "modules\display_format\builtin\c\nlsDisplay_format_builtin.vcxproj", "{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsDisplay_format", "modules\display_format\src\c\nlsDisplay_format.vcxproj", "{2469B77E-F2B0-4B0E-B814-BB57747E0865}"
 EndProject
@@ -238,6 +238,14 @@ Global
 		{1D03D6F8-862D-4AFF-9857-CD73CB9B3D8B}.Release|Win32.Build.0 = Release|Win32
 		{1D03D6F8-862D-4AFF-9857-CD73CB9B3D8B}.Release|x64.ActiveCfg = Release|x64
 		{1D03D6F8-862D-4AFF-9857-CD73CB9B3D8B}.Release|x64.Build.0 = Release|x64
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Debug|Win32.Build.0 = Debug|Win32
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Debug|x64.ActiveCfg = Debug|x64
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Debug|x64.Build.0 = Debug|x64
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Release|Win32.ActiveCfg = Release|Win32
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Release|Win32.Build.0 = Release|Win32
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Release|x64.ActiveCfg = Release|x64
+		{C2034CB9-7ACD-4B87-9F89-DDFE0FDECC62}.Release|x64.Build.0 = Release|x64
 		{2469B77E-F2B0-4B0E-B814-BB57747E0865}.Debug|Win32.ActiveCfg = Debug|Win32
 		{2469B77E-F2B0-4B0E-B814-BB57747E0865}.Debug|Win32.Build.0 = Debug|Win32
 		{2469B77E-F2B0-4B0E-B814-BB57747E0865}.Debug|x64.ActiveCfg = Debug|x64

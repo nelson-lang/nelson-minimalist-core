@@ -209,12 +209,20 @@
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\dispBuiltin.hpp" />
     <ClInclude Include="..\include\displayBuiltin.hpp" />
+    <ClInclude Include="..\include\display_format_Gateway.hpp" />
+    <ClInclude Include="..\include\echoBuiltin.hpp" />
+    <ClInclude Include="..\include\formatBuiltin.hpp" />
     <ClInclude Include="..\include\nlsDisplay_format_builtin_exports.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\dispBuiltin.cpp" />
     <ClCompile Include="..\cpp\displayBuiltin.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
+    <ClCompile Include="..\cpp\echoBuiltin.cpp" />
+    <ClCompile Include="..\cpp\formatBuiltin.cpp" />
+    <ClCompile Include="..\cpp\Gateway.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

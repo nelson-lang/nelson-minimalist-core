@@ -182,6 +182,7 @@
   <ItemGroup>
     <ClCompile Include="..\cpp\addpathBuiltin.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
+    <ClCompile Include="..\cpp\Gateway.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\api_nelson\src\c\nlsApi_nelson.vcxproj">
@@ -217,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\addpathBuiltin.hpp" />
+    <ClInclude Include="..\include\functions_manager_Gateway.hpp" />
     <ClInclude Include="..\include\nlsFunctions_manager_builtin_exports.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -17,10 +17,7 @@ namespace Nelson {
 namespace DisplayFormatGateway {
     //=============================================================================
     ArrayOfVector
-    displayBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
-    //=============================================================================
-    ArrayOfVector
-    generic_displayBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+    echoBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
     //=============================================================================
 }
 //=============================================================================

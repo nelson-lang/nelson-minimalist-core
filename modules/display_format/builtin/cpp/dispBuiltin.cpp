@@ -7,15 +7,31 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#pragma once
+#include "dispBuiltin.hpp"
+#include "OverloadDisplay.hpp"
+#include "DisplayVariable.hpp"
+#include "CheckerHelpers.hpp"
 //=============================================================================
-#include "ArrayOf.hpp"
-#include "Evaluator.hpp"
-//=============================================================================
-namespace Nelson::FunctionsGateway {
+using namespace Nelson;
 //=============================================================================
 ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+Nelson::DisplayFormatGateway::dispBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+{
+    ArrayOfVector retval;
+    nargincheck(argIn, 1, 1);
+    nargoutcheck(nLhs, 0, 0);
+    OverloadDisplay(eval, argIn[0], L"", true);
+    return retval;
+}
 //=============================================================================
-} // namespace Nelson
+ArrayOfVector
+Nelson::DisplayFormatGateway::generic_dispBuiltin(
+    Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+{
+    ArrayOfVector retval;
+    ArrayOf variable = argIn[0];
+    bool needToOverload;
+    DisplayVariable(eval->getID(), eval->getInterface(), variable, L"", true, needToOverload);
+    return retval;
+}
 //=============================================================================
