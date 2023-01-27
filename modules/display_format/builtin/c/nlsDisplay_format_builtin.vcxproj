@@ -206,27 +206,14 @@
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\module.iss" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\dispBuiltin.hpp" />
     <ClInclude Include="..\include\displayBuiltin.hpp" />
-    <ClInclude Include="..\include\echoBuiltin.hpp" />
-    <ClInclude Include="..\include\formatBuiltin.hpp" />
     <ClInclude Include="..\include\nlsDisplay_format_builtin_exports.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\dispBuiltin.cpp" />
     <ClCompile Include="..\cpp\displayBuiltin.cpp" />
-    <ClCompile Include="..\cpp\echoBuiltin.cpp" />
-    <ClCompile Include="..\cpp\formatBuiltin.cpp" />
-    <ClCompile Include="..\cpp\Gateway.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
