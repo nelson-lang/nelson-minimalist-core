@@ -10,8 +10,7 @@
 #pragma once
 //=============================================================================
 #include "nlsTrigonometric_functions_builtin_exports.h"
-#include "NelsonGateway.hpp"
 //=============================================================================
-EXTERN_AS_C NLSTRIGONOMETRIC_FUNCTIONS_BUILTIN_IMPEXP int
+NLSTRIGONOMETRIC_FUNCTIONS_BUILTIN_IMPEXP int
 TrigonometricFunctionsAddGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

@@ -24,7 +24,7 @@ target_include_directories(
 target_include_directories(
     ${module_library_name}
     PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
 # ==============================================================================
 target_link_libraries(
