@@ -10,8 +10,7 @@
 #pragma once
 //=============================================================================
 #include "nlsDisplay_format_builtin_exports.h"
-#include "NelsonGateway.hpp"
 //=============================================================================
-EXTERN_AS_C NLSDISPLAY_FORMAT_BUILTIN_IMPEXP int
+NLSDISPLAY_FORMAT_BUILTIN_IMPEXP int
 DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

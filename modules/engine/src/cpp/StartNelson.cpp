@@ -40,7 +40,6 @@
 #include "ComputeNelsonPaths.hpp"
 #include "i18n.hpp"
 #include "BuiltInFunctionDefManager.hpp"
-#include "addpathBuiltin.hpp"
 #include "display_format_Gateway.hpp"
 #include "functions_manager_Gateway.hpp"
 //=============================================================================

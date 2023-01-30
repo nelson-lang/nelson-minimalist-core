@@ -10,8 +10,7 @@
 #pragma once
 //=============================================================================
 #include "nlsFunctions_manager_builtin_exports.h"
-#include "NelsonGateway.hpp"
 //=============================================================================
-EXTERN_AS_C NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP int
+NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP int
 FunctionsManagerAddGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================
