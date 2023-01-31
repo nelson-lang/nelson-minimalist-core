@@ -11,11 +11,12 @@
 //=============================================================================
 #include <utility>
 #include <string>
+#include "nlsInterpreter_exports.h"
 #include "FunctionDef.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-class LocalFunctionsTable
+class NLSINTERPRETER_IMPEXP LocalFunctionsTable
 {
 private:
     void* cachedLocalFunctionsTable;

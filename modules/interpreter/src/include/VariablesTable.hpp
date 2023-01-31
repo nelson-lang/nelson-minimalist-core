@@ -10,11 +10,12 @@
 #pragma once
 //=============================================================================
 #include <string>
+#include "nlsInterpreter_exports.h"
 #include "ArrayOf.hpp"
 #include "Types.hpp"
 //=============================================================================
 namespace Nelson {
-class VariablesTable
+class NLSINTERPRETER_IMPEXP VariablesTable
 {
     //=============================================================================
 private:
