@@ -14,6 +14,9 @@ list(FILTER CHARACTERS_ENCODING_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${CHARACTERS_ENCODING_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSCHARACTERS_ENCODING_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_name}
     PUBLIC

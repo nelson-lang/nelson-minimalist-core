@@ -14,6 +14,9 @@ file(GLOB OS_FUNCTIONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER OS_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} ${OS_FUNCTIONS_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSOS_FUNCTIONS_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_name}
     PUBLIC
