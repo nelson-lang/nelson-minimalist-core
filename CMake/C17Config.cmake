@@ -26,6 +26,8 @@ if(COMPILER_SUPPORTS_FPIC)
 endif()
 if(NOT WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
+else()
+    add_compile_definitions(UNICODE)
 endif()
 # ==============================================================================
 include(CheckSymbolExists)
