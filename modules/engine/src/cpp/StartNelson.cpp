@@ -40,7 +40,8 @@
 #include "ComputeNelsonPaths.hpp"
 #include "i18n.hpp"
 #include "BuiltInFunctionDefManager.hpp"
-#include "addpathBuiltin.hpp"
+#include "display_format_Gateway.hpp"
+#include "functions_manager_Gateway.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -226,11 +227,10 @@ EXIT:
 }
 //=============================================================================
 static void
-addHardcodedBuiltin()
+addHardcodedGateway(Evaluator* eval)
 {
-    Nelson::BuiltInFunctionDefManager::getInstance()->add("addpath",
-        (ptrBuiltin)Nelson::FunctionsGateway::addpathBuiltin, 1, -1, L"", L"functions_manager",
-        (size_t)CPP_BUILTIN_WITH_EVALUATOR, true);
+    FunctionsManagerAddGateway(eval, L"");
+    DisplayFormatAddGateway(eval, L"");
 }
 //=============================================================================
 static int
@@ -345,8 +345,8 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
             io->errorMessage(e.getMessage());
         }
 
-        // builtin does not use dynamic link
-        addHardcodedBuiltin();
+        // gateway does not use dynamic link (yet)
+        addHardcodedGateway(eval);
 
         exitCode = NelsonMainStates(eval, po.haveNoStartup(), po.haveNoUserStartup(),
             po.haveNoUserModules(), commandToExecute, fileToExecute, filesToOpen, filesToLoad);

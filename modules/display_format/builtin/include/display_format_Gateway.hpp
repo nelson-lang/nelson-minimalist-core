@@ -9,13 +9,8 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include "ArrayOf.hpp"
-#include "Evaluator.hpp"
+#include "nlsDisplay_format_builtin_exports.h"
 //=============================================================================
-namespace Nelson::FunctionsGateway {
-//=============================================================================
-ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
-//=============================================================================
-} // namespace Nelson
+NLSDISPLAY_FORMAT_BUILTIN_IMPEXP int
+DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

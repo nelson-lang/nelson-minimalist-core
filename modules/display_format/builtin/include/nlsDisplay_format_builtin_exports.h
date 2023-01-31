@@ -9,13 +9,13 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include "ArrayOf.hpp"
-#include "Evaluator.hpp"
-//=============================================================================
-namespace Nelson::FunctionsGateway {
-//=============================================================================
-ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
-//=============================================================================
-} // namespace Nelson
+#ifdef _MSC_VER
+#ifdef NLSDISPLAY_FORMAT_BUILTIN_EXPORTS
+#define NLSDISPLAY_FORMAT_BUILTIN_IMPEXP __declspec(dllexport)
+#else
+#define NLSDISPLAY_FORMAT_BUILTIN_IMPEXP __declspec(dllimport)
+#endif
+#else
+#define NLSDISPLAY_FORMAT_BUILTIN_IMPEXP __attribute__((visibility("default")))
+#endif
 //=============================================================================

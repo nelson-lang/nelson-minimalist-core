@@ -47,6 +47,7 @@ target_link_libraries(
   nlsI18n
   nlsLocalization 
   nlsFunctions_manager_builtin
+  nlsDisplay_format_builtin
   ${LIBRT})
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

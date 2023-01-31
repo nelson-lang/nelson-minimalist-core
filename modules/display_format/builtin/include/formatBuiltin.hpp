@@ -10,12 +10,11 @@
 #pragma once
 //=============================================================================
 #include "ArrayOf.hpp"
-#include "Evaluator.hpp"
 //=============================================================================
-namespace Nelson::FunctionsGateway {
+namespace Nelson::DisplayFormatGateway {
 //=============================================================================
 ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+formatBuiltin(int nLhs, const ArrayOfVector& argIn);
 //=============================================================================
 } // namespace Nelson
 //=============================================================================

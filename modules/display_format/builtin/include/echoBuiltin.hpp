@@ -12,10 +12,14 @@
 #include "ArrayOf.hpp"
 #include "Evaluator.hpp"
 //=============================================================================
-namespace Nelson::FunctionsGateway {
+namespace Nelson {
 //=============================================================================
-ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+namespace DisplayFormatGateway {
+    //=============================================================================
+    ArrayOfVector
+    echoBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+    //=============================================================================
+}
 //=============================================================================
 } // namespace Nelson
 //=============================================================================

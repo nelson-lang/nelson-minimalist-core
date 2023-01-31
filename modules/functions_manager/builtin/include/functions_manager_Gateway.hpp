@@ -9,13 +9,8 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include "ArrayOf.hpp"
-#include "Evaluator.hpp"
+#include "nlsFunctions_manager_builtin_exports.h"
 //=============================================================================
-namespace Nelson::FunctionsGateway {
-//=============================================================================
-ArrayOfVector
-addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
-//=============================================================================
-} // namespace Nelson
+NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP int
+FunctionsManagerAddGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================
