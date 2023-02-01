@@ -6,7 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## UNRELEASED
 
-- plug `display_format` module (format, disp, display, echo, formattedDisplayText)
+- plug `trigonometric_functions` module (currently only builtin)
+  `cos`, `sin`, `tan`, `cosh`, `sinh`, `tanh`, `acos`, `asin`, `atan`, `cosm`, `sinm`, `tanm`, `atan2`, `atanh`
+
+- plug `display_format` module (format, disp, display, echo)
 
 - builtin loaded by gateway.
 

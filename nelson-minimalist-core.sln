@@ -94,6 +94,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsFunctions_manager", "mod
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsText_completion", "modules\text_completion\src\c\nlsText_completion.vcxproj", "{287A0A7E-6CF4-4AE8-9814-3CF0F9F8D5AB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTrigonometric_functions", "modules\trigonometric_functions\src\c\nlsTrigonometric_functions.vcxproj", "{358FFC1C-CA17-463E-88BF-3126FFF4942E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTrigonometric_functions_builtin", "modules\trigonometric_functions\builtin\c\nlsTrigonometric_functions_builtin.vcxproj", "{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -318,6 +322,22 @@ Global
 		{287A0A7E-6CF4-4AE8-9814-3CF0F9F8D5AB}.Release|Win32.Build.0 = Release|Win32
 		{287A0A7E-6CF4-4AE8-9814-3CF0F9F8D5AB}.Release|x64.ActiveCfg = Release|x64
 		{287A0A7E-6CF4-4AE8-9814-3CF0F9F8D5AB}.Release|x64.Build.0 = Release|x64
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Debug|Win32.Build.0 = Debug|Win32
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Debug|x64.ActiveCfg = Debug|x64
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Debug|x64.Build.0 = Debug|x64
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Release|Win32.ActiveCfg = Release|Win32
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Release|Win32.Build.0 = Release|Win32
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Release|x64.ActiveCfg = Release|x64
+		{358FFC1C-CA17-463E-88BF-3126FFF4942E}.Release|x64.Build.0 = Release|x64
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Debug|Win32.Build.0 = Debug|Win32
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Debug|x64.ActiveCfg = Debug|x64
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Debug|x64.Build.0 = Debug|x64
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|Win32.ActiveCfg = Release|Win32
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|Win32.Build.0 = Release|Win32
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|x64.ActiveCfg = Release|x64
+		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

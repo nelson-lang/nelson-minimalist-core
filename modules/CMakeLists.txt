@@ -32,6 +32,7 @@ list(
   memory_manager
   overload
   text_completion
+  trigonometric_functions
   terminal
   engine)
 # ==============================================================================
