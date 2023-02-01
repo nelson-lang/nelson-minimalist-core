@@ -14,6 +14,9 @@ list(FILTER LOCALIZATION_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/no-src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${LOCALIZATION_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSLOCALIZATION_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_name}
     PUBLIC

@@ -16,6 +16,9 @@ list(FILTER COMMONS_SRC EXCLUDE REGEX
 "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${COMMONS_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSCOMMONS_EXPORTS")
+endif()
 target_compile_definitions(${module_library_name} PRIVATE FMT_EXPORT)
 set(COMMONS_INCLUDE_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include
