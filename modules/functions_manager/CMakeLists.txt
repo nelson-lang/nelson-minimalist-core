@@ -42,6 +42,9 @@ list(FILTER FUNCTIONS_MANAGER_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_builtin_name} ${FUNCTIONS_MANAGER_BUILTIN})
+if(WIN32)
+    target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_builtin_name}
     PUBLIC

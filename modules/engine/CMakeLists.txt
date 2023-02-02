@@ -34,9 +34,9 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
 )
 # ==============================================================================
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  find_library(LIBRT rt)
-endif()
+#if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+#  find_library(LIBRT rt)
+#endif()
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
@@ -51,8 +51,8 @@ target_link_libraries(
   nlsLocalization 
   nlsFunctions_manager_builtin
   nlsDisplay_format_builtin
-  nlsTrigonometric_functions_builtin
-  ${LIBRT})
+  nlsTrigonometric_functions_builtin)
+  #  ${LIBRT})
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
