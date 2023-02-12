@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## UNRELEASED
 
+- [#6](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/6): Windows build with cmake.
+
+- [#24](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/24): CI build with Cmake on Windows.
+
 - plug `trigonometric_functions` module (currently only builtin)
   `cos`, `sin`, `tan`, `cosh`, `sinh`, `tanh`, `acos`, `asin`, `atan`, `cosm`, `sinm`, `tanm`, `atan2`, `atanh`
 

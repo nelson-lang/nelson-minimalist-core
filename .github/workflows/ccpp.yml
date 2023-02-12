@@ -273,3 +273,48 @@ jobs:
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
           cd nelson-minimalist-core
           msbuild nelson-minimalist-core.sln /p:Configuration=Release /p:Platform=x64 /target:"NelSon-cli" /m:4 /p:PreferredToolArchitecture=x64
+
+  Windows_win64_cmake:
+    name: Windows 64 bits (cmake)
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: cmd
+    timeout-minutes: 120
+
+    steps:
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1.3
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install eigen dependency
+        run: |
+          cd %GITHUB_WORKSPACE%
+          git clone https://gitlab.com/libeigen/eigen.git
+          cd eigen
+          git checkout 3.4
+
+      - name: CMake
+        run: |
+          set Eigen3_DIR=%GITHUB_WORKSPACE%/eigen
+          set EIGEN3_INCLUDE_DIR=%GITHUB_WORKSPACE%/eigen
+          SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;%PATH%
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          mkdir install
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX=../install ..
+
+      - name: Build
+        run: |
+          SET PATH=C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\current\Bin\;%PATH%
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+          cd build
+          nmake install
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: nelson-lite-github-action-artifacts-windows-amd64-${{ github.run_number }}
+          path: install/

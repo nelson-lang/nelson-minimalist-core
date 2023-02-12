@@ -93,14 +93,19 @@ configure_file("${CMAKE_SOURCE_DIR}/modules/commons/src/include/nlsBuildConfig.h
 set(Nelson_VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE})
 # ==============================================================================
+if(EXISTS "$ENV{EIGEN3_DIR}" AND EXISTS "$ENV{EIGEN3_INCLUDE_DIR}")
+set(EIGEN3_INCLUDE_DIR "$ENV{EIGEN3_INCLUDE_DIR}" )
+set(CMAKE_MODULE_PATH "$ENV{EIGEN3_DIR}" )
+else()
+include(PackageConfig)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(PkgConfig REQUIRED)
+endif()
 # ==============================================================================
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   include(MacOsConfig)
 endif()
 # ==============================================================================
-include(PackageConfig)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 set(NELSON_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for nelsonConfig.cmake")
