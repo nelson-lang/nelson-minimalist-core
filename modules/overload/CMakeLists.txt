@@ -15,6 +15,10 @@ list(FILTER OVERLOAD EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${OVERLOAD})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSOVERLOAD_EXPORTS")
+endif()
+
 target_include_directories(
     ${module_library_name}
     PUBLIC
