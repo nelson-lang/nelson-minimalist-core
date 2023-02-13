@@ -12,6 +12,8 @@
 #include "lapack_eigen_config.hpp"
 #include <Eigen/Dense>
 #include "ArrayOf.hpp"
+#include "Error.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

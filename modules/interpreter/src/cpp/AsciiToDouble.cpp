@@ -7,20 +7,20 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#include "AsciiToDouble.hpp"
 #include <string>
 #include <algorithm>
 #include <cstdlib>
-#include "fast_float/fast_float.h"
-#include "AsciiToDouble.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
 double
 asciiToDouble(const std::string& str)
 {
-    double value;
-    auto answer = fast_float::from_chars(str.data(), str.data() + str.size(), value);
-    return value;
+    std::string s(str);
+    std::replace(s.begin(), s.end(), 'D', 'E');
+    std::replace(s.begin(), s.end(), 'd', 'e');
+    return atof(s.c_str());
 }
 //=============================================================================
 }; // namespace Nelson

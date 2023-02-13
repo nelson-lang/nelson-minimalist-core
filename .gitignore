@@ -8,7 +8,9 @@
 # LICENCE_BLOCK_END
 #==============================================================================
 # This .gitignore for Nelson
-
+NelsonConfigVersion.cmake
+modules/main/nelson-cli-exec
+/modules/*/*.so.*
 chocolatey/nelson/*.nupkg
 nelson*.snap
 tests_*.xml
@@ -230,4 +232,7 @@ node_modules/
 modules/mex/examples/rust-mex-builder/helloworld/Cargo.lock
 modules/mex/examples/rust-mex-builder/helloworld/build.rs
 modules/mex/examples/rust-mex-builder/helloworld/target/
+################################################################################
+build/
+install/
 ################################################################################

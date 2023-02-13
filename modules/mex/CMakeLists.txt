@@ -90,44 +90,21 @@ if(NOT WITHOUT_MEX_MODULE)
   file(GLOB MEX_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
   list(FILTER MEX_BUILTIN EXCLUDE REGEX
        "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
-endif()
-# ==============================================================================
-if(NOT WITHOUT_MEX_MODULE)
-  add_library(${module_library_builtin_name} ${MEX_BUILTIN})
-  target_include_directories(
-    ${module_library_builtin_name}
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>
-           $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
-  target_include_directories(
-    ${module_library_builtin_name}
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/builtin/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../validators/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include)
-
-  target_link_libraries(
-    ${module_library_builtin_name}
-    ${module_library_name}
-    nlsError_manager
-    nlsI18n
-    nlsInterpreter
-    nlsTypes
-    nlsValidators)
-endif()
-# ==============================================================================
-if(NOT WITHOUT_MEX_MODULE)
-  file(
-    GLOB
-    MEX_HEADER
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.h")
+  # ==============================================================================
+  include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../validators/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include)
+  # ==============================================================================
+  add_library(${module_library_builtin_name} SHARED ${MEX_BUILTIN})
+  # ==============================================================================
+  target_link_libraries(${module_library_builtin_name} nlsError_manager nlsI18n
+                        nlsInterpreter nlsTypes nlsValidators)
+  # ==============================================================================
   set_target_properties(
     ${module_library_builtin_name}
     PROPERTIES

@@ -4,70 +4,39 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 0.7.2 (UNRELEASED)
+## UNRELEASED
 
-### Changed
+- [#6](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/6): Windows build with cmake.
 
-- cmake project reworked. It should be easier to package Nelson on linux platforms (Thanks to @JohanMabille)
-- Debian package generated.
-- `modulepath` reworked and extended.
-- C++ API: `IsCellOfStrings(ArrayOf)` replaced by `ArrayOf::isCellOfCharacterVectors()`
-- Remove internal circular dependency about error and warning.
+- [#24](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/24): CI build with Cmake on Windows.
 
-### Fixed
+- plug `trigonometric_functions` module (currently only builtin)
+  `cos`, `sin`, `tan`, `cosh`, `sinh`, `tanh`, `acos`, `asin`, `atan`, `cosm`, `sinm`, `tanm`, `atan2`, `atanh`
 
-- `disp`, `display` did no more support overloading.
+- plug `display_format` module (format, disp, display, echo)
 
-## 0.7.1 (2023-01-29)
+- builtin loaded by gateway.
+
+## 0.1.0
 
 ### Added
 
-- `drawnow`: Update figures and process callbacks.
-- `DrawLater` property added to `figure` graphics object.
-- `interp1` linear interpolation 1D.
-- [736](http://github.com/Nelson-numerical-software/nelson/issues/736): `bone`, `cool`, `copper`, `hot`, `jet`, `pink`, `turbo`, `viridis`, `white` colormaps.
-- `Visible` property to `figure` graphics object.
-- [809](http://github.com/Nelson-numerical-software/nelson/issues/809): `NumberTitle` property to `figure` graphics object.
-- `AlphaMap` and `Colormap` properties added to `Axes` graphics object.
-- `LineStyleOrder` property of 'axes' used for `plot` and `plot3`.
-- `ColorOrderIndex` and `LineStyleOrderIndex` properties added to `axes` graphics object.
-- `Interpreter` property added to `text` graphics object.
-- tex special characters support for `text` and `ticks` graphics object.
-- `delete` for graphics objects.
-- `imread` Read image from graphics file.
-- `imwrite` Write image to graphics file.
-- `imshow` Display image.
-- `surface` Primitive surface plot.
-- [808](http://github.com/Nelson-numerical-software/nelson/issues/808): `pcolor` Pseudocolor plot.
-- `mesh` Mesh surface plot.
-- `meshz` Mesh surface plot with curtain.
-- [807](http://github.com/Nelson-numerical-software/nelson/issues/807): `loglog` Log-log scale plot.
-- `CHANGELOG` 0.7.x family.
+- [#16](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/16): text_completion code imported.
+
+- [#13](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/13): cmake packaging (Thanks to JohanMabille).
+
+- [#11](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/11): plug 'addpath' builtin.
 
 ### Changed
 
-- Graphics objects property names check is strict (compatibility).
-- Some speed optimization with graphics objects.
-- `surf` reworked to use `surface`.
+- nelson.sln renamed to nelson-minimalist-core.sln
+
+- synchronized with complete version Nelson 0.6.12
 
 ### Fixed
 
-- [#823](http://github.com/Nelson-numerical-software/nelson/issues/823): default LineStyle for a line was wrong with marker.
-- `CTRL+C` was not catched on advanced cli for linux and macos.
-- colors in `colorbar` were not in the good order.
-- warnings detected by CodeQL.
-- [#824](http://github.com/Nelson-numerical-software/nelson/issues/824): VariableCompleter was not filtered by prefix.
+- [#23](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/23): VariableCompleter was not filtered by prefix.
 
-## Previous changelog
+- [#8](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/8): Install nelson-minimalist-core in local environment
 
-[Changelog v0.6.x](CHANGELOG-0.6.x.md)
-
-[Changelog v0.5.x](CHANGELOG-0.5.x.md)
-
-[Changelog v0.4.x](CHANGELOG-0.4.x.md)
-
-[Changelog v0.3.x](CHANGELOG-0.3.x.md)
-
-[Changelog v0.2.x](CHANGELOG-0.2.x.md)
-
-[Changelog v0.1.x](CHANGELOG-0.1.x.md)
+Thanks to JohanMabille, Hind-M and [QuantStack](https://quantstack.net/) for their helps for this initial version of nelson-minimalist-core.

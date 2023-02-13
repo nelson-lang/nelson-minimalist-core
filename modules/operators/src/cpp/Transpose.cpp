@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "nlsBuildConfig.h"
+#include "Error.hpp"
 #include "Transpose.hpp"
 #include "ClassName.hpp"
 #include "i18n.hpp"

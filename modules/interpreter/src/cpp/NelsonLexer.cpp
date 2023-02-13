@@ -26,6 +26,7 @@
 #include "i18n.hpp"
 #include "FileParser.hpp"
 #include "Keywords.hpp"
+#include "LexerInterface.hpp"
 #include "NelSonParser.h"
 #include "LexerInterface.hpp"
 //=============================================================================

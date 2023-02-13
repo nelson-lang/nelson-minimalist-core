@@ -10,13 +10,13 @@
 
 #pragma once
 
-#define NELSON_PRODUCT_NAME "Nelson"
-#define NELSON_RELEASE_NAME "Freedom"
+#define NELSON_PRODUCT_NAME "nelson-minimalist-core"
+#define NELSON_RELEASE_NAME "initial"
 #define NELSON_VERSION_MAJOR @Nelson_VERSION_MAJOR@
 #define NELSON_VERSION_MINOR @Nelson_VERSION_MINOR@
 #define NELSON_VERSION_MAINTENANCE @Nelson_VERSION_MAINTENANCE@
 #define NELSON_VERSION_BUILD @Nelson_VERSION_BUILD@
-#define NELSON_VERSION_COMMIT_HASH "8dcac607dc240181002795b70297a5cee0fcc4dd"
+#define NELSON_VERSION_COMMIT_HASH "06baf4add3a59d212abb5fe245dbf53de310cf76"
 
 /*VERSION string */
 #define __quote(x) #x

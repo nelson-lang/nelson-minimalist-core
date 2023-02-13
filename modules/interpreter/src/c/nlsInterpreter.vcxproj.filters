@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\cpp\ActionMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\AdditionOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -97,9 +94,6 @@
     <ClCompile Include="..\cpp\PathFuncManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\ProcessEventsDynamicFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\Scope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,9 +151,6 @@
     <ClCompile Include="..\cpp\CallMexBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\NelsonReadyNamedMutex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\AsciiToDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -180,7 +171,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\module.iss" />
     <None Include="..\grammar\NelSonParser.yxx">
       <Filter>Grammar</Filter>
     </None>
@@ -208,9 +198,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\ActionMenu.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\AbstractSyntaxTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -292,9 +279,6 @@
     <ClInclude Include="..\include\PositionScript.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\ProcessEventsDynamicFunction.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Scope.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -320,9 +304,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CallMexBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\NelsonReadyNamedMutex.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\CallStack.hpp">

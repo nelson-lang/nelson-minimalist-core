@@ -11,6 +11,7 @@
 #include "EvaluateCommand.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 #include "EvaluateInterface.hpp"
 #include "ParserInterface.hpp"
 #include "characters_encoding.hpp"

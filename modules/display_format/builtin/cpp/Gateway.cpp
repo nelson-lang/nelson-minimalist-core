@@ -12,6 +12,7 @@
 #include "displayBuiltin.hpp"
 #include "formatBuiltin.hpp"
 #include "echoBuiltin.hpp"
+#include "display_format_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -118,4 +119,11 @@ NLSGATEWAYINFO(gateway)
 NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
 //=============================================================================
 NLSGATEWAYNAME()
+//=============================================================================
+int
+DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

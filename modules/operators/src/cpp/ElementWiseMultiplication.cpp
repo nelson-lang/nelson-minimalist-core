@@ -14,6 +14,7 @@
 #include "ElementWiseMultiplication.hpp"
 #include "MatrixCheck.hpp"
 #include "NewWithException.hpp"
+#include "Error.hpp"
 #include "i18n.hpp"
 #include "IntegerOperations.hpp"
 //=============================================================================

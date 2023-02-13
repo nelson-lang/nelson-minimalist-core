@@ -47,27 +47,6 @@ def get_github_repo_commit():
 def get_github_build_number():
     return int(os.getenv('GITHUB_RUN_NUMBER'))
 
-def edit_homepage_md(version_str):
-    for (directory, _, files) in os.walk('./modules/main/help'):
-        for f in files:
-            path = os.path.join(directory, f)
-            if os.path.exists(path):
-                if path.endswith('homepage.md'):
-                    lines_out = []
-                    with open(path) as f:
-                        lines_in = f.readlines()
-                        for line in lines_in:
-                            line = line.replace('\r\n', '')
-                            line = line.replace('\n', '')
-                            if line.strip().startswith('### Nelson '):
-                                lines_out.append('### Nelson ' + version_str)
-                            else:
-                                lines_out.append(line)
-                    with open(path, 'w') as f:
-                        for l in lines_out:
-                            f.write(l + '\n')
-
-
 def edit_rc_file(filename, version_str):
     lines_out = []
     with open(filename) as f:
@@ -277,5 +256,4 @@ if __name__ == '__main__':
     edit_nelson_version_h_in(git_hash)
     if update_from_command_line == True:
         edit_package_json(major, minor, maintenance)
-    edit_homepage_md(version_str)
     sys.exit(0)
