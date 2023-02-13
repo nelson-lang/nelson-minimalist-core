@@ -7,19 +7,21 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#pragma once
+#include <Windows.h>
 //=============================================================================
-#include "nlsInterpreter_exports.h"
-//=============================================================================
-#ifdef __cplusplus
-extern "C"
+int WINAPI
+DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
 {
-#endif
-    //=============================================================================
-    NLSINTERPRETER_IMPEXP void*
-    GetNelsonMainEvaluatorDynamicFunction();
-//=============================================================================
-#ifdef __cplusplus
+    switch (reason) {
+    case DLL_PROCESS_ATTACH:
+        break;
+    case DLL_PROCESS_DETACH:
+        break;
+    case DLL_THREAD_ATTACH:
+        break;
+    case DLL_THREAD_DETACH:
+        break;
+    }
+    return 1;
 }
-#endif
 //=============================================================================

@@ -20,7 +20,6 @@ namespace Nelson {
  */
 NLSINTERPRETER_IMPEXP void
 setLexBuffer(const std::wstring& buffer);
-
 NLSINTERPRETER_IMPEXP void
 setLexBuffer(const std::string& buffer);
 
@@ -28,7 +27,7 @@ setLexBuffer(const std::string& buffer);
  * Set the FILE pointer for the file to be processed
  * by the lexer.
  */
-void
+NLSINTERPRETER_IMPEXP void
 setLexFile(FILE* fp);
 /**
  * Lex the file, and then check to see if more input is needed.
@@ -38,7 +37,7 @@ lexCheckForMoreInput(int pcount);
 /**
  * Retrieve the contents of the continuationCount.
  */
-int
+NLSINTERPRETER_IMPEXP int
 getContinuationCount();
 //=============================================================================
 } // namespace Nelson

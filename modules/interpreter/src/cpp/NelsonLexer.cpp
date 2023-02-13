@@ -28,6 +28,7 @@
 #include "Keywords.hpp"
 #include "LexerInterface.hpp"
 #include "NelSonParser.h"
+#include "LexerInterface.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================

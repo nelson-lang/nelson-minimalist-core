@@ -29,6 +29,8 @@ NelsonConfiguration::NelsonConfiguration()
     RandomEngine = nullptr;
     HistoryManager = nullptr;
     engineMode = 0;
+    lastErrorException.clear();
+    lastWarningException.clear();
 }
 //=============================================================================
 NelsonConfiguration*
@@ -141,6 +143,30 @@ NelsonConfiguration::getNelsonBinaryDirectory()
 }
 //=============================================================================
 void
+NelsonConfiguration::setNelsonLibraryDirectory(const std::wstring& directory)
+{
+    nelsonLibraryPath = directory;
+}
+//=============================================================================
+std::wstring
+NelsonConfiguration::getNelsonLibraryDirectory()
+{
+    return nelsonLibraryPath;
+}
+//=============================================================================
+void
+NelsonConfiguration::setNelsonModulesDirectory(const std::wstring& directory)
+{
+    nelsonModulesPath = directory;
+}
+//=============================================================================
+std::wstring
+NelsonConfiguration::getNelsonModulesDirectory()
+{
+    return nelsonModulesPath;
+}
+//=============================================================================
+void
 NelsonConfiguration::setNelsonPreferencesDirectory(const std::wstring& directory)
 {
     nelsonPreferencesPath = directory;
@@ -150,6 +176,18 @@ std::wstring
 NelsonConfiguration::getNelsonPreferencesDirectory()
 {
     return nelsonPreferencesPath;
+}
+//=============================================================================
+void
+NelsonConfiguration::setMainIOInterface(void* IOInterface)
+{
+    this->mainInputOutputInterface = IOInterface;
+}
+//=============================================================================
+void*
+NelsonConfiguration::getMainIOInterface()
+{
+    return this->mainInputOutputInterface;
 }
 //=============================================================================
 void
@@ -240,6 +278,36 @@ int
 NelsonConfiguration::getMaxNumCompThreads()
 {
     return nbOfThreadsToUse;
+}
+//=============================================================================
+void
+NelsonConfiguration::setLastErrorException(size_t ID, void* lastErrorException)
+{
+    this->lastErrorException[ID] = lastErrorException;
+}
+//=============================================================================
+void*
+NelsonConfiguration::getLastErrorException(size_t ID)
+{
+    if (this->lastErrorException.count(ID) != 0) {
+        return this->lastErrorException[ID];
+    }
+    return nullptr;
+}
+//=============================================================================
+void
+NelsonConfiguration::setLastWarningException(size_t ID, void* lastWarningException)
+{
+    this->lastWarningException[ID] = lastWarningException;
+}
+//=============================================================================
+void*
+NelsonConfiguration::getLastWarningException(size_t ID)
+{
+    if (this->lastWarningException.count(ID) != 0) {
+        return this->lastWarningException[ID];
+    }
+    return nullptr;
 }
 //=============================================================================
 } // namespace Nelson

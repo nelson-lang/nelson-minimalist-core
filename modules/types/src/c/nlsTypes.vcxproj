@@ -279,6 +279,9 @@
     <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
       <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\nelson_manager\src\c\nlsNelson_manager.vcxproj">
+      <Project>{e467b14f-0d56-4237-b649-eb5572b5e731}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />

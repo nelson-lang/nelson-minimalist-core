@@ -13,6 +13,8 @@
 #include "nlsInterpreter_exports.h"
 #include "ArrayOf.hpp"
 #include "Types.hpp"
+#include "nlsInterpreter_exports.h"
+
 //=============================================================================
 namespace Nelson {
 class NLSINTERPRETER_IMPEXP VariablesTable

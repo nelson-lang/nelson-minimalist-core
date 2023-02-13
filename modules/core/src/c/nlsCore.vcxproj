@@ -182,7 +182,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\include\nlsCore_exports.h" />
     <ClInclude Include="..\cpp\ComputeNelsonBinariesPath.hpp" />
-    <ClInclude Include="..\cpp\ComputeNelsonPath.hpp" />
+    <ClInclude Include="..\cpp\ComputeNelsonLibrariesPath.hpp" />
+    <ClInclude Include="..\cpp\ComputeNelsonModulesPath.hpp" />
+    <ClInclude Include="..\cpp\ComputeNelsonRootPath.hpp" />
     <ClInclude Include="..\cpp\ComputePreferencesPath.hpp" />
     <ClInclude Include="..\include\EvaluateCommand.hpp" />
     <ClInclude Include="..\include\EvaluateInterface.hpp" />
@@ -225,10 +227,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\ComputeNelsonBinariesPath.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonPath.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonPaths.cpp" />
-    <ClCompile Include="..\cpp\ComputePreferencesPath.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
     <ClCompile Include="..\cpp\EvaluateInterface.cpp" />
     <ClCompile Include="..\cpp\EvaluateCommand.cpp" />

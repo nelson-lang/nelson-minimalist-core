@@ -83,16 +83,34 @@ public:
     getNelsonRootDirectory();
     //=============================================================================
     void
+    setNelsonModulesDirectory(const std::wstring& directory);
+    //=============================================================================
+    std::wstring
+    getNelsonModulesDirectory();
+    //=============================================================================
+    void
     setNelsonBinaryDirectory(const std::wstring& directory);
     //=============================================================================
     std::wstring
     getNelsonBinaryDirectory();
     //=============================================================================
     void
+    setNelsonLibraryDirectory(const std::wstring& directory);
+    //=============================================================================
+    std::wstring
+    getNelsonLibraryDirectory();
+    //=============================================================================
+    void
     setNelsonPreferencesDirectory(const std::wstring& directory);
     //=============================================================================
     std::wstring
     getNelsonPreferencesDirectory();
+    //=============================================================================
+    void
+    setMainIOInterface(void* IOInterface);
+    //=============================================================================
+    void*
+    getMainIOInterface();
     //=============================================================================
     void
     setMainGuiObject(void* mainGuiObject);
@@ -139,6 +157,16 @@ public:
     int
     getMaxNumCompThreads();
     //=============================================================================
+    void
+    setLastErrorException(size_t ID, void* lastErrorException);
+    void*
+    getLastErrorException(size_t ID);
+    //=============================================================================
+    void
+    setLastWarningException(size_t ID, void* lastWarningException);
+    void*
+    getLastWarningException(size_t ID);
+    //=============================================================================
 private:
     NelsonConfiguration();
     //=============================================================================
@@ -163,15 +191,20 @@ private:
     //=============================================================================
     std::wstring nelsonRootPath;
     std::wstring nelsonBinaryPath;
+    std::wstring nelsonLibraryPath;
+    std::wstring nelsonModulesPath;
     std::wstring nelsonPreferencesPath;
     //=============================================================================
     bool ipcEnabled;
     //=============================================================================
     void* mainEvaluator;
+    void* mainInputOutputInterface;
     void* mainGuiObject;
     void* FileManager;
     void* RandomEngine;
     void* HistoryManager;
+    std::map<size_t, void*> lastErrorException;
+    std::map<size_t, void*> lastWarningException;
     //=============================================================================
     int engineMode;
     //=============================================================================

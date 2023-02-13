@@ -235,11 +235,9 @@
     <ClCompile Include="..\cpp\CommandQueue.cpp" />
     <ClCompile Include="..\cpp\Comments.cpp" />
     <ClCompile Include="..\cpp\Context.cpp" />
-    <ClCompile Include="..\cpp\DebugStack.cpp" />
     <ClCompile Include="..\cpp\DotLeftDivideOperator.cpp" />
     <ClCompile Include="..\cpp\DotRightDivideOperator.cpp" />
     <ClCompile Include="..\cpp\EqOperator.cpp" />
-    <ClCompile Include="..\cpp\ErrorEmitter.cpp" />
     <ClCompile Include="..\cpp\EvaluateBuiltinCatchRuntimeException.cpp">
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Async</ExceptionHandling>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
@@ -282,7 +280,6 @@
     <ClCompile Include="..\cpp\TimesOperator.cpp" />
     <ClCompile Include="..\cpp\VariablesTable.cpp" />
     <ClCompile Include="..\cpp\VertCatOperator.cpp" />
-    <ClCompile Include="..\cpp\WarningEmitter.cpp" />
     <ClCompile Include="..\grammar\NelSonParser.cpp" />
     <ClCompile Include="..\grammar\NelsonParserHelpers.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
@@ -302,6 +299,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
       <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\debugger\src\c\nlsDebugger.vcxproj">
+      <Project>{6301554d-09ec-4b75-9bc3-9cfc0c0681a1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\display_format\src\c\nlsDisplay_format.vcxproj">
       <Project>{2469b77e-f2b0-4b0e-b814-bb57747e0865}</Project>
@@ -346,8 +346,6 @@
     <ClInclude Include="..\include\CommandQueue.hpp" />
     <ClInclude Include="..\include\Comments.hpp" />
     <ClInclude Include="..\include\Context.hpp" />
-    <ClInclude Include="..\include\DebugStack.hpp" />
-    <ClInclude Include="..\include\ErrorEmitter.h" />
     <ClInclude Include="..\include\EvaluateBuiltinCatchRuntimeException.hpp" />
     <ClInclude Include="..\include\Evaluator.hpp" />
     <ClInclude Include="..\include\FileFunction.hpp" />
@@ -377,7 +375,6 @@
     <ClInclude Include="..\include\StackEntry.hpp" />
     <ClInclude Include="..\include\VariablesTable.hpp" />
     <ClInclude Include="..\include\VertCatOperator.hpp" />
-    <ClInclude Include="..\include\WarningEmitter.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />

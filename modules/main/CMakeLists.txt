@@ -4,7 +4,9 @@
 # This file is part of the Nelson.
 # =============================================================================
 # LICENCE_BLOCK_BEGIN
+#
 # SPDX-License-Identifier: LGPL-3.0-or-later
+#
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name main)
@@ -26,8 +28,7 @@ list (
   nelson-cli-exec)
 add_custom_target(
   Name ALL
-  COMMAND
-  ${BUILD_ALL_LOCALIZATION_ACTION}
+  COMMAND ${BUILD_ALL_LOCALIZATION_ACTION}
   DEPENDS ${executableList})
 # ==============================================================================
 include(GNUInstallDirs)

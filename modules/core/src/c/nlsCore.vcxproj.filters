@@ -30,13 +30,19 @@
     <ClInclude Include="..\include\GetNelsonBinariesPath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\ComputeNelsonPath.hpp">
+    <ClInclude Include="..\cpp\ComputeNelsonRootPath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\ComputePreferencesPath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\ComputeNelsonBinariesPath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\ComputeNelsonLibrariesPath.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\ComputeNelsonModulesPath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -48,18 +54,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\EvaluateScriptFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\ComputeNelsonBinariesPath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\ComputeNelsonPath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\ComputeNelsonPaths.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\ComputePreferencesPath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\dllMain.cpp">

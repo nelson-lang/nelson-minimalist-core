@@ -3,7 +3,10 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+#
 # LICENCE_BLOCK_END
 # ==============================================================================
 message(
@@ -13,12 +16,25 @@ message(
 # ==============================================================================
 cmake_minimum_required(VERSION 3.9)
 # ==============================================================================
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/")
+# ==============================================================================
 project(Nelson)
+# ==============================================================================
+set(default_build_type "Release")
+if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
+  set(default_build_type "Debug")
+endif()
 # ==============================================================================
 set(Nelson_VERSION_MAJOR_DEFAULT 0)
 set(Nelson_VERSION_MINOR_DEFAULT 2)
 set(Nelson_VERSION_MAINTENANCE_DEFAULT 0)
 set(Nelson_VERSION_BUILD_DEFAULT 0)
+# ==============================================================================
+include(VersionConfig)
+# ==============================================================================
+set(Nelson_VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
+)
 # ==============================================================================
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
   option(CMAKE_INSTALL_PREFIX "Install directory used by instal." "$ENV{HOME}")

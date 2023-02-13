@@ -4,7 +4,9 @@
 # This file is part of the Nelson.
 # =============================================================================
 # LICENCE_BLOCK_BEGIN
+#
 # SPDX-License-Identifier: LGPL-3.0-or-later
+#
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name interpreter)
@@ -12,7 +14,8 @@ set(module_library_name nlsInterpreter)
 # ==============================================================================
 file(GLOB INTERPRETER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar/*.cpp")
-list(FILTER INTERPRETER_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
+list(FILTER INTERPRETER_SRC EXCLUDE REGEX
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${INTERPRETER_SRC})
 if(WIN32)
@@ -45,6 +48,7 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsNelson_manager
+  nlsDebugger
   nlsOperators
   nlsOs_functions
   nlsCommons

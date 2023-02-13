@@ -98,6 +98,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTrigonometric_functions"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTrigonometric_functions_builtin", "modules\trigonometric_functions\builtin\c\nlsTrigonometric_functions_builtin.vcxproj", "{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsDebugger", "modules\debugger\src\c\nlsDebugger.vcxproj", "{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -338,6 +340,14 @@ Global
 		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|Win32.Build.0 = Release|Win32
 		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|x64.ActiveCfg = Release|x64
 		{E7E9CA2A-8485-4777-A753-69BBAC2D1E83}.Release|x64.Build.0 = Release|x64
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Debug|Win32.Build.0 = Debug|Win32
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Debug|x64.ActiveCfg = Debug|x64
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Debug|x64.Build.0 = Debug|x64
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Release|Win32.ActiveCfg = Release|Win32
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Release|Win32.Build.0 = Release|Win32
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Release|x64.ActiveCfg = Release|x64
+		{6301554D-09EC-4B75-9BC3-9CFC0C0681A1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

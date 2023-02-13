@@ -34,6 +34,7 @@ checks.json
 /modules/main/help/*/html/CHANGELOG-0.3.x.html
 /modules/main/help/*/html/CHANGELOG-0.4.x.html
 /modules/main/help/*/html/CHANGELOG-0.5.x.html
+/modules/main/help/*/html/CHANGELOG-0.6.x.html
 /modules/main/help/*/html/license.html
 /modules/main/help/*/html/gpl-3.0.html
 /modules/main/help/*/html/lgpl-3.0.html
@@ -115,6 +116,7 @@ My Advisor XE Results - *
 *.dflginspxe
 *.infoinspxe
 ################################################################################
+NelsonConfigVersion.cmake
 CMakeFiles/
 _CPack_Packages/
 Makefile
@@ -124,10 +126,15 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
 install_manifest.txt
+*.a
 *.so
 *.dylib
-Nelson-*-Darwin.tar.Z
-Nelson-*-Linux.tar.Z
+Nelson-*-*.tar.Z
+Nelson-*-*.tar.gz
+nelson_*_*.deb
+nelson_*_*.rpm
+nelson_*_*.dmg
+nelson_*_*.zip
 bin/linux/*.so.*
 bin/linux/*-exec
 bin/linux/*.so.*

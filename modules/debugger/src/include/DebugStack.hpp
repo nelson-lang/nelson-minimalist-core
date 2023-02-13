@@ -7,21 +7,19 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "ComputeNelsonPaths.hpp"
-#include "ComputeNelsonPath.hpp"
-#include "ComputeNelsonBinariesPath.hpp"
-#include "ComputePreferencesPath.hpp"
+#pragma once
+//=============================================================================
+#include <vector>
+#include "nlsDebugger_exports.h"
+#include "PositionScript.hpp"
+#include "CallStack.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-bool
-ComputesNelsonPaths()
-{
-    ComputeNelsonPath();
-    ComputeNelsonBinariesPath();
-    ComputePreferencesPath();
-    return false;
-}
+using stackTrace = std::vector<PositionScript>;
+//=============================================================================
+NLSDEBUGGER_IMPEXP void
+DebugStack(const CallStack& callstack, int nbOmitLines, stackTrace& stackPositions);
 //=============================================================================
 } // namespace Nelson
 //=============================================================================

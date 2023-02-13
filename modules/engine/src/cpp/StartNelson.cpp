@@ -29,15 +29,11 @@
 #include "Nelson_VERSION.h"
 #include "ProgramOptions.hpp"
 #include "RecursionStack.hpp"
-#include "SetNelSonEnvironmentVariables.hpp"
 #include "characters_encoding.hpp"
 #include "WarningIds.hpp"
-#include "WarningEmitter.h"
-#include "ErrorEmitter.h"
 #include "NelsonPrint.hpp"
 #include "NelsonConfiguration.hpp"
 #include "Localization.hpp"
-#include "ComputeNelsonPaths.hpp"
 #include "i18n.hpp"
 #include "BuiltInFunctionDefManager.hpp"
 #include "display_format_Gateway.hpp"
@@ -167,12 +163,12 @@ ErrorCommandLine(const std::wstring& str, NELSON_ENGINE_MODE _mode)
     if (_mode == GUI) {
         MessageBox(nullptr, str.c_str(), msg.c_str(), MB_ICONINFORMATION);
     } else {
-        std::wcout << msg.c_str() << L"\n";
-        std::wcout << str;
+        std::wcerr << msg.c_str() << L"\n";
+        std::wcerr << str;
     }
 #else
-    std::wcout << msg.c_str() << L"\n";
-    std::wcout << str.c_str();
+    std::wcerr << msg.c_str() << L"\n";
+    std::wcerr << str.c_str();
 #endif
 }
 //=============================================================================
@@ -239,7 +235,7 @@ static int
 StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 {
     int exitCode = -1;
-    ComputesNelsonPaths();
+    std::wstring errorMessage;
     NelsonConfiguration::getInstance()->setNelsonEngineMode(_mode);
     ProgramOptions po(args, _mode);
     if (!po.isValid()) {
@@ -253,10 +249,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
     if (po.haveVersion()) {
         displayVersion(_mode);
         return 0;
-    }
-    if (!SetNelSonEnvironmentVariables()) {
-        ErrorPathDetection(_mode);
-        return exitCode;
     }
     setMaxOpenedFiles();
     initializeDefaultWarningIdsList();
@@ -274,23 +266,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
         setlocale(LC_CTYPE, "en_US.utf8");
     }
 #endif
-    if (getRecursionStacksize() < SIZE_MAX_RECURSION_CALL) {
-        std::string msg;
-        msg = _("Recursion stack not enough.\nPlease set C recursion stack to ");
-        msg = msg + std::to_string(SIZE_MAX_RECURSION_CALL);
-        msg.append("\n");
-        msg = msg + _("Current C stack is: ") + std::to_string(getRecursionStacksize());
-#ifdef _MSC_VER
-        if (_mode == GUI) {
-            MessageBox(nullptr, utf8_to_wstring(msg).c_str(), L"Nelson error:", MB_ICONERROR);
-        } else {
-            std::cout << msg << std::endl;
-        }
-#else
-        std::cout << msg << std::endl;
-#endif
-        return exitCode;
-    }
     std::wstring fileToExecute;
     std::wstring commandToExecute;
     wstringVector filesToOpen;
@@ -335,8 +310,6 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 
     Evaluator* eval = createMainEvaluator(_mode, lang, po.haveOptionsMinimize());
     if (eval != nullptr) {
-        setWarningEvaluator(eval);
-        setErrorEvaluator(eval);
         setPrintInterface(eval->getInterface());
         eval->setQuietMode(bQuietMode);
         eval->setCommandLineArguments(args);

@@ -23,5 +23,3 @@ A modern formatting library
 A C++17 cross-platform implementation for UUIDs
 
 > <https://github.com/mariusbancila/stduuid>
-
-> <https://github.com/fastfloat/fast_float/blob/main/LICENSE-MIT> MIT license

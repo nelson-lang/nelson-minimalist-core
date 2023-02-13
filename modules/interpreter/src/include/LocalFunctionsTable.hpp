@@ -13,6 +13,7 @@
 #include <string>
 #include "nlsInterpreter_exports.h"
 #include "FunctionDef.hpp"
+#include "nlsInterpreter_exports.h"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

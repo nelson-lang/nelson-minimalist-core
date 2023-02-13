@@ -9,13 +9,13 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include <string>
-#include "nlsCore_exports.h"
-//=============================================================================
-namespace Nelson {
-//=============================================================================
-NLSCORE_IMPEXP bool
-ComputesNelsonPaths();
-//=============================================================================
-} // namespace Nelson
+#ifdef _MSC_VER
+#ifdef NLSDEBUGGER_EXPORTS
+#define NLSDEBUGGER_IMPEXP __declspec(dllexport)
+#else
+#define NLSDEBUGGER_IMPEXP __declspec(dllimport)
+#endif
+#else
+#define NLSDEBUGGER_IMPEXP __attribute__((visibility("default")))
+#endif
 //=============================================================================
