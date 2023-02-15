@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{867F2F84-CC27-4BD8-B44B-5EF4F69C6E15}</ProjectGuid>
+    <ProjectGuid>{54A0DFBE-2FA2-4BCA-BA82-887EE2CEE308}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nlsCommons</RootNamespace>
+    <RootNamespace>nlsTypes_builtin</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,10 +93,11 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FMT_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSTYPES_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -113,10 +114,11 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>FMT_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSTYPES_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -135,10 +137,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>FMT_EXPORT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSTYPES_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -159,10 +162,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>FMT_EXPORT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSTYPES_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
+      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -176,63 +180,96 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="..\..\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\include\Nelson_VERSION.h.vc">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copy $(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copy $(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copy $(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copy $(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h</Outputs>
-    </CustomBuild>
-    <CustomBuild Include="..\include\nlsBuildConfig.h.vc">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h.vc" "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h.vc" "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h.vc" "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h"</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">copy "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h.vc" "$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copy $(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Copy $(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Copy $(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Message>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Copy $(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)modules\commons\src\include\nlsBuildConfig.h</Outputs>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="resources.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\cpp\FileSystemWrapper.cpp" />
-    <ClCompile Include="..\cpp\StringHelpers.cpp" />
-    <ClCompile Include="..\cpp\UuidHelpers.cpp" />
-    <ClCompile Include="..\fmt\src\format.cc" />
-    <ClCompile Include="..\fmt\src\os.cc" />
+    <ClCompile Include="..\cpp\classBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isaBuiltin.cpp" />
+    <ClCompile Include="..\cpp\iscellBuiltin.cpp" />
+    <ClCompile Include="..\cpp\ischarBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isclassBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isdoubleBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isemptyBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isfloatBuiltin.cpp" />
+    <ClCompile Include="..\cpp\ishandleBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isint16Builtin.cpp" />
+    <ClCompile Include="..\cpp\isint32Builtin.cpp" />
+    <ClCompile Include="..\cpp\isint64Builtin.cpp" />
+    <ClCompile Include="..\cpp\isint8Builtin.cpp" />
+    <ClCompile Include="..\cpp\isintegerBuiltin.cpp" />
+    <ClCompile Include="..\cpp\islogicalBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isnumericBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isrealBuiltin.cpp" />
+    <ClCompile Include="..\cpp\issingleBuiltin.cpp" />
+    <ClCompile Include="..\cpp\issparseBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isstringBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isstructBuiltin.cpp" />
+    <ClCompile Include="..\cpp\isuint16Builtin.cpp" />
+    <ClCompile Include="..\cpp\isuint32Builtin.cpp" />
+    <ClCompile Include="..\cpp\isuint64Builtin.cpp" />
+    <ClCompile Include="..\cpp\isuint8Builtin.cpp" />
+    <ClCompile Include="..\cpp\Gateway.cpp" />
+    <ClCompile Include="..\cpp\isvarnameBuiltin.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\FileSystemWrapper.hpp" />
-    <ClInclude Include="..\include\Nelson_VERSION.h" />
-    <ClInclude Include="..\include\nlsBuildConfig.h" />
-    <ClInclude Include="..\include\nlsCommons_exports.h" />
-    <ClInclude Include="..\include\StringHelpers.hpp" />
-    <ClInclude Include="..\include\UuidHelpers.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
       <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
+      <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
+      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
+      <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\overload\src\c\nlsOverload.vcxproj">
+      <Project>{937bee8b-e934-45f1-98ef-33aaf951e5e9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\c\nlsTypes.vcxproj">
+      <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\classBuiltin.hpp" />
+    <ClInclude Include="..\include\isaBuiltin.hpp" />
+    <ClInclude Include="..\include\isvarnameBuiltin.hpp" />
+    <ClInclude Include="..\include\iscellBuiltin.hpp" />
+    <ClInclude Include="..\include\ischarBuiltin.hpp" />
+    <ClInclude Include="..\include\isclassBuiltin.hpp" />
+    <ClInclude Include="..\include\isdoubleBuiltin.hpp" />
+    <ClInclude Include="..\include\isemptyBuiltin.hpp" />
+    <ClInclude Include="..\include\isfloatBuiltin.hpp" />
+    <ClInclude Include="..\include\ishandleBuiltin.hpp" />
+    <ClInclude Include="..\include\isint16Builtin.hpp" />
+    <ClInclude Include="..\include\isint32Builtin.hpp" />
+    <ClInclude Include="..\include\isint64Builtin.hpp" />
+    <ClInclude Include="..\include\isint8Builtin.hpp" />
+    <ClInclude Include="..\include\isintegerBuiltin.hpp" />
+    <ClInclude Include="..\include\islogicalBuiltin.hpp" />
+    <ClInclude Include="..\include\isnumericBuiltin.hpp" />
+    <ClInclude Include="..\include\isrealBuiltin.hpp" />
+    <ClInclude Include="..\include\issingleBuiltin.hpp" />
+    <ClInclude Include="..\include\issparseBuiltin.hpp" />
+    <ClInclude Include="..\include\isstringBuiltin.hpp" />
+    <ClInclude Include="..\include\isstructBuiltin.hpp" />
+    <ClInclude Include="..\include\isuint16Builtin.hpp" />
+    <ClInclude Include="..\include\isuint32Builtin.hpp" />
+    <ClInclude Include="..\include\isuint64Builtin.hpp" />
+    <ClInclude Include="..\include\isuint8Builtin.hpp" />
+    <ClInclude Include="..\include\nlsTypes_builtin_exports.h" />
+    <ClInclude Include="..\include\types_Gateway.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\etc\finish.m" />
+    <None Include="..\..\etc\startup.m" />
+    <None Include="..\..\loader.m" />
+    <None Include="..\..\module.iss" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

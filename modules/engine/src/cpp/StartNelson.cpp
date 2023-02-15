@@ -39,6 +39,7 @@
 #include "display_format_Gateway.hpp"
 #include "functions_manager_Gateway.hpp"
 #include "trigonometric_functions_Gateway.hpp"
+#include "types_Gateway.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -229,6 +230,7 @@ addHardcodedGateway(Evaluator* eval)
     FunctionsManagerAddGateway(eval, L"");
     DisplayFormatAddGateway(eval, L"");
     TrigonometricFunctionsAddGateway(eval, L"");
+    TypesGateway(eval, L"");
 }
 //=============================================================================
 static int

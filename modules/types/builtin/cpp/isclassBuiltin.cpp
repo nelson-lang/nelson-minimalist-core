@@ -7,19 +7,27 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "CallMexBuiltin.hpp"
-#include "NelsonConfiguration.hpp"
+#include "isclassBuiltin.hpp"
+#include "ClassName.hpp"
 #include "Error.hpp"
-#include "i18n.hpp"
+#include "CheckerHelpers.hpp"
 //=============================================================================
-namespace Nelson {
+using namespace Nelson;
 //=============================================================================
-void
-CallMexBuiltin(void* fptr, const ArrayOfVector& inputArgs, int nargout, ArrayOfVector& outputArgs,
-    bool interleavedComplex)
+ArrayOfVector
+Nelson::TypeGateway::isclassBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
-    Error(_W("Mex not supported."));
+    ArrayOfVector retval;
+    nargoutcheck(nLhs, 0, 1);
+    nargincheck(argIn, 1, 1);
+    bool bIsClass = argIn[0].isClassStruct();
+    if (bIsClass) {
+        std::string structType = argIn[0].getStructType();
+        if ((structType == NLS_FUNCTION_HANDLE_STR) || (structType == NLS_GENERIC_STR)) {
+            bIsClass = false;
+        }
+    }
+    retval << ArrayOf::logicalConstructor(bIsClass);
+    return retval;
 }
-//=============================================================================
-} // namespace Nelson
 //=============================================================================

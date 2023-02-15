@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- types module builtin added:
+  `class`, `isa`, `iscell`, `ischar`
+  `isclass`, `isdouble`, `isempty`, `isfloat`
+  `ishandle`, `isint8`, `isint16`, `isint32`
+  `isint64`, `isinteger`, `islogical`, `isnumeric`
+  `isreal`, `issingle`, `issparse`, `isstring`
+  `isuint8`, `isuint16`, `isuint32`, `isuint64`
+  `isvarname`
+
 - [#6](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/6): Windows build with cmake.
 - [#24](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/24): CI build with Cmake on Windows.
 - [#17](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/17): Add minimal tests to the CI.

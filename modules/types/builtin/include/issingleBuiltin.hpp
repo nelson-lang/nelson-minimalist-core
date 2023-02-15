@@ -7,19 +7,12 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "CallMexBuiltin.hpp"
-#include "NelsonConfiguration.hpp"
-#include "Error.hpp"
-#include "i18n.hpp"
+#pragma once
 //=============================================================================
-namespace Nelson {
+#include "ArrayOf.hpp"
+#include "Evaluator.hpp"
 //=============================================================================
-void
-CallMexBuiltin(void* fptr, const ArrayOfVector& inputArgs, int nargout, ArrayOfVector& outputArgs,
-    bool interleavedComplex)
-{
-    Error(_W("Mex not supported."));
-}
-//=============================================================================
+namespace Nelson::TypeGateway {
+ArrayOfVector
+issingleBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
 } // namespace Nelson
-//=============================================================================

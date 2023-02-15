@@ -7,19 +7,22 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "CallMexBuiltin.hpp"
-#include "NelsonConfiguration.hpp"
-#include "Error.hpp"
-#include "i18n.hpp"
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 //=============================================================================
-namespace Nelson {
-//=============================================================================
-void
-CallMexBuiltin(void* fptr, const ArrayOfVector& inputArgs, int nargout, ArrayOfVector& outputArgs,
-    bool interleavedComplex)
+int WINAPI
+DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
 {
-    Error(_W("Mex not supported."));
+    switch (reason) {
+    case DLL_PROCESS_ATTACH:
+        break;
+    case DLL_PROCESS_DETACH:
+        break;
+    case DLL_THREAD_ATTACH:
+        break;
+    case DLL_THREAD_DETACH:
+        break;
+    }
+    return 1;
 }
-//=============================================================================
-} // namespace Nelson
 //=============================================================================

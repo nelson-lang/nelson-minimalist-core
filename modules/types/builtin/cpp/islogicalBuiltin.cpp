@@ -7,19 +7,26 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "CallMexBuiltin.hpp"
-#include "NelsonConfiguration.hpp"
+#include "islogicalBuiltin.hpp"
 #include "Error.hpp"
-#include "i18n.hpp"
+#include "OverloadFunction.hpp"
+#include "CheckerHelpers.hpp"
 //=============================================================================
-namespace Nelson {
+using namespace Nelson;
 //=============================================================================
-void
-CallMexBuiltin(void* fptr, const ArrayOfVector& inputArgs, int nargout, ArrayOfVector& outputArgs,
-    bool interleavedComplex)
+ArrayOfVector
+Nelson::TypeGateway::islogicalBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
-    Error(_W("Mex not supported."));
+    ArrayOfVector retval;
+    nargoutcheck(nLhs, 0, 1);
+    nargincheck(argIn, 1, 1);
+    bool bSuccess = false;
+    if (eval->mustOverloadBasicTypes()) {
+        retval = OverloadFunction(eval, nLhs, argIn, "islogical", bSuccess);
+    }
+    if (!bSuccess) {
+        retval << ArrayOf::logicalConstructor(argIn[0].getDataClass() == NLS_LOGICAL);
+    }
+    return retval;
 }
-//=============================================================================
-} // namespace Nelson
 //=============================================================================
