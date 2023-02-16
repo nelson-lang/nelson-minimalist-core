@@ -34,6 +34,10 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../os_functions/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_functions/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../functions_manager/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../display_format/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../trigonometric_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
 )
 # ==============================================================================
@@ -51,6 +55,7 @@ target_link_libraries(
   nlsFunctions_manager_builtin
   nlsDisplay_format_builtin
   nlsTrigonometric_functions_builtin
+  nlsElementary_functions_builtin
   nlsTypes_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

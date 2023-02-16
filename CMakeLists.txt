@@ -129,7 +129,6 @@ set(NELSON_DOC_INSTALL_DIR "${CMAKE_DATA_ROOTDIR}/${PROJECT_NAME}/doc" CACHE STR
 # ==============================================================================
 add_subdirectory(modules)
 # ==============================================================================
-
 configure_package_config_file(
     ${PROJECT_NAME}Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake"

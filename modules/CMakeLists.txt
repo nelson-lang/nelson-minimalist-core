@@ -38,6 +38,7 @@ list(
   text_completion
   trigonometric_functions
   terminal
+  elementary_functions
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

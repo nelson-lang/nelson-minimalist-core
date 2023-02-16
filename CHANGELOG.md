@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- elementary_functions builtin added:
+  `size`, `length`, `reshape`, `real`
+  `imag`, `complex`, `isequal`, `isequaln`
+  `isequalto`, `numel`, `isapprox`, `ceil`
+  `floor`, `fix`, `round`, `isnan`
+  `isinf`, `isfinite`, `ndims`, `conj`
+  `mod`, `abs`, `repmat`, `rem`
+  `cast`, `norm`, `exp`, `log`
+  `log10`, `log1p`, `sqrt`, `num2bin`
+  `bin2num`, `base2dec`, `bin2dec`
+  `hex2dec`, `dec2base`, `dec2bin`, `dec2hex`
+  `linspace`, `log2`, `fliplr`, `flipud`
+  `find`, `isvector`, `isscalar`, `triu`
+  `tril`, `sign`, `hypot`, `permute`
+
 - types module builtin added:
   `class`, `isa`, `iscell`, `ischar`
   `isclass`, `isdouble`, `isempty`, `isfloat`

@@ -125,7 +125,7 @@ NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
 NLSGATEWAYNAME()
 //=============================================================================
 int
-DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename)
+DisplayFormatGateway(void* eval, const wchar_t* moduleFilename)
 {
     return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
         sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
