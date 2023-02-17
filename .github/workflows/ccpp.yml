@@ -109,7 +109,7 @@ jobs:
           nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
 
   Focal:
-    name: Ubuntu-20.04 Focal
+    name: Ubuntu-20.04 (static)
     runs-on: ubuntu-20.04
     timeout-minutes: 120
 
@@ -148,7 +148,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: CMake
-        run: cmake -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
+        run: cmake -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
       - name: make with Ninja
         run: cmake --build . -- -j $(nproc)
       - name: package

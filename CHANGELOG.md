@@ -46,6 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `isuint8`, `isuint16`, `isuint32`, `isuint64`
   `isvarname`
 
+- [#48](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/48): Add static build to CI.
 - [#6](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/6): Windows build with cmake.
 - [#24](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/24): CI build with Cmake on Windows.
 - [#17](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/17): Add minimal tests to the CI.
