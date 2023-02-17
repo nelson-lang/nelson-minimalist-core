@@ -9,7 +9,7 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include "nlslinear_algebra_builtin_exports.h"
+#include "nlsLinear_algebra_builtin_exports.h"
 //=============================================================================
 NLSLINEAR_ALGEBRA_BUILTIN_IMPEXP int
 LinearAlgebraGateway(void* eval, const wchar_t* moduleFilename);
