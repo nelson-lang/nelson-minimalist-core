@@ -38,6 +38,8 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../functions_manager/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../display_format/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../trigonometric_functions/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/builtin/include    
+    ${CMAKE_CURRENT_SOURCE_DIR}/../constructors_functions/builtin/include    
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
 )
 # ==============================================================================
@@ -56,6 +58,8 @@ target_link_libraries(
   nlsDisplay_format_builtin
   nlsTrigonometric_functions_builtin
   nlsElementary_functions_builtin
+  nlsLinear_algebra_builtin
+  nlsConstructors_functions_builtin
   nlsTypes_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

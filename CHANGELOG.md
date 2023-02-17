@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- constructors_function builtin added:
+  `eye`, `i`,
+  `j`, `nan`,
+  `NaN`, `inf`,
+  `Inf`, `eps`,
+  `pi`, `ones`,
+  `zeros`, `diag`
+
+- linear_algebra builtin added:
+  `sqrtm`, `logm`,
+  `expm`,, `schur`,
+  `trace`, `issymmetric`,
+  `ishermitian`, `det`
+
 - elementary_functions builtin added:
   `size`, `length`, `reshape`, `real`
   `imag`, `complex`, `isequal`, `isequaln`

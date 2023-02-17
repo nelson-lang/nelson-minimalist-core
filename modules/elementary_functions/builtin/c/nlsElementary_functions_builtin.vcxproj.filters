@@ -111,9 +111,6 @@
     <ClCompile Include="..\cpp\bin2numBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\swapbytesBuiltin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\base2decBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -272,9 +269,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\bin2numBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\swapbytesBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\base2decBuiltin.hpp">

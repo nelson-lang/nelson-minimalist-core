@@ -226,7 +226,6 @@
     <ClCompile Include="..\cpp\signBuiltin.cpp" />
     <ClCompile Include="..\cpp\sizeBuiltin.cpp" />
     <ClCompile Include="..\cpp\sqrtBuiltin.cpp" />
-    <ClCompile Include="..\cpp\swapbytesBuiltin.cpp" />
     <ClCompile Include="..\cpp\trilBuiltin.cpp" />
     <ClCompile Include="..\cpp\triuBuiltin.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
@@ -302,7 +301,6 @@
     <ClInclude Include="..\include\signBuiltin.hpp" />
     <ClInclude Include="..\include\sizeBuiltin.hpp" />
     <ClInclude Include="..\include\sqrtBuiltin.hpp" />
-    <ClInclude Include="..\include\swapbytesBuiltin.hpp" />
     <ClInclude Include="..\include\trilBuiltin.hpp" />
     <ClInclude Include="..\include\triuBuiltin.hpp" />
     <ClInclude Include="..\include\__rot90_matrix_2D__Builtin.hpp" />

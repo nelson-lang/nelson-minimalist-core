@@ -33,7 +33,7 @@ NLSGATEWAYREMOVE(gateway)
 NLSGATEWAYNAME()
 //=============================================================================
 int
-FunctionsManagerAddGateway(void* eval, const wchar_t* moduleFilename)
+FunctionsManagerGateway(void* eval, const wchar_t* moduleFilename)
 {
     return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
         sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);

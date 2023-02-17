@@ -41,38 +41,10 @@ if(NOT DEFINED CMAKE_INSTALL_PREFIX)
 endif()
 message(STATUS "CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}")
 # ==============================================================================
-option(LGPL_ONLY "Build Nelson under LGPL v3.x only" OFF)
-# ==============================================================================
-option(MINIMAL_BUILD "Build mininal Nelson " OFF)
-# ==============================================================================
-option(WITHOUT_OPENMP "Disable OpenMP" OFF)
-# ==============================================================================
 option(ENABLE_CLANG_TIDY "Analyze code with clang-tidy." OFF)
 option(ENABLE_CLANG_TIDY_FIX "Analyze code with clang-tidy and fix errors." OFF)
 # ==============================================================================
-option(ENABLE_PACKAGING "Build Nelson for packaging" OFF)
-# ==============================================================================
 option(BUILD_SHARED_LIBS "Build modules as shared libraries" ON)
-# ==============================================================================
-message(STATUS "Build Nelson for packaging: ${ENABLE_PACKAGING}")
-# ==============================================================================
-if(WITHOUT_OPENMP)
-  message(STATUS "OpenMP disabled.")
-endif()
-# ==============================================================================
-if(MINIMAL_BUILD)
-  message(STATUS "Minimal build.")
-endif()
-# ==============================================================================
-foreach(mod ${optional_modules})
-  if(WITHOUT_${mod}_MODULE)
-    message(STATUS "${mod} module disabled.")
-  endif()
-endforeach(mod)
-# ==============================================================================
-if(LGPL_ONLY OR (WITHOUT_FFTW_MODULE AND WITHOUT_SLICOT_MODULE))
-  message(STATUS "LGPL v3.x: enabled.")
-endif()
 # ==============================================================================
 if(POLICY CMP0068)
   cmake_policy(SET CMP0068 NEW)
@@ -134,21 +106,23 @@ configure_package_config_file(
     "${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake"
     INSTALL_DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
 )
-
+# ==============================================================================
 write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
     VERSION ${Nelson_VERSION}
     COMPATIBILITY AnyNewerVersion
 )
-
+# ==============================================================================
 install(
     FILES
         ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}Config.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
     DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
 )
+# ==============================================================================
 install(
     EXPORT ${PROJECT_NAME}-targets
     FILE ${PROJECT_NAME}Targets.cmake
     DESTINATION ${NELSON_CMAKECONFIG_INSTALL_DIR}
 )
+# ==============================================================================
