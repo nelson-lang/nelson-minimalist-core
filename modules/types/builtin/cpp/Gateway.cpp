@@ -92,14 +92,6 @@ static const nlsGateway gateway[] = {
     { "isvarname", (ptrBuiltin)Nelson::TypeGateway::isvarnameBuiltin, 1, 1, CPP_BUILTIN },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
 int
 TypesGateway(void* eval, const wchar_t* moduleFilename)
 {

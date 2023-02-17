@@ -104,26 +104,6 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-static bool
-initializeModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-static bool
-finishModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
-//=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
 int
 DisplayFormatGateway(void* eval, const wchar_t* moduleFilename)
 {

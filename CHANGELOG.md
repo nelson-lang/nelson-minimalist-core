@@ -54,6 +54,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - plug `display_format` module (format, disp, display, echo)
 - builtin loaded by gateway.
 
+### Fixed
+
+- [#47](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/47): Duplicate symbols errors when building nelson-minimalist-core on emscripten-forge.
+
 ## 0.1.0
 
 ### Added

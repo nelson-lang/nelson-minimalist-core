@@ -42,14 +42,6 @@ static const nlsGateway gateway[]
           { "diag", (ptrBuiltin)Nelson::ConstructorsGateway::diagBuiltin, 1, 2,
               CPP_BUILTIN_WITH_EVALUATOR } };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
 int
 ConstructorsFunctionsGateway(void* eval, const wchar_t* moduleFilename)
 {
