@@ -7,6 +7,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#ifdef _MSC_VER
+#pragma warning(disable : 4190)
+#endif
+//=============================================================================
 #include "NelsonGateway.hpp"
 #include "addpathBuiltin.hpp"
 #include "functions_manager_Gateway.hpp"
@@ -20,16 +24,8 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
 int
-FunctionsManagerAddGateway(void* eval, const wchar_t* moduleFilename)
+FunctionsManagerGateway(void* eval, const wchar_t* moduleFilename)
 {
     return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
         sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);

@@ -36,9 +36,7 @@
 #include "Localization.hpp"
 #include "i18n.hpp"
 #include "BuiltInFunctionDefManager.hpp"
-#include "display_format_Gateway.hpp"
-#include "functions_manager_Gateway.hpp"
-#include "trigonometric_functions_Gateway.hpp"
+#include "AddInternalGateways.hpp"
 //=============================================================================
 static void
 ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
@@ -223,14 +221,6 @@ EXIT:
     return exitCode;
 }
 //=============================================================================
-static void
-addHardcodedGateway(Evaluator* eval)
-{
-    FunctionsManagerAddGateway(eval, L"");
-    DisplayFormatAddGateway(eval, L"");
-    TrigonometricFunctionsAddGateway(eval, L"");
-}
-//=============================================================================
 static int
 StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
 {
@@ -321,7 +311,7 @@ StartNelsonInternal(wstringVector args, NELSON_ENGINE_MODE _mode)
         }
 
         // gateway does not use dynamic link (yet)
-        addHardcodedGateway(eval);
+        addInternalGateways(eval);
 
         exitCode = NelsonMainStates(eval, po.haveNoStartup(), po.haveNoUserStartup(),
             po.haveNoUserModules(), commandToExecute, fileToExecute, filesToOpen, filesToLoad);

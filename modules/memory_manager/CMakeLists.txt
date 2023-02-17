@@ -18,7 +18,7 @@ list(FILTER MEMORY_MANAGER_SRC EXCLUDE REGEX
 # ==============================================================================
 add_library(${module_library_name} ${MEMORY_MANAGER_SRC})
 if(WIN32)
-    target_compile_definitions(${module_library_name} PUBLIC "NLSLOCALIZATION_EXPORTS")
+    target_compile_definitions(${module_library_name} PUBLIC "NLSMEMORY_MANAGER_EXPORTS")
 endif()
 target_include_directories(
     ${module_library_name}

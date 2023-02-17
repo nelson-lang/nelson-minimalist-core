@@ -30,7 +30,6 @@ BuiltInFunctionDef::~BuiltInFunctionDef() = default;
 ArrayOfVector
 BuiltInFunctionDef::evaluateFunction(Evaluator* eval, const ArrayOfVector& inputs, int nargout)
 {
-    lock();
     ArrayOfVector outputs;
     eval->callstack.pushDebug(this->getName(), std::string("built-in ") + this->getName());
     size_t stackDepth = eval->callstack.size();

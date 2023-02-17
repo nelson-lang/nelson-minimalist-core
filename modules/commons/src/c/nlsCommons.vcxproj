@@ -214,7 +214,6 @@
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\DynamicLibrary.cpp" />
     <ClCompile Include="..\cpp\FileSystemWrapper.cpp" />
     <ClCompile Include="..\cpp\StringHelpers.cpp" />
     <ClCompile Include="..\cpp\UuidHelpers.cpp" />
@@ -223,7 +222,6 @@
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\DynamicLibrary.hpp" />
     <ClInclude Include="..\include\FileSystemWrapper.hpp" />
     <ClInclude Include="..\include\Nelson_VERSION.h" />
     <ClInclude Include="..\include\nlsBuildConfig.h" />

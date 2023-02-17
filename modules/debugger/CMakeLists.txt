@@ -13,12 +13,15 @@ set(module_name debugger)
 set(module_library_name nlsDebugger)
 set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
-file(GLOB CONSTRUCTORS_FUNCTIONS_SRC
+file(GLOB DEBUGGER_SRC
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
-list(FILTER CONSTRUCTORS_FUNCTIONS_SRC EXCLUDE REGEX
+list(FILTER DEBUGGER_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} ${CONSTRUCTORS_FUNCTIONS_SRC})
+add_library(${module_library_name} ${DEBUGGER_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSDEBUGGER_EXPORTS")
+endif()
 # ==============================================================================
 target_include_directories(
   ${module_library_name}
@@ -37,7 +40,7 @@ target_include_directories(
 
 target_link_libraries(${module_library_name} nlsCommons)
 # ==============================================================================
-file(GLOB CONSTRUCTORS_FUNCTIONS_HEADER
+file(GLOB DEBUGGER_HEADER
      "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
@@ -46,7 +49,7 @@ set_target_properties(
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${CONSTRUCTORS_FUNCTIONS_HEADER}")
+    PUBLIC_HEADER "${DEBUGGER_HEADER}")
 # ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================

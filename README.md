@@ -4,15 +4,15 @@
 
 ## About nelson-minimalist-core
 
-This repository contains nelson's minimal core. To easier modify core without dependency or long build time.
+This repository contains nelson's minimal core working in wasm environment.
 
-A more long term project is to replace this current core with JIT support and C code generation.
+see [https://jupyterlite-nelson.readthedocs.io/en/latest/](https://jupyterlite-nelson.readthedocs.io/en/latest/)
 
 Main Nelson's repository can find [here](https://github.com/Nelson-numerical-software/nelson)
 
 ## Website dedicated to users
 
-For more information go to [https://nelson-numerical-software.github.io/nelson-website/](https://nelson-numerical-software.github.io/nelson-website/).
+For more information about Nelson go to [https://nelson-numerical-software.github.io/nelson-website/](https://nelson-numerical-software.github.io/nelson-website/).
 
 ## Starring the repository
 
