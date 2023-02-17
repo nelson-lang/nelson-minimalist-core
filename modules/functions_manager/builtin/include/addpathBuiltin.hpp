@@ -11,11 +11,9 @@
 //=============================================================================
 #include "ArrayOf.hpp"
 #include "Evaluator.hpp"
-#include "nlsFunctions_manager_builtin_exports.h"
 //=============================================================================
 namespace Nelson::FunctionsGateway {
 //=============================================================================
-NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP
 ArrayOfVector
 addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
 //=============================================================================
