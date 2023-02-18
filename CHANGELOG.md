@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- data_analysis builtin added:
+  `prod`, `sum`, `cumsum`,
+  `cumprod`, `ismissing`,
+  `sort`, `max`,
+  `min`, `conv2`
+
 - statistics builtin added:
   `corrcoef`, `var`, `mean`
 

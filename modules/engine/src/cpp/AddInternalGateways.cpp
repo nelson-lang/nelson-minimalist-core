@@ -20,6 +20,7 @@
 #include "string_Gateways.hpp"
 #include "stream_manager_Gateway.hpp"
 #include "statistics_Gateway.hpp"
+#include "data_analysis_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -37,6 +38,7 @@ addInternalGateways(Evaluator* eval)
     StringGateway(eval, L"");
     StreamManagerGateway(eval, L"");
     StatisticsGateway(eval, L"");
+    DataAnalysisGateway(eval, L"");
 }
 //=============================================================================
 }

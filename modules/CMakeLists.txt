@@ -44,6 +44,7 @@ list(
   time
   string
   statistics
+  data_analysis
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)
