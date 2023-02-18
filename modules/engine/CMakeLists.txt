@@ -31,6 +31,7 @@ target_include_directories(
     PRIVATE
     ${EIGEN3_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../os_functions/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
@@ -40,7 +41,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../trigonometric_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/builtin/include    
     ${CMAKE_CURRENT_SOURCE_DIR}/../constructors_functions/builtin/include    
-    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../time/builtin/include    
 )
 # ==============================================================================
 target_link_libraries(
@@ -60,7 +61,8 @@ target_link_libraries(
   nlsElementary_functions_builtin
   nlsLinear_algebra_builtin
   nlsConstructors_functions_builtin
-  nlsTypes_builtin)
+  nlsTypes_builtin
+  nlsTime_builtin  )
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
