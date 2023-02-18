@@ -42,6 +42,7 @@ list(
   linear_algebra
   constructors_functions
   time
+  string
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

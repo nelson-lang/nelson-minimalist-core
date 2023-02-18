@@ -322,5 +322,8 @@
     <ClInclude Include="..\include\__rot90_matrix_2D__Builtin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\elementary_functions_Gateway.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

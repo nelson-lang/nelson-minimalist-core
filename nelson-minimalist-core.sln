@@ -119,6 +119,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTime", "modules\time\src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsTime_builtin", "modules\time\builtin\c\nlsTime_builtin.vcxproj", "{60263BCA-9B60-4F5F-9CE5-2EA5060E329F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsString", "modules\string\src\c\nlsString.vcxproj", "{601EBA38-309B-4B7B-919E-E736690A82B5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsString_builtin", "modules\string\builtin\c\nlsString_builtin.vcxproj", "{2513AC3A-3658-4A55-8868-AD9323508C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -439,6 +443,22 @@ Global
 		{60263BCA-9B60-4F5F-9CE5-2EA5060E329F}.Release|Win32.Build.0 = Release|Win32
 		{60263BCA-9B60-4F5F-9CE5-2EA5060E329F}.Release|x64.ActiveCfg = Release|x64
 		{60263BCA-9B60-4F5F-9CE5-2EA5060E329F}.Release|x64.Build.0 = Release|x64
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Debug|Win32.Build.0 = Debug|Win32
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Debug|x64.ActiveCfg = Debug|x64
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Debug|x64.Build.0 = Debug|x64
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Release|Win32.ActiveCfg = Release|Win32
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Release|Win32.Build.0 = Release|Win32
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Release|x64.ActiveCfg = Release|x64
+		{601EBA38-309B-4B7B-919E-E736690A82B5}.Release|x64.Build.0 = Release|x64
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Debug|Win32.Build.0 = Debug|Win32
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Debug|x64.ActiveCfg = Debug|x64
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Debug|x64.Build.0 = Debug|x64
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Release|Win32.ActiveCfg = Release|Win32
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Release|Win32.Build.0 = Release|Win32
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Release|x64.ActiveCfg = Release|x64
+		{2513AC3A-3658-4A55-8868-AD9323508C55}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
