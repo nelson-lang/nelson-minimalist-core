@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- string builtin added:
+  `char`, `strcmp`,
+  `strcmpi`, `strncmp`,
+  `strncmpi`, `matches`,
+  `tolower`, `lower`,
+  `toupper`, `upper`,
+  `strfind`, `int2str`,
+  `num2str`, `str2double`,
+  `mat2str`, `startsWith`,
+  `endsWith`, `contains`,
+  `count`, `strrep`,
+  `replace`, `strtrim`,
+  `deblank`, `strlength`,
+  `string`, `strings`,
+  `convertStringsToChars`, `convertCharsToStrings`,
+  `blanks`, `strcat`,
+  `append`, `isletter`
+
 - time builtin added:
   `tic`, `toc`,
   `sleep`, `datevec`,

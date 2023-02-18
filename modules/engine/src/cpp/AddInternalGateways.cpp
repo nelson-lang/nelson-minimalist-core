@@ -17,6 +17,7 @@
 #include "linear_algebra_Gateway.hpp"
 #include "constructors_functions_Gateway.hpp"
 #include "time_Gateway.hpp"
+#include "string_Gateways.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -31,6 +32,7 @@ addInternalGateways(Evaluator* eval)
     LinearAlgebraGateway(eval, L"");
     ConstructorsFunctionsGateway(eval, L"");
     TimeGateway(eval, L"");
+    StringGateway(eval, L"");
 }
 //=============================================================================
 

@@ -263,6 +263,7 @@
     <ClInclude Include="..\include\complexBuiltin.hpp" />
     <ClInclude Include="..\include\conjBuiltin.hpp" />
     <ClInclude Include="..\include\dec2baseBuiltin.hpp" />
+    <ClInclude Include="..\include\elementary_functions_Gateway.hpp" />
     <ClInclude Include="..\include\expBuiltin.hpp" />
     <ClInclude Include="..\include\findBuiltin.hpp" />
     <ClInclude Include="..\include\fixBuiltin.hpp" />
