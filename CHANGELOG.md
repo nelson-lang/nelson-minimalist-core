@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- stream_manager builtin added:
+  `diary`, `fopen`,
+  `fclose`, `fwrite`,
+  `fread`, `fprintf`,
+  `fgetl`, `fgets`,
+  `ftell`, `frewind`,
+  `fseek`, `fsize`,
+  `dlmwrite`, `fileread`,
+  `filewrite`, `feof`,
+  `ferror`, `fscanf`,
+  `sscanf`
+
 - string builtin added:
   `char`, `strcmp`,
   `strcmpi`, `strncmp`,

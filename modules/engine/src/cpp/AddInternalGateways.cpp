@@ -18,6 +18,7 @@
 #include "constructors_functions_Gateway.hpp"
 #include "time_Gateway.hpp"
 #include "string_Gateways.hpp"
+#include "stream_manager_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -33,8 +34,8 @@ addInternalGateways(Evaluator* eval)
     ConstructorsFunctionsGateway(eval, L"");
     TimeGateway(eval, L"");
     StringGateway(eval, L"");
+    StreamManagerGateway(eval, L"");
 }
 //=============================================================================
-
 }
 //=============================================================================
