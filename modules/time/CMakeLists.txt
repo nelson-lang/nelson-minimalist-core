@@ -21,7 +21,6 @@ add_library(${module_library_name} ${TIME_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSTIME_EXPORTS")
 endif()
-
 # ==============================================================================
 target_include_directories(
   ${module_library_name}
