@@ -43,7 +43,8 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../constructors_functions/builtin/include    
     ${CMAKE_CURRENT_SOURCE_DIR}/../time/builtin/include    
     ${CMAKE_CURRENT_SOURCE_DIR}/../string/builtin/include    
-    ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/builtin/include)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../statistics/builtin/include)
 # ==============================================================================
 target_link_libraries(
   ${module_library_name}
@@ -65,7 +66,8 @@ target_link_libraries(
   nlsTypes_builtin
   nlsTime_builtin
   nlsString_builtin
-  nlsStream_manager_builtin)
+  nlsStream_manager_builtin
+  nlsStatistics_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")

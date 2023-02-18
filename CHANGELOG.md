@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- statistics builtin added:
+  `corrcoef`, `var`, `mean`
+
 - stream_manager builtin added:
   `diary`, `fopen`,
   `fclose`, `fwrite`,

@@ -48,10 +48,10 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../debugger/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 
 target_link_libraries(${module_library_name} nlsCharacters_encoding nlsI18n
                       nlsNelson_manager nlsCommons nlsDebugger)

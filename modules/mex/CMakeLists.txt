@@ -49,8 +49,8 @@ else()
             ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include
-            ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+            ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
+            ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../ipc/src/include
             ${CMAKE_CURRENT_SOURCE_DIR}/../engine/src/include
@@ -97,7 +97,7 @@ if(NOT WITHOUT_MEX_MODULE)
     ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../validators/src/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include)
   # ==============================================================================
   add_library(${module_library_builtin_name} SHARED ${MEX_BUILTIN})
