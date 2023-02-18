@@ -7,32 +7,19 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "AddInternalGateways.hpp"
-//=============================================================================
-#include "display_format_Gateway.hpp"
-#include "functions_manager_Gateway.hpp"
-#include "trigonometric_functions_Gateway.hpp"
-#include "types_Gateway.hpp"
-#include "elementary_functions_Gateway.hpp"
-#include "linear_algebra_Gateway.hpp"
-#include "constructors_functions_Gateway.hpp"
-#include "time_Gateway.hpp"
+#include "IsLeapYear.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-void
-addInternalGateways(Evaluator* eval)
+bool
+IsLeapYear(int year)
 {
-    FunctionsManagerGateway(eval, L"");
-    DisplayFormatGateway(eval, L"");
-    TrigonometricFunctionsAddGateway(eval, L"");
-    TypesGateway(eval, L"");
-    ElementaryFunctionsGateway(eval, L"");
-    LinearAlgebraGateway(eval, L"");
-    ConstructorsFunctionsGateway(eval, L"");
-    TimeGateway(eval, L"");
+    if (year < 0) {
+        return false;
+    }
+    /* Check if the year is divisible by 4 or is divisible by 400 */
+    return ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0));
 }
 //=============================================================================
-
-}
+} // namespace Nelson
 //=============================================================================

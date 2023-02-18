@@ -41,6 +41,7 @@ list(
   elementary_functions
   linear_algebra
   constructors_functions
+  time
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

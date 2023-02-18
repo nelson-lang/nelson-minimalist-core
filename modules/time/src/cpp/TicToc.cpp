@@ -7,32 +7,37 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "AddInternalGateways.hpp"
-//=============================================================================
-#include "display_format_Gateway.hpp"
-#include "functions_manager_Gateway.hpp"
-#include "trigonometric_functions_Gateway.hpp"
-#include "types_Gateway.hpp"
-#include "elementary_functions_Gateway.hpp"
-#include "linear_algebra_Gateway.hpp"
-#include "constructors_functions_Gateway.hpp"
-#include "time_Gateway.hpp"
+#include <chrono>
+#include "TicToc.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-void
-addInternalGateways(Evaluator* eval)
+static uint64
+nowAsNanoseconds()
 {
-    FunctionsManagerGateway(eval, L"");
-    DisplayFormatGateway(eval, L"");
-    TrigonometricFunctionsAddGateway(eval, L"");
-    TypesGateway(eval, L"");
-    ElementaryFunctionsGateway(eval, L"");
-    LinearAlgebraGateway(eval, L"");
-    ConstructorsFunctionsGateway(eval, L"");
-    TimeGateway(eval, L"");
+    std::chrono::nanoseconds ns = std::chrono::high_resolution_clock::now().time_since_epoch();
+    return uint64(static_cast<std::uint64_t>(ns.count()));
 }
 //=============================================================================
-
+bool
+Tic(Evaluator* eval)
+{
+    eval->TimerValue = nowAsNanoseconds();
+    return true;
 }
+//=============================================================================
+bool
+Toc(Evaluator* eval, double& tValue)
+{
+    return Toc(eval->TimerValue, tValue);
+}
+//=============================================================================
+bool
+Toc(uint64 t, double& tValue)
+{
+    tValue = double(nowAsNanoseconds() - t) * 1e-9;
+    return true;
+}
+//=============================================================================
+} // namespace Nelson
 //=============================================================================
