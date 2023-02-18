@@ -9,17 +9,17 @@
 #
 # LICENCE_BLOCK_END
 # ==============================================================================
-set(module_name stream_manager)
-set(module_library_name nlsStream_manager)
+set(module_name statistics)
+set(module_library_name nlsStatistics)
 set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
-file(GLOB STREAM_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
-list(FILTER STREAM_MANAGER_SRC EXCLUDE REGEX
+file(GLOB STATISTICS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER STATISTICS_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} ${STREAM_MANAGER_SRC})
+add_library(${module_library_name} ${STATISTICS_SRC})
 if(WIN32)
-    target_compile_definitions(${module_library_name} PUBLIC "NLSSTREAM_MANAGER_EXPORTS")
+    target_compile_definitions(${module_library_name} PUBLIC "NLSSTATISTICS_EXPORTS")
 endif()
 # ==============================================================================
 target_include_directories(
@@ -28,27 +28,25 @@ target_include_directories(
          $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
 target_include_directories(
   ${module_library_name}
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
+  PRIVATE ${EIGEN3_INCLUDE_DIR}
+          ${Boost_INCLUDE_DIRS}
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_mathematics/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-          ${EIGEN3_INCLUDE_DIR})
+          ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_functions/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../operators/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 
 target_link_libraries(
-  ${module_library_name}
-  nlsCharacters_encoding
-  nlsCommons
-  nlsError_manager
-  nlsI18n
-  nlsTypes)
+  ${module_library_name} nlsElementary_functions nlsError_manager nlsI18n
+  nlsTypes )
 # ==============================================================================
-file(GLOB STREAM_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+file(GLOB STATISTICS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
@@ -56,16 +54,15 @@ set_target_properties(
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${STREAM_MANAGER_HEADER}")
+    PUBLIC_HEADER "${STATISTICS_HEADER}")
 # ==============================================================================
-file(GLOB STREAM_MANAGER_BUILTIN
-     "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
-list(FILTER STREAM_MANAGER_BUILTIN EXCLUDE REGEX
+file(GLOB STATISTICS_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
+list(FILTER STATISTICS_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_builtin_name} ${STREAM_MANAGER_BUILTIN})
+add_library(${module_library_builtin_name} ${STATISTICS_BUILTIN})
 if(WIN32)
-    target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSSTREAM_MANAGER_BUILTIN_EXPORTS")
+    target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSSTATISTICS_BUILTIN_EXPORTS")
 endif()
 # ==============================================================================
 target_include_directories(
@@ -76,31 +73,26 @@ target_include_directories(
   ${module_library_builtin_name}
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/builtin/include
           ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 
 target_link_libraries(
   ${module_library_builtin_name}
   ${module_library_name}
   nlsApi_nelson
-  nlsCharacters_encoding
-  nlsCommons
   nlsError_manager
-  nlsI18n
   nlsInterpreter
-  nlsNelson_manager
   nlsOverload
-  nlsTypes)
+  nlsTypes
+  nlsI18n)
 # ==============================================================================
 file(
   GLOB
-  STREAM_MANAGER_HEADER
+  STATISTICS_HEADER
   "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
@@ -109,7 +101,7 @@ set_target_properties(
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${STREAM_MANAGER_HEADER}")
+    PUBLIC_HEADER "${STATISTICS_HEADER}")
 # ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================

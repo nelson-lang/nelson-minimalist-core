@@ -43,6 +43,7 @@ list(
   constructors_functions
   time
   string
+  statistics
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

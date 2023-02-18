@@ -7,37 +7,16 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "AddInternalGateways.hpp"
+#pragma once
 //=============================================================================
-#include "display_format_Gateway.hpp"
-#include "functions_manager_Gateway.hpp"
-#include "trigonometric_functions_Gateway.hpp"
-#include "types_Gateway.hpp"
-#include "elementary_functions_Gateway.hpp"
-#include "linear_algebra_Gateway.hpp"
-#include "constructors_functions_Gateway.hpp"
-#include "time_Gateway.hpp"
-#include "string_Gateways.hpp"
-#include "stream_manager_Gateway.hpp"
-#include "statistics_Gateway.hpp"
+#include "ArrayOf.hpp"
+#include "nlsStatistics_exports.h"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-void
-addInternalGateways(Evaluator* eval)
-{
-    FunctionsManagerGateway(eval, L"");
-    DisplayFormatGateway(eval, L"");
-    TrigonometricFunctionsAddGateway(eval, L"");
-    TypesGateway(eval, L"");
-    ElementaryFunctionsGateway(eval, L"");
-    LinearAlgebraGateway(eval, L"");
-    ConstructorsFunctionsGateway(eval, L"");
-    TimeGateway(eval, L"");
-    StringGateway(eval, L"");
-    StreamManagerGateway(eval, L"");
-    StatisticsGateway(eval, L"");
-}
+NLSSTATISTICS_IMPEXP
+ArrayOf
+Variance(const ArrayOf& A, int w, int dim, bool& needToOverload);
 //=============================================================================
 }
 //=============================================================================

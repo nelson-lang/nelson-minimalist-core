@@ -124,6 +124,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsStream_manager", "module
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsStream_manager_builtin", "modules\stream_manager\builtin\c\nlsStream_manager_builtin.vcxproj", "{EA7D6857-308B-4C15-8791-FDA964D36C7C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsStatistics", "modules\statistics\src\c\nlsStatistics.vcxproj", "{9AC8560A-9E4C-4430-9938-63D6377890EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsStatistics_builtin", "modules\statistics\builtin\c\nlsStatistics_builtin.vcxproj", "{0C41339D-F889-4C5F-9D0C-689605FC43C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -468,6 +472,22 @@ Global
 		{EA7D6857-308B-4C15-8791-FDA964D36C7C}.Release|Win32.Build.0 = Release|Win32
 		{EA7D6857-308B-4C15-8791-FDA964D36C7C}.Release|x64.ActiveCfg = Release|x64
 		{EA7D6857-308B-4C15-8791-FDA964D36C7C}.Release|x64.Build.0 = Release|x64
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Debug|Win32.Build.0 = Debug|Win32
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Debug|x64.ActiveCfg = Debug|x64
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Debug|x64.Build.0 = Debug|x64
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Release|Win32.ActiveCfg = Release|Win32
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Release|Win32.Build.0 = Release|Win32
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Release|x64.ActiveCfg = Release|x64
+		{9AC8560A-9E4C-4430-9938-63D6377890EB}.Release|x64.Build.0 = Release|x64
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Debug|Win32.Build.0 = Debug|Win32
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Debug|x64.ActiveCfg = Debug|x64
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Debug|x64.Build.0 = Debug|x64
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Release|Win32.ActiveCfg = Release|Win32
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Release|Win32.Build.0 = Release|Win32
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Release|x64.ActiveCfg = Release|x64
+		{0C41339D-F889-4C5F-9D0C-689605FC43C2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
