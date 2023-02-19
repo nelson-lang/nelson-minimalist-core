@@ -8,6 +8,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- operators builtin added:
+  `plus`, `minus`,
+  `uminus`, `uplus`,
+  `and`, `colon`,
+  `ctranspose`, `transpose`,
+  `eq`, `ge`,
+  `gt`, `le`,
+  `lt`, `ne`,
+  `ldivide`, `rdivide`,
+  `mldivide`, `mrdivide`,
+  `mtimes`, `times`,
+  `not`, `or`,
+  `any`, `all`,
+  `power`, `mpower`,
+  `shortcutor`, `shortcutand`,
+  `subsindex`, `horzcat`,
+  `vertcat`, `ismember`,
+
 - data_structures builtin added:
   `isfield`, `fieldnames`, `cellfun`,
   `namedargs2cell`, `getfield`,

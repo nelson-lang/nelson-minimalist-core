@@ -10,7 +10,6 @@
 #include "ArrayOf.hpp"
 #include "Evaluator.hpp"
 #include "OverloadBinaryOperator.hpp"
-#include "LeftDivide.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -26,20 +25,7 @@ Evaluator::leftDivideOperator(AbstractSyntaxTreePtr t)
 ArrayOf
 Evaluator::leftDivideOperator(const ArrayOf& A, const ArrayOf& B)
 {
-    ArrayOf res;
-    bool bSuccess = false;
-    if ((overloadOnBasicTypes || needToOverloadOperator(A) || needToOverloadOperator(B))
-        && !isOverloadAllowed()) {
-        res = OverloadBinaryOperator(this, A, B, "mldivide", bSuccess);
-    }
-    if (!bSuccess) {
-        bool needToOverload = false;
-        res = LeftDivide(A, B, needToOverload);
-        if (needToOverload) {
-            res = OverloadBinaryOperator(this, A, B, "mldivide");
-        }
-    }
-    return res;
+    return OverloadBinaryOperator(this, A, B, "mldivide");
 }
 //=============================================================================
 }

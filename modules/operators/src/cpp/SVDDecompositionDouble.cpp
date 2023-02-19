@@ -7,18 +7,16 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#pragma once
-//=============================================================================
-#include "ArrayOf.hpp"
-#include "nlsOperators_exports.h"
+#include "SVDDecomposition.hpp"
+#include "SVDDecompositionRealTemplate.hpp"
 //=============================================================================
 namespace Nelson {
-/**
- * The right divide operation is related to the left divide operation
- * via: B/A = (A'\B')'.
- */
-NLSOPERATORS_IMPEXP ArrayOf
-RightDivide(ArrayOf A, ArrayOf B, bool& needToOverload);
 //=============================================================================
-} // namespace Nelson
+ArrayOf
+solveSVDDecompositionDouble(const ArrayOf& matA, const ArrayOf& matB)
+{
+    return solveSVDDecompositionReal<double>(NLS_DOUBLE, matA, matB);
+}
+//=============================================================================
+}
 //=============================================================================

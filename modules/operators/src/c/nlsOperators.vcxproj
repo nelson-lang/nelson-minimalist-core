@@ -187,7 +187,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\Addition.cpp" />
+    <ClCompile Include="..\cpp\All.cpp" />
     <ClCompile Include="..\cpp\And.cpp" />
+    <ClCompile Include="..\cpp\Any.cpp" />
     <ClCompile Include="..\cpp\BinaryOperatorsHelpers.cpp" />
     <ClCompile Include="..\cpp\Colon.cpp" />
     <ClCompile Include="..\cpp\ComplexTranspose.cpp" />
@@ -203,7 +205,13 @@
     <ClCompile Include="..\cpp\GreaterEquals.cpp" />
     <ClCompile Include="..\cpp\GreaterThan.cpp" />
     <ClCompile Include="..\cpp\HorzCat.cpp" />
-    <ClCompile Include="..\cpp\LeftDivide.cpp" />
+    <ClCompile Include="..\cpp\IsMember.cpp" />
+    <ClCompile Include="..\cpp\LeastSquareSolver.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\cpp\LessEquals.cpp" />
     <ClCompile Include="..\cpp\LessThan.cpp" />
     <ClCompile Include="..\cpp\MatrixMultiplication.cpp" />
@@ -212,10 +220,33 @@
     <ClCompile Include="..\cpp\NotEquals.cpp" />
     <ClCompile Include="..\cpp\Or.cpp" />
     <ClCompile Include="..\cpp\RelationalOperator.cpp" />
-    <ClCompile Include="..\cpp\RightDivide.cpp" />
     <ClCompile Include="..\cpp\StringArrayAddition.cpp" />
     <ClCompile Include="..\cpp\Subtraction.cpp" />
     <ClCompile Include="..\cpp\ElementWiseMultiplication.cpp" />
+    <ClCompile Include="..\cpp\SVDDecompositionDouble.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SVDDecompositionDoubleComplex.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SVDDecompositionSingle.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SVDDecompositionSingleComplex.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\cpp\Transpose.cpp" />
     <ClCompile Include="..\cpp\UnaryMinus.cpp" />
     <ClCompile Include="..\cpp\UnaryPlus.cpp" />
@@ -252,10 +283,9 @@
     <ClInclude Include="..\include\GreaterThan.hpp" />
     <ClInclude Include="..\include\HorzCat.hpp" />
     <ClInclude Include="..\include\IsMember.hpp" />
-    <ClInclude Include="..\include\LeftDivide.hpp" />
+    <ClInclude Include="..\include\LeastSquareSolver.hpp" />
     <ClInclude Include="..\include\LessEquals.hpp" />
     <ClInclude Include="..\include\LessThan.hpp" />
-    <ClInclude Include="..\include\LinearEquationSolver.hpp" />
     <ClInclude Include="..\include\MatrixMultiplication.hpp" />
     <ClInclude Include="..\include\Negate.hpp" />
     <ClInclude Include="..\include\nlsOperators_exports.h" />
@@ -263,7 +293,6 @@
     <ClInclude Include="..\include\NotEquals.hpp" />
     <ClInclude Include="..\include\Or.hpp" />
     <ClInclude Include="..\include\RelationOperator.hpp" />
-    <ClInclude Include="..\include\RightDivide.hpp" />
     <ClInclude Include="..\include\StringArrayAddition.hpp" />
     <ClInclude Include="..\include\Subtraction.hpp" />
     <ClInclude Include="..\include\ElementWiseMultiplication.hpp" />

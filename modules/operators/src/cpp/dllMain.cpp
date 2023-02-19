@@ -8,12 +8,6 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include <Windows.h>
-#include "lapack_eigen_config.hpp"
-//=============================================================================
-#pragma comment(lib, "libnlsblaslapack.lib")
-#if defined(_NLS_WITH_VML)
-#pragma comment(lib, "libnlsvml_mkl.lib")
-#endif
 //=============================================================================
 int WINAPI
 DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
