@@ -9,21 +9,13 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#define CAT_3_STRINGS(S1, S2, S3) S1 S2 S3
-//=============================================================================
 #ifdef _MSC_VER
-#ifdef _DEBUG
-#ifdef _WIN64
-#define BOOST_TARGET "vc143-mt-gd-x64-1_80"
+#ifdef NLSSINGLE_EXPORTS
+#define NLSSINGLE_IMPEXP __declspec(dllexport)
 #else
-#define BOOST_TARGET "vc143-mt-gd-x32-1_80"
+#define NLSSINGLE_IMPEXP __declspec(dllimport)
 #endif
 #else
-#ifdef _WIN64
-#define BOOST_TARGET "vc143-mt-x64-1_80"
-#else
-#define BOOST_TARGET "vc143-mt-x32-1_80"
-#endif
-#endif
+#define NLSSINGLE_IMPEXP __attribute__((visibility("default")))
 #endif
 //=============================================================================
