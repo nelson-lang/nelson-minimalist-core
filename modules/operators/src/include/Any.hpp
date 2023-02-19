@@ -9,32 +9,13 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include <string>
-#include "nlsOperators_exports.h"
-#include "Types.hpp"
 #include "ArrayOf.hpp"
+#include "nlsOperators_exports.h"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-NLSOPERATORS_IMPEXP
-ArrayOf
-solveLinearEquationDouble(
-    const ArrayOf& matA, const ArrayOf& matB, std::wstring& warningId, std::string& warningMessage);
-//=============================================================================
-NLSOPERATORS_IMPEXP
-ArrayOf
-solveLinearEquationDoubleComplex(
-    const ArrayOf& matA, const ArrayOf& matB, std::wstring& warningId, std::string& warningMessage);
-//=============================================================================
-NLSOPERATORS_IMPEXP
-ArrayOf
-solveLinearEquationSingle(
-    const ArrayOf& matA, const ArrayOf& matB, std::wstring& warningId, std::string& warningMessage);
-//=============================================================================
-NLSOPERATORS_IMPEXP
-ArrayOf
-solveLinearEquationSingleComplex(
-    const ArrayOf& matA, const ArrayOf& matB, std::wstring& warningId, std::string& warningMessage);
+NLSOPERATORS_IMPEXP ArrayOf
+Any(ArrayOf& A, indexType dim, bool& needToOverload);
 //=============================================================================
 }
 //=============================================================================

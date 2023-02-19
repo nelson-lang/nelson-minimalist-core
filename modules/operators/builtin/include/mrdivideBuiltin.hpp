@@ -10,16 +10,10 @@
 #pragma once
 //=============================================================================
 #include "ArrayOf.hpp"
-#include "nlsOperators_exports.h"
+#include "Evaluator.hpp"
 //=============================================================================
-namespace Nelson {
-
-/**
- * Matrix-matrix divide
- * LEFTDIVIDE /  Operator
- */
-NLSOPERATORS_IMPEXP ArrayOf
-LeftDivide(ArrayOf A, ArrayOf B, bool& needToOverload);
-//=============================================================================
+namespace Nelson::OperatorsGateway {
+ArrayOfVector
+mrdivideBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
 } // namespace Nelson
 //=============================================================================

@@ -25,8 +25,6 @@
 #include "Transpose.hpp"
 #include "DotLeftDivide.hpp"
 #include "DotRightDivide.hpp"
-#include "RightDivide.hpp"
-#include "LeftDivide.hpp"
 #include "Negate.hpp"
 #include "DotPower.hpp"
 #include "NotEquals.hpp"
