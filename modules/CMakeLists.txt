@@ -47,6 +47,7 @@ list(
   data_analysis
   single
   logical
+  data_structures
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)
