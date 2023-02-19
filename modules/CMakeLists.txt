@@ -46,6 +46,7 @@ list(
   statistics
   data_analysis
   single
+  logical
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

@@ -22,6 +22,7 @@
 #include "statistics_Gateway.hpp"
 #include "data_analysis_Gateway.hpp"
 #include "single_Gateway.hpp"
+#include "logical_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -41,6 +42,7 @@ addInternalGateways(Evaluator* eval)
     StatisticsGateway(eval, L"");
     DataAnalysisGateway(eval, L"");
     SingleGateway(eval, L"");
+    LogicalGateway(eval, L"");
 }
 //=============================================================================
 }
