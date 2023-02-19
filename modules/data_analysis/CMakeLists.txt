@@ -38,7 +38,7 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_mathematics/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 target_link_libraries(${module_library_name} nlsError_manager nlsOperators
                       nlsI18n nlsTypes)
 # ==============================================================================
@@ -73,7 +73,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../linear_algebra/src/include)
 
 target_link_libraries(

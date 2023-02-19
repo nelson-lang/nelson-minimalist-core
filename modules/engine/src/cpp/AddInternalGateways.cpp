@@ -21,6 +21,7 @@
 #include "stream_manager_Gateway.hpp"
 #include "statistics_Gateway.hpp"
 #include "data_analysis_Gateway.hpp"
+#include "single_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -39,6 +40,7 @@ addInternalGateways(Evaluator* eval)
     StreamManagerGateway(eval, L"");
     StatisticsGateway(eval, L"");
     DataAnalysisGateway(eval, L"");
+    SingleGateway(eval, L"");
 }
 //=============================================================================
 }

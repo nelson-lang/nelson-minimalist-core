@@ -45,6 +45,7 @@ list(
   string
   statistics
   data_analysis
+  single
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)
