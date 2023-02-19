@@ -25,6 +25,7 @@
 #include "logical_Gateway.hpp"
 #include "core_Gateway.hpp"
 #include "error_manager_Gateway.hpp"
+#include "memory_manager_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -47,6 +48,7 @@ addInternalGateways(Evaluator* eval)
     LogicalGateway(eval, L"");
     CoreGateway(eval, L"");
     ErrorManagerGateway(eval, L"");
+    MemoryManagerGateway(eval, L"");
 }
 //=============================================================================
 }

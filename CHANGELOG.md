@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- functions_manager builtin added:
+  `macroargs`, `builtin`,
+  `feval`, `what`,
+  `addpath`, `clearfun`,
+  `rmpath`, `path`,
+  `ismacro`, `isbuiltin`,
+  `rehash`, `userpath`, `inmem`
+
+- memory_manager builtin added:
+  `clear`, `who`
+  `whos`, `global`
+  `isglobal`, `persistent`
+  `assignin`, `acquirevar`
+  `varlock`, `varunlock`
+  `varislock`, `isvar`
 - error_manager builtin added:
   `error`, `warning`
   `lasterror`, `lastwarn`

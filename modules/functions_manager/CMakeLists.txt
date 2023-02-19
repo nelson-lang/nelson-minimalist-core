@@ -13,26 +13,14 @@ set(module_name functions_manager)
 set(module_library_name nlsFunctions_manager)
 set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
-file(GLOB FUNCTIONS_MANAGER
-     "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
-list(FILTER FUNCTIONS_MANAGER EXCLUDE REGEX
+file(GLOB FUNCTIONS_MANAGER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
+list(FILTER FUNCTIONS_MANAGER_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
-add_library(${module_library_name} ${FUNCTIONS_MANAGER})
+add_library(${module_library_name} ${FUNCTIONS_MANAGER_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSFUNCTIONS_MANAGER_EXPORTS")
 endif()
-target_include_directories(
-    ${module_library_name}
-    PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
-)
-target_include_directories(
-    ${module_library_name}
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
 # ==============================================================================
 target_include_directories(
   ${module_library_name}
@@ -40,23 +28,41 @@ target_include_directories(
          $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
 target_include_directories(
   ${module_library_name}
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+  PRIVATE ${Boost_INCLUDE_DIRS}
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../files_folders_functions/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../modules_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include)
 
 target_link_libraries(
   ${module_library_name}
+  nlsCharacters_encoding
+  nlsError_manager
   nlsInterpreter
-)
+  nlsTypes
+  nlsI18n
+  nlsFiles_folders_functions
+  nlsString)
+
+# ==============================================================================
+file(GLOB FUNCTIONS_MANAGER_HEADER
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+     "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
+set_target_properties(
+  ${module_library_name}
+  PROPERTIES
+    VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}")
 # ==============================================================================
 file(GLOB FUNCTIONS_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
@@ -67,20 +73,30 @@ add_library(${module_library_builtin_name} ${FUNCTIONS_MANAGER_BUILTIN})
 if(WIN32)
     target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSFUNCTIONS_MANAGER_BUILTIN_EXPORTS")
 endif()
-target_include_directories(
-    ${module_library_builtin_name}
-    PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
-)
-target_include_directories(
-    ${module_library_builtin_name}
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
-)
 # ==============================================================================
+target_include_directories(
+  ${module_library_builtin_name}
+  PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>
+         $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
+target_include_directories(
+  ${module_library_builtin_name}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/builtin/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../files_folders_functions/src/include)
+
 target_link_libraries(
   ${module_library_builtin_name}
+  ${module_library_name}
   nlsCharacters_encoding
   nlsError_manager
   nlsStream_manager
@@ -91,25 +107,34 @@ target_link_libraries(
   nlsCommons
   nlsFiles_folders_functions)
 # ==============================================================================
-file(GLOB FUNCTIONS_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.hpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.h")
+file(
+  GLOB
+  FUNCTIONS_MANAGER_HEADER
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_builtin_name}
   PROPERTIES
     VERSION
     ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
     SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}"
-)
+    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}")
 # ==============================================================================
 include(GNUInstallDirs)
+# ==============================================================================
 install(
-    TARGETS ${module_library_builtin_name} ${module_library_name}
-    EXPORT ${PROJECT_NAME}-targets
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    PUBLIC_HEADER DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
-)
+  TARGETS ${module_library_name}
+  EXPORT ${PROJECT_NAME}-targets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+# ==============================================================================
+install(
+  TARGETS ${module_library_builtin_name}
+  EXPORT ${PROJECT_NAME}-targets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
