@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6980295E-7B0B-48FF-9D4A-317455813471}</ProjectGuid>
+    <ProjectGuid>{A53505BF-559A-4FEB-9A34-C72A7684070E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nlsLinear_algebra_builtin</RootNamespace>
+    <RootNamespace>nlsLogical</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,11 +93,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSLINEAR_ALGEBRA_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSLOGICAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/logical/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -113,11 +112,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSLINEAR_ALGEBRA_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSLOGICAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/logical/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -135,11 +133,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSLINEAR_ALGEBRA_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSLOGICAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/logical/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -159,11 +156,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSLINEAR_ALGEBRA_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSLOGICAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/logical/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/api_nelson/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -176,35 +172,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\detBuiltin.cpp" />
-    <ClCompile Include="..\cpp\expmBuiltin.cpp" />
-    <ClCompile Include="..\cpp\Gateway.cpp" />
-    <ClCompile Include="..\cpp\ishermitianBuiltin.cpp" />
-    <ClCompile Include="..\cpp\issymmetricBuiltin.cpp" />
-    <ClCompile Include="..\cpp\logmBuiltin.cpp" />
-    <ClCompile Include="..\cpp\schurBuiltin.cpp" />
-    <ClCompile Include="..\cpp\sqrtmBuiltin.cpp" />
-    <ClCompile Include="..\cpp\traceBuiltin.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
+    <ClCompile Include="..\cpp\LogicalConstructors.cpp" />
+    <ClCompile Include="..\cpp\ToLogical.cpp" />
+    <ClCompile Include="..\cpp\XorLogical.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\include\LogicalConstructors.hpp" />
+    <ClInclude Include="..\..\src\include\nlsLogical_exports.h" />
+    <ClInclude Include="..\..\src\include\ToLogical.hpp" />
+    <ClInclude Include="..\include\XorLogical.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\api_nelson\src\c\nlsApi_nelson.vcxproj">
+      <Project>{1c76cdc6-19d8-429a-9ec1-817ad139f80d}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
       <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
       <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
-      <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\overload\src\c\nlsOverload.vcxproj">
-      <Project>{937bee8b-e934-45f1-98ef-33aaf951e5e9}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
       <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\c\nlsLinear_algebra.vcxproj">
-      <Project>{0229f943-6e1a-4cdd-8a0b-cf0f211b6c13}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -212,18 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\detBuiltin.hpp" />
-    <ClInclude Include="..\include\expmBuiltin.hpp" />
-    <ClInclude Include="..\include\ishermitianBuiltin.hpp" />
-    <ClInclude Include="..\include\issymmetricBuiltin.hpp" />
-    <ClInclude Include="..\include\linear_algebra_Gateway.hpp" />
-    <ClInclude Include="..\include\logmBuiltin.hpp" />
-    <ClInclude Include="..\include\nlsLinear_algebra_builtin_exports.h" />
-    <ClInclude Include="..\include\schurBuiltin.hpp" />
-    <ClInclude Include="..\include\sqrtmBuiltin.hpp" />
-    <ClInclude Include="..\include\traceBuiltin.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
