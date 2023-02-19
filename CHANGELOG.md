@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- error_manager builtin added:
+  `error`, `warning`
+  `lasterror`, `lastwarn`
+  `getLastReport`, `MException`
+  `throw`, `throwAsCaller`
+  `rethrow`, `MException_fieldnames`
+
 - core builtin added:
   `exit`, `run`
   `nfilename`, `mfilename`
