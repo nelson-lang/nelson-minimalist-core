@@ -28,16 +28,15 @@ target_include_directories(
          $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
 target_include_directories(
   ${module_library_name}
-  PRIVATE ${Boost_INCLUDE_DIRS}
-          ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 
 target_link_libraries(
   ${module_library_name}
@@ -83,9 +82,9 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../functions_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include)
 
 target_link_libraries(
   ${module_library_builtin_name}

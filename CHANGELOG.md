@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- data_structures builtin added:
+  `isfield`, `fieldnames`, `cellfun`,
+  `namedargs2cell`, `getfield`,
+  `rmfield`, `struct`,
+  `iscellstr`, `cell`,
+  `struct2cell`, `cell2struct`
+
 - functions_manager builtin added:
   `macroargs`, `builtin`,
   `feval`, `what`,
@@ -23,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   `assignin`, `acquirevar`
   `varlock`, `varunlock`
   `varislock`, `isvar`
+
 - error_manager builtin added:
   `error`, `warning`
   `lasterror`, `lastwarn`

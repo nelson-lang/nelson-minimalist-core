@@ -145,6 +145,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsMemory_manager", "module
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsMemory_manager_builtin", "modules\memory_manager\builtin\c\nlsMemory_manager_builtin.vcxproj", "{BEF00BF2-CBCC-4348-8C01-EFF230D6F18B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsData_structures_builtin", "modules\data_structures\builtin\c\nlsData_structures_builtin.vcxproj", "{07CDAEC5-E240-4E50-888B-068B78A6A84E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -577,6 +579,14 @@ Global
 		{BEF00BF2-CBCC-4348-8C01-EFF230D6F18B}.Release|Win32.Build.0 = Release|Win32
 		{BEF00BF2-CBCC-4348-8C01-EFF230D6F18B}.Release|x64.ActiveCfg = Release|x64
 		{BEF00BF2-CBCC-4348-8C01-EFF230D6F18B}.Release|x64.Build.0 = Release|x64
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Debug|Win32.Build.0 = Debug|Win32
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Debug|x64.ActiveCfg = Debug|x64
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Debug|x64.Build.0 = Debug|x64
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Release|Win32.ActiveCfg = Release|Win32
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Release|Win32.Build.0 = Release|Win32
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Release|x64.ActiveCfg = Release|x64
+		{07CDAEC5-E240-4E50-888B-068B78A6A84E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
