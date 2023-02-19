@@ -52,6 +52,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../memory_manager/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../data_structures/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../operators/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../assert_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../logical/builtin/include)
 # ==============================================================================
 target_link_libraries(
@@ -83,6 +84,7 @@ target_link_libraries(
   nlsMemory_manager_builtin
   nlsData_structures_builtin
   nlsOperators_builtin
+  nlsAssert_functions_builtin
   nlsCore_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

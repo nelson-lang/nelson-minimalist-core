@@ -14,14 +14,12 @@ set(module_library_builtin_name ${module_library_name}_builtin)
 # ==============================================================================
 file(GLOB CONSTRUCTORS_FUNCTIONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp")
 list(FILTER CONSTRUCTORS_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
-
 # ==============================================================================
 add_library(${module_library_name} ${CONSTRUCTORS_FUNCTIONS_SRC})
-
 if(WIN32)
   target_compile_definitions(${module_library_name} PUBLIC "NLSCONSTRUCTORS_FUNCTIONS_EXPORTS")
 endif()
-
+# ==============================================================================
 target_include_directories(
   ${module_library_name}
   PUBLIC
@@ -53,11 +51,10 @@ list(FILTER CONSTRUCTORS_FUNCTIONS_BUILTIN EXCLUDE REGEX
 
 # ==============================================================================
 add_library(${module_library_builtin_name} ${CONSTRUCTORS_FUNCTIONS_BUILTIN})
-
 if(WIN32)
   target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSCONSTRUCTORS_FUNCTIONS_BUILTIN_EXPORTS")
 endif()
-
+# ==============================================================================
 target_include_directories(
   ${module_library_builtin_name}
   PUBLIC

@@ -171,9 +171,6 @@
     <None Include="..\grammar\NelSonParser.yxx">
       <Filter>Grammar</Filter>
     </None>
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

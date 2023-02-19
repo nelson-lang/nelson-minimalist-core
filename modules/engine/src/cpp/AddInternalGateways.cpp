@@ -27,6 +27,7 @@
 #include "error_manager_Gateway.hpp"
 #include "memory_manager_Gateway.hpp"
 #include "data_structures_Gateway.hpp"
+#include "assert_functions_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -51,6 +52,7 @@ addInternalGateways(Evaluator* eval)
     ErrorManagerGateway(eval, L"");
     MemoryManagerGateway(eval, L"");
     DataStructuresGateway(eval, L"");
+    AssertFunctionsGateway(eval, L"");
 }
 //=============================================================================
 }

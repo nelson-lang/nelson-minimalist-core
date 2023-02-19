@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- assert_functions builtin added:
+  `assert_istrue`, `assert`
+  `assert_isfalse`, `assert_checkerror`
+  `assert_isequal`, `assert_isapprox`
+
 - operators builtin added:
   `plus`, `minus`,
   `uminus`, `uplus`,
