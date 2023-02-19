@@ -47,6 +47,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../data_analysis/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../statistics/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../single/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../core/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../logical/builtin/include)
 # ==============================================================================
 target_link_libraries(
@@ -73,7 +74,8 @@ target_link_libraries(
   nlsData_analysis_builtin
   nlsStatistics_builtin
   nlsLogical_builtin
-  nlsSingle_builtin)
+  nlsSingle_builtin
+  nlsCore_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")

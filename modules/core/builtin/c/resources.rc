@@ -65,10 +65,10 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "core"
-            VALUE "InternalName", "core"
-            VALUE "OriginalFilename", "libnlscore.dll"
-            VALUE "ProductName", "Nelson (core)"
+            VALUE "FileDescription", "core_builtin"
+            VALUE "InternalName", "core_builtin"
+            VALUE "OriginalFilename", "libnlscore_builtin.dll"
+            VALUE "ProductName", "Nelson (core_builtin)"
             VALUE "ProductVersion", "0,7,1,0"
             VALUE "FileVersion", "0,7,1,0"
             VALUE "LegalCopyright", "Nelson Copyright (C) 2016-present"

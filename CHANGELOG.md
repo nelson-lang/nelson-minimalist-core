@@ -8,6 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- core builtin added:
+  `exit`, `run`
+  `nfilename`, `mfilename`
+  `execstr`, `eval`
+  `evalc`, `evalin`
+  `nargin`, `narginchk`
+  `nargout`, `nargoutchk`
+  `pause`, `namelengthmax`, `inputname`
+
 - logical builtin added:
   `logical`, `true`,
   `false`, `"xor`,
