@@ -46,7 +46,7 @@ ErrorCommandLineMessage_startup_exclusive(NELSON_ENGINE_MODE _mode)
 #ifdef _MSC_VER
     if (_mode == GUI) {
         MessageBox(
-            NULL, utf8_to_wstring(msg.str()).c_str(), L"Nelson version:", MB_ICONINFORMATION);
+            nullptr, utf8_to_wstring(msg.str()).c_str(), L"Nelson version:", MB_ICONINFORMATION);
     } else {
         std::cout << msg.str();
     }
@@ -127,7 +127,7 @@ displayVersion(NELSON_ENGINE_MODE _mode)
 #ifdef _MSC_VER
     if (_mode == GUI) {
         MessageBox(
-            NULL, utf8_to_wstring(msg.str()).c_str(), L"Nelson version:", MB_ICONINFORMATION);
+            nullptr, utf8_to_wstring(msg.str()).c_str(), L"Nelson version:", MB_ICONINFORMATION);
     } else {
         std::cout << msg.str();
     }

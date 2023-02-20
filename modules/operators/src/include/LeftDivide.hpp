@@ -10,11 +10,16 @@
 #pragma once
 //=============================================================================
 #include "ArrayOf.hpp"
+#include "nlsOperators_exports.h"
 //=============================================================================
-namespace Nelson::StreamGateway {
-//=============================================================================
-ArrayOfVector
-fgetsBuiltin(int nLhs, const ArrayOfVector& argIn);
+namespace Nelson {
+
+/**
+ * Matrix-matrix divide
+ * LEFTDIVIDE /  Operator
+ */
+NLSOPERATORS_IMPEXP ArrayOf
+LeftDivide(ArrayOf A, ArrayOf B, bool& needToOverload);
 //=============================================================================
 } // namespace Nelson
 //=============================================================================

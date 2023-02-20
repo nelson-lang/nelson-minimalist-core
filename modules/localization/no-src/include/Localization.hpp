@@ -37,7 +37,8 @@ public:
 
 private:
     Localization();
-    Localization(Localization const& /*unused*/) {};
+    Localization(Localization const& /*unused*/) = default;
+    ;
     static Localization* m_pInstance;
 };
 //=============================================================================

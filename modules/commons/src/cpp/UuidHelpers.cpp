@@ -7,10 +7,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#include <cwchar>
+#include <mutex>
 #include <random>
 #include <uuid.hpp>
-#include <wchar.h>
-#include <mutex>
 #include "UuidHelpers.hpp"
 //=============================================================================
 namespace Nelson::UuidHelpers {
