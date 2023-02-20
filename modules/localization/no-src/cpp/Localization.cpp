@@ -13,7 +13,7 @@ namespace Nelson {
 //=============================================================================
 Localization* Localization::m_pInstance = nullptr;
 //=============================================================================
-Localization::Localization() { }
+Localization::Localization() = default;
 //=============================================================================
 Localization*
 Localization::Instance()

@@ -212,6 +212,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="..\cpp\LeftDivide.cpp" />
     <ClCompile Include="..\cpp\LessEquals.cpp" />
     <ClCompile Include="..\cpp\LessThan.cpp" />
     <ClCompile Include="..\cpp\MatrixMultiplication.cpp" />
@@ -220,6 +221,7 @@
     <ClCompile Include="..\cpp\NotEquals.cpp" />
     <ClCompile Include="..\cpp\Or.cpp" />
     <ClCompile Include="..\cpp\RelationalOperator.cpp" />
+    <ClCompile Include="..\cpp\RightDivide.cpp" />
     <ClCompile Include="..\cpp\StringArrayAddition.cpp" />
     <ClCompile Include="..\cpp\Subtraction.cpp" />
     <ClCompile Include="..\cpp\ElementWiseMultiplication.cpp" />
@@ -284,8 +286,10 @@
     <ClInclude Include="..\include\HorzCat.hpp" />
     <ClInclude Include="..\include\IsMember.hpp" />
     <ClInclude Include="..\include\LeastSquareSolver.hpp" />
+    <ClInclude Include="..\include\LeftDivide.hpp" />
     <ClInclude Include="..\include\LessEquals.hpp" />
     <ClInclude Include="..\include\LessThan.hpp" />
+    <ClInclude Include="..\include\LinearEquationSolver.hpp" />
     <ClInclude Include="..\include\MatrixMultiplication.hpp" />
     <ClInclude Include="..\include\Negate.hpp" />
     <ClInclude Include="..\include\nlsOperators_exports.h" />
@@ -293,6 +297,7 @@
     <ClInclude Include="..\include\NotEquals.hpp" />
     <ClInclude Include="..\include\Or.hpp" />
     <ClInclude Include="..\include\RelationOperator.hpp" />
+    <ClInclude Include="..\include\RightDivide.hpp" />
     <ClInclude Include="..\include\StringArrayAddition.hpp" />
     <ClInclude Include="..\include\Subtraction.hpp" />
     <ClInclude Include="..\include\ElementWiseMultiplication.hpp" />
