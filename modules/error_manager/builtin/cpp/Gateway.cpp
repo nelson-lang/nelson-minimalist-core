@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "error_manager_Gateway.hpp"
 #include "errorBuiltin.hpp"
 #include "lasterrorBuiltin.hpp"
 #include "lastwarnBuiltin.hpp"
@@ -49,11 +50,10 @@ static const nlsGateway gateway[] = {
         (ptrBuiltin)Nelson::ErrorManagerGateway::MException_fieldnamesBuiltin, 1, 1, CPP_BUILTIN }
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+ErrorManagerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

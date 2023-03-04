@@ -13,18 +13,14 @@
 //=============================================================================
 #include "NelsonGateway.hpp"
 #include "expmBuiltin.hpp"
-#include "invBuiltin.hpp"
 #include "issymmetricBuiltin.hpp"
 #include "ishermitianBuiltin.hpp"
 #include "logmBuiltin.hpp"
-#include "rcondBuiltin.hpp"
 #include "schurBuiltin.hpp"
 #include "sqrtmBuiltin.hpp"
-#include "svdBuiltin.hpp"
 #include "traceBuiltin.hpp"
 #include "detBuiltin.hpp"
-#include "eigBuiltin.hpp"
-#include "cholBuiltin.hpp"
+#include "linear_algebra_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -39,13 +35,7 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "schur", (ptrBuiltin)Nelson::LinearAlgebraGateway::schurBuiltin, 2, 2,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "inv", (ptrBuiltin)Nelson::LinearAlgebraGateway::invBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
     { "trace", (ptrBuiltin)Nelson::LinearAlgebraGateway::traceBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "svd", (ptrBuiltin)Nelson::LinearAlgebraGateway::svdBuiltin, 3, 2,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "rcond", (ptrBuiltin)Nelson::LinearAlgebraGateway::rcondBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
     { "issymmetric", (ptrBuiltin)Nelson::LinearAlgebraGateway::issymmetricBuiltin, 1, 2,
         CPP_BUILTIN_WITH_EVALUATOR },
@@ -53,17 +43,12 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "det", (ptrBuiltin)Nelson::LinearAlgebraGateway::detBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "eig", (ptrBuiltin)Nelson::LinearAlgebraGateway::eigBuiltin, 2, 2,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "chol", (ptrBuiltin)Nelson::LinearAlgebraGateway::cholBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+LinearAlgebraGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "string_Gateways.hpp"
 #include "charBuiltin.hpp"
 #include "containsBuiltin.hpp"
 #include "countBuiltin.hpp"
@@ -110,11 +111,10 @@ static const nlsGateway gateway[] = {
     { "isletter", (ptrBuiltin)Nelson::StringGateway::isletterBuiltin, 1, 1, CPP_BUILTIN },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+StringGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

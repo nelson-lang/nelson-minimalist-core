@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "logical_Gateway.hpp"
 #include "falseBuiltin.hpp"
 #include "logicalBuiltin.hpp"
 #include "trueBuiltin.hpp"
@@ -29,11 +30,10 @@ static const nlsGateway gateway[] = {
     { "xor", (ptrBuiltin)Nelson::LogicalGateway::xorBuiltin, 1, 2 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+LogicalGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

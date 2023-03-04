@@ -16,6 +16,7 @@
 #include "displayBuiltin.hpp"
 #include "formatBuiltin.hpp"
 #include "echoBuiltin.hpp"
+#include "display_format_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -103,23 +104,10 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-static bool
-initializeModule(Nelson::Evaluator* eval)
+int
+DisplayFormatGateway(void* eval, const wchar_t* moduleFilename)
 {
-    return true;
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
 }
-//=============================================================================
-static bool
-finishModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
-//=============================================================================
-NLSGATEWAYNAME()
 //=============================================================================

@@ -21,6 +21,7 @@
 #include "piBuiltin.hpp"
 #include "zerosBuiltin.hpp"
 #include "diagBuiltin.hpp"
+#include "constructors_functions_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -41,11 +42,10 @@ static const nlsGateway gateway[]
           { "diag", (ptrBuiltin)Nelson::ConstructorsGateway::diagBuiltin, 1, 2,
               CPP_BUILTIN_WITH_EVALUATOR } };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+ConstructorsFunctionsGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -10,7 +10,6 @@
 #include <cerrno>
 #include <algorithm>
 #include <fstream>
-#include <nlohmann/json.hpp>
 #include "PathFuncManager.hpp"
 #include "StringHelpers.hpp"
 #include "characters_encoding.hpp"
@@ -553,24 +552,6 @@ PathFuncManager::loadUserPathFromFile()
     std::wstring prefDir = NelsonConfiguration::getInstance()->getNelsonPreferencesDirectory();
     std::wstring userPathFile = prefDir + L"/userpath.conf";
     bool bIsFile = FileSystemWrapper::Path::is_regular_file(userPathFile);
-    if (bIsFile) {
-        std::string tmpline;
-#ifdef _MSC_VER
-        std::ifstream jsonFile(userPathFile);
-#else
-        std::ifstream jsonFile(wstring_to_utf8(userPathFile));
-#endif
-        if (jsonFile.is_open()) {
-            nlohmann::json data;
-            try {
-                data = nlohmann::json::parse(jsonFile);
-                std::string _preferedUserPath = data["userpath"];
-                preferedUserPath = utf8_to_wstring(_preferedUserPath);
-            } catch (const nlohmann::json::exception&) {
-            }
-            jsonFile.close();
-        }
-    }
     return preferedUserPath;
 }
 //=============================================================================
@@ -581,22 +562,7 @@ PathFuncManager::saveUserPathToFile()
     if (_userPath != nullptr) {
         up = _userPath->getPath();
     }
-    std::wstring prefDir = NelsonConfiguration::getInstance()->getNelsonPreferencesDirectory();
-    std::wstring userPathFile = prefDir + L"/userpath.conf";
-
-    nlohmann::json data;
-    data["userpath"] = wstring_to_utf8(up);
-#ifdef _MSC_VER
-    std::ofstream out(userPathFile);
-#else
-    std::ofstream out(wstring_to_utf8(userPathFile));
-#endif
-    if (out.is_open()) {
-        out << data;
-        out.close();
-        return true;
-    }
-    return false;
+    return true;
 }
 //=============================================================================
 } // namespace Nelson

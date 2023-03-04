@@ -10,6 +10,7 @@
 #pragma once
 //=============================================================================
 #include <string>
+#include "nlsInterpreter_exports.h"
 #include "ArrayOf.hpp"
 #include "Types.hpp"
 #include "nlsInterpreter_exports.h"

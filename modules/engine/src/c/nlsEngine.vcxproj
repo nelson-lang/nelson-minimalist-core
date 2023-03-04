@@ -94,7 +94,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/ipc/src/include;$(SolutionDir)modules/localization/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/gui/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/sio_client/src/include;$(SolutionDir)modules/file_archiver/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/time/src/include;$(SolutionDir)modules/sio_client/src/socket_io/src;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/localization/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/mex/no-src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/display_format/builtin/include;$(SolutionDir)modules/trigonometric_functions/builtin/include;$(SolutionDir)modules/elementary_functions/builtin/include;$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/constructors_functions/builtin/include;$(SolutionDir)modules/time/builtin/include;$(SolutionDir)modules/string/builtin/include;$(SolutionDir)modules/stream_manager/builtin/include;$(SolutionDir)modules/statistics/builtin/include;$(SolutionDir)modules/data_analysis/builtin/include;$(SolutionDir)modules/single/builtin/include;$(SolutionDir)modules/logical/builtin/include;$(SolutionDir)modules/core/builtin/include;$(SolutionDir)modules/error_manager/builtin/include;$(SolutionDir)modules/memory_manager/builtin/include;$(SolutionDir)modules/data_structures/builtin/include;$(SolutionDir)modules/assert_functions/builtin/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -105,7 +105,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +116,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/ipc/src/include;$(SolutionDir)modules/localization/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/gui/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/sio_client/src/include;$(SolutionDir)modules/file_archiver/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/time/src/include;$(SolutionDir)modules/sio_client/src/socket_io/src;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/localization/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/mex/no-src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/display_format/builtin/include;$(SolutionDir)modules/trigonometric_functions/builtin/include;$(SolutionDir)modules/elementary_functions/builtin/include;$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/constructors_functions/builtin/include;$(SolutionDir)modules/time/builtin/include;$(SolutionDir)modules/string/builtin/include;$(SolutionDir)modules/stream_manager/builtin/include;$(SolutionDir)modules/statistics/builtin/include;$(SolutionDir)modules/data_analysis/builtin/include;$(SolutionDir)modules/single/builtin/include;$(SolutionDir)modules/logical/builtin/include;$(SolutionDir)modules/core/builtin/include;$(SolutionDir)modules/error_manager/builtin/include;$(SolutionDir)modules/memory_manager/builtin/include;$(SolutionDir)modules/data_structures/builtin/include;$(SolutionDir)modules/assert_functions/builtin/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -126,7 +127,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +140,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/ipc/src/include;$(SolutionDir)modules/localization/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/gui/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/sio_client/src/include;$(SolutionDir)modules/file_archiver/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/time/src/include;$(SolutionDir)modules/sio_client/src/socket_io/src;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/localization/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/mex/no-src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/display_format/builtin/include;$(SolutionDir)modules/trigonometric_functions/builtin/include;$(SolutionDir)modules/elementary_functions/builtin/include;$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/constructors_functions/builtin/include;$(SolutionDir)modules/time/builtin/include;$(SolutionDir)modules/string/builtin/include;$(SolutionDir)modules/stream_manager/builtin/include;$(SolutionDir)modules/statistics/builtin/include;$(SolutionDir)modules/data_analysis/builtin/include;$(SolutionDir)modules/single/builtin/include;$(SolutionDir)modules/logical/builtin/include;$(SolutionDir)modules/core/builtin/include;$(SolutionDir)modules/error_manager/builtin/include;$(SolutionDir)modules/memory_manager/builtin/include;$(SolutionDir)modules/data_structures/builtin/include;$(SolutionDir)modules/assert_functions/builtin/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -151,7 +153,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -163,7 +166,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/ipc/src/include;$(SolutionDir)modules/localization/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/gui/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/sio_client/src/include;$(SolutionDir)modules/file_archiver/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/time/src/include;$(SolutionDir)modules/sio_client/src/socket_io/src;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/engine/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/localization/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/memory_manager/src/include;$(SolutionDir)modules/terminal/src/include;$(SolutionDir)modules/mex/no-src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)modules/types/builtin/include;$(SolutionDir)modules/functions_manager/builtin/include;$(SolutionDir)modules/display_format/builtin/include;$(SolutionDir)modules/trigonometric_functions/builtin/include;$(SolutionDir)modules/elementary_functions/builtin/include;$(SolutionDir)modules/linear_algebra/builtin/include;$(SolutionDir)modules/constructors_functions/builtin/include;$(SolutionDir)modules/time/builtin/include;$(SolutionDir)modules/string/builtin/include;$(SolutionDir)modules/stream_manager/builtin/include;$(SolutionDir)modules/statistics/builtin/include;$(SolutionDir)modules/data_analysis/builtin/include;$(SolutionDir)modules/single/builtin/include;$(SolutionDir)modules/logical/builtin/include;$(SolutionDir)modules/core/builtin/include;$(SolutionDir)modules/error_manager/builtin/include;$(SolutionDir)modules/memory_manager/builtin/include;$(SolutionDir)modules/data_structures/builtin/include;$(SolutionDir)modules/assert_functions/builtin/include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -176,26 +179,21 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\CloseAllFiles.cpp" />
-    <ClCompile Include="..\cpp\MainGuiObjectDynamic.cpp" />
+    <ClCompile Include="..\cpp\dllMain.cpp" />
     <ClCompile Include="..\cpp\FinishNelsonMainScript.cpp" />
-    <ClCompile Include="..\cpp\FinishNelsonUserScript.cpp" />
     <ClCompile Include="..\cpp\MainEvaluator.cpp" />
     <ClCompile Include="..\cpp\MaxOpenedFiles.cpp" />
-    <ClCompile Include="..\cpp\NelsonNamedMutex.cpp" />
-    <ClCompile Include="..\cpp\PostCommand.cpp" />
+    <ClCompile Include="..\cpp\AddInternalGateways.cpp" />
     <ClCompile Include="..\cpp\ProgramOptions.cpp" />
     <ClCompile Include="..\cpp\RecursionStack.cpp" />
     <ClCompile Include="..\cpp\StartNelson.cpp" />
     <ClCompile Include="..\cpp\StartNelsonMainScript.cpp" />
-    <ClCompile Include="..\cpp\StartNelsonUserModules.cpp" />
-    <ClCompile Include="..\cpp\StartNelsonUserScript.cpp" />
-    <ClCompile Include="..\cpp\TimeoutThread.cpp" />
-    <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\include\MainEvaluator.hpp" />
@@ -203,52 +201,79 @@
     <ClInclude Include="..\..\src\include\nlsEngine_exports.h" />
     <ClInclude Include="..\..\src\include\StartNelson.h" />
     <ClInclude Include="..\include\CloseAllFiles.hpp" />
-    <ClInclude Include="..\include\MainGuiObjectDynamic.hpp" />
     <ClInclude Include="..\include\FinishNelsonMainScript.hpp" />
-    <ClInclude Include="..\include\FinishNelsonUserScript.hpp" />
     <ClInclude Include="..\include\MaxOpenedFiles.hpp" />
-    <ClInclude Include="..\include\NelsonNamedMutex.hpp" />
-    <ClInclude Include="..\include\PostCommand.hpp" />
+    <ClInclude Include="..\include\AddInternalGateways.hpp" />
     <ClInclude Include="..\include\ProgramOptions.hpp" />
     <ClInclude Include="..\include\RecursionStack.hpp" />
     <ClInclude Include="..\include\StartNelsonMainScript.hpp" />
-    <ClInclude Include="..\include\StartNelsonUserModules.hpp" />
-    <ClInclude Include="..\include\StartNelsonUserScript.hpp" />
-    <ClInclude Include="..\include\TimeoutThread.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\characters_encoding\src\c\nlsCharacters_encoding.vcxproj">
-      <Project>{a75dc538-eefa-4873-888b-a034a7ee72c5}</Project>
+    <ProjectReference Include="..\..\..\assert_functions\builtin\c\nlsAssert_functions_builtin.vcxproj">
+      <Project>{1bf47b95-0985-4267-9644-a50c7e186c47}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
       <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
+      <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\constructors_functions\builtin\c\nlsConstructors_functions_builtin.vcxproj">
+      <Project>{81ed59ab-0554-4e22-a8f7-eb3878bfa5e1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\builtin\c\nlsCore_builtin.vcxproj">
+      <Project>{44ec9fa8-ff07-4411-8f72-9ec2285828c6}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\nlsCore.vcxproj">
       <Project>{2e6aabb4-2551-4478-814d-648150952186}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\data_analysis\builtin\c\nlsData_analysis_builtin.vcxproj">
+      <Project>{5e1776d7-eddc-4aa7-a085-baefa057d5eb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\data_structures\builtin\c\nlsData_structures_builtin.vcxproj">
+      <Project>{07cdaec5-e240-4e50-888b-068b78a6a84e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\builtin\c\nlsElementary_functions_builtin.vcxproj">
+      <Project>{ef56f7f5-0444-466d-a7a2-cae8d2eaabc3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\error_manager\builtin\c\nlsError_manager_builtin.vcxproj">
+      <Project>{34b4a66d-9703-400e-9f00-b595f8c72808}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
       <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\i18n\src\c\nlsI18n.vcxproj">
-      <Project>{eca1e952-8391-4e71-9a91-0e7fd2854320}</Project>
+    <ProjectReference Include="..\..\..\functions_manager\builtin\c\nlsFunctions_manager_builtin.vcxproj">
+      <Project>{a30b923a-0434-4e0f-91d4-95009775ab80}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\display_format\builtin\c\nlsDisplay_format_builtin.vcxproj">
+      <Project>{c2034cb9-7acd-4b87-9f89-ddfe0fdecc62}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
+      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
       <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ipc\src\c\nlsIpc.vcxproj">
-      <Project>{78b885d2-1630-42de-9829-e791d77bb175}</Project>
+    <ProjectReference Include="..\..\..\linear_algebra\builtin\c\nlsLinear_algebra_builtin.vcxproj">
+      <Project>{6980295e-7b0b-48ff-9d4a-317455813471}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\localization\src\c\nlsLocalization.vcxproj">
-      <Project>{964ff907-d58a-48b6-a03b-3f6cf48cbe41}</Project>
+    <ProjectReference Include="..\..\..\localization\no-src\c\no-nlsLocalization.vcxproj">
+      <Project>{da17003a-28f0-4ac2-b9f5-80a46387811b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\logical\builtin\c\nlsLogical_builtin.vcxproj">
+      <Project>{9067dfa1-ce20-4caa-97e2-34d3c6a2ad7d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\memory_manager\builtin\c\nlsMemory_manager_builtin.vcxproj">
+      <Project>{bef00bf2-cbcc-4348-8c01-eff230d6f18b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\memory_manager\src\c\nlsMemory_manager.vcxproj">
       <Project>{02a292ac-2857-401c-8fd2-07dd0c529ca2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\modules_manager\src\c\nlsModules_manager.vcxproj">
-      <Project>{f666ac18-eeda-4a00-acd2-4cafe3865c15}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\nelson_manager\src\c\nlsNelson_manager.vcxproj">
       <Project>{e467b14f-0d56-4237-b649-eb5572b5e731}</Project>
@@ -256,18 +281,36 @@
     <ProjectReference Include="..\..\..\os_functions\src\c\nlsOs_functions.vcxproj">
       <Project>{fa50a5eb-b1b3-4035-87bb-8d3124cb7c80}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\sio_client\src\c\nlsSio_client.vcxproj">
-      <Project>{31effd09-dc10-4163-bc2f-4f285f96a7d6}</Project>
+    <ProjectReference Include="..\..\..\single\builtin\c\nlsSingle_builtin.vcxproj">
+      <Project>{5e8618c5-4e44-4038-93db-0be2462ca875}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\statistics\builtin\c\nlsStatistics_builtin.vcxproj">
+      <Project>{0c41339d-f889-4c5f-9d0c-689605fc43c2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\stream_manager\builtin\c\nlsStream_manager_builtin.vcxproj">
+      <Project>{ea7d6857-308b-4c15-8791-fda964d36c7c}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\stream_manager\src\c\nlsStream_manager.vcxproj">
       <Project>{1b461db6-82ea-4436-a674-d2975f184b90}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\string\builtin\c\nlsString_builtin.vcxproj">
+      <Project>{2513ac3a-3658-4a55-8868-ad9323508c55}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\terminal\src\c\nlsTerminal.vcxproj">
       <Project>{636d4715-9889-4a8e-9404-3b05cb7734d1}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\module.iss" />
+    <ProjectReference Include="..\..\..\time\builtin\c\nlsTime_builtin.vcxproj">
+      <Project>{60263bca-9b60-4f5f-9ce5-2ea5060e329f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\trigonometric_functions\builtin\c\nlsTrigonometric_functions_builtin.vcxproj">
+      <Project>{e7e9ca2a-8485-4777-a753-69bbac2d1e83}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\builtin\c\nlsTypes_builtin.vcxproj">
+      <Project>{54a0dfbe-2fa2-4bca-ba82-887ee2cee308}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
+      <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />

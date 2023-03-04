@@ -95,7 +95,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/core/src/include/picoSHA2;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -104,7 +104,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +114,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/core/src/include/picoSHA2;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -124,7 +123,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/core/src/include/picoSHA2;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -148,7 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +158,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/core/src/include/picoSHA2;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/core/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/os_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -172,33 +169,22 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\include\Banner.hpp" />
     <ClInclude Include="..\..\src\include\GetCurrentNFilename.hpp" />
     <ClInclude Include="..\..\src\include\nlsCore_exports.h" />
-    <ClInclude Include="..\cpp\ComputeNelsonBinariesPath.hpp" />
-    <ClInclude Include="..\cpp\ComputeNelsonLibrariesPath.hpp" />
-    <ClInclude Include="..\cpp\ComputeNelsonModulesPath.hpp" />
-    <ClInclude Include="..\cpp\ComputeNelsonRootPath.hpp" />
-    <ClInclude Include="..\cpp\ComputePreferencesPath.hpp" />
-    <ClInclude Include="..\include\ComputeNelsonPaths.hpp" />
-    <ClInclude Include="..\include\ComputionalThreads.hpp" />
     <ClInclude Include="..\include\EvaluateCommand.hpp" />
     <ClInclude Include="..\include\EvaluateInterface.hpp" />
     <ClInclude Include="..\include\EvaluateScriptFile.hpp" />
     <ClInclude Include="..\include\IsEmptyScriptFile.hpp" />
     <ClInclude Include="..\include\NargIn.hpp" />
     <ClInclude Include="..\include\NargOut.hpp" />
-    <ClInclude Include="..\include\NelsonSHA256.hpp" />
     <ClInclude Include="..\include\Pause.hpp" />
-    <ClInclude Include="..\include\VersionCompilerFlags.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\characters_encoding\src\c\nlsCharacters_encoding.vcxproj">
-      <Project>{a75dc538-eefa-4873-888b-a034a7ee72c5}</Project>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
       <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
@@ -209,8 +195,8 @@
     <ProjectReference Include="..\..\..\files_folders_functions\src\c\nlsFiles_folders_functions.vcxproj">
       <Project>{09c19e7e-35fc-41b6-8f7f-dbc2efd87b3b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\i18n\src\c\nlsI18n.vcxproj">
-      <Project>{eca1e952-8391-4e71-9a91-0e7fd2854320}</Project>
+    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
+      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
       <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
@@ -229,31 +215,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\Banner.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonLibrariesPath.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonModulesPath.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonPaths.cpp" />
-    <ClCompile Include="..\cpp\ComputionalThreads.cpp" />
     <ClCompile Include="..\cpp\EvaluateInterface.cpp" />
     <ClCompile Include="..\cpp\EvaluateCommand.cpp" />
     <ClCompile Include="..\cpp\EvaluateScriptFile.cpp" />
     <ClCompile Include="..\cpp\GetCurrentNFilename.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonBinariesPath.cpp" />
-    <ClCompile Include="..\cpp\ComputeNelsonRootPath.cpp" />
-    <ClCompile Include="..\cpp\ComputePreferencesPath.cpp" />
     <ClCompile Include="..\cpp\IsEmptyScriptFile.cpp" />
     <ClCompile Include="..\cpp\NargIn.cpp" />
     <ClCompile Include="..\cpp\NargOut.cpp" />
-    <ClCompile Include="..\cpp\NelsonSHA256.cpp" />
     <ClCompile Include="..\cpp\Pause.cpp" />
-    <ClCompile Include="..\cpp\VersionCompilerFlags.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\module.iss" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />

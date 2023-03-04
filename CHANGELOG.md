@@ -4,88 +4,194 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## 0.7.3 (UNRELEASED)
-
-### Changed
-
-- internal: boost no more used to read/write json files.
-- internal: taglib library is optional.
+## UNRELEASED
 
 ### Added
 
-- [851](http://github.com/Nelson-numerical-software/nelson/issues/851): Build with micromamba environment (linux and macOS)
+- assert_functions builtin added:
+  `assert_istrue`, `assert`
+  `assert_isfalse`, `assert_checkerror`
+  `assert_isequal`, `assert_isapprox`
 
-## 0.7.2 (2023-02-27)
+- operators builtin added:
+  `plus`, `minus`,
+  `uminus`, `uplus`,
+  `and`, `colon`,
+  `ctranspose`, `transpose`,
+  `eq`, `ge`,
+  `gt`, `le`,
+  `lt`, `ne`,
+  `ldivide`, `rdivide`,
+  `mldivide`, `mrdivide`,
+  `mtimes`, `times`,
+  `not`, `or`,
+  `any`, `all`,
+  `power`, `mpower`,
+  `shortcutor`, `shortcutand`,
+  `subsindex`, `horzcat`,
+  `vertcat`, `ismember`,
 
-### Changed
+- data_structures builtin added:
+  `isfield`, `fieldnames`, `cellfun`,
+  `namedargs2cell`, `getfield`,
+  `rmfield`, `struct`,
+  `iscellstr`, `cell`,
+  `struct2cell`, `cell2struct`
 
-- cmake project reworked. It should be easier to package Nelson on linux platforms (Thanks to @JohanMabille)
-- Debian package generated (beta - feedback welcome).
-- `modulepath` reworked and extended.
-- C++ API: `IsCellOfStrings(ArrayOf)` replaced by `ArrayOf::isCellArrayOfCharacterVectors()`
-- C++ API: header `CheckHelpers.hpp` replaced by `InputOutputArgumentsCheckers.hpp`
-- C++ API: `ToCellStringAsColumn` replaced by `ArrayOf::toCellArrayOfCharacterColumnVectors`
-- `api_nelson` methods moved to type modules
-- Remove internal circular dependency about error and warning.
-- Exports minimum headers in package.
+- functions_manager builtin added:
+  `macroargs`, `builtin`,
+  `feval`, `what`,
+  `addpath`, `clearfun`,
+  `rmpath`, `path`,
+  `ismacro`, `isbuiltin`,
+  `rehash`, `userpath`, `inmem`
+
+- memory_manager builtin added:
+  `clear`, `who`
+  `whos`, `global`
+  `isglobal`, `persistent`
+  `assignin`, `acquirevar`
+  `varlock`, `varunlock`
+  `varislock`, `isvar`
+
+- error_manager builtin added:
+  `error`, `warning`
+  `lasterror`, `lastwarn`
+  `getLastReport`, `MException`
+  `throw`, `throwAsCaller`
+  `rethrow`, `MException_fieldnames`
+
+- core builtin added:
+  `exit`, `run`
+  `nfilename`, `mfilename`
+  `execstr`, `eval`
+  `evalc`, `evalin`
+  `nargin`, `narginchk`
+  `nargout`, `nargoutchk`
+  `pause`, `namelengthmax`, `inputname`
+
+- logical builtin added:
+  `logical`, `true`,
+  `false`, `"xor`,
+
+- single builtin added:
+  `single`
+
+- data_analysis builtin added:
+  `prod`, `sum`, `cumsum`,
+  `cumprod`, `ismissing`,
+  `sort`, `max`,
+  `min`, `conv2`
+
+- statistics builtin added:
+  `corrcoef`, `var`, `mean`
+
+- stream_manager builtin added:
+  `diary`, `fopen`,
+  `fclose`, `fwrite`,
+  `fread`, `fprintf`,
+  `fgetl`, `fgets`,
+  `ftell`, `frewind`,
+  `fseek`, `fsize`,
+  `dlmwrite`, `fileread`,
+  `filewrite`, `feof`,
+  `ferror`, `fscanf`,
+  `sscanf`
+
+- string builtin added:
+  `char`, `strcmp`,
+  `strcmpi`, `strncmp`,
+  `strncmpi`, `matches`,
+  `tolower`, `lower`,
+  `toupper`, `upper`,
+  `strfind`, `int2str`,
+  `num2str`, `str2double`,
+  `mat2str`, `startsWith`,
+  `endsWith`, `contains`,
+  `count`, `strrep`,
+  `replace`, `strtrim`,
+  `deblank`, `strlength`,
+  `string`, `strings`,
+  `convertStringsToChars`, `convertCharsToStrings`,
+  `blanks`, `strcat`,
+  `append`, `isletter`
+
+- time builtin added:
+  `tic`, `toc`,
+  `sleep`, `datevec`,
+  `timeit`
+
+- constructors_function builtin added:
+  `eye`, `i`,
+  `j`, `nan`,
+  `NaN`, `inf`,
+  `Inf`, `eps`,
+  `pi`, `ones`,
+  `zeros`, `diag`
+
+- linear_algebra builtin added:
+  `sqrtm`, `logm`,
+  `expm`,, `schur`,
+  `trace`, `issymmetric`,
+  `ishermitian`, `det`
+
+- elementary_functions builtin added:
+  `size`, `length`, `reshape`, `real`
+  `imag`, `complex`, `isequal`, `isequaln`
+  `isequalto`, `numel`, `isapprox`, `ceil`
+  `floor`, `fix`, `round`, `isnan`
+  `isinf`, `isfinite`, `ndims`, `conj`
+  `mod`, `abs`, `repmat`, `rem`
+  `cast`, `norm`, `exp`, `log`
+  `log10`, `log1p`, `sqrt`, `num2bin`
+  `bin2num`, `base2dec`, `bin2dec`
+  `hex2dec`, `dec2base`, `dec2bin`, `dec2hex`
+  `linspace`, `log2`, `fliplr`, `flipud`
+  `find`, `isvector`, `isscalar`, `triu`
+  `tril`, `sign`, `hypot`, `permute`
+
+- types module builtin added:
+  `class`, `isa`, `iscell`, `ischar`
+  `isclass`, `isdouble`, `isempty`, `isfloat`
+  `ishandle`, `isint8`, `isint16`, `isint32`
+  `isint64`, `isinteger`, `islogical`, `isnumeric`
+  `isreal`, `issingle`, `issparse`, `isstring`
+  `isuint8`, `isuint16`, `isuint32`, `isuint64`
+  `isvarname`
+
+- [#48](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/48): Add static build to CI.
+- [#6](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/6): Windows build with cmake.
+- [#24](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/24): CI build with Cmake on Windows.
+- [#17](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/17): Add minimal tests to the CI.
+- plug `trigonometric_functions` module (currently only builtin)
+  `cos`, `sin`, `tan`, `cosh`, `sinh`, `tanh`, `acos`, `asin`, `atan`, `cosm`, `sinm`, `tanm`, `atan2`, `atanh`
+- plug `display_format` module (format, disp, display, echo)
+- builtin loaded by gateway.
 
 ### Fixed
 
-- `disp`, `display` did no more support overloading.
-- `image` did not save all values for `XData` and `YData`.
-- Github CI Monterey and Ubuntu 22.04 (dependencies install) fixed.
-- some warnings.
+- [#47](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/47): Duplicate symbols errors when building nelson-minimalist-core on emscripten-forge.
 
-## 0.7.1 (2023-01-29)
+## 0.1.0
 
 ### Added
 
-- `drawnow`: Update figures and process callbacks.
-- `DrawLater` property added to `figure` graphics object.
-- `interp1` linear interpolation 1D.
-- [736](http://github.com/Nelson-numerical-software/nelson/issues/736): `bone`, `cool`, `copper`, `hot`, `jet`, `pink`, `turbo`, `viridis`, `white` colormaps.
-- `Visible` property to `figure` graphics object.
-- [809](http://github.com/Nelson-numerical-software/nelson/issues/809): `NumberTitle` property to `figure` graphics object.
-- `AlphaMap` and `Colormap` properties added to `Axes` graphics object.
-- `LineStyleOrder` property of 'axes' used for `plot` and `plot3`.
-- `ColorOrderIndex` and `LineStyleOrderIndex` properties added to `axes` graphics object.
-- `Interpreter` property added to `text` graphics object.
-- tex special characters support for `text` and `ticks` graphics object.
-- `delete` for graphics objects.
-- `imread` Read image from graphics file.
-- `imwrite` Write image to graphics file.
-- `imshow` Display image.
-- `surface` Primitive surface plot.
-- [808](http://github.com/Nelson-numerical-software/nelson/issues/808): `pcolor` Pseudocolor plot.
-- `mesh` Mesh surface plot.
-- `meshz` Mesh surface plot with curtain.
-- [807](http://github.com/Nelson-numerical-software/nelson/issues/807): `loglog` Log-log scale plot.
-- `CHANGELOG` 0.7.x family.
+- [#16](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/16): text_completion code imported.
+
+- [#13](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/13): cmake packaging (Thanks to JohanMabille).
+
+- [#11](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/11): plug 'addpath' builtin.
 
 ### Changed
 
-- Graphics objects property names check is strict (compatibility).
-- Some speed optimization with graphics objects.
-- `surf` reworked to use `surface`.
+- nelson.sln renamed to nelson-minimalist-core.sln
+
+- synchronized with complete version Nelson 0.6.12
 
 ### Fixed
 
-- [#823](http://github.com/Nelson-numerical-software/nelson/issues/823): default LineStyle for a line was wrong with marker.
-- `CTRL+C` was not catched on advanced cli for linux and macos.
-- colors in `colorbar` were not in the good order.
-- warnings detected by CodeQL.
-- [#824](http://github.com/Nelson-numerical-software/nelson/issues/824): VariableCompleter was not filtered by prefix.
+- [#23](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/23): VariableCompleter was not filtered by prefix.
 
-## Previous changelog
+- [#8](https://github.com/Nelson-numerical-software/nelson-minimalist-core/issues/8): Install nelson-minimalist-core in local environment
 
-[Changelog v0.6.x](CHANGELOG-0.6.x.md)
-
-[Changelog v0.5.x](CHANGELOG-0.5.x.md)
-
-[Changelog v0.4.x](CHANGELOG-0.4.x.md)
-
-[Changelog v0.3.x](CHANGELOG-0.3.x.md)
-
-[Changelog v0.2.x](CHANGELOG-0.2.x.md)
-
-[Changelog v0.1.x](CHANGELOG-0.1.x.md)
+Thanks to JohanMabille, Hind-M and [QuantStack](https://quantstack.net/) for their helps for this initial version of nelson-minimalist-core.

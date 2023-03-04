@@ -45,7 +45,6 @@
 #include "sqrtBuiltin.hpp"
 #include "num2binBuiltin.hpp"
 #include "bin2numBuiltin.hpp"
-#include "swapbytesBuiltin.hpp"
 #include "base2decBuiltin.hpp"
 #include "dec2baseBuiltin.hpp"
 #include "linspaceBuiltin.hpp"
@@ -61,6 +60,7 @@
 #include "hypotBuiltin.hpp"
 #include "permuteBuiltin.hpp"
 #include "__rot90_matrix_2D__Builtin.hpp"
+#include "elementary_functions_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -133,8 +133,6 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "bin2num", (ptrBuiltin)Nelson::ElementaryFunctionsGateway::bin2numBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "swapbytes", (ptrBuiltin)Nelson::ElementaryFunctionsGateway::swapbytesBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
     { "base2dec", (ptrBuiltin)Nelson::ElementaryFunctionsGateway::base2decBuiltin, 1, 2,
         CPP_BUILTIN_WITH_EVALUATOR },
     { "bin2dec", (ptrBuiltin)Nelson::ElementaryFunctionsGateway::bin2decBuiltin, 1, 1,
@@ -176,11 +174,10 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+ElementaryFunctionsGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

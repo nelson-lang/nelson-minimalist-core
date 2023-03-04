@@ -13,16 +13,11 @@
 //=============================================================================
 #include "Evaluator.hpp"
 #include "NelsonGateway.hpp"
-#include "calendarBuiltin.hpp"
-#include "clockBuiltin.hpp"
-#include "cputimeBuiltin.hpp"
-#include "datenumBuiltin.hpp"
+#include "time_Gateway.hpp"
 #include "datevecBuiltin.hpp"
-#include "nowBuiltin.hpp"
 #include "sleepBuiltin.hpp"
 #include "ticBuiltin.hpp"
 #include "tocBuiltin.hpp"
-#include "timeBuiltin.hpp"
 #include "timeitBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -35,21 +30,13 @@ static const nlsGateway gateway[] = {
     { "sleep", (ptrBuiltin)Nelson::TimeGateway::sleepBuiltin, 1, 1, CPP_BUILTIN_WITH_EVALUATOR },
     { "datevec", (ptrBuiltin)Nelson::TimeGateway::datevecBuiltin, 6, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "calendar", (ptrBuiltin)Nelson::TimeGateway::calendarBuiltin, 1, 2, CPP_BUILTIN },
-    { "now", (ptrBuiltin)Nelson::TimeGateway::nowBuiltin, 1, 0 },
-    { "clock", (ptrBuiltin)Nelson::TimeGateway::clockBuiltin, 1, 0 },
-    { "cputime", (ptrBuiltin)Nelson::TimeGateway::cputimeBuiltin, 1, 0 },
-    { "datenum", (ptrBuiltin)Nelson::TimeGateway::datenumBuiltin, 1, 6 },
-    { "time", (ptrBuiltin)Nelson::TimeGateway::timeBuiltin, 1, 0, CPP_BUILTIN },
     { "timeit", (ptrBuiltin)Nelson::TimeGateway::timeitBuiltin, 1, -2, CPP_BUILTIN_WITH_EVALUATOR },
-
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+TimeGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

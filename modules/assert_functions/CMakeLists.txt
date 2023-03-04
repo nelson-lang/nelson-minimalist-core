@@ -18,6 +18,9 @@ list(FILTER ASSERT_FUNCTIONS_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${ASSERT_FUNCTIONS_SRC})
+if(WIN32)
+  target_compile_definitions(${module_library_name} PUBLIC "NLSASSERT_FUNCTIONS_EXPORTS")
+endif()
 # ==============================================================================
 target_include_directories(
   ${module_library_name}
@@ -32,7 +35,7 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../core/src/include)
 target_link_libraries(
   ${module_library_name}
@@ -49,6 +52,10 @@ list(FILTER ASSERT_FUNCTIONS_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_builtin_name} ${ASSERT_FUNCTIONS_BUILTIN})
+if(WIN32)
+  target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSASSERT_FUNCTIONS_BUILTIN_EXPORTS")
+endif()
+# ==============================================================================
 target_include_directories(
   ${module_library_builtin_name}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>
@@ -62,7 +69,7 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../string/src/include)
 target_link_libraries(${module_library_builtin_name} ${module_library_name}
                       nlsError_manager nlsI18n nlsTypes nlsInterpreter)
@@ -70,13 +77,10 @@ target_link_libraries(${module_library_builtin_name} ${module_library_name}
 include(GNUInstallDirs)
 # ==============================================================================
 install(
-  FILES ${CMAKE_CURRENT_SOURCE_DIR}/loader.m
-  DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/modules/${module_name}")
-install(
   TARGETS ${module_library_name}
   EXPORT ${PROJECT_NAME}-targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   PUBLIC_HEADER
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
@@ -85,26 +89,8 @@ install(
   TARGETS ${module_library_builtin_name}
   EXPORT ${PROJECT_NAME}-targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   PUBLIC_HEADER
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
-# ==============================================================================
-install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/etc
-  DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/modules/${module_name}"
-  FILES_MATCHING
-  PATTERN "*.m")
-install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests
-  DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/modules/${module_name}"
-  FILES_MATCHING
-  PATTERN "*.m")
-install(
-  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/help
-  DESTINATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/modules/${module_name}"
-  FILES_MATCHING
-  PATTERN "*.qch"
-  PATTERN "xml" EXCLUDE
-  PATTERN "md" EXCLUDE)
 # ==============================================================================

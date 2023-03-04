@@ -85,7 +85,6 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <mutex>
 #include "NelsonParserHelpers.hpp"
 #include "AbstractSyntaxTree.hpp"
 #include "i18n.hpp"
@@ -94,8 +93,6 @@
 //=============================================================================
 extern int yylex();
 extern int yydebug;
-//=============================================================================
-static std::mutex parseMutex;
 //=============================================================================
 namespace Nelson {
   void yyerror(const char *s) {
@@ -3480,7 +3477,6 @@ yyreturnlab:
 namespace Nelson {
 //=============================================================================
   void callyyparse() {
-    std::scoped_lock<std::mutex> lock{parseMutex};
     yyparse();
   }
 //=============================================================================

@@ -9,11 +9,11 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable : 4996)
 #endif
 //=============================================================================
-#include <boost/interprocess/managed_shared_memory.hpp>
 #include <algorithm>
+#include "StringHelpers.hpp"
 #include <cstdio>
 #include <cerrno>
 #include <iostream>
@@ -25,8 +25,6 @@
 #include "Transpose.hpp"
 #include "DotLeftDivide.hpp"
 #include "DotRightDivide.hpp"
-#include "RightDivide.hpp"
-#include "LeftDivide.hpp"
 #include "Negate.hpp"
 #include "DotPower.hpp"
 #include "NotEquals.hpp"
@@ -44,8 +42,6 @@
 #include "characters_encoding.hpp"
 #include "FileParser.hpp"
 #include "MainEvaluator.hpp"
-#include "CommandQueue.hpp"
-#include "ProcessEventsDynamicFunction.hpp"
 #include "VertCatOperator.hpp"
 #include "HorzCatOperator.hpp"
 #include "PathFuncManager.hpp"
@@ -58,9 +54,9 @@
 #include "OverloadRequired.hpp"
 #include "NotEquals.hpp"
 #include "PathFuncManager.hpp"
-#include "ProcessEventsDynamicFunction.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
 #include "VertCat.hpp"
 #include "HorzCat.hpp"
 #include "PathFuncManager.hpp"
@@ -77,7 +73,6 @@
 #include "ProfilerHelpers.hpp"
 #include "ClassToString.hpp"
 #include "IsValidVariableName.hpp"
-#include "NelsonReadyNamedMutex.hpp"
 #include "AsciiToDouble.hpp"
 #include "MException.hpp"
 #include "FileSystemWrapper.hpp"
@@ -1780,14 +1775,6 @@ Evaluator::statementType(AbstractSyntaxTreePtr t, bool printIt)
 {
     ArrayOfVector m;
     FunctionDef* fdef = nullptr;
-    if (!commandQueue.isEmpty()) {
-        std::wstring cmd;
-        commandQueue.get(cmd);
-        evaluateString(cmd);
-    }
-    if (haveEventsLoop()) {
-        ProcessEventsDynamicFunctionWithoutWait();
-    }
     if (t == nullptr) {
         return;
     }
@@ -4202,12 +4189,6 @@ Evaluator::buildPrompt()
 static bool doOnce = true;
 //=============================================================================
 void
-setNamedMutexNelsonReady()
-{
-    openIsReadyNelsonMutex((int)boost::interprocess::ipcdetail::get_current_process_id());
-}
-//=============================================================================
-void
 Evaluator::evalCLI()
 {
     while (true) {
@@ -4215,22 +4196,18 @@ Evaluator::evalCLI()
             clearStacks();
         }
         std::wstring commandLine;
-        commandQueue.get(commandLine);
+        if (doOnce) {
+            doOnce = false;
+        }
+        commandLine = io->getLine(buildPrompt());
         if (commandLine.empty()) {
-            if (doOnce) {
-                setNamedMutexNelsonReady();
-                doOnce = false;
-            }
-            commandLine = io->getLine(buildPrompt());
-            if (commandLine.empty()) {
-                InCLI = false;
-                this->setState(NLS_STATE_QUIT);
-                return;
-            }
-            wchar_t ch = *commandLine.rbegin();
-            if (ch != L'\n') {
-                commandLine.push_back(L'\n');
-            }
+            InCLI = false;
+            this->setState(NLS_STATE_QUIT);
+            return;
+        }
+        wchar_t ch = *commandLine.rbegin();
+        if (ch != L'\n') {
+            commandLine.push_back(L'\n');
         }
         // scan the line and tokenize it
         AbstractSyntaxTree::clearReferences();
@@ -4456,17 +4433,6 @@ Evaluator::getHandle(ArrayOf r, const std::string& fieldname, const ArrayOfVecto
     argIn.push_back(r);
     argIn.push_back(ArrayOf::characterArrayConstructor(fieldname));
     return funcDef->evaluateFunction(this, argIn, nLhs);
-}
-//=============================================================================
-void
-Evaluator::addCommandToQueue(const std::wstring& command, bool bIsPriority)
-{
-    wchar_t ch = *command.rbegin();
-    if (ch != L'\n') {
-        this->commandQueue.add(command + L"\n", bIsPriority);
-    } else {
-        this->commandQueue.add(command, bIsPriority);
-    }
 }
 //=============================================================================
 size_t

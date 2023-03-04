@@ -1,21 +1,31 @@
 //=============================================================================
-// Copyright (c) 2016-present Allan CORNET (Nelson)
-//=============================================================================
-// This file is part of the Nelson.
+// Copyright (c) 2016-2018 Allan CORNET (Nelson)
 //=============================================================================
 // LICENCE_BLOCK_BEGIN
-// SPDX-License-Identifier: LGPL-3.0-or-later
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // LICENCE_BLOCK_END
 //=============================================================================
+#include <sstream>
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include "filereadBuiltin.hpp"
-#include "FileSystemWrapper.hpp"
 #include "Error.hpp"
-#include "i18n.hpp"
-#include "MapFileRead.hpp"
 #include "characters_encoding.hpp"
+#include "i18n.hpp"
+#include "PredefinedErrorMessages.hpp"
+#include "FileSystemWrapper.hpp"
+#include "StringHelpers.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -25,31 +35,34 @@ using namespace Nelson;
 // eol == 'native' (system), 'pc' ("\r\n"), 'unix' ("\n")
 // eol default is "\n"
 //=============================================================================
-static wstringVector
-getLines(const std::wstring& s)
+static std::wifstream&
+wsafegetline(std::wifstream& os, std::wstring& line)
 {
-    std::wstring line;
-    wstringVector parts;
-    std::wstringstream wss(s);
-    while (std::getline(wss, line)) {
-        if (!line.empty() && line[line.size() - 1] == L'\r') {
-            line.pop_back();
+    std::wstring myline;
+    if (getline(os, myline)) {
+        if (myline.size() && myline[myline.size() - 1] == L'\r') {
+            line = myline.substr(0, myline.size() - 1);
+        } else {
+            line = myline;
         }
-        parts.push_back(line);
     }
-    return parts;
+    return os;
 }
 //=============================================================================
 ArrayOfVector
 Nelson::StreamGateway::filereadBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
     ArrayOfVector retval;
-    nargincheck(argIn, 1, 4); //-V112
-    nargoutcheck(nLhs, 0, 1);
+    if (argIn.size() < 1 || argIn.size() > 3) {
+        Error(ERROR_WRONG_NUMBERS_INPUT_ARGS);
+    }
+    if (nLhs > 1) {
+        Error(ERROR_WRONG_NUMBERS_OUTPUT_ARGS);
+    }
     std::wstring fileToRead = argIn[0].getContentAsWideString();
     bool bIsFile = FileSystemWrapper::Path::is_regular_file(fileToRead);
     if (!bIsFile) {
-        Error(_W("A valid filename expected."));
+        Error(_W("A filename expected."));
     }
     std::wstring outputClass = L"char";
     if (argIn.size() > 1) {
@@ -86,36 +99,34 @@ Nelson::StreamGateway::filereadBuiltin(Evaluator* eval, int nLhs, const ArrayOfV
             Error(_W("Wrong value for #2 argument."));
         }
     }
-    std::wstring encoding = L"UTF-8";
-    if (argIn.size() > 3) {
-        ArrayOf param4 = argIn[3];
-        encoding = param4.getContentAsWideString();
-        if (encoding != L"auto") {
-            if (!isSupportedEncoding(encoding)) {
-                Error(_W("Wrong value for #4 argument."));
-            }
-        }
+#ifdef _MSC_VER
+    std::wifstream wif(fileToRead, std::ios::binary);
+#else
+    std::wifstream wif(wstring_to_utf8(fileToRead), std::ios::binary);
+#endif
+    if (!wif.is_open()) {
+        Error(_W("Cannot open file."));
     }
-    std::wstring content;
-    std::wstring errorMessage;
-    if (MapFileRead(fileToRead, eol, encoding, content, errorMessage)) {
-        ArrayOf res;
-        if (outputClass == L"char") {
-            res = ArrayOf::characterArrayConstructor(content);
-        } else {
-            wstringVector results = getLines(content);
-            if (outputClass == L"string") {
-                Dimensions dims(results.size(), 1);
-                res = ArrayOf::stringArrayConstructor(results, dims);
-            } else {
-                // cell
-                res = ArrayOf::toCellArrayOfCharacterColumnVectors(results);
-            }
-        }
-        retval << res;
+    if (outputClass == L"char") {
+        std::wstringstream wss;
+        wss << wif.rdbuf();
+        wif.close();
+        std::wstring content = wss.str();
+
+        StringHelpers::replace_all(content, L"\r\n", L"\n");
+        StringHelpers::replace_all(content, L"\n", eol);
+        retval.push_back(ArrayOf::characterArrayConstructor(content));
     } else {
-        if (!errorMessage.empty()) {
-            Error(errorMessage);
+        std::wstring line;
+        wstringVector lines;
+        while (wsafegetline(wif, line)) {
+            lines.push_back(line);
+        }
+        if (outputClass == L"string") {
+            Dimensions dims(lines.size(), 1);
+            retval.push_back(ArrayOf::stringArrayConstructor(lines, dims));
+        } else {
+            retval.push_back(ArrayOf::toCellArrayOfCharacterColumnVectors(lines));
         }
     }
     return retval;
