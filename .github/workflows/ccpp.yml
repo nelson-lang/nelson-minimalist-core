@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: "C/C++ CI"
 
 on: [push]
 
@@ -42,6 +42,7 @@ jobs:
     name: MacOS X BigSur
     runs-on: macos-11
     timeout-minutes: 120
+    needs: Monterey
 
     steps:
       - name: install dependencies
@@ -82,7 +83,8 @@ jobs:
     steps:
       - name: install dependencies
         run: |
-          sudo apt update;
+          sudo apt-mark hold grub-efi-amd64-signed
+          sudo apt-get update --fix-missing
           sudo apt upgrade;
           sudo apt -y install build-essential;
           sudo apt -y install apt-transport-https ca-certificates gnupg software-properties-common wget ;
@@ -112,6 +114,7 @@ jobs:
     name: Ubuntu-20.04 (static)
     runs-on: ubuntu-20.04
     timeout-minutes: 120
+    needs: Jammy
 
     steps:
       - name: install dependencies
@@ -163,6 +166,8 @@ jobs:
     runs-on: ubuntu-latest
     container: archlinux:latest
     timeout-minutes: 120
+    needs: Jammy
+
     steps:
       - name: Trust repo directory
         run: |
@@ -205,6 +210,7 @@ jobs:
     runs-on: ubuntu-latest
     container: fedora:37
     timeout-minutes: 120
+    needs: Jammy
 
     steps:
       - name: Install dependencies
@@ -246,6 +252,7 @@ jobs:
       run:
         shell: cmd
     timeout-minutes: 120
+    needs: Windows_win64
 
     steps:
       - name: Add msbuild to PATH

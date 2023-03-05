@@ -34,7 +34,6 @@ target_include_directories(
 )
 target_link_libraries(
   ${module_library_name}
-  nlsApi_nelson
   nlsError_manager
   nlsCommons
   nlsStream_manager

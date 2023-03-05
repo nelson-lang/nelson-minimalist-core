@@ -76,6 +76,7 @@
 #include "AsciiToDouble.hpp"
 #include "MException.hpp"
 #include "FileSystemWrapper.hpp"
+#include "PredefinedErrorMessages.hpp"
 //=============================================================================
 #ifdef _MSC_VER
 #define strdup _strdup

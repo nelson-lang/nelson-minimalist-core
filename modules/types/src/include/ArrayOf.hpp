@@ -1135,7 +1135,19 @@ public:
     isCell() const;
 
     [[nodiscard]] bool
-    isCellOfCharacterVectors() const;
+    isCellArrayOfCharacterVectors() const;
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterRowVectors(const stringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterRowVectors(const wstringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterColumnVectors(const stringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterColumnVectors(const wstringVector& elements);
 
     [[nodiscard]] bool
     isStruct() const;

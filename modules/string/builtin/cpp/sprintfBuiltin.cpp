@@ -11,7 +11,8 @@
 #include "Error.hpp"
 #include "StringPrintf.hpp"
 #include "OverloadFunction.hpp"
-#include "CheckerHelpers.hpp"
+#include "PredefinedErrorMessages.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================

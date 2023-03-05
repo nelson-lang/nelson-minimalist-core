@@ -12,12 +12,11 @@
 #include "whoBuiltin.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
-#include "ToCellString.hpp"
 #include "Who.hpp"
 #include "BuiltInFunctionDefManager.hpp"
 #include "PathFuncManager.hpp"
 #include "characters_encoding.hpp"
-#include "CheckerHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 #include "PredefinedErrorMessages.hpp"
 //=============================================================================
 namespace Nelson {
@@ -113,7 +112,7 @@ Nelson::MemoryGateway::whoBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector
             io->outputMessage("\n");
         }
     } else {
-        retval << ToCellStringAsColumn(variablesName);
+        retval << ArrayOf::toCellArrayOfCharacterColumnVectors(variablesName);
     }
     return retval;
 }

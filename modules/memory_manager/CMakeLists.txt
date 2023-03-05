@@ -47,16 +47,6 @@ target_link_libraries(
   nlsInterpreter
   nlsTypes)
 # ==============================================================================
-file(GLOB MEMORY_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-     "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${MEMORY_MANAGER_HEADER}")
-# ==============================================================================
 file(GLOB MEMORY_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER MEMORY_MANAGER_BUILTIN EXCLUDE REGEX
@@ -79,7 +69,6 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../functions_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
@@ -89,7 +78,6 @@ target_include_directories(
 target_link_libraries(
   ${module_library_builtin_name}
   ${module_library_name}
-  nlsApi_nelson
   nlsCharacters_encoding
   nlsCommons
   nlsError_manager
@@ -99,19 +87,6 @@ target_link_libraries(
   nlsStream_manager
   nlsTypes)
 # ==============================================================================
-file(
-  GLOB
-  MEMORY_MANAGER_HEADER
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_builtin_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${MEMORY_MANAGER_HEADER}")
-# ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================
 install(
@@ -120,7 +95,8 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
 install(
   TARGETS ${module_library_builtin_name}
@@ -128,5 +104,6 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================

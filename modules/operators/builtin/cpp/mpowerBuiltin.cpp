@@ -8,9 +8,8 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "mpowerBuiltin.hpp"
-#include "Error.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 #include "OverloadFunction.hpp"
-#include "CheckerHelpers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================

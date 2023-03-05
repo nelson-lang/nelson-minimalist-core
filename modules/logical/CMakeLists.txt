@@ -36,11 +36,10 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_functions/src/include)
 
-target_link_libraries(${module_library_name} nlsApi_nelson nlsError_manager
+target_link_libraries(${module_library_name} nlsError_manager
                       nlsI18n nlsTypes)
 
 # ==============================================================================
@@ -111,7 +110,8 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
 install(
   TARGETS ${module_library_builtin_name}
@@ -119,5 +119,6 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================

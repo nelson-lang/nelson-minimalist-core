@@ -12,7 +12,7 @@
 #include "i18n.hpp"
 #include "Eye.hpp"
 #include "StringToClass.hpp"
-#include "CheckerHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -49,7 +49,6 @@ Nelson::ConstructorsGateway::eyeBuiltin(int nLhs, const ArrayOfVector& argIn)
                         destClass = arg.getDataClass();
                         if (argIn.size() - 2 == 0) {
                             m = 1;
-                            // n = 1;
                         }
                         nRhs = argIn.size() - 2;
                     } else {

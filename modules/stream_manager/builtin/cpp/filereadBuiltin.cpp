@@ -22,11 +22,11 @@
 #include "filereadBuiltin.hpp"
 #include "Error.hpp"
 #include "characters_encoding.hpp"
-#include "ToCellString.hpp"
 #include "i18n.hpp"
 #include "PredefinedErrorMessages.hpp"
 #include "FileSystemWrapper.hpp"
 #include "StringHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -126,7 +126,7 @@ Nelson::StreamGateway::filereadBuiltin(Evaluator* eval, int nLhs, const ArrayOfV
             Dimensions dims(lines.size(), 1);
             retval.push_back(ArrayOf::stringArrayConstructor(lines, dims));
         } else {
-            retval.push_back(ToCellStringAsColumn(lines));
+            retval.push_back(ArrayOf::toCellArrayOfCharacterColumnVectors(lines));
         }
     }
     return retval;

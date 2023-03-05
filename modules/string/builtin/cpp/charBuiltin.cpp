@@ -13,7 +13,7 @@
 #include "i18n.hpp"
 #include "OverloadFunction.hpp"
 #include "ToChar.hpp"
-#include "CheckerHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -103,7 +103,7 @@ Nelson::StringGateway::charBuiltin(Evaluator* eval, int nLhs, const ArrayOfVecto
             }
         } break;
         case NLS_CELL_ARRAY: {
-            if (!argIn[0].isCellOfCharacterVectors()) {
+            if (!argIn[0].isCellArrayOfCharacterVectors()) {
                 retval = OverloadFunction(eval, nLhs, argIn, "char", bSuccess);
                 if (!bSuccess) {
                     Error(_("Undefined function 'char' for input arguments of type") + " '"

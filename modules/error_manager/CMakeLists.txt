@@ -46,11 +46,9 @@ file(GLOB ERROR_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${ERROR_MANAGER_HEADER}")
+  PROPERTIES VERSION ${Nelson_VERSION}
+             SOVERSION ${Nelson_VERSION_MAJOR}
+             PUBLIC_HEADER "${ERROR_MANAGER_HEADER}")
 # ==============================================================================
 file(GLOB ERROR_MANAGER_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER ERROR_MANAGER_BUILTIN EXCLUDE REGEX
@@ -74,7 +72,6 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../debugger/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 
 target_link_libraries(
@@ -84,21 +81,7 @@ target_link_libraries(
   nlsOverload
   nlsDebugger
   nlsTypes
-  nlsI18n
-  nlsApi_nelson)
-# ==============================================================================
-file(
-  GLOB
-  ERROR_MANAGER_HEADER
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_builtin_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${ERROR_MANAGER_HEADER}")
+  nlsI18n)
 # ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================
@@ -108,7 +91,8 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
 install(
   TARGETS ${module_library_builtin_name}
@@ -116,5 +100,6 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================

@@ -10,10 +10,9 @@
 #include "MException_fieldnamesBuiltin.hpp"
 #include "MException.hpp"
 #include "ClassName.hpp"
-#include "ToCellString.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
-#include "CheckerHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -25,7 +24,7 @@ Nelson::ErrorManagerGateway::MException_fieldnamesBuiltin(int nLhs, const ArrayO
     nargoutcheck(nLhs, 0, 1);
     if (argIn[0].isClassStruct() && ClassName(argIn[0]) == "MException") {
         stringVector fieldnames = argIn[0].getFieldNames();
-        retval << ToCellStringAsColumn(argIn[0].getFieldNames());
+        retval << ArrayOf::toCellArrayOfCharacterColumnVectors(argIn[0].getFieldNames());
     } else {
         Error(_W("MException expected."));
     }

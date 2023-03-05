@@ -9,13 +9,12 @@
 //=============================================================================
 #include "inmemBuiltin.hpp"
 #include "Error.hpp"
-#include "ToCellString.hpp"
 #include "PathFuncManager.hpp"
 #include "MacroFunctionDef.hpp"
 #include "MexFunctionDef.hpp"
 #include "characters_encoding.hpp"
 #include "FunctionsInMemory.hpp"
-#include "CheckerHelpers.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -36,14 +35,14 @@ Nelson::FunctionsGateway::inmemBuiltin(int nLhs, const ArrayOfVector& argIn)
 
     wstringVector mFunctions
         = FunctionsInMemory::getInstance()->getMacroInMemory(withCompleteNames);
-    retval << ToCellStringAsColumn(mFunctions);
+    retval << ArrayOf::toCellArrayOfCharacterColumnVectors(mFunctions);
     if (nLhs > 1) {
         wstringVector mexFunctions
             = FunctionsInMemory::getInstance()->getMexInMemory(withCompleteNames);
-        retval << ToCellStringAsColumn(mexFunctions);
+        retval << ArrayOf::toCellArrayOfCharacterColumnVectors(mexFunctions);
     }
     if (nLhs > 2) {
-        retval << ToCellStringAsColumn(stringVector());
+        retval << ArrayOf::toCellArrayOfCharacterColumnVectors(stringVector());
     }
     return retval;
 }

@@ -8,6 +8,8 @@
 # LICENCE_BLOCK_END
 #==============================================================================
 # This .gitignore for Nelson
+
+build/
 NelsonConfigVersion.cmake
 modules/main/nelson-cli-exec
 /modules/*/*.so.*

@@ -45,7 +45,6 @@ private:
      * The data array of dimensions.
      */
     std::array<indexType, MAXDIMS> data;
-    // indexType data[MAXDIMS];
     //=============================================================================
     /**
      * The number of dimensions currently allocated.

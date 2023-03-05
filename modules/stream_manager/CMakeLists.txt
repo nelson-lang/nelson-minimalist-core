@@ -52,11 +52,9 @@ file(GLOB STREAM_MANAGER_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
      "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
 set_target_properties(
   ${module_library_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${STREAM_MANAGER_HEADER}")
+  PROPERTIES VERSION ${Nelson_VERSION}
+             SOVERSION ${Nelson_VERSION_MAJOR}
+             PUBLIC_HEADER "${STREAM_MANAGER_HEADER}")
 # ==============================================================================
 file(GLOB STREAM_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
@@ -82,13 +80,11 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../nelson_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include)
+          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include)
 
 target_link_libraries(
   ${module_library_builtin_name}
   ${module_library_name}
-  nlsApi_nelson
   nlsCharacters_encoding
   nlsCommons
   nlsError_manager
@@ -98,19 +94,6 @@ target_link_libraries(
   nlsOverload
   nlsTypes)
 # ==============================================================================
-file(
-  GLOB
-  STREAM_MANAGER_HEADER
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_builtin_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${STREAM_MANAGER_HEADER}")
-# ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================
 install(
@@ -119,7 +102,8 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
 install(
   TARGETS ${module_library_builtin_name}
@@ -127,5 +111,6 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================

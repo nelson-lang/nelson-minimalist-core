@@ -50,18 +50,6 @@ target_link_libraries(
   nlsI18n
   nlsFiles_folders_functions
   nlsString)
-
-# ==============================================================================
-file(GLOB FUNCTIONS_MANAGER_HEADER
-     "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-     "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}")
 # ==============================================================================
 file(GLOB FUNCTIONS_MANAGER_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
@@ -85,9 +73,8 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../mex/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../mex/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../dynamic_link/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
@@ -101,23 +88,9 @@ target_link_libraries(
   nlsStream_manager
   nlsInterpreter
   nlsTypes
-  nlsApi_nelson
   nlsI18n
   nlsCommons
   nlsFiles_folders_functions)
-# ==============================================================================
-file(
-  GLOB
-  FUNCTIONS_MANAGER_HEADER
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
-set_target_properties(
-  ${module_library_builtin_name}
-  PROPERTIES
-    VERSION
-    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
-    SOVERSION ${Nelson_VERSION_MAJOR}
-    PUBLIC_HEADER "${FUNCTIONS_MANAGER_HEADER}")
 # ==============================================================================
 include(GNUInstallDirs)
 # ==============================================================================
@@ -127,7 +100,8 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================
 install(
   TARGETS ${module_library_builtin_name}
@@ -135,5 +109,6 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+  PUBLIC_HEADER
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
 # ==============================================================================

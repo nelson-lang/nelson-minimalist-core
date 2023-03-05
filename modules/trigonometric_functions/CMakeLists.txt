@@ -31,7 +31,6 @@ target_include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
   ${EIGEN3_INCLUDE_DIR}
 )
