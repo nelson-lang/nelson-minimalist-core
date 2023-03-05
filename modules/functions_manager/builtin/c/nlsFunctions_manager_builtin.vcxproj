@@ -229,6 +229,7 @@
     <ClInclude Include="..\include\builtinBuiltin.hpp" />
     <ClInclude Include="..\include\clearfunBuiltin.hpp" />
     <ClInclude Include="..\include\fevalBuiltin.hpp" />
+    <ClInclude Include="..\include\functions_manager_Gateway.hpp" />
     <ClInclude Include="..\include\inmemBuiltin.hpp" />
     <ClInclude Include="..\include\isbuiltinBuiltin.hpp" />
     <ClInclude Include="..\include\ismacroBuiltin.hpp" />

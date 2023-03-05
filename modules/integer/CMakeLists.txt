@@ -18,6 +18,9 @@ list(FILTER INTEGER_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${INTEGER_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSINTEGER_EXPORTS")
+endif()
 # ==============================================================================
 target_include_directories(
   ${module_library_name}
@@ -26,23 +29,26 @@ target_include_directories(
 target_include_directories(
   ${module_library_name}
   PRIVATE ${EIGEN3_INCLUDE_DIR}
-          ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_functions/src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include)
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_functions/src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include)
 
 target_link_libraries(${module_library_name} nlsCharacters_encoding
-                      nlsError_manager nlsI18n nlsTypes)
+nlsError_manager nlsI18n nlsTypes)
 # ==============================================================================
 file(GLOB INTEGER_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER INTEGER_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_builtin_name} ${INTEGER_BUILTIN})
+if(WIN32)
+    target_compile_definitions(${module_library_builtin_name} PUBLIC "NLSINTEGER_BUILTIN_EXPORTS")
+endif()
 target_include_directories(
   ${module_library_builtin_name}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>

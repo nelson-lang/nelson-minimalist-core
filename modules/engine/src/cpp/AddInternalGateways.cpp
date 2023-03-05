@@ -29,6 +29,7 @@
 #include "data_structures_Gateway.hpp"
 #include "assert_functions_Gateway.hpp"
 #include "double_Gateway.hpp"
+#include "integer_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -55,6 +56,7 @@ addInternalGateways(Evaluator* eval)
     DataStructuresGateway(eval, L"");
     AssertFunctionsGateway(eval, L"");
     DoubleGateway(eval, L"");
+    IntegerGateway(eval, L"");
 }
 //=============================================================================
 }
