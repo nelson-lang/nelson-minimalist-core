@@ -48,7 +48,8 @@ list(
   logical
   data_structures
   assert_functions
-  engine)
+  engine
+  double)
 # ==============================================================================
 list(APPEND moduleslist main)
 # ==============================================================================

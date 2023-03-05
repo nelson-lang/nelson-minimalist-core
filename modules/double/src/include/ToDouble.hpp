@@ -7,20 +7,13 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "gettextBuiltin.hpp"
-#include "i18n.hpp"
-#include "InputOutputArgumentsCheckers.hpp"
+#pragma once
 //=============================================================================
-using namespace Nelson;
+#include "ArrayOf.hpp"
+#include "nlsDouble_exports.h"
 //=============================================================================
-ArrayOfVector
-Nelson::I18nGateway::gettextBuiltin(int nLhs, const ArrayOfVector& argIn)
-{
-    ArrayOfVector retval;
-    nargoutcheck(nLhs, 0, 1);
-    nargincheck(argIn, 1, 1);
-    std::wstring txt = argIn[0].getContentAsWideString();
-    retval << ArrayOf::characterArrayConstructor(gettextw(txt));
-    return retval;
+namespace Nelson {
+NLSDOUBLE_IMPEXP ArrayOf
+ToDouble(const ArrayOf& A, bool& needToOverload);
 }
 //=============================================================================

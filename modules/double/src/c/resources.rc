@@ -65,10 +65,10 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "i18n"
-            VALUE "InternalName", "i18n"
-            VALUE "OriginalFilename", "libnlsi18n.dll"
-            VALUE "ProductName", "Nelson (i18n)"
+            VALUE "FileDescription", "double"
+            VALUE "InternalName", "double"
+            VALUE "OriginalFilename", "libnlsdouble.dll"
+            VALUE "ProductName", "Nelson (double)"
             VALUE "ProductVersion", "0,7,2,0"
             VALUE "FileVersion", "0,7,2,0"
             VALUE "LegalCopyright", "Nelson Copyright (C) 2016-present"
