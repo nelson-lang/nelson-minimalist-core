@@ -50,6 +50,7 @@ list(
   assert_functions
   double
   integer
+  console
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

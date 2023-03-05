@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- console builtin added:
+  `clc`, `input`, `terminal_size`
+
 - debugger builtin added:
   `dbstack`
 

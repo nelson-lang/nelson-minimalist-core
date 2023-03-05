@@ -54,6 +54,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../operators/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../assert_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../debugger/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../console/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../double/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../integer/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../logical/builtin/include)
@@ -91,6 +92,7 @@ target_link_libraries(
   nlsDouble_builtin
   nlsInteger_builtin
   nlsDebugger_builtin
+  nlsConsole_builtin
   nlsCore_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
