@@ -166,6 +166,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsConsole_builtin", "modul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsInterpreter_builtin", "modules\interpreter\builtin\c\nlsInterpreter_builtin.vcxproj", "{ADF7A34A-5D81-4F48-B972-B583210352B3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsOverload_builtin", "modules\overload\builtin\c\nlsOverload_builtin.vcxproj", "{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -686,6 +688,14 @@ Global
 		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|Win32.Build.0 = Release|Win32
 		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|x64.ActiveCfg = Release|x64
 		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|x64.Build.0 = Release|x64
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Debug|Win32.Build.0 = Debug|Win32
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Debug|x64.ActiveCfg = Debug|x64
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Debug|x64.Build.0 = Debug|x64
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Release|Win32.ActiveCfg = Release|Win32
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Release|Win32.Build.0 = Release|Win32
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Release|x64.ActiveCfg = Release|x64
+		{6A3E0DBE-D2F9-41CA-9192-D3EE4570DE25}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

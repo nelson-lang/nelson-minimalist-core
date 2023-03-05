@@ -55,6 +55,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../assert_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../debugger/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../overload/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../console/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../double/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../integer/builtin/include
@@ -92,6 +93,7 @@ target_link_libraries(
   nlsAssert_functions_builtin
   nlsDouble_builtin
   nlsInteger_builtin
+  nlsOverload_builtin
   nlsDebugger_builtin
   nlsInterpreter_builtin
   nlsConsole_builtin
