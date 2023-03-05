@@ -51,6 +51,7 @@ list(
   double
   integer
   console
+  validators
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

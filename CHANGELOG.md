@@ -8,6 +8,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- validators builtin added:
+  `mustBeNumericOrLogical`, `mustBeLogical`, `mustBeLogicalScalar`,
+  `mustBeFinite`, `mustBeScalarOrEmpty`,
+  `mustBeValidVariableName`, `mustBeTextScalar`,
+  `mustBeText`, `mustBeFolder`,
+  `mustBeFile`, `mustBeVector`,
+  `mustBeFloat`, `mustBeNumeric`,
+  `mustBeNonempty`, `mustBeA`,
+  `mustBePositive`, `mustBeNonnegative`,
+  `mustBeNegative`, `mustBeNonpositive`,
+  `mustBeNonNan`, `mustBeNonZero`,
+  `mustBeNonSparse`, `mustBeReal`,
+  `mustBeInteger`, `mustBeNonmissing`,
+  `mustBeGreaterThan`, `mustBeLessThan`,
+  `mustBeGreaterThanOrEqual`, `mustBeLessThanOrEqual`,
+  `mustBeMember`, `mustBeInRange`
+
+- files folders builtin added:
+  `pwd`, `dir`
+  `cd`, `isdir`
+  `isfolder`, `isfile`
+  `fileparts`, `mkdir`
+  `relativepath`, `rmdir`
+  `copyfile`, `diff_file`
+  `rmfile`, `pathsep`
+  `filesep`, `fullpath`
+  `tempdir`, `userdir`, `fullfile`
+
 - interpreter builtin added:
   `parsefile`, `parsestring`, `max_recursion_depth`, `iskeyword`
 

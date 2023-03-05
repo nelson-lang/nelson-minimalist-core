@@ -54,6 +54,8 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../operators/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../assert_functions/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../debugger/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../validators/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../files_folders_function/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../overload/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../console/builtin/include
@@ -97,6 +99,8 @@ target_link_libraries(
   nlsDebugger_builtin
   nlsInterpreter_builtin
   nlsConsole_builtin
+  nlsValidators_builtin
+  nlsFiles_folders_functions_builtin
   nlsCore_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
