@@ -32,6 +32,7 @@
 #include "integer_Gateway.hpp"
 #include "debugger_Gateway.hpp"
 #include "console_Gateway.hpp"
+#include "interpreter_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -61,6 +62,7 @@ addInternalGateways(Evaluator* eval)
     IntegerGateway(eval, L"");
     DebuggerGateway(eval, L"");
     ConsoleGateway(eval, L"");
+    InterpreterGateway(eval, L"");
 }
 //=============================================================================
 }

@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- interpreter builtin added:
+  `parsefile`, `parsestring`, `max_recursion_depth`, `iskeyword`
+
 - console builtin added:
   `clc`, `input`, `terminal_size`
 

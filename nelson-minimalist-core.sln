@@ -164,6 +164,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsConsole", "modules\conso
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsConsole_builtin", "modules\console\builtin\c\nlsConsole_builtin.vcxproj", "{C8D41105-5D31-4F56-9AA0-E849FB7824A7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsInterpreter_builtin", "modules\interpreter\builtin\c\nlsInterpreter_builtin.vcxproj", "{ADF7A34A-5D81-4F48-B972-B583210352B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -676,6 +678,14 @@ Global
 		{C8D41105-5D31-4F56-9AA0-E849FB7824A7}.Release|Win32.Build.0 = Release|Win32
 		{C8D41105-5D31-4F56-9AA0-E849FB7824A7}.Release|x64.ActiveCfg = Release|x64
 		{C8D41105-5D31-4F56-9AA0-E849FB7824A7}.Release|x64.Build.0 = Release|x64
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Debug|Win32.Build.0 = Debug|Win32
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Debug|x64.ActiveCfg = Debug|x64
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Debug|x64.Build.0 = Debug|x64
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|Win32.ActiveCfg = Release|Win32
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|Win32.Build.0 = Release|Win32
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|x64.ActiveCfg = Release|x64
+		{ADF7A34A-5D81-4F48-B972-B583210352B3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
