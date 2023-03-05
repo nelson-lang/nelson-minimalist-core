@@ -30,6 +30,7 @@
 #include "assert_functions_Gateway.hpp"
 #include "double_Gateway.hpp"
 #include "integer_Gateway.hpp"
+#include "debugger_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -57,6 +58,7 @@ addInternalGateways(Evaluator* eval)
     AssertFunctionsGateway(eval, L"");
     DoubleGateway(eval, L"");
     IntegerGateway(eval, L"");
+    DebuggerGateway(eval, L"");
 }
 //=============================================================================
 }

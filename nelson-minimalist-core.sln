@@ -158,6 +158,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsInteger_builtin", "modul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsInteger", "modules\integer\src\c\nlsInteger.vcxproj", "{364A44B0-B6CF-4ECD-8EA2-8A315B32C5EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nlsDebugger_builtin", "modules\debugger\builtin\c\nlsDebugger_builtin.vcxproj", "{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -646,6 +648,14 @@ Global
 		{364A44B0-B6CF-4ECD-8EA2-8A315B32C5EF}.Release|Win32.Build.0 = Release|Win32
 		{364A44B0-B6CF-4ECD-8EA2-8A315B32C5EF}.Release|x64.ActiveCfg = Release|x64
 		{364A44B0-B6CF-4ECD-8EA2-8A315B32C5EF}.Release|x64.Build.0 = Release|x64
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Debug|Win32.Build.0 = Debug|Win32
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Debug|x64.ActiveCfg = Debug|x64
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Debug|x64.Build.0 = Debug|x64
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Release|Win32.ActiveCfg = Release|Win32
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Release|Win32.Build.0 = Release|Win32
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Release|x64.ActiveCfg = Release|x64
+		{E4A05E8F-7C36-49B6-8B01-EFFE8B7528A6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
