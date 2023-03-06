@@ -19,6 +19,9 @@ for p = modules_subdirectories'
 end
 for tests_directory = tests_directories'
   files = dir([tests_directory{1}, '/test_*.m']);
+  if ~isempty(files)
+    fprintf('%s\n', tests_directory{1});
+  end
   for file = files'
     tests_file = [file.folder, '/', file.name];
     try
