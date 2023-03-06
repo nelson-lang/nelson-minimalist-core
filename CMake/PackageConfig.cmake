@@ -9,7 +9,7 @@
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
 set(CPACK_PACKAGE_VENDOR "Allan CORNET")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
-    "Nelson is an- matrix/array programming language providing a powerful open computing environment for engineering and scientific applications using modern C/C++ libraries (Boost, Eigen, …) and others state of art numerical libraries."
+    "Nelson is an- matrix/array programming language providing a powerful open computing environment for engineering and scientific applications using modern C/C++ libraries (Eigen, C++17, …) and others state of art numerical libraries."
 )
 set(CPACK_PACKAGE_VERSION_MAJOR ${Nelson_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${Nelson_VERSION_MINOR})
