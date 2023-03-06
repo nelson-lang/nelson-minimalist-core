@@ -18,7 +18,7 @@ cmake_minimum_required(VERSION 3.9)
 # ==============================================================================
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/")
 # ==============================================================================
-project(Nelson)
+project(nelson)
 # ==============================================================================
 set(default_build_type "Release")
 if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
@@ -99,7 +99,6 @@ endif()
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 set(NELSON_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for nelsonConfig.cmake")
-set(NELSON_DOC_INSTALL_DIR "${CMAKE_DATA_ROOTDIR}/${PROJECT_NAME}/doc" CACHE STRING "install path for Nelson doc files")
 # ==============================================================================
 add_subdirectory(modules)
 # ==============================================================================

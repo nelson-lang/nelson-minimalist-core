@@ -24,7 +24,7 @@ target_include_directories(
     ${module_library_name}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/no-src/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
 )
 target_include_directories(
     ${module_library_name}
@@ -51,6 +51,6 @@ install(
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+    ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
 )
 # ==============================================================================

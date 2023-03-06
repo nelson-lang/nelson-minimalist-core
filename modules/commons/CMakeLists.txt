@@ -28,7 +28,7 @@ target_include_directories(
     ${module_library_name}
     PUBLIC
     "$<BUILD_INTERFACE:${COMMONS_INCLUDE_DIRS}>"
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
 )
 target_include_directories(
     ${module_library_name}
@@ -54,12 +54,12 @@ install(
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+    ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
 )
 # Because PUBLIC_HEADER does not preserve the folder structure and 
 # FILE_SET option is not available before CMake 3.23
 install(
     DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include/fmt
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
 )
 # ==============================================================================

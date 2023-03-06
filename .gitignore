@@ -9,6 +9,7 @@
 #==============================================================================
 # This .gitignore for Nelson
 
+*.tar.gz
 build/
 NelsonConfigVersion.cmake
 modules/main/nelson-cli-exec
@@ -118,16 +119,16 @@ My Advisor XE Results - *
 *.dflginspxe
 *.infoinspxe
 ################################################################################
-NelsonConfigVersion.cmake
-CMakeFiles/
-_CPack_Packages/
-Makefile
-*.*~
+nelsonConfigVersion.cmake
 CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
 install_manifest.txt
+CMakeFiles/
+_CPack_Packages/
+Makefile
+*.*~
 *.a
 *.so
 *.dylib
