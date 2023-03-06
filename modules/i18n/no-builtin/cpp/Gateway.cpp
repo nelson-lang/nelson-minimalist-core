@@ -7,20 +7,24 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#include "NelsonGateway.hpp"
+#include "i18n_Gateway.hpp"
 #include "gettextBuiltin.hpp"
-#include "i18n.hpp"
-#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
-ArrayOfVector
-Nelson::I18nGateway::gettextBuiltin(int nLhs, const ArrayOfVector& argIn)
+const std::wstring gatewayName = L"i18n";
+//=============================================================================
+static const nlsGateway gateway[] = {
+    { "gettext", (ptrBuiltin)Nelson::I18nGateway::gettextBuiltin, 1, 1 },
+    { "_", (ptrBuiltin)Nelson::I18nGateway::gettextBuiltin, 1, 1 },
+
+};
+//=============================================================================
+int
+I18nGateway(void* eval, const wchar_t* moduleFilename)
 {
-    ArrayOfVector retval;
-    nargoutcheck(nLhs, 0, 1);
-    nargincheck(argIn, 1, 1);
-    std::wstring txt = argIn[0].getContentAsWideString();
-    retval << ArrayOf::characterArrayConstructor(gettextw(txt));
-    return retval;
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
 }
 //=============================================================================

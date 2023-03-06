@@ -62,6 +62,7 @@ target_include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../double/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../integer/builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../function_handle/builtin/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-builtin/include
     ${CMAKE_CURRENT_SOURCE_DIR}/../logical/builtin/include)
 # ==============================================================================
 target_link_libraries(
@@ -103,6 +104,7 @@ target_link_libraries(
   nlsValidators_builtin
   nlsFunction_handle_builtin
   nlsFiles_folders_functions_builtin
+  nlsI18n_builtin
   nlsCore_builtin)
 # ==============================================================================
 file(GLOB ENGINE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

@@ -34,9 +34,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo make install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   BigSur:
     name: MacOS X BigSur
@@ -71,9 +71,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo make install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   Jammy:
     name: Ubuntu-22.04 Jammy
@@ -106,9 +106,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo ninja install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   Focal:
     name: Ubuntu-20.04 (static)
@@ -158,9 +158,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo ninja install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   ArchLinux:
     runs-on: ubuntu-latest
@@ -202,9 +202,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo make install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   Fedora:
     runs-on: ubuntu-latest
@@ -241,9 +241,9 @@ jobs:
         run: cmake --build . -- package
       - name: Install
         run: sudo make install
-      - name: Minimalist tests
+      - name: Tests
         run: |
-          nelson-cli -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
 
   Windows_win32:
     name: Windows 32 bits
@@ -274,7 +274,7 @@ jobs:
           cd nelson-minimalist-core
           msbuild nelson-minimalist-core.sln /p:Configuration=Release /p:Platform=win32 /target:"NelSon-cli" /m:1 /p:PreferredToolArchitecture=x64
 
-      - name: Minimalist tests
+      - name: Tests
         run: |
           .\bin\win32\nelson-cli -f .\basic_tests\tests.m
 
@@ -305,7 +305,7 @@ jobs:
           cd nelson-minimalist-core
           msbuild nelson-minimalist-core.sln /p:Configuration=Release /p:Platform=x64 /target:"NelSon-cli" /m:1 /p:PreferredToolArchitecture=x64
 
-      - name: Minimalist tests
+      - name: Tests
         run: |
           .\bin\x64\nelson-cli -f .\basic_tests\tests.m
 
@@ -349,10 +349,10 @@ jobs:
           cd build
           nmake install
 
-      - name: Minimalist tests
+      - name: Tests
         run: |
           cd install/bin
-          nelson -f $GITHUB_WORKSPACE/basic_tests/tests.m
+          nelson -f $GITHUB_WORKSPACE/tests/tests.m
 
       - uses: actions/upload-artifact@v1
         with:
