@@ -34,6 +34,7 @@ list(
   core
   memory_manager
   overload
+  function_handle  
   text_completion
   trigonometric_functions
   terminal

@@ -21,14 +21,8 @@ tests_*.json
 compile_commands.json
 checks.json
 /$tf
-/bin/*/mkl
-/bin/*/openblas
-/bin/*/qml
-/bin/*/plugins
 /bin/*/LICENSE_1_0.txt
 /bin/*/license_sdk.rtf
-/bin/*/mkl_license.txt
-/bin/*/libnlsblaslapack.dll.manifest
 /bin/*/nelson-cli.exe
 /bin/*/nelson_f2c
 /modules/main/help/*/html/CHANGELOG.html
@@ -65,8 +59,6 @@ checks.json
 *.orig
 *.tmp
 *.cppcheck
-/modules/qml_engine/nlsQml_engine_automoc.dir/
-/modules/text_editor/nlsText_editor_automoc.dir/
 /modules/*/builtin/c/x64
 /modules/*/builtin/c/Debug
 /modules/*/builtin/c/Release

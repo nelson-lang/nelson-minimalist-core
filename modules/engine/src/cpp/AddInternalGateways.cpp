@@ -36,6 +36,7 @@
 #include "overload_Gateway.hpp"
 #include "validators_Gateway.hpp"
 #include "files_folders_functions_Gateway.hpp"
+#include "function_handle_Gateway.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -69,6 +70,7 @@ addInternalGateways(Evaluator* eval)
     OverloadGateway(eval, L"");
     ValidatorsGateway(eval, L"");
     FilesFoldersFunctionsGateway(eval, L"");
+    FunctionHandleGateway(eval, L"");
 }
 //=============================================================================
 }

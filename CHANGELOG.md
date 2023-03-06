@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- function handle builtin added:
+  `func2str`, `function_handle_extraction`
+  `isfunction_handle`, `function_handle_fieldnames`
+  `function_handle_isequal`, `function_handle_isequaln`
+  `function_handle_isequalto`, `str2func`
+
 - validators builtin added:
   `mustBeNumericOrLogical`, `mustBeLogical`, `mustBeLogicalScalar`,
   `mustBeFinite`, `mustBeScalarOrEmpty`,

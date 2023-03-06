@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4AF4C1F4-4C63-4CFE-BA45-8BEC3FC2A7B8}</ProjectGuid>
+    <ProjectGuid>{B59306BA-6564-4625-98A4-B0D6492DE972}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>nlsFunction_handle_builtin</RootNamespace>
+    <RootNamespace>nlsFunction_handle</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -93,11 +93,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/builtin/include;$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/display_format/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -115,11 +114,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/builtin/include;$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/display_format/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -139,11 +137,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/builtin/include;$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/display_format/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -165,11 +162,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTION_HANDLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/builtin/include;$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/function_handle/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/display_format/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
@@ -184,47 +180,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\func2strBuiltin.cpp" />
-    <ClCompile Include="..\cpp\function_handle_extractionBuiltin.cpp" />
-    <ClCompile Include="..\cpp\function_handle_fieldnamesBuiltin.cpp" />
-    <ClCompile Include="..\cpp\function_handle_isequalBuiltin.cpp" />
-    <ClCompile Include="..\cpp\isfunction_handleBuiltin.cpp" />
-    <ClCompile Include="..\cpp\Gateway.cpp" />
-    <ClCompile Include="..\cpp\str2funcBuiltin.cpp" />
+    <ClCompile Include="..\cpp\FunctionHandleIsEqual.cpp" />
+    <ClCompile Include="..\cpp\StringToFunctionHandle.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
-      <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
-      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
+    <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
+      <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
       <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\overload\src\c\nlsOverload.vcxproj">
-      <Project>{937bee8b-e934-45f1-98ef-33aaf951e5e9}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
       <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\c\nlsFunction_handle.vcxproj">
-      <Project>{b59306ba-6564-4625-98a4-b0d6492de972}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\func2strBuiltin.hpp" />
-    <ClInclude Include="..\include\function_handle_extractionBuiltin.hpp" />
-    <ClInclude Include="..\include\function_handle_fieldnamesBuiltin.hpp" />
-    <ClInclude Include="..\include\function_handle_Gateway.hpp" />
-    <ClInclude Include="..\include\function_handle_isequalBuiltin.hpp" />
-    <ClInclude Include="..\include\isfunction_handleBuiltin.hpp" />
-    <ClInclude Include="..\include\nlsFunction_handle_builtin_exports.h" />
-    <ClInclude Include="..\include\str2funcBuiltin.hpp" />
+    <ClInclude Include="..\include\FunctionHandleIsEqual.hpp" />
+    <ClInclude Include="..\include\nlsFunction_handle_exports.h" />
+    <ClInclude Include="..\include\StringToFunctionHandle.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />
