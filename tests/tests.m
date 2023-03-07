@@ -17,6 +17,7 @@ for p = modules_subdirectories'
     tests_directories = fullpath([tests_directories; tests_dir]);
   end
 end
+
 for tests_directory = tests_directories'
   files = dir([tests_directory{1}, '/test_*.m']);
   if ~isempty(files)
@@ -33,4 +34,5 @@ for tests_directory = tests_directories'
     end
   end
 end
+fprintf('\nAll tests PASSED\n');
 exit(0);

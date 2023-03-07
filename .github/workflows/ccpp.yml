@@ -276,7 +276,7 @@ jobs:
 
       - name: Tests
         run: |
-          .\bin\win32\nelson-cli -f .\basic_tests\tests.m
+          .\bin\win32\nelson-cli -f .\tests\tests.m
 
   Windows_win64:
     name: Windows 64 bits
@@ -307,7 +307,7 @@ jobs:
 
       - name: Tests
         run: |
-          .\bin\x64\nelson-cli -f .\basic_tests\tests.m
+          .\bin\x64\nelson-cli -f .\tests\tests.m
 
   Windows_win64_cmake:
     name: Windows 64 bits (cmake)

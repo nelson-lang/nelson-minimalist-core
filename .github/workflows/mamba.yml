@@ -36,6 +36,19 @@ jobs:
           micromamba activate nelson  
           cmake --build . -- -j $(nproc)
 
+      - name: make install
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          make install
+
+      - name: Tests
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
+
   Micromamba_macos:
     name: Micromamba (macOS 12)
     runs-on: macos-12
@@ -71,3 +84,16 @@ jobs:
           eval "$(micromamba shell hook --shell=bash)"
           micromamba activate nelson  
           cmake --build . -- -j ${{ steps.cpu-cores.outputs.count }}
+
+      - name: make install
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          make install
+
+      - name: Tests
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m

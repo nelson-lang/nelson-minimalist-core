@@ -7,13 +7,20 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-assert_isequal(nargin('mustBeFile'), -1);
-assert_isequal(nargout('mustBeFile'), 0);
+assert_isequal(nargin('tic'), 0);
+assert_isequal(nargout('tic'), 0);
+assert_isequal(nargin('toc'), 0);
+assert_isequal(nargout('toc'), 1);
 %=============================================================================
-this_file = mfilename('fullpathext');
-mustBeFile(this_file);
-assert_checkerror('mustBeFile(Inf)', _('Value must be a character vector or string scalar.'), 'Nelson:validators:mustBeTextScalar');
-%=============================================================================
-msg = [sprintf(_('Invalid input argument at position %d.'), 3), char(10),  _('Value must be file.')];
-assert_checkerror('mustBeFile(''Inf'', 3)', msg, 'Nelson:validators:mustBeFile');
+tic();
+sleep(5);
+t = toc();
+assert_isapprox(t, 5, 1e-1);
+tic();
+sleep(5)
+t = toc();
+assert_isapprox(t, 5, 1e-1);
+sleep(5)
+t = toc();
+assert_isapprox(t, 10, 1e-1);
 %=============================================================================
