@@ -7,15 +7,12 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-% <-- Issue URL -->
-% https://github.com/Nelson-numerical-software/nelson/issues/17
-% <-- Short Description -->
-% 'locales' directory renamed as 'locale' (more standard).
-%=============================================================================
-if isdir([modulepath('nelson', 'bin'), '/../lib']) || ...
-    isdir([modulepath('nelson', 'bin'), '/../lib64'])
-    assert_istrue(isdir([modulepath('nelson', 'root'), '/../locale']));
-else
-    assert_istrue(isdir([modulepath('nelson', 'root'), '/locale']));
-end
+this_file = mfilename('fullpathext');
+this_path = fileparts(this_file, 'path');
+addpath(this_path);
+ME = fun_MException_1();
+assert_isequal(ME.message, 'Input must be char.');
+assert_isequal(ME.identifier, 'sayHello:inputError');
+assert_isequal(size(ME.stack), [0 1])
+assert_isequal(class(ME.stack), 'struct')
 %=============================================================================

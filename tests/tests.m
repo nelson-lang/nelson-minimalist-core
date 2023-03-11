@@ -28,8 +28,10 @@ for tests_directory = tests_directories'
     try
       run(tests_file);
       fprintf('%s PASSED\n', file.name);
-    catch
-      fprintf('%s FAILED\n', file.name);
+    catch ex
+      fprintf('%s FAILED\n', file.name);      
+      throw(ex)
+
       exit(1);
     end
   end
