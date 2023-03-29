@@ -37,6 +37,17 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include)
 target_link_libraries(${module_library_name} nlsInterpreter)
 # ==============================================================================
+file(GLOB CONSOLE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
+set_target_properties(
+  ${module_library_name}
+  PROPERTIES
+    VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${CONSOLE_HEADER}"
+)
+# ==============================================================================
 file(GLOB CONSOLE_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER CONSOLE_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")

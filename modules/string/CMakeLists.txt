@@ -53,7 +53,17 @@ target_link_libraries(
   nlsOperators
   nlsStream_manager
   nlsTypes)
-
+# ==============================================================================
+file(GLOB STRING_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
+set_target_properties(
+  ${module_library_name}
+  PROPERTIES
+    VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${STRING_HEADER}"
+)
 # ==============================================================================
 file(GLOB STRING_BUILTIN "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER STRING_BUILTIN EXCLUDE REGEX

@@ -51,6 +51,16 @@ target_link_libraries(
   nlsTime
   nlsTypes)
 # ==============================================================================
+file(GLOB FILES_FOLDER_FUNCTIONS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")
+set_target_properties(
+  ${module_library_name}
+  PROPERTIES
+    VERSION
+    ${Nelson_VERSION_MAJOR}.${Nelson_VERSION_MINOR}.${Nelson_VERSION_MAINTENANCE}
+    SOVERSION ${Nelson_VERSION_MAJOR}
+    PUBLIC_HEADER "${FILES_FOLDER_FUNCTIONS_HEADER}")
+# ==============================================================================
 file(GLOB FILES_FOLDERS_FUNCTIONS_BUILTIN
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/*.cpp")
 list(FILTER FILES_FOLDERS_FUNCTIONS_BUILTIN EXCLUDE REGEX
