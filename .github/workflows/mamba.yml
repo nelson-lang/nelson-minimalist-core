@@ -1,0 +1,99 @@
+name: Micromamba CI
+
+on: [push]
+
+jobs:
+  Micromamba_linux:
+    name: Micromamba (Ubuntu-22.04)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: install micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: environment-dev.yml
+          environment-name: nelson
+
+      - name: cmake configure
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          mkdir -p build
+          cd build
+          cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
+            -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+            -DCMAKE_INSTALL_LIBDIR=lib
+
+      - name: make
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          cmake --build . -- -j $(nproc)
+
+      - name: make install
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          make install
+
+      - name: Tests
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
+
+  Micromamba_macos:
+    name: Micromamba (macOS 12)
+    runs-on: macos-12
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+
+      - name: install micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: environment-dev.yml
+          environment-name: nelson
+
+      - name: cmake configure
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          mkdir -p build
+          cd build
+          cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
+            -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
+            -DCMAKE_INSTALL_LIBDIR=lib
+
+      - name: make
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          cmake --build . -- -j ${{ steps.cpu-cores.outputs.count }}
+
+      - name: make install
+        run: |
+          cd build
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          make install
+
+      - name: Tests
+        run: |
+          eval "$(micromamba shell hook --shell=bash)"
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m

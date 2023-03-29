@@ -15,11 +15,14 @@ file(GLOB TRIGONOMETRIC_FUNCTIONS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/*.cpp
 list(FILTER TRIGONOMETRIC_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp") 
 # ==============================================================================
 add_library(${module_library_name} ${TRIGONOMETRIC_FUNCTIONS_SRC})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSTRIGONOMETRIC_FUNCTIONS_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_name}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
 )
 target_include_directories(
   ${module_library_name}
@@ -28,7 +31,6 @@ target_include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../error_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../types/src/include
-  ${CMAKE_CURRENT_SOURCE_DIR}/../api_nelson/src/include
   ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
   ${EIGEN3_INCLUDE_DIR}
 )
@@ -48,11 +50,14 @@ list(FILTER TRIGONOMETRIC_FUNCTIONS_BUILTIN EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/builtin/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_builtin_name} ${TRIGONOMETRIC_FUNCTIONS_BUILTIN})
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSTRIGONOMETRIC_FUNCTIONS_BUILTIN_EXPORTS")
+endif()
 target_include_directories(
     ${module_library_builtin_name}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/builtin/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
 )
 target_include_directories(
     ${module_library_builtin_name}
@@ -104,6 +109,6 @@ install(
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+    ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
 )
 # ==============================================================================

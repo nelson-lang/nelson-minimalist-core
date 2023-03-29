@@ -8,6 +8,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#ifdef _MSC_VER
+#pragma warning(disable : 4996)
+#endif
+//=============================================================================
 #include <algorithm>
 #include "StringHelpers.hpp"
 #include <cstdio>
@@ -21,8 +25,6 @@
 #include "Transpose.hpp"
 #include "DotLeftDivide.hpp"
 #include "DotRightDivide.hpp"
-#include "RightDivide.hpp"
-#include "LeftDivide.hpp"
 #include "Negate.hpp"
 #include "DotPower.hpp"
 #include "NotEquals.hpp"
@@ -40,7 +42,6 @@
 #include "characters_encoding.hpp"
 #include "FileParser.hpp"
 #include "MainEvaluator.hpp"
-#include "CommandQueue.hpp"
 #include "VertCatOperator.hpp"
 #include "HorzCatOperator.hpp"
 #include "PathFuncManager.hpp"
@@ -75,6 +76,7 @@
 #include "AsciiToDouble.hpp"
 #include "MException.hpp"
 #include "FileSystemWrapper.hpp"
+#include "PredefinedErrorMessages.hpp"
 //=============================================================================
 #ifdef _MSC_VER
 #define strdup _strdup
@@ -1773,11 +1775,6 @@ Evaluator::statementType(AbstractSyntaxTreePtr t, bool printIt)
 {
     ArrayOfVector m;
     FunctionDef* fdef = nullptr;
-    if (!commandQueue.isEmpty()) {
-        std::wstring cmd;
-        commandQueue.get(cmd);
-        evaluateString(cmd);
-    }
     if (t == nullptr) {
         return;
     }
@@ -3843,8 +3840,8 @@ Evaluator::Evaluator(Context* aContext, Interface* aInterface, bool haveEventsLo
 {
     this->ID = ID;
     Exception e;
-    lastErrorException = e;
-    lastWarningException = e;
+    this->setLastErrorException(e);
+    this->setLastWarningException(e);
     bAllowOverload = true;
     context = aContext;
     resetState();
@@ -3966,40 +3963,82 @@ Evaluator::evaluateString(const std::string& line, bool propogateException)
 bool
 Evaluator::setLastErrorException(const Exception& e)
 {
-    lastErrorException = e;
+    Exception* ptrPreviousException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastErrorException(getID());
+    if (ptrPreviousException) {
+        delete ptrPreviousException;
+    }
+    try {
+        Exception* ptrException = new Exception(e);
+        NelsonConfiguration::getInstance()->setLastErrorException(getID(), ptrException);
+    } catch (const std::bad_alloc&) {
+        NelsonConfiguration::getInstance()->setLastErrorException(getID(), nullptr);
+        return false;
+    }
     return true;
 }
 //=============================================================================
 Exception
 Evaluator::getLastErrorException()
 {
-    return lastErrorException;
+    Exception* ptrException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastErrorException(getID());
+    Exception lastException;
+    if (ptrException) {
+        lastException = *ptrException;
+    }
+    return lastException;
 }
 //=============================================================================
 void
 Evaluator::resetLastErrorException()
 {
-    Exception e;
-    lastErrorException = e;
+    Exception* ptrException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastErrorException(getID());
+    if (ptrException) {
+        delete ptrException;
+    }
+    NelsonConfiguration::getInstance()->setLastErrorException(getID(), nullptr);
 }
 //=============================================================================
 Exception
 Evaluator::getLastWarningException()
 {
-    return lastWarningException;
+    Exception* ptrException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastWarningException(getID());
+    Exception lastException;
+    if (ptrException) {
+        lastException = *ptrException;
+    }
+    return lastException;
 }
 //=============================================================================
 void
 Evaluator::resetLastWarningException()
 {
-    Exception e;
-    lastWarningException = e;
+    Exception* ptrException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastWarningException(getID());
+    if (ptrException) {
+        delete ptrException;
+    }
+    NelsonConfiguration::getInstance()->setLastWarningException(getID(), nullptr);
 }
 //=============================================================================
 bool
 Evaluator::setLastWarningException(const Exception& e)
 {
-    lastWarningException = e;
+    Exception* ptrPreviousException
+        = (Exception*)NelsonConfiguration::getInstance()->getLastWarningException(getID());
+    if (ptrPreviousException) {
+        delete ptrPreviousException;
+    }
+    try {
+        Exception* ptrException = new Exception(e);
+        NelsonConfiguration::getInstance()->setLastWarningException(getID(), ptrException);
+    } catch (const std::bad_alloc&) {
+        NelsonConfiguration::getInstance()->setLastWarningException(getID(), nullptr);
+        return false;
+    }
     return true;
 }
 //=============================================================================
@@ -4157,21 +4196,18 @@ Evaluator::evalCLI()
             clearStacks();
         }
         std::wstring commandLine;
-        commandQueue.get(commandLine);
+        if (doOnce) {
+            doOnce = false;
+        }
+        commandLine = io->getLine(buildPrompt());
         if (commandLine.empty()) {
-            if (doOnce) {
-                doOnce = false;
-            }
-            commandLine = io->getLine(buildPrompt());
-            if (commandLine.empty()) {
-                InCLI = false;
-                this->setState(NLS_STATE_QUIT);
-                return;
-            }
-            wchar_t ch = *commandLine.rbegin();
-            if (ch != L'\n') {
-                commandLine.push_back(L'\n');
-            }
+            InCLI = false;
+            this->setState(NLS_STATE_QUIT);
+            return;
+        }
+        wchar_t ch = *commandLine.rbegin();
+        if (ch != L'\n') {
+            commandLine.push_back(L'\n');
         }
         // scan the line and tokenize it
         AbstractSyntaxTree::clearReferences();
@@ -4397,17 +4433,6 @@ Evaluator::getHandle(ArrayOf r, const std::string& fieldname, const ArrayOfVecto
     argIn.push_back(r);
     argIn.push_back(ArrayOf::characterArrayConstructor(fieldname));
     return funcDef->evaluateFunction(this, argIn, nLhs);
-}
-//=============================================================================
-void
-Evaluator::addCommandToQueue(const std::wstring& command, bool bIsPriority)
-{
-    wchar_t ch = *command.rbegin();
-    if (ch != L'\n') {
-        this->commandQueue.add(command + L"\n", bIsPriority);
-    } else {
-        this->commandQueue.add(command, bIsPriority);
-    }
 }
 //=============================================================================
 size_t

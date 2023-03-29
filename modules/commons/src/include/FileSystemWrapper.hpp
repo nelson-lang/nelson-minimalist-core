@@ -9,23 +9,15 @@
 //=============================================================================
 #pragma once
 //=============================================================================
+#ifdef _MSC_VER
 #pragma warning(disable : 4251)
-#undef _WITH_BOOST_FILESYSTEM_
-//=============================================================================
-#ifdef _WITH_BOOST_FILESYSTEM_
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/path.hpp>
-#else
-#include <filesystem>
 #endif
+//=============================================================================
+#include <filesystem>
 #include <ctime>
 #include "nlsCommons_exports.h"
 //=============================================================================
-#ifdef _WITH_BOOST_FILESYSTEM_
-namespace nfs = boost::filesystem;
-#else
 namespace nfs = std::filesystem;
-#endif
 //=============================================================================
 namespace Nelson::FileSystemWrapper {
 //=============================================================================
@@ -108,44 +100,44 @@ public:
     operator/(const std::wstring& p2);
     //=============================================================================
 #ifdef _MSC_VER
-    std::wstring
+    [[nodiscard]] std::wstring
     native() const;
 #else
     std::string
     native() const;
 #endif
     //=============================================================================
-    bool
+    [[nodiscard]] bool
     has_filename() const;
     //=============================================================================
-    bool
+    [[nodiscard]] bool
     has_extension() const;
     //=============================================================================
-    Path
+    [[nodiscard]] Path
     extension() const;
     //=============================================================================
-    std::wstring
+    [[nodiscard]] std::wstring
     wstring() const;
     //=============================================================================
-    std::string
+    [[nodiscard]] std::string
     string() const;
     //=============================================================================
-    std::wstring
+    [[nodiscard]] std::wstring
     generic_wstring() const;
     //=============================================================================
-    std::string
+    [[nodiscard]] std::string
     generic_string() const;
     //=============================================================================
-    Path
+    [[nodiscard]] Path
     generic_path() const;
     //=============================================================================
-    Path
+    [[nodiscard]] Path
     filename() const;
     //=============================================================================
-    Path
+    [[nodiscard]] Path
     parent_path() const;
     //=============================================================================
-    Path
+    [[nodiscard]] Path
     stem() const;
     //=============================================================================
     Path
@@ -157,7 +149,7 @@ public:
     bool
     exists(std::string& errorMessage) const;
     //=============================================================================
-    bool
+    [[nodiscard]] bool
     exists() const;
     //=============================================================================
     static bool
@@ -175,10 +167,10 @@ public:
     static bool
     is_directory(const Path& path);
     //=============================================================================
-    bool
+    [[nodiscard]] bool
     is_directory() const;
     //=============================================================================
-    bool
+    [[nodiscard]] bool
     is_regular_file() const;
     //=============================================================================
     static bool

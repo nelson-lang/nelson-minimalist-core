@@ -3,7 +3,10 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+#
 # LICENCE_BLOCK_END
 # ==============================================================================
 set(module_name nelson_manager)
@@ -24,7 +27,7 @@ target_include_directories(
     ${module_library_name}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
-    $<INSTALL_INTERFACE:include/nelson/${module_name}>
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
 )
 target_include_directories(
     ${module_library_name}
@@ -52,6 +55,6 @@ install(
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     PUBLIC_HEADER DESTINATION
-    ${CMAKE_INSTALL_INCLUDEDIR}/nelson/${module_name}
+    ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
 )
 # ==============================================================================

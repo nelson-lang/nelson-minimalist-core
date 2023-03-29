@@ -1,0 +1,10 @@
+name: nelson
+channels:
+  - conda-forge
+dependencies:
+  # Build dependencies
+  - cmake
+  - cxx-compiler
+  # Host dependencies
+  - eigen
+  - pkg-config

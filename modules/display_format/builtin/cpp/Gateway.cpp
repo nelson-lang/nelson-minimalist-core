@@ -7,6 +7,10 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#ifdef _MSC_VER
+#pragma warning(disable : 4190)
+#endif
+//=============================================================================
 #include "NelsonGateway.hpp"
 #include "dispBuiltin.hpp"
 #include "displayBuiltin.hpp"
@@ -100,28 +104,8 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-static bool
-initializeModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-static bool
-finishModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
-//=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
 int
-DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename)
+DisplayFormatGateway(void* eval, const wchar_t* moduleFilename)
 {
     return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
         sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);

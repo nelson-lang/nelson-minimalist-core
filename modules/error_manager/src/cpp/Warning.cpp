@@ -11,61 +11,39 @@
 #include "Warning.hpp"
 #include "Error.hpp"
 #include "characters_encoding.hpp"
-#include "DynamicLibrary.hpp"
+#include "NelsonConfiguration.hpp"
+#include "Evaluator.hpp"
+#include "DebugStack.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-static Nelson::library_handle nlsInterpreterHandleDynamicLibrary = nullptr;
-static bool bFirstDynamicLibraryCall = true;
-//=============================================================================
 static void
-initInterpreterDynamicLibrary()
+warningEmitter(const std::wstring& message, const std::wstring& id)
 {
-    if (bFirstDynamicLibraryCall) {
-        std::string fullpathInterpreterSharedLibrary
-            = "libnlsInterpreter" + Nelson::get_dynamic_library_extension();
-#ifdef _MSC_VER
-        char* buf;
+    size_t mainEvaluatorID = 0;
+    if (!message.empty()) {
+        Evaluator* eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
+        if (!eval) {
+            return;
+        }
+        Interface* io = (Interface*)NelsonConfiguration::getInstance()->getMainIOInterface();
+        if (!io) {
+            return;
+        }
+        stackTrace trace;
+        DebugStack(eval->callstack, 1, trace);
         try {
-            buf = new char[MAX_PATH];
-        } catch (const std::bad_alloc&) {
-            buf = nullptr;
-        }
-        if (buf != nullptr) {
-            DWORD dwRet = ::GetEnvironmentVariableA("NELSON_BINARY_PATH", buf, MAX_PATH);
-            if (dwRet != 0u) {
-                fullpathInterpreterSharedLibrary
-                    = std::string(buf) + std::string("/") + fullpathInterpreterSharedLibrary;
+            Exception* exception = new Exception(message, trace, id);
+            Exception* previousException
+                = (Exception*)NelsonConfiguration::getInstance()->getLastWarningException(
+                    mainEvaluatorID);
+            if (previousException) {
+                delete previousException;
             }
-            delete[] buf;
+            NelsonConfiguration::getInstance()->setLastWarningException(mainEvaluatorID, exception);
+            io->warningMessage(exception->getMessage());
+        } catch (const std::bad_alloc&) {
         }
-#else
-        char const* tmp = getenv("NELSON_BINARY_PATH");
-        if (tmp != nullptr) {
-            fullpathInterpreterSharedLibrary
-                = std::string(tmp) + std::string("/") + fullpathInterpreterSharedLibrary;
-        }
-#endif
-        nlsInterpreterHandleDynamicLibrary
-            = Nelson::load_dynamic_library(fullpathInterpreterSharedLibrary);
-        if (nlsInterpreterHandleDynamicLibrary != nullptr) {
-            bFirstDynamicLibraryCall = false;
-        }
-    }
-}
-//=============================================================================
-static void
-NelsonWarningEmitterDynamicFunction(const std::wstring& msg, const std::wstring& id, bool asError)
-{
-    using PROC_NelsonWarningEmitter = void (*)(const wchar_t*, const wchar_t*, bool);
-    static PROC_NelsonWarningEmitter NelsonWarningEmitterPtr = nullptr;
-    initInterpreterDynamicLibrary();
-    if (NelsonWarningEmitterPtr == nullptr) {
-        NelsonWarningEmitterPtr = reinterpret_cast<PROC_NelsonWarningEmitter>(
-            Nelson::get_function(nlsInterpreterHandleDynamicLibrary, "NelsonWarningEmitter"));
-    }
-    if (NelsonWarningEmitterPtr != nullptr) {
-        NelsonWarningEmitterPtr(msg.c_str(), id.c_str(), asError);
     }
 }
 //=============================================================================
@@ -76,14 +54,14 @@ Warning(const std::wstring& id, const std::wstring& message)
         WARNING_STATE state = warningCheckState(id);
         switch (state) {
         case WARNING_STATE::AS_ERROR: {
-            NelsonWarningEmitterDynamicFunction(message, id, true);
+            Error(message, id);
         } break;
         case WARNING_STATE::DISABLED:
             break;
         case WARNING_STATE::ENABLED:
         case WARNING_STATE::NOT_FOUND:
         default: {
-            NelsonWarningEmitterDynamicFunction(message, id, false);
+            warningEmitter(message, id);
         } break;
         }
     }

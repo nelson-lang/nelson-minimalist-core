@@ -12,5 +12,5 @@
 #include "nlsFunctions_manager_builtin_exports.h"
 //=============================================================================
 NLSFUNCTIONS_MANAGER_BUILTIN_IMPEXP int
-FunctionsManagerAddGateway(void* eval, const wchar_t* moduleFilename);
+FunctionsManagerGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

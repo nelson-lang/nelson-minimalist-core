@@ -10,14 +10,12 @@
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include <fmt/xchar.h>
-#ifndef _WITH_BOOST_FILESYSTEM_
 #include <atomic>
 #include <filesystem>
 #include <cstdio>
 #include <string>
 #include <cstring>
 #include <cctype>
-#endif
 #ifdef _MSC_VER
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -600,11 +598,7 @@ Path::copy_file(Path const& p1, Path const& p2, std::string& errorMessage)
     nfs::path _p1(p1.nativePath);
     nfs::path _p2(p2.nativePath);
     try {
-#ifdef _WITH_BOOST_FILESYSTEM_
-        bRes = nfs::copy_file(_p1, _p2, nfs::copy_option::overwrite_if_exists);
-#else
         bRes = nfs::copy_file(_p1, _p2, nfs::copy_options::overwrite_existing);
-#endif
     } catch (const nfs::filesystem_error& e) {
         std::error_code error_code = e.code();
         errorMessage = error_code.message();
@@ -647,11 +641,7 @@ Path::copy(Path const& from, Path const& to)
 bool
 Path::create_directories(const Path& p, std::string& errorMessage)
 {
-#ifdef _WITH_BOOST_FILESYSTEM_
-    boost::system::error_code error_code;
-#else
     std::error_code error_code;
-#endif
     Path pp = removeLastSeparator(p);
     bool res = nfs::create_directories(nfs::path(pp.nativePath), error_code);
     errorMessage = error_code.message();
@@ -661,11 +651,7 @@ Path::create_directories(const Path& p, std::string& errorMessage)
 bool
 Path::create_directories(const Path& p, bool& permissionDenied)
 {
-#ifdef _WITH_BOOST_FILESYSTEM_
-    boost::system::error_code error_code;
-#else
     std::error_code error_code;
-#endif
     permissionDenied = false;
     Path pp = removeLastSeparator(p);
     bool res = nfs::create_directories(nfs::path(pp.nativePath), error_code);
@@ -749,7 +735,6 @@ Path::file_size(const Path& p)
     return file_size(p, errorMessage);
 }
 //=============================================================================
-#ifndef _WITH_BOOST_FILESYSTEM_
 template <typename TP>
 static std::time_t
 to_time_t(TP tp)
@@ -759,26 +744,10 @@ to_time_t(TP tp)
         = time_point_cast<system_clock::duration>(tp - TP::clock::now() + system_clock::now());
     return system_clock::to_time_t(sctp);
 }
-#endif
 //=============================================================================
 std::time_t
 Path::last_write_time(const Path& p, std::string& errorMessage)
 {
-#ifdef _WITH_BOOST_FILESYSTEM_
-    time_t file_time;
-    errorMessage.clear();
-    if (p.native().empty()) {
-        file_time = 0;
-        return file_time;
-    }
-    try {
-        file_time = nfs::last_write_time(nfs::path(p.nativePath));
-    } catch (const nfs::filesystem_error& e) {
-        std::error_code error_code = e.code();
-        errorMessage = error_code.message();
-    }
-    return file_time;
-#else
     nfs::file_time_type file_time;
     errorMessage.clear();
     if (p.native().empty()) {
@@ -789,9 +758,9 @@ Path::last_write_time(const Path& p, std::string& errorMessage)
     } catch (const nfs::filesystem_error& e) {
         std::error_code error_code = e.code();
         errorMessage = error_code.message();
+        return (time_t)0;
     }
     return (time_t)to_time_t(file_time);
-#endif
 }
 //=============================================================================
 std::time_t
@@ -868,11 +837,7 @@ Path
 Path::unique_path()
 {
     nfs::path pwd = nfs::temp_directory_path();
-#ifdef _WITH_BOOST_FILESYSTEM_
-    pwd /= nfs::unique_path();
-#else
     pwd /= getUniqueID();
-#endif
     if (nfs::exists(pwd)) {
         return unique_path();
     }
@@ -1007,14 +972,9 @@ bool
 Path::updateFilePermissionsToWrite(const Path& filePath)
 {
     try {
-#ifdef _WITH_BOOST_FILESYSTEM_
-        nfs::permissions(filePath.native(),
-            nfs::add_perms | nfs::owner_write | nfs::group_write | nfs::others_write);
-#else
         nfs::permissions(filePath.native(),
             nfs::perms::owner_write | nfs::perms::group_write | nfs::perms::others_write,
             nfs::perm_options::add);
-#endif
         if (is_directory(filePath)) {
             for (nfs::recursive_directory_iterator p(filePath.native()), end; p != end; ++p) {
                 updateFilePermissionsToWrite(FileSystemWrapper::Path(p->path().native()));

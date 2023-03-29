@@ -3,7 +3,10 @@
 # ==============================================================================
 # This file is part of the Nelson.
 # =============================================================================
-# LICENCE_BLOCK_BEGIN SPDX-License-Identifier: LGPL-3.0-or-later
+# LICENCE_BLOCK_BEGIN
+#
+# SPDX-License-Identifier: LGPL-3.0-or-later
+#
 # LICENCE_BLOCK_END
 # ==============================================================================
 include_directories(${EIGEN_INCLUDE_DIR})
@@ -14,12 +17,12 @@ list(
   characters_encoding
   commons
   nelson_manager
+  debugger
   i18n
   localization
   elementary_mathematics
   error_manager
   types
-  api_nelson
   stream_manager
   display_format
   operators
@@ -31,9 +34,25 @@ list(
   core
   memory_manager
   overload
+  function_handle  
   text_completion
   trigonometric_functions
   terminal
+  elementary_functions
+  linear_algebra
+  constructors_functions
+  time
+  string
+  statistics
+  data_analysis
+  single
+  logical
+  data_structures
+  assert_functions
+  double
+  integer
+  console
+  validators
   engine)
 # ==============================================================================
 list(APPEND moduleslist main)

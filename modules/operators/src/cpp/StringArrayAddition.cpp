@@ -11,8 +11,8 @@
 #include "StringArrayAddition.hpp"
 #include "MatrixCheck.hpp"
 #include "Exception.hpp"
-#include "Error.hpp"
 #include "i18n.hpp"
+#include "Error.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================

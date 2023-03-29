@@ -12,5 +12,5 @@
 #include "nlsDisplay_format_builtin_exports.h"
 //=============================================================================
 NLSDISPLAY_FORMAT_BUILTIN_IMPEXP int
-DisplayFormatAddGateway(void* eval, const wchar_t* moduleFilename);
+DisplayFormatGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

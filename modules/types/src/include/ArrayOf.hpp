@@ -1135,6 +1135,21 @@ public:
     isCell() const;
 
     [[nodiscard]] bool
+    isCellArrayOfCharacterVectors() const;
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterRowVectors(const stringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterRowVectors(const wstringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterColumnVectors(const stringVector& elements);
+
+    [[nodiscard]] static ArrayOf
+    toCellArrayOfCharacterColumnVectors(const wstringVector& elements);
+
+    [[nodiscard]] bool
     isStruct() const;
     void
     setStructType(const std::string& structname);

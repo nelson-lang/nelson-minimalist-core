@@ -33,6 +33,7 @@
       ".git",
       "node_modules",
       "modules/commons/src/fmt/include/fmt",
+      "modules/files_folders_functions/src/include/dtl",
       "modules/interpreter/src/grammar/NelSonParser.cpp"
     ]
   }

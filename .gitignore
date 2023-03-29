@@ -8,6 +8,9 @@
 # LICENCE_BLOCK_END
 #==============================================================================
 # This .gitignore for Nelson
+
+*.tar.gz
+build/
 NelsonConfigVersion.cmake
 modules/main/nelson-cli-exec
 /modules/*/*.so.*
@@ -18,14 +21,8 @@ tests_*.json
 compile_commands.json
 checks.json
 /$tf
-/bin/*/mkl
-/bin/*/openblas
-/bin/*/qml
-/bin/*/plugins
 /bin/*/LICENSE_1_0.txt
 /bin/*/license_sdk.rtf
-/bin/*/mkl_license.txt
-/bin/*/libnlsblaslapack.dll.manifest
 /bin/*/nelson-cli.exe
 /bin/*/nelson_f2c
 /modules/main/help/*/html/CHANGELOG.html
@@ -34,6 +31,7 @@ checks.json
 /modules/main/help/*/html/CHANGELOG-0.3.x.html
 /modules/main/help/*/html/CHANGELOG-0.4.x.html
 /modules/main/help/*/html/CHANGELOG-0.5.x.html
+/modules/main/help/*/html/CHANGELOG-0.6.x.html
 /modules/main/help/*/html/license.html
 /modules/main/help/*/html/gpl-3.0.html
 /modules/main/help/*/html/lgpl-3.0.html
@@ -61,8 +59,6 @@ checks.json
 *.orig
 *.tmp
 *.cppcheck
-/modules/qml_engine/nlsQml_engine_automoc.dir/
-/modules/text_editor/nlsText_editor_automoc.dir/
 /modules/*/builtin/c/x64
 /modules/*/builtin/c/Debug
 /modules/*/builtin/c/Release
@@ -115,19 +111,25 @@ My Advisor XE Results - *
 *.dflginspxe
 *.infoinspxe
 ################################################################################
-CMakeFiles/
-_CPack_Packages/
-Makefile
-*.*~
+nelsonConfigVersion.cmake
 CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 cmake_install.cmake
 install_manifest.txt
+CMakeFiles/
+_CPack_Packages/
+Makefile
+*.*~
+*.a
 *.so
 *.dylib
-Nelson-*-Darwin.tar.Z
-Nelson-*-Linux.tar.Z
+Nelson-*-*.tar.Z
+Nelson-*-*.tar.gz
+nelson_*_*.deb
+nelson_*_*.rpm
+nelson_*_*.dmg
+nelson_*_*.zip
 bin/linux/*.so.*
 bin/linux/*-exec
 bin/linux/*.so.*
@@ -225,4 +227,7 @@ node_modules/
 modules/mex/examples/rust-mex-builder/helloworld/Cargo.lock
 modules/mex/examples/rust-mex-builder/helloworld/build.rs
 modules/mex/examples/rust-mex-builder/helloworld/target/
+################################################################################
+build/
+install/
 ################################################################################

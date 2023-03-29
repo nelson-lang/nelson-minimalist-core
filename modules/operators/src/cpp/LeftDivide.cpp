@@ -10,7 +10,6 @@
 #include "LeftDivide.hpp"
 #include "MatrixCheck.hpp"
 #include "DotLeftDivide.hpp"
-#include "LinearEquationSolver.hpp"
 #include "Warning.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
