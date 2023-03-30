@@ -26,7 +26,7 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/.git")
 endif()
 # ==============================================================================
 set(Nelson_VERSION_MAJOR_DEFAULT 0)
-set(Nelson_VERSION_MINOR_DEFAULT 2)
+set(Nelson_VERSION_MINOR_DEFAULT 3)
 set(Nelson_VERSION_MAINTENANCE_DEFAULT 0)
 set(Nelson_VERSION_BUILD_DEFAULT 0)
 # ==============================================================================

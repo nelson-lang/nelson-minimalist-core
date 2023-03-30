@@ -1,6 +1,6 @@
 {
   "name": "nelson-minimalist-core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Nelson, an array programming language (minimalist-core)",
   "copyright": "Copyright 2018-present Allan CORNET",
   "scripts": {
