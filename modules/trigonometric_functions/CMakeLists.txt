@@ -17,6 +17,7 @@ list(FILTER TRIGONOMETRIC_FUNCTIONS_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DI
 add_library(${module_library_name} ${TRIGONOMETRIC_FUNCTIONS_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSTRIGONOMETRIC_FUNCTIONS_EXPORTS")
+    target_compile_options(${module_library_name} PRIVATE /bigobj)
 endif()
 target_include_directories(
     ${module_library_name}

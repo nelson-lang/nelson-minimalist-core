@@ -20,6 +20,7 @@ list(FILTER OPERATORS_SRC EXCLUDE REGEX
 add_library(${module_library_name} ${OPERATORS_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSOPERATORS_EXPORTS")
+    target_compile_options(${module_library_name} PRIVATE /bigobj)
 endif()
 # ==============================================================================
 target_include_directories(

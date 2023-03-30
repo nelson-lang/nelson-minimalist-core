@@ -17,6 +17,7 @@ list(FILTER LINEAR_ALGEBRA_SRC EXCLUDE REGEX "${CMAKE_CURRENT_SOURCE_DIR}/src/cp
 add_library(${module_library_name} ${LINEAR_ALGEBRA_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSLINEAR_ALGEBRA_EXPORTS")
+    target_compile_options(${module_library_name} PRIVATE /bigobj)
 endif()
 target_include_directories(
     ${module_library_name}
