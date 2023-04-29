@@ -31,7 +31,7 @@ target_include_directories(
     ${module_library_name}
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
-)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include)
 # ==============================================================================
 file(GLOB ELEMENTARY_MATHEMATICS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")

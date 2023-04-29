@@ -109,6 +109,9 @@ ArrayOf::getVectorSubset(ArrayOf& index)
         }
         index.toOrdinalType();
         Dimensions retdims(index.dp->dimensions);
+        if (isColumnVector() && index.isRowVector()) {
+            retdims = Dimensions(index.getElementCount(), 1);
+        }
         retdims.simplify();
         if (isSparse()) {
             ArrayOf res;
@@ -130,13 +133,8 @@ ArrayOf::getVectorSubset(ArrayOf& index)
             }
             return decomplexify(res);
         }
-        //
-        // The output is the same size as the _index_, not the
-        // source variable (neat, huh?).  But it inherits the
-        // type of the source variable.
         indexType length = index.getElementCount();
         qp = allocateArrayOf(dp->dataClass, index.getElementCount(), dp->fieldNames, true);
-        // Get a pointer to the index data set
         const auto* index_p = static_cast<const indexType*>(index.dp->getData());
         indexType bound = getElementCount();
         for (indexType i = 0; i < length; i++) {
@@ -169,9 +167,6 @@ ArrayOf::getNDimSubset(ArrayOfVector& index)
     constIndexPtr* indx = nullptr;
     void* qp = nullptr;
     indexType i;
-    if (isEmpty()) {
-        Error(_W("Cannot index into empty variable."));
-    }
     try {
         indexType L = index.size();
         // Convert the indexing variables into an ordinal type.
@@ -212,6 +207,10 @@ ArrayOf::getNDimSubset(ArrayOfVector& index)
             indx[i] = static_cast<constIndexPtr>(index[i].dp->getData());
         }
         if (outDims.getElementCount() == 0) {
+            Dimensions thisDims = getDimensions();
+            if (dimsDest.getMax() > thisDims.getMax()) {
+                Error(_W("Index exceeds dimensions."));
+            }
             return ArrayOf::emptyConstructor(outDims, false);
         }
         if (isSparse()) {

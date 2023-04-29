@@ -45,6 +45,9 @@
 #include "uplusBuiltin.hpp"
 #include "vertcatBuiltin.hpp"
 #include "ismemberBuiltin.hpp"
+#include "bitandBuiltin.hpp"
+#include "bitorBuiltin.hpp"
+#include "bitxorBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -105,6 +108,9 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "ismember", (ptrBuiltin)Nelson::OperatorsGateway::ismemberBuiltin, 1, 2,
         CPP_BUILTIN_WITH_EVALUATOR },
+    { "bitand", (ptrBuiltin)Nelson::OperatorsGateway::bitandBuiltin, 1, 2, CPP_BUILTIN },
+    { "bitor", (ptrBuiltin)Nelson::OperatorsGateway::bitorBuiltin, 1, 2, CPP_BUILTIN },
+    { "bitxor", (ptrBuiltin)Nelson::OperatorsGateway::bitxorBuiltin, 1, 2, CPP_BUILTIN },
 };
 //=============================================================================
 int

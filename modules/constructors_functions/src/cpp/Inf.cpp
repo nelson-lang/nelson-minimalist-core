@@ -7,9 +7,8 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#include <algorithm>
 #include "Inf.hpp"
-#include "lapack_eigen_config.hpp"
-#include <Eigen/Dense>
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -20,16 +19,25 @@ Inf()
 }
 //=============================================================================
 ArrayOf
-Inf(uint32 m, uint32 n)
+Inf(indexType m, indexType n)
 {
-    double* mat = static_cast<double*>(ArrayOf::allocateArrayOf(NLS_DOUBLE,
-        static_cast<indexType>(m) * static_cast<indexType>(n), Nelson::stringVector(), false));
-    Eigen::Map<Eigen::MatrixXd> matInf(mat, m, n);
-    matInf.setConstant(std::numeric_limits<double>::infinity());
-    Dimensions dimMat(m, n);
-    ArrayOf res = ArrayOf(NLS_DOUBLE, dimMat, mat);
-    return res;
+    Dimensions dims(m, n);
+    return Inf(dims);
 }
-
+//=============================================================================
+ArrayOf
+Inf(Dimensions& dims)
+{
+    dims.simplify();
+    indexType nbElements = dims.getElementCount();
+    double* mat = nullptr;
+    if (nbElements != 0) {
+        mat = static_cast<double*>(
+            ArrayOf::allocateArrayOf(NLS_DOUBLE, nbElements, stringVector(), false));
+        std::fill_n(mat, nbElements, std::numeric_limits<double>::infinity());
+    }
+    return ArrayOf(NLS_DOUBLE, dims, mat, false);
+}
+//=============================================================================
 } // namespace Nelson
 //=============================================================================

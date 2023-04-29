@@ -7,14 +7,27 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#pragma once
+#include "bitandBuiltin.hpp"
+#include "Error.hpp"
+#include "BitwiseOperators.hpp"
+#include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
-#include "ArrayOf.hpp"
+using namespace Nelson;
 //=============================================================================
-namespace Nelson {
-namespace CoreGateway {
-    ArrayOfVector
-    versionBuiltin(int nLhs, const ArrayOfVector& argIn);
+ArrayOfVector
+Nelson::OperatorsGateway::bitandBuiltin(int nLhs, const ArrayOfVector& argIn)
+{
+    ArrayOfVector retval;
+    nargincheck(argIn, 1, 3);
+    nargoutcheck(nLhs, 0, 1);
+    std::wstring assumedType = L"";
+    bool withAssumedType = false;
+    if (argIn.size() > 2) {
+        assumedType = argIn[2].getContentAsWideString();
+        withAssumedType = true;
+    }
+    retval << BitwiseOperator(
+        BITWISE_OPERATOR::BIT_AND, argIn[0], argIn[1], assumedType, withAssumedType);
+    return retval;
 }
-} // namespace Nelson
 //=============================================================================
