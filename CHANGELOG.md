@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## UNRELEASED
 
+### Added
+
+nelson 0.7.4 merged in nelson-minimalist-core
+
 ### Fixed
 
 - Apply conda-forge/nelson-core-feedstock patches.

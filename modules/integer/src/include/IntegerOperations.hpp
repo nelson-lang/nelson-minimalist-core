@@ -15,6 +15,7 @@
 //=============================================================================
 #include <type_traits>
 #include <limits>
+#include <bitset>
 #include "Types.hpp"
 //=============================================================================
 namespace Nelson {
@@ -76,6 +77,27 @@ numeric_cast(TIN value)
         }
     }
     return static_cast<TOUT>(value);
+}
+//=============================================================================
+template <class T>
+T
+scalar_scalar_integer_bitand(T a, T b)
+{
+    return (T)(a & b);
+}
+//=============================================================================
+template <class T>
+T
+scalar_scalar_integer_bitor(T a, T b)
+{
+    return (T)(a | b);
+}
+//=============================================================================
+template <class T>
+T
+scalar_scalar_integer_bitxor(T a, T b)
+{
+    return T(a ^ b);
 }
 //=============================================================================
 template <class T>
