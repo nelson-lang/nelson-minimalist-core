@@ -25,7 +25,7 @@ assert_isequal(R, REF);
 R = repmat('Nelson', 3, 2);
 REF = ['NelsonNelson';
 'NelsonNelson';
-'NelsonNelson']
+'NelsonNelson'];
 assert_isequal(R, REF);
 %=============================================================================
 R = repmat(eps, 3, 2);

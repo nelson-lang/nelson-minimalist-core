@@ -10,8 +10,6 @@
 #include "nlsBuildConfig.h"
 #include "i18n.hpp"
 #include "Error.hpp"
-#include "CtransposeSparseDouble.hpp"
-#include "CtransposeSparseLogical.hpp"
 #include "ComplexTranspose.hpp"
 //=============================================================================
 namespace Nelson {
@@ -82,7 +80,8 @@ ComplexTranspose(const ArrayOf& A, bool& needToOverload)
     switch (classA) {
     case NLS_LOGICAL: {
         if (A.isSparse()) {
-            return CtransposeSparseLogical(A);
+            needToOverload = true;
+            return {};
         }
         logical* ptrRes = static_cast<logical*>(const_cast<void*>(
             static_cast<const void*>(ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount()))));
@@ -155,7 +154,8 @@ ComplexTranspose(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DOUBLE: {
         if (A.isSparse()) {
-            return CtransposeSparseDouble(A);
+            needToOverload = true;
+            return {};
         }
         double* ptrRes = static_cast<double*>(const_cast<void*>(
             static_cast<const void*>(ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount()))));
@@ -172,7 +172,8 @@ ComplexTranspose(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DCOMPLEX: {
         if (A.isSparse()) {
-            return CtransposeSparseDouble(A);
+            needToOverload = true;
+            return {};
         }
         double* ptrRes = static_cast<double*>(const_cast<void*>(static_cast<const void*>(
             ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount() * 2))));

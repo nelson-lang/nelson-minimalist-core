@@ -27,6 +27,7 @@
 #include "tanmBuiltin.hpp"
 #include "atan2Builtin.hpp"
 #include "atanhBuiltin.hpp"
+#include "trigonometric_functions_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -49,11 +50,10 @@ static const nlsGateway gateway[] = {
     { "atanh", (ptrBuiltin)Nelson::TrigonometricGateway::atanhBuiltin, 1, 1 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+TrigonometricFunctionsAddGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

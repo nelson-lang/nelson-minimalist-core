@@ -10,6 +10,7 @@
 #include "FilesManager.hpp"
 #include "Interface.hpp"
 #include "NelsonGateway.hpp"
+#include "stream_manager_Gateway.hpp"
 #include "NelsonConfiguration.hpp"
 #include "diaryBuiltin.hpp"
 #include "dlmwriteBuiltin.hpp"
@@ -97,11 +98,12 @@ finishModule(Nelson::Evaluator* eval)
     return false;
 }
 //=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishModule)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+StreamManagerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    Nelson::Evaluator* _eval = (Nelson::Evaluator*)eval;
+    initializeModule(_eval);
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -111,9 +111,6 @@
     <ClCompile Include="..\cpp\bin2numBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\swapbytesBuiltin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\base2decBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,12 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
-    <None Include="..\..\module.iss" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc">
@@ -280,9 +271,6 @@
     <ClInclude Include="..\include\bin2numBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\swapbytesBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\base2decBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -332,6 +320,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\__rot90_matrix_2D__Builtin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\elementary_functions_Gateway.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

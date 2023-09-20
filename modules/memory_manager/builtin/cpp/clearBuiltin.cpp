@@ -19,9 +19,7 @@
 #include "i18n.hpp"
 #include "IsValidVariableName.hpp"
 #include "characters_encoding.hpp"
-#include "GatewaysManager.hpp"
 #include "NelsonGateway.hpp"
-#include "mex.h"
 #include "MexFunctionDef.hpp"
 #include "PathFunctionIndexerManager.hpp"
 #include "FunctionsInMemory.hpp"
@@ -60,7 +58,7 @@ Nelson::MemoryGateway::clearBuiltin(Evaluator* eval, int nLhs, const ArrayOfVect
                 ClearAllGlobalVariables(eval);
                 ClearMacroCache(eval);
                 if (FunctionsInMemory::getInstance()->deleteAllMexFunctions()) {
-                    mexFreeAllRegisteredPointer();
+                    // mexFreeAllRegisteredPointer();
                 }
             } else if (arg1 == L"variables") {
                 ClearAllVariables(eval);
@@ -69,7 +67,7 @@ Nelson::MemoryGateway::clearBuiltin(Evaluator* eval, int nLhs, const ArrayOfVect
                 ClearAllPersistentVariables(eval);
             } else if (arg1 == L"mex") {
                 if (FunctionsInMemory::getInstance()->deleteAllMexFunctions()) {
-                    mexFreeAllRegisteredPointer();
+                    // mexFreeAllRegisteredPointer();
                 }
             } else {
                 std::string name = wstring_to_utf8(arg1);

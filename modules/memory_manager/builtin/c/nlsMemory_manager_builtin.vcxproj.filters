@@ -48,9 +48,6 @@
     <ClCompile Include="..\cpp\varunlockBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\memoryBuiltin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\isvarBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -98,21 +95,15 @@
     <ClInclude Include="..\include\varunlockBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\memoryBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\isvarBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\whosBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
-    <None Include="..\..\module.iss" />
+    <ClInclude Include="..\include\memory_manager_Gateway.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc">

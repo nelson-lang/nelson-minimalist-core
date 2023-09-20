@@ -23,6 +23,7 @@
 #include "throwBuiltin.hpp"
 #include "throwAsCallerBuiltin.hpp"
 #include "rethrowBuiltin.hpp"
+#include "error_manager_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -52,11 +53,10 @@ static const nlsGateway gateway[] = {
     { "rethrow", (ptrBuiltin)Nelson::ErrorManagerGateway::rethrowBuiltin, 0, 1, CPP_BUILTIN },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+ErrorManagerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -16,6 +16,7 @@
 #include "MException.hpp"
 #include "PredefinedErrorMessages.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
+#include "error_manager_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================

@@ -20,13 +20,6 @@ R = deblank(TXT);
 REF = ' AbCd   EfGg hijkl ...';
 assert_isequal(R, REF);
 %=============================================================================
-C = {'     A string with whitespace';
-' Remove trailing whitespace ...       '};
-R = deblank(C);
-REF = {'     A string with whitespace';
-' Remove trailing whitespace ...'};
-assert_isequal(R, REF);
-%=============================================================================
 TXT = '     Test significant whitespace';
 TXT = [TXT char(160) char(160) char(8199) char(8239) '   '];
 R = deblank(TXT);

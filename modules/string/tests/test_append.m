@@ -26,16 +26,8 @@ R = append('username   ', ["data1", "data2    "], 'fff');
 REF = ["username   data1fff",    "username   data2    fff"];
 assert_isequal(R, REF);
 %=============================================================================
-R = append('username   ', {'data1', 'data2' ; 'data3', 'data4'}, 'fff');
-REF =  {'username   data1fff', 'username   data2fff'; 'username   data3fff', 'username   data4fff'};
-assert_isequal(R, REF);
-%=============================================================================
 R = append('username   ', ["data1", "data2    " ; "data3", "data4"], '   fff');
 REF = ["username   data1   fff", "username   data2       fff"; "username   data3   fff", "username   data4   fff" ];
-assert_isequal(R, REF);
-%=============================================================================
-R = append('username', {'data1 ', 'data2  ' ; 'data3  ', 'data4  '}, 'fff');
-REF = {'usernamedata1 fff', 'usernamedata2  fff'; 'usernamedata3  fff', 'usernamedata4  fff'};
 assert_isequal(R, REF);
 %=============================================================================
 R = append('/home/username', [string(NaN); "data2"], {'f1.csv'});

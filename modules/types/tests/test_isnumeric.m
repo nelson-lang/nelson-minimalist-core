@@ -54,14 +54,6 @@ A = uint64(3);
 res = isnumeric(A);
 assert_istrue(res);
 %=============================================================================
-A = sparse(3);
-res = isnumeric(A);
-assert_istrue(res);
-%=============================================================================
-A = sparse(true);
-res = isnumeric(A);
-assert_isfalse(res);
-%=============================================================================
 A = 'Nelson';
 res = isnumeric(A);
 assert_isfalse(res);

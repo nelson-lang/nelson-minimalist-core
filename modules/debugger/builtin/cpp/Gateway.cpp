@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "debugger_Gateway.hpp"
 #include "dbstackBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -19,11 +20,10 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+DebuggerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

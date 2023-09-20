@@ -8,11 +8,7 @@
 % LICENCE_BLOCK_END
 %=============================================================================
 p = path();
-if ispc()
-  a = 'c:/';
-else
-  a = '/';
-end
+a = pwd();
 r = addpath(a);
 np = path();
 assert_isequal(r, p);

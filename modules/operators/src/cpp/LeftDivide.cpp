@@ -10,9 +10,6 @@
 #include "LeftDivide.hpp"
 #include "MatrixCheck.hpp"
 #include "DotLeftDivide.hpp"
-#include "LinearEquationSolver.hpp"
-#include "LeastSquareSolver.hpp"
-#include "SVDDecomposition.hpp"
 #include "Warning.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
@@ -86,59 +83,6 @@ LeftDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
 
     bool isSquare = A.getDimensionLength(0) == A.getDimensionLength(1);
 
-    switch (A.getDataClass()) {
-    case NLS_DOUBLE: {
-        if (isSquare) {
-            res = solveLinearEquationDouble(A, B, warningId, warningMessage);
-        } else {
-            res = solveLeastSquareDouble(A, B, warningId, warningMessage);
-        }
-        if (warningId == WARNING_RANK_DEFICIENT_MATRIX
-            || warningId == WARNING_NEARLY_SINGULAR_MATRIX) {
-            res = solveSVDDecompositionDouble(A, B);
-        }
-    } break;
-    case NLS_SINGLE: {
-        if (isSquare) {
-            res = solveLinearEquationSingle(A, B, warningId, warningMessage);
-        } else {
-            res = solveLeastSquareSingle(A, B, warningId, warningMessage);
-        }
-        if (warningId == WARNING_RANK_DEFICIENT_MATRIX
-            || warningId == WARNING_NEARLY_SINGULAR_MATRIX) {
-            res = solveSVDDecompositionSingle(A, B);
-        }
-    } break;
-    case NLS_DCOMPLEX: {
-        if (isSquare) {
-            res = solveLinearEquationDoubleComplex(A, B, warningId, warningMessage);
-        } else {
-            res = solveLeastSquareDoubleComplex(A, B, warningId, warningMessage);
-        }
-        if (warningId == WARNING_RANK_DEFICIENT_MATRIX
-            || warningId == WARNING_NEARLY_SINGULAR_MATRIX) {
-            res = solveSVDDecompositionDoubleComplex(A, B);
-        }
-    } break;
-    case NLS_SCOMPLEX: {
-        if (isSquare) {
-            res = solveLinearEquationSingleComplex(A, B, warningId, warningMessage);
-        } else {
-            res = solveLeastSquareSingleComplex(A, B, warningId, warningMessage);
-        }
-        if (warningId == WARNING_RANK_DEFICIENT_MATRIX
-            || warningId == WARNING_NEARLY_SINGULAR_MATRIX) {
-            res = solveSVDDecompositionDoubleComplex(A, B);
-        }
-    } break;
-
-    default: {
-        needToOverload = true;
-    } break;
-    }
-    if (!warningMessage.empty()) {
-        Warning(warningMessage);
-    }
     return res;
 }
 //=============================================================================

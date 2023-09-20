@@ -18,6 +18,7 @@ B = struct();
 res = isstruct(B);
 assert_istrue(res);
 %=============================================================================
+clear('C');
 C.a = 1;
 C.B = 'hello';
 res = isstruct(C);

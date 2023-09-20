@@ -15,5 +15,7 @@
 namespace Nelson::InterpreterGateway {
 ArrayOfVector
 parsestringBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
-} // namespace Nelson
-  //=============================================================================
+}
+//=============================================================================
+// namespace Nelson
+//=============================================================================

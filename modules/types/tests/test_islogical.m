@@ -18,10 +18,6 @@ B = logical(1);
 res = islogical(B);
 assert_istrue(res);
 %=============================================================================
-B = sparse(logical(1));
-res = islogical(B);
-assert_istrue(res);
-%=============================================================================
 B = true(3, 3, 3);
 res = islogical(B);
 assert_istrue(res);

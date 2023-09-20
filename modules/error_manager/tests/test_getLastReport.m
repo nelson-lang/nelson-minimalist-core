@@ -9,16 +9,18 @@
 %=============================================================================
 % <--ENGLISH IMPOSED-->
 %=============================================================================
+lasterror('reset');
 S = getLastReport();
 assert_isequal(S, '');
 %=============================================================================
+clear('a');
 execstr('a','errcatch');
 S = getLastReport();
 REF = '
 Error in execstr
 Undefined variable or function: a
 
-at line    15 of ''test_getLastReport.m''
+at line    17 of ''test_getLastReport.m''
 ';
 assert_isequal(S, REF);
 %=============================================================================

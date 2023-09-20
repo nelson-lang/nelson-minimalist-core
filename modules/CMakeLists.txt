@@ -26,86 +26,37 @@ list(
   stream_manager
   display_format
   operators
-  elementary_functions
+  os_functions
   interpreter
-  modules_manager
-  double
-  single
-  sparse
+  profiler
   functions_manager
+  files_folders_functions
+  core
+  memory_manager
+  function_handle  
+  text_completion
+  trigonometric_functions
+  terminal
+  elementary_functions
+  linear_algebra
   constructors_functions
-  console
-  logical
   time
   string
-  integer
-  linear_algebra
-  files_folders_functions
-  os_functions
-  core
-  function_handle
-  memory_manager
-  overload
+  statistics
+  data_analysis
+  single
+  logical
   data_structures
-  history_manager
-  terminal
-  handle
-  engine
-  profiler
-  mex
-  ipc
-  sio_client
-  file_archiver)
-# ==============================================================================
-list(
-  APPEND
-  modules_fully_disabled
-  GUI
-  FFTW
-  SLICOT
-  VALIDATORS
-  F2C
-  MPI
-  AUDIO
-  WEBTOOLS
-  PARALLEL
-  GRAPHICS
-  QML_ENGINE
-  SIGNAL_PROCESSING
-  DATA_ANALYSIS
-  HDF5
-  MATIO
-  HELP_TOOLS
-  HELP_BROWSER
-  TEXT_EDITOR
-  DYNAMIC_LINK
-  TESTS_MANAGER
-  JSON
-  NIG
-  ASSERT_FUNCTIONS
-  STATISTICS
-  TRIGONOMETRIC_FUNCTIONS
-  POLYNOMIAL_FUNCTIONS
-  RANDOM
-  SPECIAL_FUNCTIONS
-  TEXT_COMPLETION
-  GEOMETRY)
-
-foreach(mod ${modules_fully_disabled})
-  if(NOT WITHOUT_${mod}_MODULE)
-    string(TOLOWER ${mod} mod)
-    list(APPEND moduleslist ${mod})
-  endif()
-endforeach(mod)
+  assert_functions
+  double
+  integer
+  console
+  validators
+  engine)
 # ==============================================================================
 list(APPEND moduleslist main)
 # ==============================================================================
 foreach(mod ${moduleslist})
   add_subdirectory(${mod})
 endforeach(mod)
-# ==============================================================================
-include(GNUInstallDirs)
-# ==============================================================================
-install(FILES ${CMAKE_SOURCE_DIR}/modules/modules.m
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/modules)
 # ==============================================================================

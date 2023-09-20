@@ -8,46 +8,17 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "CallMexBuiltin.hpp"
-#include "DynamicLibrary.hpp"
 #include "NelsonConfiguration.hpp"
-//=============================================================================
-static Nelson::library_handle nlsMexHandleDynamicLibrary = nullptr;
-static bool bFirstDynamicLibraryCall = true;
+#include "Error.hpp"
+#include "i18n.hpp"
 //=============================================================================
 namespace Nelson {
-//=============================================================================
-static void
-initMexDynamicLibrary()
-{
-    if (bFirstDynamicLibraryCall) {
-        std::wstring fullpathMexSharedLibrary
-            = L"libnlsMex" + Nelson::get_dynamic_library_extensionW();
-        std::wstring nelsonLibrariesDirectory
-            = NelsonConfiguration::getInstance()->getNelsonLibraryDirectory();
-        fullpathMexSharedLibrary
-            = nelsonLibrariesDirectory + std::wstring(L"/") + fullpathMexSharedLibrary;
-        nlsMexHandleDynamicLibrary = Nelson::load_dynamic_libraryW(fullpathMexSharedLibrary);
-        if (nlsMexHandleDynamicLibrary != nullptr) {
-            bFirstDynamicLibraryCall = false;
-        }
-    }
-}
 //=============================================================================
 void
 CallMexBuiltin(void* fptr, const ArrayOfVector& inputArgs, int nargout, ArrayOfVector& outputArgs,
     bool interleavedComplex)
 {
-    using PROC_mxCallBuiltin = void (*)(void* fptr, const ArrayOfVector& inputArgs, int nargout,
-        ArrayOfVector& outputArgs, bool interleavedComplex);
-    static PROC_mxCallBuiltin mxCallBuiltinPtr = nullptr;
-    initMexDynamicLibrary();
-    if (mxCallBuiltinPtr == nullptr) {
-        mxCallBuiltinPtr = reinterpret_cast<PROC_mxCallBuiltin>(
-            Nelson::get_function(nlsMexHandleDynamicLibrary, "mxCallBuiltin"));
-    }
-    if (mxCallBuiltinPtr != nullptr) {
-        mxCallBuiltinPtr(fptr, inputArgs, nargout, outputArgs, interleavedComplex);
-    }
+    Error(_W("Mex not supported."));
 }
 //=============================================================================
 } // namespace Nelson

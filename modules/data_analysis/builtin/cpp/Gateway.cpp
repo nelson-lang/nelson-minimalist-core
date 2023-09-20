@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "data_analysis_Gateway.hpp"
 #include "prodBuiltin.hpp"
 #include "sumBuiltin.hpp"
 #include "ismissingBuiltin.hpp"
@@ -41,11 +42,10 @@ static const nlsGateway gateway[] = {
 
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+DataAnalysisGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

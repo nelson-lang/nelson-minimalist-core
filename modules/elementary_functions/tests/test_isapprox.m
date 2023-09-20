@@ -60,14 +60,10 @@ assert_isfalse(isapprox([1 Inf -Inf NaN], [1 -Inf Inf NaN] , 1.e-3));
 assert_istrue(isapprox(1 + i, 1 + (1 + 1.e-4) * i, 1.e-3));
 assert_isfalse(isapprox(1 + i, 1 + (1 + 1.e-4) * i, 1.e-5));
 %=============================================================================
-A = sparse(eye(3, 3) + eps);
-B = sparse(eye(3, 3) + 2 * eps);
-assert_istrue(isapprox(A, B, 10 * eps));
-%=============================================================================
 assert_istrue(isapprox(int8(3), 3));
 assert_istrue(isapprox(int8(3), int16(3)));
 %=============================================================================
-A = rand(3, 3, 3);
+A = ones(3, 3, 3);
 assert_istrue(isapprox(A, A));
 %=============================================================================
 assert_checkerror('isapprox(1,''A'')', _('Numerics types expected.'));

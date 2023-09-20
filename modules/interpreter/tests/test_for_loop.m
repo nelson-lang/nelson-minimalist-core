@@ -23,16 +23,7 @@ end
 assert_isequal(k, 2);
 %=============================================================================
 k = 0;
-for i = {1;2}, assert_isequal(i, {1;2}), k = k + 1; end
-assert_isequal(k, 1);
-%=============================================================================
-k = 0;
 for i = {1 2}
-  if k == 0
-    assert_isequal(i, {1})
-  else
-    assert_isequal(i, {2})
-  end
   k = k + 1;
 end
 assert_isequal(k, 2);

@@ -12,26 +12,22 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
-#include "bannerBuiltin.hpp"
+#include "core_Gateway.hpp"
 #include "evalBuiltin.hpp"
 #include "evalcBuiltin.hpp"
 #include "evalinBuiltin.hpp"
 #include "execstrBuiltin.hpp"
 #include "exitBuiltin.hpp"
-#include "maxNumCompThreadsBuiltin.hpp"
 #include "namelengthmaxBuiltin.hpp"
 #include "narginBuiltin.hpp"
 #include "nargoutBuiltin.hpp"
 #include "narginchkBuiltin.hpp"
 #include "nargoutchkBuiltin.hpp"
-#include "nelsonrootBuiltin.hpp"
 #include "nfilenameBuiltin.hpp"
 #include "pauseBuiltin.hpp"
-#include "prefdirBuiltin.hpp"
 #include "runBuiltin.hpp"
-#include "versionBuiltin.hpp"
-#include "sha256Builtin.hpp"
 #include "inputnameBuiltin.hpp"
+#include "versionBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -58,33 +54,16 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "pause", (ptrBuiltin)Nelson::CoreGateway::pauseBuiltin, 1, 1, CPP_BUILTIN_WITH_EVALUATOR },
     { "namelengthmax", (ptrBuiltin)Nelson::CoreGateway::namelengthmaxBuiltin, 1, 1 },
-    { "nelsonroot", (ptrBuiltin)Nelson::CoreGateway::nelsonrootBuiltin, 1, 0 },
-    { "version", (ptrBuiltin)Nelson::CoreGateway::versionBuiltin, 2, 1 },
-    { "prefdir", (ptrBuiltin)Nelson::CoreGateway::prefdirBuiltin, 1, 0 },
-    { "maxNumCompThreads", (ptrBuiltin)Nelson::CoreGateway::maxNumCompThreadsBuiltin, 1, -1 },
-    { "banner", (ptrBuiltin)Nelson::CoreGateway::bannerBuiltin, 0, 0 },
-    { "sha256", (ptrBuiltin)Nelson::CoreGateway::sha256Builtin, 1, 2 },
     { "inputname", (ptrBuiltin)Nelson::CoreGateway::inputnameBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
+    { "version", (ptrBuiltin)Nelson::CoreGateway::versionBuiltin, 2, 1 },
+
 };
 //=============================================================================
-NLSGATEWAYNAME()
-//=============================================================================
-static bool
-initializeCoreModule(Nelson::Evaluator* eval)
+int
+CoreGateway(void* eval, const wchar_t* moduleFilename)
 {
-    return true;
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
 }
-//=============================================================================
-static bool
-finishCoreModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeCoreModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishCoreModule)
 //=============================================================================

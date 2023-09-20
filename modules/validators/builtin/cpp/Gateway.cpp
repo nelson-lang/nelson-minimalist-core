@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "validators_Gateway.hpp"
 #include "ValidatorsInternal.hpp"
 #include "mustBeLogicalScalarBuiltin.hpp"
 #include "mustBeLogicalBuiltin.hpp"
@@ -93,23 +94,10 @@ static const nlsGateway gateway[] = {
     { "mustBeInRange", (ptrBuiltin)Nelson::ValidatorsGateway::mustBeInRangeBuiltin, 0, -3 },
 };
 //=============================================================================
-static bool
-initializeValidatorsModule(Nelson::Evaluator* eval)
+int
+ValidatorsGateway(void* eval, const wchar_t* moduleFilename)
 {
-    return true;
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
 }
-//=============================================================================
-static bool
-finishValidatorsModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeValidatorsModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishValidatorsModule)
-//=============================================================================
-NLSGATEWAYNAME()
 //=============================================================================

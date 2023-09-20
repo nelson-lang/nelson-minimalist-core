@@ -80,12 +80,6 @@ R = int2str('Nelson');
 REF = '   78  101  108  115  111  110';
 assert_isequal(R, REF);
 %=============================================================================
-R = int2str(sparse(eye(3,3)));
-REF = ['  1  0  0';
-'  0  1  0';
-'  0  0  1'];
-assert_isequal(R, REF);
-%=============================================================================
 assert_checkerror('int2str()', _('Wrong number of input arguments.'));
 assert_checkerror('int2str(1, 2)', _('Wrong number of input arguments.'));
 assert_checkerror('[a, b] = int2str(3)', _('Wrong number of output arguments.'));

@@ -102,7 +102,6 @@ ProgramOptions::ProgramOptions(wstringVector args, NELSON_ENGINE_MODE mode)
     _quietmode = false;
     _minimize = false;
     _ipc = false;
-    _withoutFileWatcher = false;
     _error.clear();
     _file.clear();
     _command.clear();
@@ -124,7 +123,6 @@ ProgramOptions::~ProgramOptions()
     _usermodules = false;
     _quietmode = false;
     _ipc = false;
-    _withoutFileWatcher = false;
     _minimize = false;
     _error.clear();
     _file.clear();
@@ -213,25 +211,6 @@ ProgramOptions::parseOption(Option& op, bool& bFind)
 bool
 ProgramOptions::parse()
 {
-    // nelson --version
-    // nelson others_arguments --version others_arguments
-    // nelson --help
-    // nelson others_arguments --help others_arguments
-    // nelson --nostartup others_arguments (except nouserstartup)
-    // nelson others_arguments --nostartup others_arguments (except nouserstartup)
-    // nelson --nouserstartup others_arguments (except nostartup)
-    // nelson others_arguments --nouserstartup others_arguments (except nostartup)
-    // nelson --file filename others_arguments (except execute)
-    // nelson others_arguments --file filename others_arguments (except execute)
-    // nelson --execute command others_arguments (except file)
-    // nelson others_arguments --execute command (except file)
-    // nelson --language lang others_arguments
-    // nelson others_arguments --language lang others_arguments
-    // nelson --quiet others_arguments
-    // nelson others_arguments --quiet lang others_arguments
-    // nelson others_arguments --timeout 10
-    // nelson --noipc others_arguments (except noipc)
-
     bool bRes;
     Option helpOption(L"help", L"h", _W("display this help message"), false, false);
     Option versionOption(L"version", L"v", _W("display the version number"), false, false);
@@ -240,8 +219,6 @@ ProgramOptions::parse()
     Option nousermodulesOption(L"nousermodules", L"", _W("no user modules loaded"), false, false);
     Option minimizeOption(L"minimize", L"", _W("minimize main window (GUI only)"), false, false);
     Option noIpcOption(L"noipc", L"", _W("no ipc features"), false, false);
-    Option withoutFileWatcherOption(
-        L"withoutfilewatcher", L"", _W("without file watcher"), false, false);
     Option commandtoexecuteOption(L"execute", L"e", _W("command to execute"), false, true);
     Option filetoexecuteOption(L"file", L"f", _W("file to execute in an new process"), false, true);
     Option filetoexecuteIPCOption(
@@ -274,7 +251,6 @@ ProgramOptions::parse()
     _options = _options + timeoutOption.getFullDescription() + L"\n";
     _options = _options + openFilesOption.getFullDescription() + L"\n";
     _options = _options + loadFilesOption.getFullDescription() + L"\n";
-    _options = _options + withoutFileWatcherOption.getFullDescription() + L"\n";
 
     bRes = parseOption(helpOption, _ishelp);
     bRes = bRes && parseOption(versionOption, _isversion);
@@ -285,7 +261,6 @@ ProgramOptions::parse()
         bRes = bRes && parseOption(minimizeOption, _minimize);
     }
     bRes = bRes && parseOption(noIpcOption, _ipc);
-    bRes = bRes && parseOption(withoutFileWatcherOption, _withoutFileWatcher);
     bRes = bRes && parseOptionWithValues(openFilesOption, _filesToOpen);
     bRes = bRes && parseOptionWithValues(loadFilesOption, _filesToLoad);
     bool bFind = false;
@@ -417,15 +392,6 @@ ProgramOptions::haveNoIpc()
 {
     if (_isvalid) {
         return _ipc;
-    }
-    return false;
-}
-//=============================================================================
-bool
-ProgramOptions::haveWithoutFileWatcher()
-{
-    if (_isvalid) {
-        return _withoutFileWatcher;
     }
     return false;
 }

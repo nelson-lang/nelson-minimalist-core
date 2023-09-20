@@ -7,7 +7,8 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-addpath([nelsonroot(), '/modules/core/tests/']);
+this_file = mfilename('fullpathext');
+addpath(fileparts(this_file, 'path'));
 %=============================================================================
 X = 33;
 R = fun_evalin1();

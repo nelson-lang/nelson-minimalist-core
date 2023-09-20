@@ -14,8 +14,3 @@ A = 3;
 res = isclass(A);
 assert_isfalse(res);
 %=============================================================================
-addpath([nelsonroot(), '/modules/overload/examples/complex']);
-c = complexObj(3,4);
-res = isclass(c);
-assert_istrue(res);
-%=============================================================================

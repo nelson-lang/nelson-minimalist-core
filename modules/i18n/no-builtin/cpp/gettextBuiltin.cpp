@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "gettextBuiltin.hpp"
+#include "i18n.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -19,7 +20,7 @@ Nelson::I18nGateway::gettextBuiltin(int nLhs, const ArrayOfVector& argIn)
     nargoutcheck(nLhs, 0, 1);
     nargincheck(argIn, 1, 1);
     std::wstring txt = argIn[0].getContentAsWideString();
-    retval << ArrayOf::characterArrayConstructor(txt);
+    retval << ArrayOf::characterArrayConstructor(gettextw(txt));
     return retval;
 }
 //=============================================================================

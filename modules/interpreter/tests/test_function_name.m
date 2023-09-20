@@ -7,7 +7,9 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-addpath([nelsonroot(), '/modules/interpreter/tests/']);
+this_file = mfilename('fullpathext');
+this_path = fileparts(this_file, 'path');
+addpath(this_path);
 %=============================================================================
 msg = sprintf(_('Filename and function name are not same (%s vs %s).'), 'toto', 'tutu');
 assert_checkerror('tutu()', msg);

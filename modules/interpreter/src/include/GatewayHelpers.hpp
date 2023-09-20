@@ -10,7 +10,6 @@
 #pragma once
 //=============================================================================
 #include "Evaluator.hpp"
-#include "NelsonGateway.hpp"
 #include "nlsInterpreter_exports.h"
 //=============================================================================
 using PROC_InitializeGateway = bool (*)(Nelson::Evaluator*);

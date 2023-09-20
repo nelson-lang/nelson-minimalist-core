@@ -20,7 +20,6 @@ assert_isequal(D, ["four"; "five"]);
 assert_isequal(A, "one");
 assert_isequal(B, 2);
 assert_isequal(C, "three");
-assert_isequal(D, {'four' ; NaN ; 'five'});
 %=============================================================================
 [A, B, C, D] = convertCharsToStrings("one", 2, 'three', {'four' ; 'NaN' ;'five'});
 assert_isequal(A, "one");

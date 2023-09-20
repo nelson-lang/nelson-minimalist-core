@@ -9,8 +9,6 @@
 //=============================================================================
 #include "nlsBuildConfig.h"
 #include "Transpose.hpp"
-#include "TransposeSparseDouble.hpp"
-#include "TransposeSparseLogical.hpp"
 #include "ClassName.hpp"
 #include "i18n.hpp"
 #include "Error.hpp"
@@ -81,7 +79,8 @@ Transpose(const ArrayOf& A, bool& needToOverload)
     switch (classA) {
     case NLS_LOGICAL: {
         if (A.isSparse()) {
-            return TransposeSparseLogical(A);
+            needToOverload = true;
+            return {};
         }
         logical* ptrRes = (logical*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount());
         Res = ArrayOf(classA, dimsRes, ptrRes);
@@ -143,7 +142,8 @@ Transpose(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DOUBLE: {
         if (A.isSparse()) {
-            return TransposeSparseDouble(A);
+            needToOverload = true;
+            return {};
         }
         double* ptrRes = (double*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount());
         Res = ArrayOf(classA, dimsRes, ptrRes);
@@ -158,7 +158,8 @@ Transpose(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DCOMPLEX: {
         if (A.isSparse()) {
-            return TransposeSparseDouble(A);
+            needToOverload = true;
+            return {};
         }
         double* ptrRes = (double*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount() * 2);
         Res = ArrayOf(classA, dimsRes, ptrRes);

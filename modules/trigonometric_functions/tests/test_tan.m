@@ -30,11 +30,6 @@ X = tan(zeros(3, 3, 3));
 REF = zeros(3, 3, 3);
 assert_isequal(X, REF);
 %=============================================================================
-S = sparse(zeros(3, 3));
-X = tan(S);
-REF = sparse(zeros(3, 3));
-assert_isequal(X, REF);
-%=============================================================================
 assert_isequal(tan([]), []);
 %=============================================================================
 msg = sprintf(_('Check for incorrect argument data type or missing argument in call to function ''%s''.'), 'tan');

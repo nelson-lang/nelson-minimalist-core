@@ -10,8 +10,8 @@
 assert_isequal(nargin('eval'), 1);
 assert_isequal(nargout('eval'), -1);
 %=============================================================================
-A = rand(3, 4);
-eval('size(A)');
+A = ones(3, 4);
+eval('size(A);');
 B = ans;
 assert_isequal(ans, [3 4]);
 %=============================================================================
@@ -35,7 +35,7 @@ assert_isequal(D, B);
 expected_msg = sprintf(_('Expecting %s'), _('statement list or function definition'));
 assert_checkerror('R = eval(''AA = 33'');', expected_msg);
 %=============================================================================
-eval('AA = 33');
+eval('AA = 33;');
 assert_isequal(AA, 33);
 %=============================================================================
 expected_msg = sprintf(_('Expecting %s'), _('statement list or function definition'));

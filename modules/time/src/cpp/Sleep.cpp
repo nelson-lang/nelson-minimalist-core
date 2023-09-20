@@ -12,7 +12,6 @@
 #include <cmath>
 #include "Sleep.hpp"
 #include "NelsonConfiguration.hpp"
-#include "ProcessEventsDynamicFunction.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -30,9 +29,6 @@ Sleep(Evaluator* eval, double tValue)
         if (std::isinf(tValue)) {
             while (!NelsonConfiguration::getInstance()->getInterruptPending(ID)) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(uint64(1)));
-                if (eval != nullptr && eval->haveEventsLoop()) {
-                    ProcessEventsDynamicFunctionWithoutWait();
-                }
             }
         } else {
             std::chrono::nanoseconds begin_time
@@ -44,9 +40,6 @@ Sleep(Evaluator* eval, double tValue)
                     = std::chrono::high_resolution_clock::now().time_since_epoch();
                 std::chrono::nanoseconds difftime = (current_time - begin_time);
                 bContinue = !(difftime.count() > int64(tValue * 1e9));
-                if (eval != nullptr && eval->haveEventsLoop()) {
-                    ProcessEventsDynamicFunctionWithoutWait();
-                }
             } while (!NelsonConfiguration::getInstance()->getInterruptPending(ID)
                 && (static_cast<int>(bContinue) == true));
         }

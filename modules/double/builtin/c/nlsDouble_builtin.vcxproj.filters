@@ -47,12 +47,9 @@
     <ClInclude Include="..\include\realmaxBuiltin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
-    <None Include="..\..\module.iss" />
+    <ClInclude Include="..\include\double_Gateway.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc">

@@ -12,13 +12,13 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "memory_manager_Gateway.hpp"
 #include "acquirevarBuiltin.hpp"
 #include "assigninBuiltin.hpp"
 #include "clearBuiltin.hpp"
 #include "globalBuiltin.hpp"
 #include "isglobalBuiltin.hpp"
 #include "isvarBuiltin.hpp"
-#include "memoryBuiltin.hpp"
 #include "persistentBuiltin.hpp"
 #include "varislockBuiltin.hpp"
 #include "varlockBuiltin.hpp"
@@ -30,8 +30,8 @@ using namespace Nelson;
 //=============================================================================
 const std::wstring gatewayName = L"memory_manager";
 //=============================================================================
-static const nlsGateway gateway[] = { { "clear", (ptrBuiltin)Nelson::MemoryGateway::clearBuiltin, 0,
-                                          1, CPP_BUILTIN_WITH_EVALUATOR },
+static const nlsGateway gateway[] = {
+    { "clear", (ptrBuiltin)Nelson::MemoryGateway::clearBuiltin, 0, 1, CPP_BUILTIN_WITH_EVALUATOR },
     { "who", (ptrBuiltin)Nelson::MemoryGateway::whoBuiltin, 1, 1, CPP_BUILTIN_WITH_EVALUATOR },
     { "whos", (ptrBuiltin)Nelson::MemoryGateway::whosBuiltin, 1, 1, CPP_BUILTIN_WITH_EVALUATOR },
     { "global", (ptrBuiltin)Nelson::MemoryGateway::globalBuiltin, 0, -1,
@@ -50,14 +50,13 @@ static const nlsGateway gateway[] = { { "clear", (ptrBuiltin)Nelson::MemoryGatew
         CPP_BUILTIN_WITH_EVALUATOR },
     { "varislock", (ptrBuiltin)Nelson::MemoryGateway::varislockBuiltin, 1, 2,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "isvar", (ptrBuiltin)Nelson::MemoryGateway::isvarBuiltin, 1, -1, CPP_BUILTIN_WITH_EVALUATOR },
-    { "memory", (ptrBuiltin)Nelson::MemoryGateway::memoryBuiltin, 2, 0, CPP_BUILTIN } };
+    { "isvar", (ptrBuiltin)Nelson::MemoryGateway::isvarBuiltin, 1, -1, CPP_BUILTIN_WITH_EVALUATOR }
+};
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+MemoryManagerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

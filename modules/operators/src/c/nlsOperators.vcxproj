@@ -98,7 +98,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -109,7 +109,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/openblas/lib;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/vml/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,7 +120,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -130,7 +131,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/openblas/lib;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/vml/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -142,7 +144,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -156,7 +158,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/openblas/lib;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/vml/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +171,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/elementary_functions/src/include;$(SolutionDir)modules/elementary_mathematics/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/integer/src/include/saturing;$(SolutionDir)modules/integer/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/sparse/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4251</DisableSpecificWarnings>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
@@ -182,7 +185,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/openblas/lib;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/mkl/vml/lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -195,31 +199,15 @@
     <ClCompile Include="..\cpp\Colon.cpp" />
     <ClCompile Include="..\cpp\ComplexTranspose.cpp" />
     <ClCompile Include="..\cpp\ConcatenateNdArray.cpp" />
-    <ClCompile Include="..\cpp\dllMain.cpp" />
     <ClCompile Include="..\cpp\DotLeftDivide.cpp" />
     <ClCompile Include="..\cpp\DotPower.cpp" />
     <ClCompile Include="..\cpp\DotRightDivide.cpp" />
     <ClCompile Include="..\cpp\EmptyHelpers.cpp" />
-    <ClCompile Include="..\cpp\IsMember.cpp" />
-    <ClCompile Include="..\cpp\LeastSquareSolver.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <ClCompile Include="..\cpp\LinearEquationSolver.cpp" />
-    <ClCompile Include="..\cpp\SVDDecompositionDouble.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <ClCompile Include="..\cpp\SVDDecompositionDoubleComplex.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
     <ClCompile Include="..\cpp\Equals.cpp" />
     <ClCompile Include="..\cpp\GreaterEquals.cpp" />
     <ClCompile Include="..\cpp\GreaterThan.cpp" />
     <ClCompile Include="..\cpp\HorzCat.cpp" />
+    <ClCompile Include="..\cpp\IsMember.cpp" />
     <ClCompile Include="..\cpp\LeftDivide.cpp" />
     <ClCompile Include="..\cpp\LessEquals.cpp" />
     <ClCompile Include="..\cpp\LessThan.cpp" />
@@ -233,13 +221,29 @@
     <ClCompile Include="..\cpp\StringArrayAddition.cpp" />
     <ClCompile Include="..\cpp\Subtraction.cpp" />
     <ClCompile Include="..\cpp\ElementWiseMultiplication.cpp" />
+    <ClCompile Include="..\cpp\SVDDecompositionDouble.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SVDDecompositionDoubleComplex.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="..\cpp\SVDDecompositionSingle.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClCompile Include="..\cpp\SVDDecompositionSingleComplex.cpp">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <ClCompile Include="..\cpp\Transpose.cpp" />
     <ClCompile Include="..\cpp\UnaryMinus.cpp" />
@@ -277,11 +281,8 @@
     <ClInclude Include="..\include\GreaterThan.hpp" />
     <ClInclude Include="..\include\HorzCat.hpp" />
     <ClInclude Include="..\include\IsMember.hpp" />
-    <ClInclude Include="..\include\LeastSquareSolver.hpp" />
-    <ClInclude Include="..\include\LeftDivide.hpp" />
     <ClInclude Include="..\include\LessEquals.hpp" />
     <ClInclude Include="..\include\LessThan.hpp" />
-    <ClInclude Include="..\include\LinearEquationSolver.hpp" />
     <ClInclude Include="..\include\MatrixMultiplication.hpp" />
     <ClInclude Include="..\include\Negate.hpp" />
     <ClInclude Include="..\include\nlsOperators_exports.h" />
@@ -289,7 +290,6 @@
     <ClInclude Include="..\include\NotEquals.hpp" />
     <ClInclude Include="..\include\Or.hpp" />
     <ClInclude Include="..\include\RelationOperator.hpp" />
-    <ClInclude Include="..\include\RightDivide.hpp" />
     <ClInclude Include="..\include\StringArrayAddition.hpp" />
     <ClInclude Include="..\include\Subtraction.hpp" />
     <ClInclude Include="..\include\ElementWiseMultiplication.hpp" />
@@ -300,17 +300,17 @@
     <ClInclude Include="..\include\VertCat.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\elementary_mathematics\src\c\nlsElementary_mathematics.vcxproj">
       <Project>{84bdbee5-b19d-4529-b616-01456e6c7768}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\error_manager\src\c\nlsError_manager.vcxproj">
       <Project>{d0ef0ceb-a3bd-44ab-91b3-f33db1870f8d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\i18n\src\c\nlsI18n.vcxproj">
-      <Project>{eca1e952-8391-4e71-9a91-0e7fd2854320}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\sparse\src\c\nlsSparse.vcxproj">
-      <Project>{74cc7c51-0768-41e6-a973-6159633dcfbc}</Project>
+    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
+      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
       <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>
@@ -318,9 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\module.iss" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />

@@ -19,11 +19,6 @@ R = isfinite(X);
 REF = [ true  true  false   true  false   true];
 assert_isequal(R, REF);
 %=============================================================================
-X = sparse([1 2 Inf 3 0 Inf 0 4]);
-R = isfinite(X);
-REF = [ true   true   false  true   true   false  true   true ];
-assert_isequal(R, REF);
-%=============================================================================
 R = isfinite([13, Inf, -Inf, NaN]);
 REF = logical([1, 0, 0, 0]);
 assert_isequal(R, REF);

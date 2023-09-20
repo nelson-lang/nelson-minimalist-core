@@ -14,16 +14,16 @@ jobs:
       - name: install micromamba
         uses: mamba-org/setup-micromamba@v1
         with:
-          environment-file: environment-linux-dev.yml
+          environment-file: environment-dev.yml
           environment-name: nelson
 
       - name: cmake configure
         run: |
+          micromamba activate nelson  
           mkdir -p build
           cd build
           cmake .. \
             -DCMAKE_BUILD_TYPE=Release \
-            -DWITHOUT_SLICOT_MODULE=ON \
             -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
             -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
             -DCMAKE_INSTALL_LIBDIR=lib
@@ -32,31 +32,21 @@ jobs:
       - name: make
         run: |
           cd build
+          micromamba activate nelson  
           cmake --build . -- -j $(nproc)
         shell: micromamba-shell {0}
 
-      - name: get module skeleton
+      - name: make install
         run: |
           cd build
-          cmake --build . -- get_module_skeleton
+          micromamba activate nelson  
+          make install
         shell: micromamba-shell {0}
 
-      - name: build help
+      - name: Tests
         run: |
-          cd build
-          cmake --build . -- buildhelp
-        shell: micromamba-shell {0}
-
-      - name: install
-        run: |
-          cd build
-          cmake --build . -- install
-        shell: micromamba-shell {0}
-
-      - name: all tests
-        run: |
-          cd build
-          xvfb-run cmake --build . -- tests_all
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
         shell: micromamba-shell {0}
 
   Micromamba_macos:
@@ -67,20 +57,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+
       - name: install micromamba
         uses: mamba-org/setup-micromamba@v1
         with:
-          environment-file: environment-macos-dev.yml
+          environment-file: environment-dev.yml
           environment-name: nelson
 
       - name: cmake configure
         run: |
+          micromamba activate nelson  
           mkdir -p build
           cd build
           cmake .. \
             -DCMAKE_BUILD_TYPE=Release \
-            -DFORCE_LIBGFORTRAN_LINK=ON \
-            -DWITHOUT_SLICOT_MODULE=ON \
             -DCMAKE_PREFIX_PATH=$CONDA_PREFIX \
             -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX \
             -DCMAKE_INSTALL_LIBDIR=lib
@@ -89,30 +81,19 @@ jobs:
       - name: make
         run: |
           cd build
-          cmake --build .
+          micromamba activate nelson  
+          cmake --build . -- -j ${{ steps.cpu-cores.outputs.count }}
         shell: micromamba-shell {0}
 
-      - name: get module skeleton
+      - name: make install
         run: |
           cd build
-          cmake --build . -- get_module_skeleton
+          micromamba activate nelson  
+          make install
         shell: micromamba-shell {0}
 
-      - name: build help
+      - name: Tests
         run: |
-          cd build
-          cmake --build . -- buildhelp
-        shell: micromamba-shell {0}
-
-      - name: install
-        run: |
-          cd build
-          cmake --build . -- install
-        shell: micromamba-shell {0}
-
-      - name: all tests
-        run: |
-          cd build
-          export OMP_NUM_THREADS=1
-          cmake --build . -- tests_all
+          micromamba activate nelson  
+          nelson-cli -f $GITHUB_WORKSPACE/tests/tests.m
         shell: micromamba-shell {0}

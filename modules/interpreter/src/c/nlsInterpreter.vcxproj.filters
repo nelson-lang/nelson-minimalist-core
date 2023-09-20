@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\cpp\ActionMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\AbstractSyntaxTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -14,9 +11,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\CheckIfWhileCondition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\CommandQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\Comments.cpp">
@@ -61,9 +55,6 @@
     <ClCompile Include="..\cpp\PathFunctionIndexerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\ProcessEventsDynamicFunction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\Scope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,9 +76,6 @@
     <ClCompile Include="..\cpp\CallMexBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\NelsonReadyNamedMutex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\AsciiToDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -104,12 +92,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\dllMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\FileWatcher\FileWatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\FileWatcher\FileWatcherWin32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\Operators\PlusOperator.cpp">
@@ -213,15 +195,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\module.iss" />
-    <None Include="..\grammar\NelSonParser.yxx">
-      <Filter>Grammar</Filter>
-    </None>
-    <None Include="..\..\loader.m" />
-    <None Include="..\..\etc\finish.m" />
-    <None Include="..\..\etc\startup.m" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{96bb54a9-5b97-41dd-9679-d0c93c4c7f00}</UniqueIdentifier>
     </Filter>
@@ -244,9 +217,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\ActionMenu.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\AbstractSyntaxTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -257,9 +227,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\CheckIfWhileCondition.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\CommandQueue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Comments.hpp">
@@ -322,9 +289,6 @@
     <ClInclude Include="..\include\PositionScript.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\ProcessEventsDynamicFunction.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Scope.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -347,9 +311,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CallMexBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\NelsonReadyNamedMutex.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\CallStack.hpp">

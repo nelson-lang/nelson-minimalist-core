@@ -17,6 +17,7 @@
 #include "isfunction_handleBuiltin.hpp"
 #include "str2funcBuiltin.hpp"
 #include "function_handle_displayBuiltin.hpp"
+#include "function_handle_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -52,11 +53,10 @@ static const nlsGateway gateway[] = {
         1 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+FunctionHandleGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -95,7 +95,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -104,7 +104,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +114,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -124,7 +123,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -148,7 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +158,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSFUNCTIONS_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)modules/i18n/src/include;$(SolutionDir)modules/dynamic_link/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/modules_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/functions_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/characters_encoding/no-src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/files_folders_functions/src/include;$(SolutionDir)modules/error_manager/src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -172,32 +169,29 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\ClearFunction.cpp" />
     <ClCompile Include="..\cpp\MacroArguments.cpp" />
     <ClCompile Include="..\cpp\What.cpp" />
-    <ClCompile Include="..\cpp\Which.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\include\nlsFunctions_manager_exports.h" />
-    <ClInclude Include="..\..\src\include\Which.hpp" />
     <ClInclude Include="..\include\ClearFunction.hpp" />
     <ClInclude Include="..\include\MacroArguments.hpp" />
     <ClInclude Include="..\include\What.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\characters_encoding\src\c\nlsCharacters_encoding.vcxproj">
-      <Project>{a75dc538-eefa-4873-888b-a034a7ee72c5}</Project>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\i18n\no-src\c\no-nlsI18n.vcxproj">
+      <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\interpreter\src\c\nlsInterpreter.vcxproj">
       <Project>{17135b09-bc25-448e-9750-c09a87fde6f8}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\modules_manager\src\c\nlsModules_manager.vcxproj">
-      <Project>{f666ac18-eeda-4a00-acd2-4cafe3865c15}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\nelson_manager\src\c\nlsNelson_manager.vcxproj">
       <Project>{e467b14f-0d56-4237-b649-eb5572b5e731}</Project>
@@ -205,9 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\module.iss" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resources.rc" />

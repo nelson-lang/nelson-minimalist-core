@@ -7,6 +7,7 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
+clear('B');
 A = ones(3, 3);
 B = A;
 B(2, 2) = 2;

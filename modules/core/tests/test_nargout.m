@@ -8,7 +8,8 @@
 % LICENCE_BLOCK_END
 %=============================================================================
 p = path();
-addpath([nelsonroot(), '/modules/core/tests/']);
+this_file = mfilename('fullpathext');
+addpath(fileparts(this_file, 'path'));
 %=============================================================================
 R = nargout('fun_nargout_1');
 assert_isequal(R, -1);

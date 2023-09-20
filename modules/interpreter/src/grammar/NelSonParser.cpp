@@ -69,7 +69,6 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <mutex>
 #include "NelsonParserHelpers.hpp"
 #include "AbstractSyntaxTree.hpp"
 #include "i18n.hpp"
@@ -78,8 +77,6 @@
 //=============================================================================
 extern int yylex(void);
 extern int yydebug;
-//=============================================================================
-static std::mutex parseMutex;
 //=============================================================================
 namespace Nelson {
   void yyerror(const char *s) {
@@ -2305,19 +2302,19 @@ yyreduce:
     break;
 
   case 33: /* statementList: statement  */
-#line 164 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 165 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
              {yyval.v.p = AbstractSyntaxTree::createNode(OP_BLOCK,yyvsp[0].v.p,yyvsp[0].v.p->getContext());}
 #line 2327 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 34: /* statementList: statementList statement  */
-#line 165 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 166 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                            {yyval.v.p = yyvsp[-1].v.p; yyval.v.p->addChild(yyvsp[0].v.p);}
 #line 2333 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 35: /* statement: statementType ENDQSTMNT  */
-#line 169 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 170 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                            {
         yyval.v.p = AbstractSyntaxTree::createNode(OP_QSTATEMENT,NULL,yyvsp[0].v.i);
       yyval.v.p->down = yyvsp[-1].v.p;
@@ -2326,7 +2323,7 @@ yyreduce:
     break;
 
   case 36: /* statement: statementType ENDSTMNT  */
-#line 173 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 174 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                             {
       yyval.v.p = AbstractSyntaxTree::createNode(OP_RSTATEMENT,NULL,yyvsp[0].v.i);
             yyval.v.p->down = yyvsp[-1].v.p;
@@ -2335,7 +2332,7 @@ yyreduce:
     break;
 
   case 37: /* statement: statementType ','  */
-#line 177 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 178 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                        {
       yyval.v.p = AbstractSyntaxTree::createNode(OP_RSTATEMENT,NULL,yyvsp[0].v.i);
       yyval.v.p->down = yyvsp[-1].v.p;
@@ -2344,73 +2341,73 @@ yyreduce:
     break;
 
   case 40: /* statementType: %empty  */
-#line 186 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 187 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
      {yyval.v.p = AbstractSyntaxTree::createNode(null_node,"",-1);}
 #line 2366 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 56: /* specialSyntaxStatement: IDENT NUMERIC  */
-#line 207 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 208 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                 {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext());}
 #line 2372 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 57: /* specialSyntaxStatement: STRING STRING  */
-#line 208 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 209 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                 {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext());}
 #line 2378 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 58: /* specialSyntaxStatement: CHARACTER CHARACTER  */
-#line 209 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 210 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                       {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext());}
 #line 2384 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 59: /* specialSyntaxStatement: IDENT STRING  */
-#line 210 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 211 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext());}
 #line 2390 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 60: /* specialSyntaxStatement: IDENT CHARACTER  */
-#line 211 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 212 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                   {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext());}
 #line 2396 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 61: /* specialSyntaxStatement: IDENT IDENT  */
-#line 212 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 213 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
               {yyval.v.p = AbstractSyntaxTree::createNode(OP_SCALL,yyvsp[-1].v.p,yyvsp[0].v.p,yyvsp[-1].v.p->getContext()); }
 #line 2402 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 62: /* specialSyntaxStatement: specialSyntaxStatement STRING  */
-#line 213 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 214 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                 {yyvsp[-1].v.p->addChild(yyvsp[0].v.p);}
 #line 2408 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 63: /* specialSyntaxStatement: specialSyntaxStatement CHARACTER  */
-#line 214 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 215 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                    {yyvsp[-1].v.p->addChild(yyvsp[0].v.p);}
 #line 2414 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 64: /* specialSyntaxStatement: specialSyntaxStatement IDENT  */
-#line 215 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 216 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                {yyvsp[-1].v.p->addChild(yyvsp[0].v.p);}
 #line 2420 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 65: /* specialSyntaxStatement: specialSyntaxStatement NUMERIC  */
-#line 216 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 217 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                  {yyvsp[-1].v.p->addChild(yyvsp[0].v.p);}
 #line 2426 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 70: /* tryStatement: TRY statementList optionalCatch END  */
-#line 235 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 236 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
   {
     yyval.v.p = yyvsp[-3].v.p;
     yyval.v.p->addChild(yyvsp[-2].v.p);
@@ -2420,13 +2417,13 @@ yyreduce:
     break;
 
   case 71: /* tryStatement: TRY statementList optionalCatch error  */
-#line 241 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 242 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
   {yyxpt(_("matching 'end' to 'try' clause from line ") + decodeline(yyvsp[-3]),yyvsp[0]);}
 #line 2442 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 72: /* optionalCatch: CATCH IDENT newLine statementList  */
-#line 245 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 246 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                     {
     yyval.v.p = yyvsp[-2].v.p;
     yyval.v.p->addChild(yyvsp[0].v.p);
@@ -2435,19 +2432,19 @@ yyreduce:
     break;
 
   case 73: /* optionalCatch: CATCH statementList  */
-#line 249 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 250 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                         {yyval.v.p = yyvsp[0].v.p;}
 #line 2457 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 74: /* optionalCatch: %empty  */
-#line 250 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 251 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
     {yyval.v.p = nullptr;}
 #line 2463 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 75: /* switchStatement: SWITCH expr optionalEndStatement caseBlock otherwiseClause END  */
-#line 254 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 255 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                                   {
     yyval.v.p = yyvsp[-5].v.p;
     yyval.v.p->addChild(yyvsp[-4].v.p);
@@ -2458,7 +2455,7 @@ yyreduce:
     break;
 
   case 76: /* switchStatement: SWITCH expr optionalEndStatement caseBlock otherwiseClause error  */
-#line 260 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 261 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                                     {
           yyxpt(_("matching 'end' to 'switch' clause from line ") + decodeline(yyvsp[-5]),yyvsp[0]);
         }
@@ -2466,13 +2463,13 @@ yyreduce:
     break;
 
   case 83: /* caseBlock: %empty  */
-#line 275 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 276 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
   {yyval.v.p = nullptr;}
 #line 2488 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 85: /* caseList: caseStatement  */
-#line 279 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 280 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                 {
     yyval.v.p = AbstractSyntaxTree::createNode(OP_CASEBLOCK,yyvsp[0].v.p,yyvsp[0].v.p->getContext());
   }
@@ -2480,7 +2477,7 @@ yyreduce:
     break;
 
   case 86: /* caseList: caseList caseStatement  */
-#line 282 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 283 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                          {
     yyval.v.p = yyvsp[-1].v.p; yyval.v.p->addChild(yyvsp[0].v.p);
   }
@@ -2488,7 +2485,7 @@ yyreduce:
     break;
 
   case 87: /* caseStatement: CASE expr optionalEndStatement statementList  */
-#line 288 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 289 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                {
     yyval.v.p = yyvsp[-3].v.p; yyval.v.p->addChild(yyvsp[-2].v.p); yyval.v.p->addChild(yyvsp[0].v.p);
   }
@@ -2496,7 +2493,7 @@ yyreduce:
     break;
 
   case 88: /* otherwiseClause: OTHERWISE statementList  */
-#line 294 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 295 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                           {
     yyval.v.p = yyvsp[0].v.p;
   }
@@ -2504,7 +2501,7 @@ yyreduce:
     break;
 
   case 89: /* otherwiseClause: %empty  */
-#line 297 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 298 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
   {
     yyval.v.p = nullptr;
   }
@@ -2512,7 +2509,7 @@ yyreduce:
     break;
 
   case 90: /* forStatement: FOR forIndexExpression optionalEndStatement END  */
-#line 303 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 304 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                   {
    yyval.v.p = nullptr;
   }
@@ -2520,7 +2517,7 @@ yyreduce:
     break;
 
   case 91: /* forStatement: FOR forIndexExpression optionalEndStatement statementList END  */
-#line 306 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 307 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                                 {
     yyval.v.p = yyvsp[-4].v.p;
     yyval.v.p->addChild(yyvsp[-3].v.p);
@@ -2530,68 +2527,68 @@ yyreduce:
     break;
 
   case 92: /* forStatement: FOR forIndexExpression optionalEndStatement statementList error  */
-#line 312 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 313 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
            {yyxpt(_("'end' to match 'for' statement from line ") + decodeline(yyvsp[-4]),yyvsp[0]);}
 #line 2552 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 93: /* forIndexExpression: '(' IDENT '=' expr ')'  */
-#line 316 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 317 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                          {yyval.v.p = yyvsp[-3].v.p; yyval.v.p->addChild(yyvsp[-1].v.p);}
 #line 2558 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 94: /* forIndexExpression: IDENT '=' expr  */
-#line 317 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 318 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                  {yyval.v.p = yyvsp[-2].v.p; yyval.v.p->addChild(yyvsp[0].v.p);}
 #line 2564 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 95: /* forIndexExpression: IDENT  */
-#line 318 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 319 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
         {yyval.v.p = yyvsp[0].v.p;
         yyval.v.p->addChild(AbstractSyntaxTree::createNode(OP_RHS, AbstractSyntaxTree::createNode(id_node,yyvsp[0].v.p->text.c_str(), yyvsp[0].v.p->getContext()),yyvsp[0].v.p->getContext())); }
 #line 2571 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 96: /* forIndexExpression: '(' IDENT '=' expr error  */
-#line 320 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 321 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                            {yyxpt(_("matching right parenthesis"),yyvsp[-4]);}
 #line 2577 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 97: /* forIndexExpression: '(' IDENT '=' error  */
-#line 321 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 322 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                       {yyxpt(_("indexing expression"),yyvsp[-1]);}
 #line 2583 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 98: /* forIndexExpression: '(' IDENT error  */
-#line 322 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 323 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                   {yyxpt(_("equals operator after loop index"),yyvsp[-1]);}
 #line 2589 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 99: /* forIndexExpression: '(' error  */
-#line 323 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 324 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
             {yyxpt(_("identifier that is the loop variable"),yyvsp[-1]);}
 #line 2595 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 100: /* forIndexExpression: IDENT '=' error  */
-#line 324 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 325 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                   {yyxpt(_("indexing expression"),yyvsp[-1]);}
 #line 2601 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 101: /* forIndexExpression: error  */
-#line 325 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 326 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
         {yyxpt(_("identifier or assignment (id = expr) after 'for' "),yyvsp[0]);}
 #line 2607 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 102: /* whileStatement: WHILE expr optionalEndStatement END  */
-#line 329 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 330 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                       {
     yyval.v.p = nullptr;
   }
@@ -2599,7 +2596,7 @@ yyreduce:
     break;
 
   case 103: /* whileStatement: WHILE expr optionalEndStatement statementList END  */
-#line 332 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 333 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                     {
     yyval.v.p = yyvsp[-4].v.p;
     yyval.v.p->addChild(yyvsp[-3].v.p);
@@ -2609,19 +2606,19 @@ yyreduce:
     break;
 
   case 104: /* whileStatement: WHILE error  */
-#line 337 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 338 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
               {yyxpt(_("test expression after 'while'"),yyvsp[-1]);}
 #line 2631 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 105: /* whileStatement: WHILE expr optionalEndStatement statementList error  */
-#line 339 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 340 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
   {yyxpt(_("'end' to match 'while' statement from line ") + decodeline(yyvsp[-4]),yyvsp[0]);}
 #line 2637 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 106: /* ifStatement: IF conditionedStatement elseIfBlock elseStatement END  */
-#line 343 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 344 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                         {
     yyval.v.p = yyvsp[-4].v.p;
     yyval.v.p->addChild(yyvsp[-3].v.p);
@@ -2632,19 +2629,19 @@ yyreduce:
     break;
 
   case 107: /* ifStatement: IF error  */
-#line 349 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 350 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
            {yyxpt(_("condition expression for 'if'"),yyvsp[-1]);}
 #line 2654 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 108: /* ifStatement: IF conditionedStatement elseIfBlock elseStatement error  */
-#line 350 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 351 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                                           {yyxpt(_("'end' to match 'if' statement from line ") + decodeline(yyvsp[-4]),yyvsp[0]);}
 #line 2660 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.cpp"
     break;
 
   case 109: /* conditionedStatement: expr optionalEndStatement statementList  */
-#line 354 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
+#line 355 "..\\..\\NelSon\\modules\\interpreter\\src\\grammar\\NelSonParser.yxx"
                                           {
     yyval.v.p = AbstractSyntaxTree::createNode(OP_CSTAT,yyvsp[-2].v.p,yyvsp[0].v.p,yyvsp[-2].v.p->getContext());
   }
@@ -3526,7 +3523,6 @@ yyreturnlab:
 namespace Nelson {
 //=============================================================================
   void callyyparse() {
-    std::scoped_lock<std::mutex> lock{parseMutex};
     yyparse();
   }
 //=============================================================================

@@ -14,10 +14,6 @@ R = strcat([]);
 REF = '';
 assert_isequal(R, REF);
 %=============================================================================
-R = strcat({});
-REF = {};
-assert_isequal(R, REF);
-%=============================================================================
 R = strcat('');
 REF = '';
 assert_isequal(R, REF);
@@ -54,10 +50,6 @@ R = strcat('toolbox', string([]), 'general','Contents.m');
 REF = string([]);
 assert_isequal(R, REF);
 %=============================================================================
-R = strcat('username', {'data1', 'data2' ; 'data3', 'data4'}, 'fff');
-REF = {'usernamedata1fff', 'usernamedata2fff'; 'usernamedata3fff', 'usernamedata4fff'};
-assert_isequal(R, REF);
-%=============================================================================
 R = strcat('username   ', ["data2    "], 'fff');
 REF = "usernamedata2    fff";
 assert_isequal(R, REF);
@@ -66,16 +58,8 @@ R = strcat('username   ', ["data1", "data2    "], 'fff');
 REF = ["usernamedata1fff", "usernamedata2    fff"];
 assert_isequal(R, REF);
 %=============================================================================
-R = strcat('username   ', {'data1', 'data2' ; 'data3', 'data4'}, 'fff');
-REF = {'usernamedata1fff', 'usernamedata2fff'; 'usernamedata3fff', 'usernamedata4fff'};
-assert_isequal(R, REF);
-%=============================================================================
 R = strcat('username   ', ["data1", "data2    " ; "data3", "data4"], '   fff');
 REF = [    "usernamedata1   fff", "usernamedata2       fff"; "usernamedata3   fff"    "usernamedata4   fff"];
-assert_isequal(R, REF);
-%=============================================================================
-R = strcat('username', {'data1 ', 'data2  ' ; 'data3  ', 'data4  '}, 'fff');
-REF = {'usernamedata1 fff', 'usernamedata2  fff'; 'usernamedata3  fff', 'usernamedata4  fff'};
 assert_isequal(R, REF);
 %=============================================================================
 R = strcat('/home/username', [string(NaN); "data2"], {'f1.csv'});

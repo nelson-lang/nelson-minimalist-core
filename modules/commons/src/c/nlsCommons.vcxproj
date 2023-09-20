@@ -95,7 +95,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>FMT_HEADER_ONLY;FMT_LIB_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -104,7 +104,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,7 +114,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>FMT_HEADER_ONLY;FMT_LIB_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -124,7 +123,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>FMT_HEADER_ONLY;FMT_LIB_EXPORT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -148,7 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,7 +158,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>FMT_HEADER_ONLY;FMT_LIB_EXPORT;WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSCOMMONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/commons/src/cpp/stduuid;$(SolutionDir)modules/commons/src/fmt/include;$(SolutionDir)modules/characters_encoding/no-src/include</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -172,19 +169,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Boost/lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\characters_encoding\src\c\nlsCharacters_encoding.vcxproj">
-      <Project>{a75dc538-eefa-4873-888b-a034a7ee72c5}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\module.iss" />
     <CustomBuild Include="..\include\Nelson_VERSION.h.vc">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h.vc" "$(SolutionDir)modules\commons\src\include\Nelson_VERSION.h"</Command>
@@ -221,7 +211,6 @@
     <ResourceCompile Include="resources.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\DynamicLibrary.cpp" />
     <ClCompile Include="..\cpp\FileSystemWrapper.cpp" />
     <ClCompile Include="..\cpp\StringHelpers.cpp" />
     <ClCompile Include="..\cpp\UuidHelpers.cpp" />
@@ -229,13 +218,17 @@
     <ClCompile Include="..\fmt\src\format.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\DynamicLibrary.hpp" />
     <ClInclude Include="..\include\FileSystemWrapper.hpp" />
     <ClInclude Include="..\include\Nelson_VERSION.h" />
     <ClInclude Include="..\include\nlsBuildConfig.h" />
     <ClInclude Include="..\include\nlsCommons_exports.h" />
     <ClInclude Include="..\include\StringHelpers.hpp" />
     <ClInclude Include="..\include\UuidHelpers.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
+      <Project>{8316a3ca-9a45-4822-9ab4-87c59c38c523}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

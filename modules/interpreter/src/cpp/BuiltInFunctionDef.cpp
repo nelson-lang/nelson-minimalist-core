@@ -31,7 +31,6 @@ BuiltInFunctionDef::~BuiltInFunctionDef() = default;
 ArrayOfVector
 BuiltInFunctionDef::evaluateFunction(Evaluator* eval, const ArrayOfVector& inputs, int nargout)
 {
-    lock();
     if (eval->withOverload && inputs.size() > 0 && !this->isOverload()
         && this->overloadAutoMode == NLS_OVERLOAD_AUTO_ON) {
         bool wasFound = false;

@@ -7,7 +7,9 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-addpath([nelsonroot(), '/modules/memory_manager/tests/']);
+this_file = mfilename('fullpathext');
+this_path = fileparts(this_file, 'path');
+addpath(this_path);
 for i = 1:30
   r = test_persistent_function();
 end

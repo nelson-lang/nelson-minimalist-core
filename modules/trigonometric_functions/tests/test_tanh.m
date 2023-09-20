@@ -30,11 +30,6 @@ X = tanh(zeros(3, 3, 3));
 REF = zeros(3, 3, 3);
 assert_isequal(X, REF);
 %=============================================================================
-S = sparse(zeros(3, 3));
-X = tanh(S);
-REF = sparse(zeros(3, 3));
-assert_isequal(X, REF);
-%=============================================================================
 assert_isequal(tanh([]), []);
 %=============================================================================
 msg = sprintf(_('Check for incorrect argument data type or missing argument in call to function ''%s''.'), 'tanh');

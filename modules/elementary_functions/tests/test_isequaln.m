@@ -14,8 +14,6 @@ assert_checkerror('isequaln([1, 1])', _('Wrong number of input arguments.'));
 assert_isequal(nargin('isequaln'), -1);
 assert_isequal(nargout('isequaln'), 1);
 %=============================================================================
-assert_istrue(isequaln(struct([]), struct([])));
-%=============================================================================
 assert_istrue(isequaln(false, false));
 assert_isfalse(isequaln(false, true));
 %=============================================================================
@@ -41,7 +39,4 @@ assert_istrue(isequaln(NaN, single(NaN)));
 assert_isfalse(isequaln(NaN, Inf));
 assert_isfalse(isequaln(NaN, 1.0));
 assert_istrue(isequaln([1, 2, NaN, 4], [1, 2, NaN, 4]));
-assert_istrue(isequaln(struct('a', NaN, 'b', 2), struct('a', NaN, 'b', 2)));
-%=============================================================================
-assert_istrue(isequaln(struct('a', NaN, 'b', 2), struct('a', NaN, 'b', 2), struct('a', NaN, 'b', 2)));
 %=============================================================================

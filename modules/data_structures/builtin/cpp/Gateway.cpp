@@ -12,6 +12,7 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "data_structures_Gateway.hpp"
 #include "structBuiltin.hpp"
 #include "iscellstrBuiltin.hpp"
 #include "cellBuiltin.hpp"
@@ -23,7 +24,6 @@
 #include "namedargs2cellBuiltin.hpp"
 #include "getfieldBuiltin.hpp"
 #include "rmfieldBuiltin.hpp"
-#include "__num2cell__Builtin.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -38,18 +38,16 @@ static const nlsGateway gateway[] = {
     { "getfield", (ptrBuiltin)Nelson::DataStructuresGateway::getfieldBuiltin, 1, 2 },
     { "rmfield", (ptrBuiltin)Nelson::DataStructuresGateway::rmfieldBuiltin, 1, 2 },
     { "struct", (ptrBuiltin)Nelson::DataStructuresGateway::structBuiltin, 1, 1 },
-    { "__num2cell__", (ptrBuiltin)Nelson::DataStructuresGateway::__num2cell__Builtin, 1, 1 },
     { "iscellstr", (ptrBuiltin)Nelson::DataStructuresGateway::iscellstrBuiltin, 1, 1 },
     { "cell", (ptrBuiltin)Nelson::DataStructuresGateway::cellBuiltin, 1, 0 },
     { "struct2cell", (ptrBuiltin)Nelson::DataStructuresGateway::struct2cellBuiltin, 1, 1 },
     { "cell2struct", (ptrBuiltin)Nelson::DataStructuresGateway::cell2structBuiltin, 1, 3 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+DataStructuresGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -18,19 +18,6 @@ C = [1 ; 3i];
 res = class(C);
 assert_isequal(res, 'double');
 %=============================================================================
-addpath([nelsonroot(), '/modules/overload/examples/complex']);
-c = complexObj(3,4);
-res = class(c);
-assert_isequal(res, 'complexObj');
-%=============================================================================
-A = sparse(2i);
-res = class(A);
-assert_isequal(res, 'sparsedouble');
-%=============================================================================
-A = sparse(true);
-res = class(A);
-assert_isequal(res, 'sparselogical');
-%=============================================================================
 A = ones(3, 3, 3);
 res = class(A);
 assert_isequal(res, 'double');

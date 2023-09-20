@@ -8,23 +8,15 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #ifdef _MSC_VER
-#include "WindowsConsole.hpp"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
-#else
-#include "BsdTerminal.hpp"
 #endif
 #include "MainEvaluator.hpp"
 #include "BasicTerminal.hpp"
-#include "SioClientInterface.hpp"
 #include "BuiltInFunctionDefManager.hpp"
 #include "Clear.hpp"
 #include "ClearGlobal.hpp"
-#include "ComputionalThreads.hpp"
-#include "GuiTerminal.hpp"
 #include "Localization.hpp"
-#include "MainGuiObjectDynamic.hpp"
-#include "ModulesManager.hpp"
 #include "PathFunctionIndexerManager.hpp"
 #include "i18n.hpp"
 #include "NelsonConfiguration.hpp"
@@ -36,7 +28,6 @@ createMainEvaluator(NELSON_ENGINE_MODE _mode, const std::wstring& lang, bool min
 {
     Evaluator* mainEvaluator = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
     size_t mainEvaluatorID = 0;
-    setDefaultMaxNumCompThreads();
     if (mainEvaluator == nullptr) {
         Context* context = nullptr;
         try {
@@ -50,26 +41,13 @@ createMainEvaluator(NELSON_ENGINE_MODE _mode, const std::wstring& lang, bool min
         if (context != nullptr) {
             std::string msg = _("This mode is not yet implemented.\n");
             switch (_mode) {
+            case ADVANCED_ENGINE:
+            case ADVANCED_TERMINAL:
+            case GUI:
             case ADVANCED_SIO_CLIENT:
             case BASIC_ENGINE: {
                 fprintf(stderr, "%s", msg.c_str());
                 exit(1);
-            } break;
-            case ADVANCED_ENGINE: {
-                InitGuiObjectsDynamic();
-                fprintf(stderr, "%s", msg.c_str());
-                exit(1);
-            } break;
-            case BASIC_SIO_CLIENT: {
-                SioClientInterface* nlsTerm = nullptr;
-                try {
-                    nlsTerm = new SioClientInterface();
-                } catch (std::bad_alloc&) {
-                    nlsTerm = nullptr;
-                }
-                if (nlsTerm != nullptr) {
-                    mainEvaluator = new Evaluator(context, nlsTerm, false, mainEvaluatorID);
-                }
             } break;
             case BASIC_TERMINAL: {
                 BasicTerminal* nlsTerm = nullptr;
@@ -81,32 +59,6 @@ createMainEvaluator(NELSON_ENGINE_MODE _mode, const std::wstring& lang, bool min
                 if (nlsTerm != nullptr) {
                     mainEvaluator = new Evaluator(context, nlsTerm, false, mainEvaluatorID);
                 }
-            } break;
-            case ADVANCED_TERMINAL: {
-                InitGuiObjectsDynamic();
-#ifdef _MSC_VER
-                WindowsConsole* nlsTerm = nullptr;
-                try {
-                    nlsTerm = new WindowsConsole();
-                } catch (std::bad_alloc&) {
-                    nlsTerm = nullptr;
-                }
-#else
-                BsdTerminal* nlsTerm = nullptr;
-                try {
-                    nlsTerm = new BsdTerminal();
-                } catch (std::bad_alloc&) {
-                    nlsTerm = nullptr;
-                }
-#endif
-                if (nlsTerm != nullptr) {
-                    mainEvaluator = new Evaluator(context, nlsTerm, true, mainEvaluatorID);
-                }
-            } break;
-            case GUI: {
-                InitGuiObjectsDynamic();
-                mainEvaluator = static_cast<Evaluator*>(CreateGuiEvaluatorDynamic(
-                    (void*)context, _mode, minimizeWindow, mainEvaluatorID));
             } break;
             default: {
                 std::string _msg = _("unknow engine.\n");
@@ -131,7 +83,6 @@ destroyMainEvaluator()
             // delete all functions (builtin, macros, variables)
             ClearAllVariables(mainEvaluator);
             ClearAllGlobalVariables(mainEvaluator);
-            ModulesManager::Instance().deleteAllModules();
             delete ctxt;
             ctxt = nullptr;
         }
@@ -145,10 +96,8 @@ destroyMainEvaluator()
             case BASIC_ENGINE: {
             } break;
             case ADVANCED_ENGINE: {
-                DestroyMainGuiObjectDynamic(nullptr);
             } break;
             case GUI: {
-                DestroyMainGuiObjectDynamic((void*)io);
             } break;
             case BASIC_TERMINAL: {
                 auto* nlsTerm = (BasicTerminal*)io;
@@ -156,14 +105,6 @@ destroyMainEvaluator()
                 nlsTerm = nullptr;
             } break;
             case ADVANCED_TERMINAL: {
-#ifdef _MSC_VER
-                auto* nlsTerm = (WindowsConsole*)io;
-#else
-                BsdTerminal* nlsTerm = (BsdTerminal*)io;
-#endif
-                delete nlsTerm;
-                nlsTerm = nullptr;
-                DestroyMainGuiObjectDynamic(nullptr);
             } break;
             default: {
             } break;

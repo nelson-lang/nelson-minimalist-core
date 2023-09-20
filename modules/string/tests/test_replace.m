@@ -62,10 +62,6 @@ r = replace('cc','','b');
 ref = 'bcbcb';
 assert_isequal(r, ref);
 %=============================================================================
-r = replace({},'str','str');
-ref = {};
-assert_isequal(r, ref);
-%=============================================================================
 r = replace('str',{},'str');
 ref = 'str';
 assert_isequal(r, ref);
@@ -78,14 +74,6 @@ r = replace('str',{''},'str');
 ref =  'strsstrtstrrstr';
 assert_isequal(r, ref);
 %=============================================================================
-r = replace({'str'},{''},'str');
-ref =  {'strsstrtstrrstr'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({},{},{});
-ref = {};
-assert_isequal(r, ref);
-%=============================================================================
 r = replace('cccc','cc','b');
 ref = 'bb';
 assert_isequal(r, ref);
@@ -94,46 +82,11 @@ r = replace('cccc','cc','bbb');
 ref = 'bbbbbb';
 assert_isequal(r, ref);
 %=============================================================================
-r = replace({'cccc'},'cc','bb');
-ref = {'bbbb'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'cccc'},'cc',{'bb'});
-ref = {'bbbb'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'cccc'},{'cc'},'bb');
-ref = {'bbbb'};
-assert_isequal(r, ref);
-%=============================================================================
 r = replace('cccc',{'cc'},{'bb'});
 ref = 'bbbb';
 assert_isequal(r, ref);
 %=============================================================================
-r = replace({'cccc','ccbbcca'},'cc','bb');
-ref = { 'bbbb'    'bbbbbba'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'cccc','ccbbcca'},{'cc','bb'},'cc');
-ref = {  'cccc'    'cccccca'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'cccc','ccbbcca'},{'cc','bb'},{'cc'});
-ref = {'cccc'    'cccccca'};
-assert_isequal(r, ref);
-%=============================================================================
-str = {'the quick yellow canary';
-'and the lazy bunny'};
-r = replace(str,'the','a');
-ref = {'a quick yellow canary';
-'and a lazy bunny'};
-assert_isequal(r, ref);
-%=============================================================================
 r = replace('cccc',{'cc'},'bb');
-ref = 'bbbb';
-assert_isequal(r, ref);
-%=============================================================================
-r = replace('cccc','cc',{'bb'});
 ref = 'bbbb';
 assert_isequal(r, ref);
 %=============================================================================
@@ -141,35 +94,8 @@ r = replace('','','str');
 ref = 'str';
 assert_isequal(r, ref);
 %=============================================================================
-r = replace('cccc',{},'bb');
-ref = 'cccc';
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'cccc'},{},'bb');
-ref = {'cccc'};
-assert_isequal(r, ref);
-%=============================================================================
-OLD = {'ccabbba','bbccbb';
-'abba','bccb'};
-STR = {'cc';
-'bb'};
-NEW = {'cc';
-'e'};
-r = replace(OLD, STR, NEW);
-ref = {'ccaeba'    'ecce';
-'aea'       'bccb'};
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'r','a'},{'a','r'},{'rrr'});
-ref = {'r','a'};
-assert_isequal(r, ref);
-%=============================================================================
 r = replace('ccabbba',{'cc','bb'},{'cc','e'});
 ref =  'ccaeba';
-assert_isequal(r, ref);
-%=============================================================================
-r = replace({'ccabbba'},{'cc','bb'},{'cc','e'});
-ref =  {'ccaeba'};
 assert_isequal(r, ref);
 %=============================================================================
 cmd = 'r = replace(''str'',''str'',[]);';

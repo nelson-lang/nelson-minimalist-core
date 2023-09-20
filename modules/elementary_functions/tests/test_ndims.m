@@ -15,5 +15,4 @@ assert_isequal(ndims({}), 2)
 assert_isequal(ndims(1), 2)
 assert_isequal(ndims(1:5), 2)
 assert_isequal(ndims(ones(1, 2, 3)), 3)
-assert_isequal(ndims(sparse(eye(3, 3))), 2)
 %=============================================================================

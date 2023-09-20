@@ -58,7 +58,3 @@ R = cell2struct(c, f);
 assert_isequal(class(R), 'struct');
 assert_isequal(size(R), [1 1]);
 %=============================================================================
-obj = weboptions();
-assert_isequal(class(obj), 'weboptions');
-assert_isequal(class(struct(obj)), 'struct');
-%=============================================================================

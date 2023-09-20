@@ -58,16 +58,6 @@ R2 = cellfun('length', greetings);
 assert_isequal(R1, R2);
 assert_isequal(R1, [ 5     9     7     7     7     0]);
 %=============================================================================
-addpath(modulepath('data_structures', 'tests'));
-R = str2func('fun1');
-H =  str2func('errorfun');
-A = {rand(3)};
-B = {rand(5)};
-AgtA = cellfun(R, A, B, 'ErrorHandler', H,  'UniformOutput', true);
-assert_isequal(AgtA, false);
-AgtB = cellfun(R, A, B, 'ErrorHandler', H,  'UniformOutput', false);
-assert_isequal(AgtB, {false});
-%=============================================================================
 assert_istrue(all(cellfun('isnumeric', {})));
 assert_istrue(all(cellfun('isnumeric', {}, 'UniformOutput', true)));
 %=============================================================================

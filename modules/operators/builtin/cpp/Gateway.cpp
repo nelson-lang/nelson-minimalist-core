@@ -46,6 +46,7 @@
 #include "bitandBuiltin.hpp"
 #include "bitorBuiltin.hpp"
 #include "bitxorBuiltin.hpp"
+#include "operators_Gateway.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -118,11 +119,10 @@ static const nlsGateway gateway[] = {
 
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+OperatorsGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -11,7 +11,6 @@
 #include "lapack_eigen_config.hpp"
 #include <Eigen/Dense>
 #include "UnaryMinus.hpp"
-#include "UminusSparse.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -69,7 +68,8 @@ UnaryMinus(const ArrayOf& A, bool& needToOverload)
     switch (A.getDataClass()) {
     case NLS_LOGICAL: {
         if (A.isSparse()) {
-            return sparselogical_uminus(A);
+            needToOverload = true;
+            return {};
         } else {
             res = A;
             res.ensureSingleOwner();
@@ -108,7 +108,8 @@ UnaryMinus(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DOUBLE: {
         if (A.isSparse()) {
-            res = sparsedouble_uminus(A);
+            needToOverload = true;
+            return {};
         } else {
             res = uminusReal<double>(A);
         }
@@ -118,7 +119,8 @@ UnaryMinus(const ArrayOf& A, bool& needToOverload)
     } break;
     case NLS_DCOMPLEX: {
         if (A.isSparse()) {
-            res = sparsedouble_uminus(A);
+            needToOverload = true;
+            return {};
         } else {
             res = uminusComplex<double>(A);
         }

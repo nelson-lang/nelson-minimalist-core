@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "files_folders_functions_Gateway.hpp"
 #include "cdBuiltin.hpp"
 #include "copyfileBuiltin.hpp"
 #include "diff_fileBuiltin.hpp"
@@ -54,11 +55,10 @@ static const nlsGateway gateway[] = {
     { "fullfile", (ptrBuiltin)Nelson::FilesFoldersGateway::fullfileBuiltin, 1, -1 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+FilesFoldersFunctionsGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

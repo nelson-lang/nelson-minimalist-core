@@ -10,7 +10,7 @@
 assert_isequal(nargin('lastwarn'), 2);
 assert_isequal(nargout('lastwarn'), 2);
 %=============================================================================
-lastwarn();
+lastwarn('');
 %=============================================================================
 msg = lastwarn();
 assert_isequal(msg, '');

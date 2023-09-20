@@ -11,7 +11,8 @@ a = nfilename();
 assert_isequal(a, 'test_nfilename');
 %=============================================================================
 p = path();
-addpath([nelsonroot(), '/modules/core/tests/']);
+this_file = mfilename('fullpathext');
+addpath(fileparts(this_file, 'path'));
 a = nfilename();
 assert_isequal(a, 'test_nfilename');
 %=============================================================================

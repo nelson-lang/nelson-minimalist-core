@@ -35,6 +35,7 @@ R = ones(3, 3, 3) + ones(3, 3, 3);
 REF = ones(3, 3, 3) + 1;
 assert_isequal(R, REF);
 %=============================================================================
+clear('i')
 R = 3 + i;
 REF = complex(3, 1);
 assert_isequal(R, REF);

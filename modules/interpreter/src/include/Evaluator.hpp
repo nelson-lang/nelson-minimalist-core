@@ -14,7 +14,6 @@
 #include "nlsInterpreter_exports.h"
 #include "AbstractSyntaxTree.hpp"
 #include "ArrayOf.hpp"
-#include "CommandQueue.hpp"
 #include "Context.hpp"
 #include "FunctionDef.hpp"
 #include "Interface.hpp"
@@ -135,9 +134,6 @@ public:
 
     stringVector
     getCallers(bool includeCurrent);
-
-    /* Command Queue */
-    CommandQueue commandQueue;
 
     /**
      * Construct a Evaluator object with the given context to operate
@@ -628,9 +624,6 @@ public:
     isQuietMode();
     void
     setQuietMode(bool _quiet);
-
-    void
-    addCommandToQueue(const std::wstring& command, bool bIsPriority = false);
 
     /**
      * Get the last error that occurred.

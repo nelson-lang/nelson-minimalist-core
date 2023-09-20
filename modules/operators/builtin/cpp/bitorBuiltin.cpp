@@ -16,6 +16,7 @@ using namespace Nelson;
 ArrayOfVector
 Nelson::OperatorsGateway::bitorBuiltin(int nLhs, const ArrayOfVector& argIn)
 {
+    ArrayOfVector retval;
     nargincheck(argIn, 1, 3);
     nargoutcheck(nLhs, 0, 1);
     std::wstring assumedType = L"";

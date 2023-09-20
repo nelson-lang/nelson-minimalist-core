@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "double_Gateway.hpp"
 #include "doubleBuiltin.hpp"
 #include "flintmaxBuiltin.hpp"
 #include "realmaxBuiltin.hpp"
@@ -22,11 +23,10 @@ static const nlsGateway gateway[] = {
     { "realmax", (ptrBuiltin)Nelson::DoubleGateway::realmaxBuiltin, 1, 1 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+DoubleGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

@@ -9,7 +9,6 @@
 //=============================================================================
 #include "Evaluator.hpp"
 #include "Operators.hpp"
-#include "MatrixPower.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
 #include "OverloadHelpers.hpp"
@@ -87,16 +86,9 @@ Evaluator::mpowerOperator(const ArrayOfVector& args)
             }
         }
     }
-    res = MatrixPower(A, B, needToOverload);
 
-    if (needToOverload) {
-        bool overloadWasFound = false;
-        res = callOverloadedFunction(this, NLS_OVERLOAD_ALL_TYPES, args, functionName,
-            commonTypeName, commonType, overloadWasFound);
-        if (!overloadWasFound) {
-            OverloadRequired(functionName);
-        }
-    }
+    OverloadRequired(functionName);
+
     return res;
 }
 //=============================================================================

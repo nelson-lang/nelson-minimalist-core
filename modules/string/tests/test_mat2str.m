@@ -74,18 +74,6 @@ R = mat2str([3.85 2.91; 7.74 8.99]);
 REF = '[3.85 2.91;7.74 8.99]';
 assert_isequal(R, REF);
 %=============================================================================
-R = mat2str(sparse([3.85 2.91; 7.74 8.99]));
-REF = 'sparse([1;2;1;2], [1;1;2;2], [3.85;7.74;2.91;8.99], 2, 2)';
-assert_isequal(R, REF);
-%=============================================================================
-R = mat2str(sparse([true() false(); false() true()]));
-REF = 'sparse([1;2], [1;2], [true;true], 2, 2, 2)';
-assert_isequal(R, REF);
-%=============================================================================
-R = mat2str(sparse([true() false(); false() true()]), 'class');
-REF = 'sparse([1;2], [1;2], logical([true;true]), 2, 2, 2)';
-assert_isequal(R, REF);
-%=============================================================================
 R = mat2str(eye(3, 3) + i);
 REF = '[1+1i 0+1i 0+1i;0+1i 1+1i 0+1i;0+1i 0+1i 1+1i]';
 assert_isequal(R, REF);
@@ -93,7 +81,7 @@ assert_isequal(R, REF);
 assert_checkerror('mat2str()', _('Wrong number of input arguments.'));
 assert_checkerror('mat2str(''nelson'')', _('type not supported.'));
 assert_checkerror('mat2str(ones(8,9), [1 1])', _('A scalar expected.'));
-assert_checkerror('mat2str(rand(2, 2, 3))', _('A 2D matrix expected.'));
+assert_checkerror('mat2str(ones(2, 2, 3))', _('A 2D matrix expected.'));
 assert_checkerror('R = mat2str([3.85 2.91; 7.74 8.99], 12,''class'', 3)', _('Wrong number of input arguments.'));
 %=============================================================================
 

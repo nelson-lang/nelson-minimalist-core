@@ -12,21 +12,19 @@
 #endif
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "functions_manager_Gateway.hpp"
 #include "addpathBuiltin.hpp"
 #include "builtinBuiltin.hpp"
 #include "clearfunBuiltin.hpp"
 #include "fevalBuiltin.hpp"
 #include "isbuiltinBuiltin.hpp"
-#include "ismexBuiltin.hpp"
 #include "ismacroBuiltin.hpp"
 #include "macroargsBuiltin.hpp"
 #include "pathBuiltin.hpp"
 #include "rehashBuiltin.hpp"
-#include "restoredefaultpathBuiltin.hpp"
 #include "rmpathBuiltin.hpp"
 #include "userpathBuiltin.hpp"
 #include "whatBuiltin.hpp"
-#include "whichBuiltin.hpp"
 #include "inmemBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -34,7 +32,6 @@ using namespace Nelson;
 const std::wstring gatewayName = L"functions_manager";
 //=============================================================================
 static const nlsGateway gateway[] = {
-    { "which", (ptrBuiltin)Nelson::FunctionsGateway::whichBuiltin, 1, 1 },
     { "macroargs", (ptrBuiltin)Nelson::FunctionsGateway::macroargsBuiltin, 2, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
     { "builtin", (ptrBuiltin)Nelson::FunctionsGateway::builtinBuiltin, -1, -1,
@@ -52,19 +49,16 @@ static const nlsGateway gateway[] = {
         CPP_BUILTIN_WITH_EVALUATOR },
     { "isbuiltin", (ptrBuiltin)Nelson::FunctionsGateway::isbuiltinBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
-    { "restoredefaultpath", (ptrBuiltin)Nelson::FunctionsGateway::restoredefaultpathBuiltin, 0, 0 },
     { "rehash", (ptrBuiltin)Nelson::FunctionsGateway::rehashBuiltin, 0, 0 },
     { "userpath", (ptrBuiltin)Nelson::FunctionsGateway::userpathBuiltin, 1, 1 },
     { "inmem", (ptrBuiltin)Nelson::FunctionsGateway::inmemBuiltin, 2, 0 },
-    { "ismex", (ptrBuiltin)Nelson::FunctionsGateway::ismexBuiltin, 1, 1, CPP_BUILTIN },
 
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+FunctionsManagerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

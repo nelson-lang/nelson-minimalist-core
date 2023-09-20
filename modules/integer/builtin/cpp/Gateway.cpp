@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "integer_Gateway.hpp"
 #include "int8Builtin.hpp"
 #include "int16Builtin.hpp"
 #include "int32Builtin.hpp"
@@ -36,11 +37,10 @@ static const nlsGateway gateway[] = {
     { "intmin", (ptrBuiltin)Nelson::IntegerGateway::intminBuiltin, -1, -1 },
 };
 //=============================================================================
-NLSGATEWAYFUNC(gateway)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVE(gateway)
-//=============================================================================
-NLSGATEWAYNAME()
+int
+IntegerGateway(void* eval, const wchar_t* moduleFilename)
+{
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
+}
 //=============================================================================

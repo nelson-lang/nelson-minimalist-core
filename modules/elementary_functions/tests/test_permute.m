@@ -133,7 +133,6 @@ assert_isequal(R, REF);
 assert_checkerror('R = permute([5,1,8;2,8,3;7,8,1;3,1,8], [2.8;1.7])', _('Expected integer index.'));
 assert_checkerror('R = permute([5,1,8;2,8,3;7,8,1;3,1,8], [1,1])', _('Second argument is not a valid permutation.'));
 assert_checkerror('R = permute([5,1,8;2,8,3;7,8,1;3,1,8], [0,2])', _('Second argument is not a valid permutation.'));
-assert_checkerror('A = rand(3,3,2); B =permute(A,[2, 1]);', _('ORDER must have at least N elements for an N-D array.'));
 %=============================================================================
 R = permute([5,1,8;2,8,3;7,8,1;3,1,8], [3,1,2]);
 REF = [];

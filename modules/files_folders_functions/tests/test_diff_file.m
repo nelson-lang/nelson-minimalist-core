@@ -26,7 +26,7 @@ hello
 assert_isequal(replace(R, char([10 32]), char(10)) , replace(REF, char([10 32]), char(10)));
 %=============================================================================
 R = diff_file(fileB, fileA, false);
-double(R)
+double(R);
 REF = '@@ -1,2 +1,2 @@
 hello
 -world B

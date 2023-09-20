@@ -18,17 +18,23 @@ list(FILTER COMMONS_SRC EXCLUDE REGEX
      "${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/dllMain.cpp")
 # ==============================================================================
 add_library(${module_library_name} ${COMMONS_SRC})
-target_compile_definitions(${module_library_name} PRIVATE FMT_HEADER_ONLY FMT_LIB_EXPORT)
+if(WIN32)
+    target_compile_definitions(${module_library_name} PUBLIC "NLSCOMMONS_EXPORTS")
+endif()
+target_compile_definitions(${module_library_name} PRIVATE FMT_EXPORT)
 set(COMMONS_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src/include
                          ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include)
 target_include_directories(
-  ${module_library_name}
-  PUBLIC "$<BUILD_INTERFACE:${COMMONS_INCLUDE_DIRS}>"
-         $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>)
+    ${module_library_name}
+    PUBLIC
+    "$<BUILD_INTERFACE:${COMMONS_INCLUDE_DIRS}>"
+    $<INSTALL_INTERFACE:include/${PROJECT_NAME}/${module_name}>
+)
 target_include_directories(
-  ${module_library_name}
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/stduuid
-          ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/src/include)
+    ${module_library_name}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp/stduuid
+)
 target_link_libraries(${module_library_name} nlsCharacters_encoding)
 # ==============================================================================
 file(GLOB COMMONS_HEADER
@@ -42,11 +48,18 @@ set_target_properties(
 # ==============================================================================
 include(GNUInstallDirs)
 install(
-  TARGETS ${module_library_name}
-  EXPORT ${PROJECT_NAME}-targets
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  PUBLIC_HEADER
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name})
+    TARGETS ${module_library_name}
+    EXPORT ${PROJECT_NAME}-targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION
+    ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
+)
+# Because PUBLIC_HEADER does not preserve the folder structure and 
+# FILE_SET option is not available before CMake 3.23
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include/fmt
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module_name}
+)
 # ==============================================================================

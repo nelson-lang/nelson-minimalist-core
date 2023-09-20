@@ -16,7 +16,7 @@ assert_isequal(acos(Inf), complex(0, -Inf));
 assert_isequal(acos(-Inf), complex(pi, -Inf));
 %=============================================================================
 n = 100;
-A = rand(n,n);
+A = eye(n,n);
 B = acos(-A) - asin(A);
 e = pi * 0.5 *ones(n,n);
 assert_isapprox(real(B), e, 4 * eps);
@@ -32,11 +32,6 @@ assert_isapprox(x, ref, 1e-4);
 %=============================================================================
 X = acos(ones(3, 3, 3));
 REF = zeros(3, 3, 3);
-assert_isequal(X, REF);
-%=============================================================================
-S = sparse(ones(3, 3));
-X = acos(S);
-REF = sparse(zeros(3, 3));
 assert_isequal(X, REF);
 %=============================================================================
 assert_isequal(acos([]), []);

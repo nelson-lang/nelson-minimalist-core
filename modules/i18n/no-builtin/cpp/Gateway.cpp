@@ -8,6 +8,7 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "NelsonGateway.hpp"
+#include "i18n_Gateway.hpp"
 #include "gettextBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -20,23 +21,10 @@ static const nlsGateway gateway[] = {
 
 };
 //=============================================================================
-static bool
-initializeI18nModule(Nelson::Evaluator* eval)
+int
+I18nGateway(void* eval, const wchar_t* moduleFilename)
 {
-    return true;
+    return NelsonAddGatewayWithEvaluator(eval, moduleFilename, (void*)gateway,
+        sizeof(gateway) / sizeof(nlsGateway), gatewayName.c_str(), (void*)nullptr);
 }
-//=============================================================================
-static bool
-finishI18nModule(Nelson::Evaluator* eval)
-{
-    return true;
-}
-//=============================================================================
-NLSGATEWAYFUNCEXTENDED(gateway, (void*)initializeI18nModule)
-//=============================================================================
-NLSGATEWAYINFO(gateway)
-//=============================================================================
-NLSGATEWAYREMOVEEXTENDED(gateway, (void*)finishI18nModule)
-//=============================================================================
-NLSGATEWAYNAME()
 //=============================================================================

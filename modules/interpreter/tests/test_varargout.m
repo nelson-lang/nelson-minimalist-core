@@ -7,7 +7,9 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-addpath([nelsonroot(), '/modules/interpreter/tests/']);
+this_file = mfilename('fullpathext');
+this_path = fileparts(this_file, 'path');
+addpath(this_path);
 nolhs_function()
 assert_checkerror('a = nolhs_function();', _('Wrong number of output arguments.'));
 assert_checkerror('disp(nolhs_function())', _('Wrong number of output arguments.'));

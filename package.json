@@ -1,14 +1,14 @@
 {
-  "name": "nelson",
-  "version": "0.7.9",
-  "description": "Nelson, an array programming language",
+  "name": "nelson-minimalist-core",
+  "version": "0.4.0",
+  "description": "Nelson, an array programming language (minimalist-core)",
   "copyright": "Copyright 2018-present Allan CORNET",
   "scripts": {
-    "prettier": "run-s prettier:standard prettier:xmldoc prettier:clang-format",
+    "prettier": "run-s prettier:standard prettier:clang-format",
     "prettier:standard": "prettier --write **/*.{js,json,yml,md}",
     "prettier:xmldoc": "prettier --write modules/*/help/*/xml/*.xml",
     "prettier:clang-format": "clang-format-launcher  --verbose",
-    "prettier:check": "run-s prettier:check:standard prettier:check:xmldoc prettier:check:clang-format",
+    "prettier:check": "run-s prettier:check:standard prettier:check:clang-format",
     "prettier:check:standard": "prettier --check **/*.{js,json,yml,md}",
     "prettier:check:xmldoc": "prettier --check modules/*/help/*/xml/*.xml",
     "prettier:check:clang-format": "clang-format-launcher -verify --verbose"
@@ -31,23 +31,10 @@
     ],
     "excludePathContains": [
       ".git",
-      "modules/commons/src/include/nlohmann",
-      "modules/f2c/src/c/libf2c",
-      "modules/f2c/tests/dgemm.c",
-      "modules/f2c/src/c/libf2c/",
-      "modules/f2c/src/c/f2c/",
-      "modules/help_tools/src/c/hoedown",
-      "modules/file_archiver/src/c/minizip",
+      "node_modules",
       "modules/commons/src/fmt/include/fmt",
-      "modules/files_folders_functions/src/include/dtl/",
-      "modules/sio_client/src/socket_io",
-      "modules/modules_manager/src/c/semver",
-      "modules/interpreter/src/include/fast_float",
-      "modules/fftw/src/cpp/fftw3.h",
-      "modules/core/src/include/picoSHA2/picosha2.h",
-      "modules/parallel/src/include/BS_thread_pool.hpp",
-      "modules/interpreter/src/grammar/NelSonParser.cpp",
-      "modules/characters_encoding/src/cpp/simdutf"
+      "modules/files_folders_functions/src/include/dtl",
+      "modules/interpreter/src/grammar/NelSonParser.cpp"
     ]
   }
 }

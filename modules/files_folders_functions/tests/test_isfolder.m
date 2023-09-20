@@ -7,7 +7,5 @@
 % SPDX-License-Identifier: LGPL-3.0-or-later
 % LICENCE_BLOCK_END
 %=============================================================================
-assert_istrue(isfolder(nelsonroot()));
 assert_isfalse(isfolder('blabla_isfolder'));
-assert_isequal(isfolder(nelsonroot()), isdir(nelsonroot()));
 %=============================================================================
