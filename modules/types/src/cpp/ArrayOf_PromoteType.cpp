@@ -75,8 +75,8 @@ template <class TIN, class TOUT>
 void
 saturate(NelsonType classIn, NelsonType classOut, const void* pIn, void* pOut, indexType count)
 {
-    const TIN* sp = (const TIN*)pIn;
-    TOUT* qp = (TOUT*)pOut;
+    const TIN* sp = static_cast<const TIN*>(pIn);
+    TOUT* qp = static_cast<TOUT*>(pOut);
     if (classIn != classOut) {
         bool checkNaN = false;
         if (typeid(TOUT) != typeid(single) || typeid(TOUT) != typeid(double)) {
@@ -256,8 +256,12 @@ void
 ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
 {
     if (dp->dataClass != dstClass && !isEmpty()) {
+        bool allowedCases = ((dstClass == NLS_CLASS_ARRAY) && (dp->dataClass == NLS_STRUCT_ARRAY))
+            || ((dstClass == NLS_STRUCT_ARRAY) && (dp->dataClass == NLS_CLASS_ARRAY))
+            || ((dstClass == NLS_FUNCTION_HANDLE) && (dp->dataClass == NLS_STRUCT_ARRAY))
+            || ((dstClass == NLS_STRUCT_ARRAY) && (dp->dataClass == NLS_FUNCTION_HANDLE));
         if ((dstClass == NLS_STRING_ARRAY) || (dstClass == NLS_CELL_ARRAY)
-            || (dstClass == NLS_STRUCT_ARRAY)) {
+            || (dp->dataClass <= NLS_CHAR && dstClass > NLS_CHAR) && !allowedCases) {
             Error(_W("Cannot convert base types to reference types."));
         }
     }
@@ -295,6 +299,26 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
         }
         Error(_W("Cannot convert cell-arrays to any other type."));
 
+    } break;
+    case NLS_FUNCTION_HANDLE: {
+        if (dstClass == NLS_STRUCT_ARRAY) {
+            return;
+        }
+        Error(_W("Cannot convert function_handle to any other type."));
+
+    } break;
+    case NLS_CLASS_ARRAY: {
+        if (dstClass == NLS_CLASS_ARRAY) {
+            if (dp->getClassTypeName() != getClassType()) {
+                Error(_W("Cannot combine classes with different types."));
+            }
+            return;
+        }
+        if (dstClass == NLS_STRUCT_ARRAY) {
+            dp->promoteClassToStruct();
+            return;
+        }
+        Error(_W("Cannot convert class to any other type."));
     } break;
     case NLS_STRUCT_ARRAY: {
         if (dstClass == NLS_STRUCT_ARRAY) {
@@ -343,6 +367,15 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
             dp = dp->putData(dp->dataClass, dp->dimensions, dstPtr, false, fNames);
             return;
         }
+        if (dstClass == NLS_CLASS_ARRAY) {
+            dp->promoteStructToClass();
+            return;
+        }
+        if (dstClass == NLS_FUNCTION_HANDLE) {
+            dp->promoteStructToFunctionHandle();
+            return;
+        }
+
         Error(_W("Cannot convert struct-arrays to any other type."));
 
     } break;
@@ -360,43 +393,43 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
             return;
         } break;
         case NLS_UINT8: {
-            dstPtr = (void*)promoteAsReal<logical, uint8>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, uint8>(dstClass, sp, count));
         } break;
         case NLS_INT8: {
-            dstPtr = (void*)promoteAsReal<logical, int8>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, int8>(dstClass, sp, count));
         } break;
         case NLS_UINT16: {
-            dstPtr = (void*)promoteAsReal<logical, uint16>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, uint16>(dstClass, sp, count));
         } break;
         case NLS_INT16: {
-            dstPtr = (void*)promoteAsReal<logical, int16>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, int16>(dstClass, sp, count));
         } break;
         case NLS_UINT32: {
-            dstPtr = (void*)promoteAsReal<logical, uint32>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, uint32>(dstClass, sp, count));
         } break;
         case NLS_INT32: {
-            dstPtr = (void*)promoteAsReal<logical, int32>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, int32>(dstClass, sp, count));
         } break;
         case NLS_UINT64: {
-            dstPtr = (void*)promoteAsReal<logical, uint64>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, uint64>(dstClass, sp, count));
         } break;
         case NLS_INT64: {
-            dstPtr = (void*)promoteAsReal<logical, int64>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, int64>(dstClass, sp, count));
         } break;
         case NLS_SINGLE: {
-            dstPtr = (void*)promoteAsReal<logical, single>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, single>(dstClass, sp, count));
         } break;
         case NLS_DOUBLE: {
-            dstPtr = (void*)promoteAsReal<logical, double>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, double>(dstClass, sp, count));
         } break;
         case NLS_SCOMPLEX: {
-            dstPtr = promoteAsComplex<logical, single>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsComplex<logical, single>(dstClass, sp, count));
         } break;
         case NLS_DCOMPLEX: {
-            dstPtr = promoteAsComplex<logical, double>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsComplex<logical, double>(dstClass, sp, count));
         } break;
         case NLS_CHAR: {
-            dstPtr = (void*)promoteAsReal<logical, charType>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<logical, charType>(dstClass, sp, count));
         } break;
         default: {
             Error(_("Type not managed."));
@@ -518,7 +551,7 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
         }
     } break;
     case NLS_UINT16: {
-        const uint16* sp = (const uint16*)dp->getData();
+        const uint16* sp = static_cast<const uint16*>(dp->getData());
         switch (dstClass) {
         case NLS_LOGICAL: {
             dstPtr = promoteAsReal<uint16, logical>(dstClass, sp, count);
@@ -1079,7 +1112,7 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
         charType* sp = (charType*)dp->getData();
         switch (dstClass) {
         case NLS_LOGICAL: {
-            dstPtr = (void*)promoteAsLogical<charType, logical>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsLogical<charType, logical>(dstClass, sp, count));
         } break;
         case NLS_UINT8: {
             dstPtr = ArrayOf::allocateArrayOf(dstClass, count);
@@ -1114,16 +1147,16 @@ ArrayOf::promoteType(NelsonType dstClass, stringVector fNames)
             saturate<charType, int64>(dp->dataClass, dstClass, dp->getData(), dstPtr, count);
         } break;
         case NLS_SINGLE: {
-            dstPtr = (void*)promoteAsReal<charType, single>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<charType, single>(dstClass, sp, count));
         } break;
         case NLS_DOUBLE: {
-            dstPtr = (void*)promoteAsReal<charType, double>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsReal<charType, double>(dstClass, sp, count));
         } break;
         case NLS_SCOMPLEX: {
-            dstPtr = (void*)promoteAsComplex<charType, single>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsComplex<charType, single>(dstClass, sp, count));
         } break;
         case NLS_DCOMPLEX: {
-            dstPtr = (void*)promoteAsComplex<charType, double>(dstClass, sp, count);
+            dstPtr = static_cast<void*>(promoteAsComplex<charType, double>(dstClass, sp, count));
         } break;
         case NLS_CHAR: {
             return;
@@ -1155,7 +1188,8 @@ ArrayOf::canBePromotedTo(NelsonType dstClass)
     }
     if (dp->dataClass != dstClass) {
         if ((dstClass == NLS_STRING_ARRAY) || (dstClass == NLS_CELL_ARRAY)
-            || (dstClass == NLS_STRUCT_ARRAY)) {
+            || (dstClass == NLS_STRUCT_ARRAY) || (dstClass == NLS_CLASS_ARRAY)
+            || (dstClass == NLS_FUNCTION_HANDLE)) {
             return false;
         }
     }
@@ -1170,15 +1204,11 @@ ArrayOf::canBePromotedTo(NelsonType dstClass)
         }
     }
     switch (dp->dataClass) {
-    case NLS_HANDLE: {
-        return false;
-    } break;
-    case NLS_CELL_ARRAY: {
-        return false;
-    } break;
-    case NLS_STRUCT_ARRAY: {
-        return false;
-    } break;
+    case NLS_HANDLE:
+    case NLS_CELL_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
+    case NLS_STRUCT_ARRAY:
     case NLS_STRING_ARRAY: {
         return false;
     } break;

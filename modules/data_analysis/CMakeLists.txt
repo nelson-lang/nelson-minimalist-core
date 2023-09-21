@@ -82,9 +82,9 @@ target_link_libraries(
   ${module_library_name}
   nlsCommons
   nlsError_manager
+  nlsNelson_manager
   nlsI18n
   nlsInterpreter
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 include(GNUInstallDirs)

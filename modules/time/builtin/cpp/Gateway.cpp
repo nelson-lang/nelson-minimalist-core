@@ -28,8 +28,7 @@ static const nlsGateway gateway[] = {
     { "tic", (ptrBuiltin)Nelson::TimeGateway::ticBuiltin, 0, 0, CPP_BUILTIN_WITH_EVALUATOR },
     { "toc", (ptrBuiltin)Nelson::TimeGateway::tocBuiltin, 1, 0, CPP_BUILTIN_WITH_EVALUATOR },
     { "sleep", (ptrBuiltin)Nelson::TimeGateway::sleepBuiltin, 1, 1, CPP_BUILTIN_WITH_EVALUATOR },
-    { "datevec", (ptrBuiltin)Nelson::TimeGateway::datevecBuiltin, 6, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
+    { "datevec", (ptrBuiltin)Nelson::TimeGateway::datevecBuiltin, 6, 1 },
     { "timeit", (ptrBuiltin)Nelson::TimeGateway::timeitBuiltin, 1, -2, CPP_BUILTIN_WITH_EVALUATOR },
 };
 //=============================================================================

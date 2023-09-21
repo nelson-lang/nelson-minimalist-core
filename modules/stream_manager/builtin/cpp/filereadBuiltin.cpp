@@ -50,7 +50,7 @@ wsafegetline(std::wifstream& os, std::wstring& line)
 }
 //=============================================================================
 ArrayOfVector
-Nelson::StreamGateway::filereadBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+Nelson::StreamGateway::filereadBuiltin(int nLhs, const ArrayOfVector& argIn)
 {
     ArrayOfVector retval;
     if (argIn.size() < 1 || argIn.size() > 3) {

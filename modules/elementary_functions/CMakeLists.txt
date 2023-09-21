@@ -35,11 +35,11 @@ target_include_directories(
           ${CMAKE_CURRENT_SOURCE_DIR}/../stream_manager/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/fmt/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../commons/src/include
-          
           ${CMAKE_CURRENT_SOURCE_DIR}/../sparse/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../characters_encoding/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../elementary_mathematics/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../operators/src/include
+          ${CMAKE_CURRENT_SOURCE_DIR}/../overload/src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../i18n/no-src/include
           ${CMAKE_CURRENT_SOURCE_DIR}/../interpreter/src/include)
 target_link_libraries(
@@ -49,6 +49,7 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsOperators
+  nlsInterpreter
   nlsTypes)
 # ==============================================================================
 file(GLOB ELEMENTARY_FUNCTIONS_BUILTIN
@@ -85,7 +86,6 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsInterpreter
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 file(GLOB ELEMENTARY_FUNCTIONS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

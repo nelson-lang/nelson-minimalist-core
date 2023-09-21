@@ -11,11 +11,11 @@
 //=============================================================================
 #include <string>
 #include "Types.hpp"
-#include "Evaluator.hpp"
 #include "nlsFunction_handle_exports.h"
+#include "Evaluator.hpp"
 //=============================================================================
 namespace Nelson {
 NLSFUNCTION_HANDLE_IMPEXP function_handle
-StringToFunctionHandle(Evaluator* eval, const std::wstring& functionName);
+StringToFunctionHandle(Evaluator* eval, const std::string& functionName);
 }
 //=============================================================================

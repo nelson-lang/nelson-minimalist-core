@@ -19,10 +19,8 @@ Permute(
     const ArrayOf& arrayIn, const std::vector<indexType>& permutationVector, bool& needToOverload)
 {
     ArrayOf res;
-    bool isSupportedTypes = (arrayIn.getDataClass() >= NLS_LOGICAL)
-            && (arrayIn.getDataClass() <= NLS_CHAR) && !arrayIn.isSparse()
-        || arrayIn.isStringArray() || arrayIn.isCell()
-        || (arrayIn.isStruct() && arrayIn.getStructType() == NLS_STRUCT_ARRAY_STR);
+    bool isSupportedTypes = (arrayIn.getDataClass() <= NLS_CHAR) && !arrayIn.isSparse()
+        || arrayIn.isStringArray() || arrayIn.isCell() || (arrayIn.isStruct());
     if (!isSupportedTypes) {
         needToOverload = true;
         return arrayIn;

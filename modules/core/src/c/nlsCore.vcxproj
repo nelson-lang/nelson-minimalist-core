@@ -181,6 +181,7 @@
     <ClInclude Include="..\include\NargIn.hpp" />
     <ClInclude Include="..\include\NargOut.hpp" />
     <ClInclude Include="..\include\Pause.hpp" />
+    <ClInclude Include="..\include\VersionCompilerFlags.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\characters_encoding\no-src\c\no-nlsCharacters_encoding.vcxproj">
@@ -224,6 +225,7 @@
     <ClCompile Include="..\cpp\NargOut.cpp" />
     <ClCompile Include="..\cpp\Pause.cpp" />
     <ClCompile Include="..\cpp\dllMain.cpp" />
+    <ClCompile Include="..\cpp\VersionCompilerFlags.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />

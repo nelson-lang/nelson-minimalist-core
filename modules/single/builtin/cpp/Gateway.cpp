@@ -20,8 +20,7 @@ using namespace Nelson;
 const std::wstring gatewayName = L"single";
 //=============================================================================
 static const nlsGateway gateway[] = {
-    { "single", (ptrBuiltin)Nelson::SingleGateway::singleBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
+    { "single", (ptrBuiltin)Nelson::SingleGateway::singleBuiltin, 1, 1, CPP_BUILTIN },
 };
 //=============================================================================
 int

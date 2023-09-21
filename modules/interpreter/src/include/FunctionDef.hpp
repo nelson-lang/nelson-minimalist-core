@@ -10,7 +10,7 @@
 //=============================================================================
 #pragma once
 //=============================================================================
-#include <ctime>
+#include <mutex>
 #include "ArrayOf.hpp"
 #include "Interface.hpp"
 #include "nlsInterpreter_exports.h"
@@ -19,10 +19,16 @@ namespace Nelson {
 //=============================================================================
 enum FunctionType
 {
-    NLS_MACRO_FUNCTION,
+    NLS_MACRO_FUNCTION = 0,
     NLS_ANONYMOUS_MACRO_FUNCTION,
     NLS_BUILT_IN_FUNCTION,
     NLS_MEX_FUNCTION,
+};
+//=============================================================================
+enum FunctionOverloadAutoMode
+{
+    NLS_OVERLOAD_AUTO_ON = 0,
+    NLS_OVERLOAD_AUTO_OFF,
 };
 //=============================================================================
 class Evaluator;
@@ -51,6 +57,8 @@ private:
      */
     std::string name;
     //=============================================================================
+    bool _isOverload;
+    //=============================================================================
     /**
      * The filename of the function.
      */
@@ -58,9 +66,9 @@ private:
     //=============================================================================
     std::wstring pathname;
     //=============================================================================
-    time_t timestamp;
-    //=============================================================================
 public:
+    //=============================================================================
+    FunctionOverloadAutoMode overloadAutoMode = NLS_OVERLOAD_AUTO_ON;
     //=============================================================================
     void
     setFilename(const std::wstring& filename);
@@ -89,6 +97,13 @@ public:
         return this->name;
     }
     //=============================================================================
+    bool
+    isOverload()
+    {
+        return this->_isOverload;
+    }
+    //=============================================================================
+
     /**
      * The names of the arguments to the fuction (analogous to returnVals).
      * Should have "varargin" as the last entry for variable argument
@@ -99,7 +114,7 @@ public:
     /**
      * The constructor.
      */
-    FunctionDef();
+    FunctionDef(bool isOverload);
     //=============================================================================
     /**
      * The virtual destructor
@@ -137,18 +152,6 @@ public:
     virtual bool
     updateCode()
         = 0;
-    //=============================================================================
-    void
-    setTimestamp(time_t timestamp)
-    {
-        this->timestamp = timestamp;
-    }
-    //=============================================================================
-    time_t
-    getTimestamp()
-    {
-        return this->timestamp;
-    }
     //=============================================================================
 };
 //=============================================================================

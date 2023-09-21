@@ -50,7 +50,6 @@ promoteCommonType(ArrayOf& A, ArrayOf& B)
     }
     return wasPromoted;
 }
-//=============================================================================
 ArrayOf
 LeftDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
 {
@@ -72,16 +71,17 @@ LeftDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
     if (A.getDimensionLength(0) != B.getDimensionLength(0)) {
         Error(_W("Requested divide operation requires arguments to have correct dimensions."));
     }
+
+    if (!promoteCommonType(A, B)) {
+        needToOverload = true;
+        return {};
+    }
+
     std::wstring warningId;
     std::string warningMessage;
     ArrayOf res;
 
-    if (!promoteCommonType(A, B)) {
-        needToOverload = true;
-        return res;
-    }
-
-    Error(_W("Requires LAPACK."));
+    bool isSquare = A.getDimensionLength(0) == A.getDimensionLength(1);
 
     return res;
 }

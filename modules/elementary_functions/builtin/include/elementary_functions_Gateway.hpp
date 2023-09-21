@@ -11,6 +11,7 @@
 //=============================================================================
 #include "nlsElementary_functions_builtin_exports.h"
 //=============================================================================
-NLSELEMENTARY_FUNCTIONS_BUILTIN_IMPEXP int
+NLSELEMENTARY_FUNCTIONS_BUILTIN_IMPEXP
+int
 ElementaryFunctionsGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

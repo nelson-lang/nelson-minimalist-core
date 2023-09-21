@@ -11,6 +11,7 @@
 //=============================================================================
 #include "nlsFiles_folders_functions_builtin_exports.h"
 //=============================================================================
-NLSFILES_FOLDERS_FUNCTIONS_BUILTIN_IMPEXP int
+NLSFILES_FOLDERS_FUNCTIONS_BUILTIN_IMPEXP
+int
 FilesFoldersFunctionsGateway(void* eval, const wchar_t* moduleFilename);
 //=============================================================================

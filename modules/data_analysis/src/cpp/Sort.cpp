@@ -26,7 +26,7 @@ Sort(const ArrayOf& arrayIn, size_t nargin, bool withIndex, indexType dim, bool 
 {
     ArrayOfVector res;
     needToOverload = false;
-    if (arrayIn.isClassStruct()) {
+    if (arrayIn.isClassType()) {
         needToOverload = true;
         return res;
     }
@@ -60,6 +60,8 @@ Sort(const ArrayOf& arrayIn, size_t nargin, bool withIndex, indexType dim, bool 
         } break;
         case NLS_HANDLE:
         case NLS_STRUCT_ARRAY:
+        case NLS_CLASS_ARRAY:
+        case NLS_FUNCTION_HANDLE:
         default: {
             needToOverload = true;
             return res;
@@ -100,6 +102,8 @@ Sort(const ArrayOf& arrayIn, size_t nargin, bool withIndex, indexType dim, bool 
             res = sortCell(
                 arrayIn, withIndex, linesize, planecount, planesize, outDim, dim, needToOverload);
         } break;
+        case NLS_CLASS_ARRAY:
+        case NLS_FUNCTION_HANDLE:
         case NLS_STRUCT_ARRAY: {
             needToOverload = true;
             return res;

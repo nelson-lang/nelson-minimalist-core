@@ -10,6 +10,7 @@
 #pragma once
 //=============================================================================
 #include "nlsCore_builtin_exports.h"
+#
 //=============================================================================
 NLSCORE_BUILTIN_IMPEXP int
 CoreGateway(void* eval, const wchar_t* moduleFilename);

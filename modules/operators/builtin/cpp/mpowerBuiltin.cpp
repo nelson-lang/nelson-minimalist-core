@@ -9,16 +9,14 @@
 //=============================================================================
 #include "mpowerBuiltin.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
-#include "OverloadFunction.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
 ArrayOfVector
 Nelson::OperatorsGateway::mpowerBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
-    ArrayOfVector retval;
     nargincheck(argIn, 2, 2);
     nargoutcheck(nLhs, 0, 1);
-    return OverloadFunction(eval, nLhs, argIn, "mpower");
+    return eval->mpowerOperator(argIn);
 }
 //=============================================================================

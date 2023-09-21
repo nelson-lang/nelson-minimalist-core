@@ -14,6 +14,15 @@ assert_checkerror('isequal([1, 1])', _('Wrong number of input arguments.'));
 assert_isequal(nargin('isequal'), -1);
 assert_isequal(nargout('isequal'), 1);
 %=============================================================================
+assert_isequal(isequal(struct([]), struct([])), true);
+assert_isequal(isequal(struct('nelson', 1), struct('nelson', 1)), true);
+assert_isequal(isequal(struct('nelson', 1), struct('nelson', 2)), false);
+assert_isequal(isequal(struct('nelson', 1), struct('sonnel', 1)), false);
+assert_isequal(isequal(struct('nelson', 1, 'sonnel', 2), struct('nelson', 1, 'sonnel', 2)), true);
+assert_isequal(isequal(struct('nelson', 1, 'sonnel', 2), struct('sonnel', 2, 'nelson', 1)), true);
+assert_isequal(isequal(struct('nelson', 1, 'sonnel', 2), struct('nelson', 1, 'sonnel', 2), struct ('nelson', 1, 'sonnel', 2)), true);
+assert_isequal(isequal(struct('nelson', 'abc', 'sonnel', 2), struct ('nelson', 'abc', 'sonnel', 2)), true);
+%=============================================================================
 assert_isequal(isequal(11, 11), true);
 assert_isequal(isequal([11, 11], [11, 11]), true);
 assert_isequal(isequal([11; 11; 11], [11; 11; 11]), true);

@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include "ComplexConstructor.hpp"
@@ -149,6 +150,8 @@ ComplexConstructor(const ArrayOf& arrayA)
     case NLS_CELL_ARRAY:
     case NLS_STRING_ARRAY:
     case NLS_STRUCT_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_CHAR:
     case NLS_LOGICAL:
     default: {

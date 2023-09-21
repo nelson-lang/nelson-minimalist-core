@@ -55,32 +55,6 @@ MatrixCheck(const ArrayOf& A, const ArrayOf& B, const std::string& opname)
     return true;
 }
 //=============================================================================
-NelsonType
-FindCommonType(const ArrayOf& A, const ArrayOf& B)
-{
-    NelsonType Cclass;
-    NelsonType Aclass = A.getDataClass();
-    NelsonType Bclass = B.getDataClass();
-    if ((Aclass == Bclass)
-        && ((Aclass == NLS_LOGICAL) || (Aclass == NLS_UINT8) || (Aclass == NLS_INT8)
-            || (Aclass == NLS_UINT16) || (Aclass == NLS_INT16) || (Aclass == NLS_UINT32)
-            || (Aclass == NLS_INT32) || (Aclass == NLS_UINT64) || (Aclass == NLS_INT64)
-            || (Aclass == NLS_SINGLE) || (Aclass == NLS_DOUBLE) || (Aclass == NLS_SCOMPLEX)
-            || (Aclass == NLS_DCOMPLEX) || (Aclass == NLS_CHAR))) {
-        return Aclass;
-    }
-    // An integer or double mixed with a complex is promoted to a dcomplex type
-    if ((Aclass == NLS_SCOMPLEX) && ((Bclass == NLS_DOUBLE) || (Bclass < NLS_SINGLE))) {
-        Bclass = NLS_DCOMPLEX;
-    }
-    if ((Bclass == NLS_SCOMPLEX) && ((Aclass == NLS_DOUBLE) || (Aclass < NLS_SINGLE))) {
-        Aclass = NLS_DCOMPLEX;
-    }
-    // The output class is now the dominant class remaining:
-    Cclass = (Aclass > Bclass) ? Aclass : Bclass;
-    return Cclass;
-}
-//=============================================================================
 bool
 SameSizeCheck(Dimensions& Adim, Dimensions& Bdim)
 {
@@ -102,7 +76,7 @@ VectorCheck(ArrayOf& A, ArrayOf& B, const std::string& opname)
 }
 //=============================================================================
 void
-BoolVectorCheck(ArrayOf& A, ArrayOf& B, const std::string& opname)
+PromoteToLogicalVectorCheck(ArrayOf& A, ArrayOf& B, const std::string& opname)
 {
     A.promoteType(NLS_LOGICAL);
     B.promoteType(NLS_LOGICAL);

@@ -27,22 +27,14 @@ using namespace Nelson;
 const std::wstring gatewayName = L"linear_algebra";
 //=============================================================================
 static const nlsGateway gateway[] = {
-    { "sqrtm", (ptrBuiltin)Nelson::LinearAlgebraGateway::sqrtmBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "logm", (ptrBuiltin)Nelson::LinearAlgebraGateway::logmBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "expm", (ptrBuiltin)Nelson::LinearAlgebraGateway::expmBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "schur", (ptrBuiltin)Nelson::LinearAlgebraGateway::schurBuiltin, 2, 2,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "trace", (ptrBuiltin)Nelson::LinearAlgebraGateway::traceBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "issymmetric", (ptrBuiltin)Nelson::LinearAlgebraGateway::issymmetricBuiltin, 1, 2,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "ishermitian", (ptrBuiltin)Nelson::LinearAlgebraGateway::ishermitianBuiltin, 1, 2,
-        CPP_BUILTIN_WITH_EVALUATOR },
-    { "det", (ptrBuiltin)Nelson::LinearAlgebraGateway::detBuiltin, 1, 1,
-        CPP_BUILTIN_WITH_EVALUATOR },
+    { "sqrtm", (ptrBuiltin)Nelson::LinearAlgebraGateway::sqrtmBuiltin, 1, 1 },
+    { "logm", (ptrBuiltin)Nelson::LinearAlgebraGateway::logmBuiltin, 1, 1 },
+    { "expm", (ptrBuiltin)Nelson::LinearAlgebraGateway::expmBuiltin, 1, 1 },
+    { "schur", (ptrBuiltin)Nelson::LinearAlgebraGateway::schurBuiltin, 2, 2 },
+    { "trace", (ptrBuiltin)Nelson::LinearAlgebraGateway::traceBuiltin, 1, 1 },
+    { "issymmetric", (ptrBuiltin)Nelson::LinearAlgebraGateway::issymmetricBuiltin, 1, 2 },
+    { "ishermitian", (ptrBuiltin)Nelson::LinearAlgebraGateway::ishermitianBuiltin, 1, 2 },
+    { "det", (ptrBuiltin)Nelson::LinearAlgebraGateway::detBuiltin, 1, 1 },
 };
 //=============================================================================
 int

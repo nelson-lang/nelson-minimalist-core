@@ -441,6 +441,12 @@ ArrayOf::toOrdinalType()
     case NLS_STRING_ARRAY: {
         Error(_W("Cannot convert string arrays to indices."));
     } break;
+    case NLS_FUNCTION_HANDLE: {
+        Error(_W("Cannot convert function_handle arrays to indices."));
+    } break;
+    case NLS_CLASS_ARRAY: {
+        Error(_W("Cannot convert class arrays to indices."));
+    } break;
     case NLS_STRUCT_ARRAY: {
         Error(_W("Cannot convert structure arrays to indices."));
     } break;
@@ -567,7 +573,7 @@ ArrayOf::ensureSingleOwner()
 {
     if (dp != nullptr && dp->numberOfOwners() > 1) {
         if (!dp->sparse) {
-            std::string currentStructType = dp->getStructTypeName();
+            std::string currentClassType = dp->getClassTypeName();
             void* np = allocateArrayOf(dp->dataClass, getElementCount(), dp->fieldNames, false);
             if (isEmpty()) {
                 Dimensions dim = dp->getDimensions();
@@ -576,7 +582,7 @@ ArrayOf::ensureSingleOwner()
                 copyElements(0, np, 0, getElementCount());
                 dp = dp->putData(dp->dataClass, dp->dimensions, np, dp->sparse, dp->fieldNames);
             }
-            dp->setStructTypeName(currentStructType);
+            dp->setClassTypeName(currentClassType);
         } else {
             dp = dp->putData(dp->dataClass, dp->dimensions,
                 CopySparseMatrixDynamicFunction(
@@ -691,7 +697,7 @@ ArrayOf::vectorResize(indexType max_index)
 void
 ArrayOf::reshape(Dimensions& a, bool checkValidDimension)
 {
-    if (isClassStruct()) {
+    if (isClassType()) {
         Error(_W("Reshape operation not allowed for overloaded type."));
     }
     if (isFunctionHandle()) {
@@ -722,7 +728,7 @@ ArrayOf::reshape(Dimensions& a, bool checkValidDimension)
 void
 ArrayOf::changeInPlaceDimensions(const Dimensions& a)
 {
-    if (isClassStruct()) {
+    if (isClassType()) {
         Error(_W("changeDimensions operation not allowed for overloaded type."));
     }
     if (isFunctionHandle()) {
@@ -761,6 +767,10 @@ ArrayOf::getElementSize() const
         return sizeof(ArrayOf);
     case NLS_CELL_ARRAY:
         return sizeof(ArrayOf);
+    case NLS_FUNCTION_HANDLE:
+        return (sizeof(ArrayOf) * dp->fieldNames.size());
+    case NLS_CLASS_ARRAY:
+        return (sizeof(ArrayOf) * dp->fieldNames.size());
     case NLS_STRUCT_ARRAY:
         return (sizeof(ArrayOf) * dp->fieldNames.size());
     case NLS_LOGICAL:
@@ -860,11 +870,13 @@ ArrayOf::isPositive() const
         return isTPositive<int32>(dp->getData(), getElementCount());
     case NLS_INT64:
         return isTPositive<int64>(dp->getData(), getElementCount());
-    case NLS_NOT_TYPED:
+    case NLS_UNKNOWN:
     case NLS_GO_HANDLE:
     case NLS_HANDLE:
     case NLS_CELL_ARRAY:
     case NLS_STRUCT_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRING_ARRAY:
     case NLS_LOGICAL:
     case NLS_SCOMPLEX:
@@ -930,6 +942,8 @@ ArrayOf::testCaseMatchScalar(ArrayOf x) const
     case NLS_CHAR:
     case NLS_GO_HANDLE:
     case NLS_HANDLE:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRUCT_ARRAY:
         retval = false;
         break;
@@ -1064,9 +1078,7 @@ ArrayOf::isColumnVector() const
 bool
 ArrayOf::isReferenceType() const
 {
-    return (dp->dataClass == NLS_STRUCT_ARRAY) || (dp->dataClass == NLS_CELL_ARRAY)
-        || (dp->dataClass == NLS_STRING_ARRAY) || (dp->dataClass == NLS_HANDLE)
-        || (dp->dataClass == NLS_GO_HANDLE);
+    return (dp->dataClass > NLS_CHAR);
 }
 //=============================================================================
 /**
@@ -1139,6 +1151,8 @@ ArrayOf::allReal() const
     case NLS_CELL_ARRAY:
     case NLS_STRING_ARRAY:
     case NLS_STRUCT_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     default: {
         res = false;
     }
@@ -1162,7 +1176,7 @@ ArrayOf::copyElements(indexType srcIndex, void* dstPtr, indexType dstIndex, inde
             qp[dstIndex + i] = sp[srcIndex + i];
         }
     } break;
-    case NLS_STRUCT_ARRAY: {
+    case NLS_FUNCTION_HANDLE: {
         const ArrayOf* sp = (const ArrayOf*)dp->getData();
         ArrayOf* qp = (ArrayOf*)dstPtr;
         indexType fieldCount(dp->fieldNames.size());
@@ -1171,9 +1185,27 @@ ArrayOf::copyElements(indexType srcIndex, void* dstPtr, indexType dstIndex, inde
                 qp[(dstIndex + i) * fieldCount + j] = sp[(srcIndex + i) * fieldCount + j];
             }
         }
-        if (fieldCount > 0) {
-            if (qp->getDataClass() == NLS_STRUCT_ARRAY) {
-                qp->setStructType(dp->getStructTypeName());
+    } break;
+    case NLS_CLASS_ARRAY: {
+        const ArrayOf* sp = (const ArrayOf*)dp->getData();
+        ArrayOf* qp = (ArrayOf*)dstPtr;
+        indexType fieldCount(dp->fieldNames.size());
+        for (indexType i = 0; i < count; i++) {
+            for (indexType j = 0; j < (indexType)fieldCount; j++) {
+                qp[(dstIndex + i) * fieldCount + j] = sp[(srcIndex + i) * fieldCount + j];
+            }
+        }
+        if (qp->getDataClass() == NLS_CLASS_ARRAY) {
+            qp->setClassType(dp->getClassTypeName());
+        }
+    } break;
+    case NLS_STRUCT_ARRAY: {
+        const ArrayOf* sp = (const ArrayOf*)dp->getData();
+        ArrayOf* qp = (ArrayOf*)dstPtr;
+        indexType fieldCount(dp->fieldNames.size());
+        for (indexType i = 0; i < count; i++) {
+            for (indexType j = 0; j < (indexType)fieldCount; j++) {
+                qp[(dstIndex + i) * fieldCount + j] = sp[(srcIndex + i) * fieldCount + j];
             }
         }
     } break;
@@ -1324,34 +1356,7 @@ ArrayOf::getContentAsIndexPointer()
 bool
 ArrayOf::isNumeric() const
 {
-    bool bRes = false;
-    NelsonType currentclass = this->getDataClass();
-    switch (this->getDataClass()) {
-    case NLS_UINT8:
-    case NLS_INT8:
-    case NLS_UINT16:
-    case NLS_INT16:
-    case NLS_UINT32:
-    case NLS_INT32:
-    case NLS_UINT64:
-    case NLS_INT64:
-    case NLS_SINGLE:
-    case NLS_DOUBLE:
-    case NLS_SCOMPLEX:
-    case NLS_DCOMPLEX:
-        bRes = true;
-        break;
-    default:
-        bRes = false;
-        break;
-    }
-    return bRes;
-}
-//=============================================================================
-bool
-ArrayOf::isDataClassReferenceType(NelsonType cls)
-{
-    return (cls == NLS_CELL_ARRAY || cls == NLS_STRUCT_ARRAY || cls == NLS_STRING_ARRAY);
+    return this->getDataClass() < NLS_LOGICAL;
 }
 //=============================================================================
 template <class T>
@@ -1409,14 +1414,21 @@ ArrayOf::nzmax() const
     case NLS_SCOMPLEX:
     case NLS_DCOMPLEX:
         return numel();
-    case NLS_CELL_ARRAY:
+    case NLS_CELL_ARRAY: {
         Error(_W("Undefined function 'nzmax' for input arguments of type 'cell'."));
-    case NLS_STRING_ARRAY:
+    } break;
+    case NLS_STRING_ARRAY: {
         Error(_W("Undefined function 'nzmax' for input arguments of type 'string'."));
-    case NLS_STRUCT_ARRAY:
+    } break;
+    case NLS_CLASS_ARRAY: {
+        Error(_W("Undefined function 'nzmax' for input arguments of type 'class'."));
+    } break;
+    case NLS_STRUCT_ARRAY: {
         Error(_W("Undefined function 'nzmax' for input arguments of type 'struct'."));
-    default:
+    } break;
+    default: {
         Error(_W("Undefined function 'nzmax' for input arguments."));
+    } break;
     }
     return 0; // never here
 }
@@ -1465,6 +1477,8 @@ ArrayOf::nnz() const
         Error(_W("Undefined function 'nnz' for input arguments of type 'cell'."));
     case NLS_STRING_ARRAY:
         Error(_W("Undefined function 'nnz' for input arguments of type 'string'."));
+    case NLS_CLASS_ARRAY:
+        Error(_W("Undefined function 'nnz' for input arguments of type 'class'."));
     case NLS_STRUCT_ARRAY:
         Error(_W("Undefined function 'nnz' for input arguments of type 'struct'."));
     default:

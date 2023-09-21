@@ -13,11 +13,12 @@ assert_isequal(F(.5), cos(.5));
 F = str2func('@cos');
 assert_isequal(F(.5), cos(.5));
 %=============================================================================
+clear x
 A = str2func('@(x) x*sqrt(x);');
 R = eval('A(4);');
 assert_isequal(R, 8);
 B = A(4);
-assert_isequal(B, 8);
+assert_isequal(B, R);
 %=============================================================================
 A = str2func('@(x) x*sqrt(x)');
 R = eval('A(4)');
@@ -39,5 +40,5 @@ str = '@(x)7*x-13+a';
 fh = str2func(str);
 assert_checkerror('fh(3)', [_('Undefined variable:'), ' ', 'a']);
 %=============================================================================
-assert_checkerror('F = str2func(''@ (y) x= y+1'');', _('A valid function name expected.'))
+assert_checkerror('F = str2func(''@ (y) x= y+1'');', _('A valid function handle expected.'))
 %=============================================================================

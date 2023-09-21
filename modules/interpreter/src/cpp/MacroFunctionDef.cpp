@@ -11,6 +11,7 @@
 #pragma warning(disable : 4996)
 #endif
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include <fmt/xchar.h>
@@ -27,12 +28,12 @@
 #include "Error.hpp"
 #include "i18n.hpp"
 #include "PredefinedErrorMessages.hpp"
+#include "OverloadHelpers.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-MacroFunctionDef::MacroFunctionDef()
+MacroFunctionDef::MacroFunctionDef() : FunctionDef(false)
 {
-    this->setTimestamp(0);
     this->localFunction = false;
     this->nextFunction = nullptr;
     this->prevFunction = nullptr;
@@ -42,14 +43,14 @@ MacroFunctionDef::MacroFunctionDef()
     this->withWatcher = false;
 }
 //=============================================================================
-MacroFunctionDef::MacroFunctionDef(const std::wstring& filename, bool withWatcher)
+MacroFunctionDef::MacroFunctionDef(const std::wstring& filename, bool withWatcher, bool isOverload)
+    : FunctionDef(isOverload)
 {
     this->localFunction = false;
     this->nextFunction = nullptr;
     this->prevFunction = nullptr;
     this->code = nullptr;
     this->setFilename(filename);
-    this->setTimestamp(0);
     updateCode(); //-V1053
     this->withWatcher = withWatcher;
 }
@@ -118,6 +119,17 @@ MacroFunctionDef::outputArgCount()
 ArrayOfVector
 MacroFunctionDef::evaluateMFunction(Evaluator* eval, const ArrayOfVector& inputs, int nargout)
 {
+    if (eval->withOverload && inputs.size() > 0 && !this->isOverload()
+        && this->overloadAutoMode == NLS_OVERLOAD_AUTO_ON) {
+        bool wasFound = false;
+        ArrayOfVector res = callOverloadedFunction(eval,
+            NelsonConfiguration::getInstance()->getOverloadLevelCompatibility(), nargout, inputs,
+            getName(), ClassName(inputs[0]), inputs[0].getDataClass(), wasFound);
+        if (wasFound) {
+            return res;
+        }
+    }
+
     ArrayOfVector outputs;
     size_t minCount = 0;
     Context* context = eval->getContext();
@@ -374,13 +386,10 @@ MacroFunctionDef::updateCode()
         return false;
     }
     std::string errorMessage;
-    time_t currentFileTimestamp
-        = FileSystemWrapper::Path::last_write_time(this->getFilename(), errorMessage);
     if (errorMessage.empty()) {
-        if (currentFileTimestamp == this->getTimestamp() && !forceUpdate) {
+        if (!forceUpdate) {
             return false;
         }
-        this->setTimestamp(currentFileTimestamp);
     } else {
         return false;
     }
@@ -455,7 +464,6 @@ MacroFunctionDef::updateCode()
             FileSystemWrapper::Path pathFunction(this->getFilename());
             this->setName(pathFunction.stem().generic_string());
         }
-        this->setWithWatcher(withWatcher);
     } catch (const Exception&) {
         Error(_W("a valid function definition expected.") + std::wstring(L"\n")
             + this->getFilename());

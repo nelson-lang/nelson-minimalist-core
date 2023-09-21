@@ -42,7 +42,6 @@ target_link_libraries(
   nlsCharacters_encoding
   nlsNelson_manager
   nlsElementary_mathematics
-  nlsOverload
   nlsI18n)
 # ==============================================================================
 file(GLOB TRIGONOMETRIC_FUNCTIONS_BUILTIN
@@ -77,7 +76,6 @@ target_link_libraries(
   ${module_library_name}
   nlsTypes
   nlsInterpreter
-  nlsOverload
   nlsError_manager)
 # ==============================================================================
 file(GLOB TRIGONOMETRIC_FUNCTIONS_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

@@ -75,7 +75,6 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsInterpreter
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 file(GLOB LINEAR_ALGEBRA_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"

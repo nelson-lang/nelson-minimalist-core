@@ -72,8 +72,7 @@ target_link_libraries(
   ${module_library_builtin_name}
   nlsTypes
   nlsInterpreter
-  nlsError_manager
-  nlsOverload)
+  nlsError_manager)
 # ==============================================================================
 file(GLOB TYPES_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.hpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/src/include/*.h")

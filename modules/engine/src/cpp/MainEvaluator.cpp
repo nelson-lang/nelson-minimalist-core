@@ -17,7 +17,7 @@
 #include "Clear.hpp"
 #include "ClearGlobal.hpp"
 #include "Localization.hpp"
-#include "PathFuncManager.hpp"
+#include "PathFunctionIndexerManager.hpp"
 #include "i18n.hpp"
 #include "NelsonConfiguration.hpp"
 //=============================================================================
@@ -86,7 +86,7 @@ destroyMainEvaluator()
             delete ctxt;
             ctxt = nullptr;
         }
-        PathFuncManager::getInstance()->destroy();
+        PathFunctionIndexerManager::getInstance()->destroy();
         Interface* io = mainEvaluator->getInterface();
         if (io != nullptr) {
             int engineMode = NelsonConfiguration::getInstance()->getNelsonEngineMode();

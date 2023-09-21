@@ -14,7 +14,6 @@
 #include "LeftDivide.hpp"
 #include "MatrixCheck.hpp"
 #include "ComplexTranspose.hpp"
-#include "FindCommonClass.hpp"
 #include "Error.hpp"
 #include "i18n.hpp"
 #include "PredefinedErrorMessages.hpp"
@@ -25,7 +24,7 @@ static void
 complexTransposeInPlace(ArrayOf& A, bool& needToOverload);
 //=============================================================================
 ArrayOf
-RightDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
+RightDivide(const ArrayOf& A, const ArrayOf& B, bool& needToOverload)
 {
     if (A.isEmpty() || B.isEmpty()) {
         Dimensions dimsA = A.getDimensions();
@@ -52,8 +51,8 @@ RightDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
             Error(ERROR_WRONG_ARGUMENTS_SIZE_2D_MATRIX_EXPECTED);
         }
         if (dimsA[0] != 0 && dimsB[0] != 0) {
+            NelsonType commonClass = A.getDataClass();
             Dimensions dimsC(dimsA[0], dimsB[0]);
-            NelsonType commonClass = FindCommonClass(A, B, needToOverload);
             void* pT = ArrayOf::allocateArrayOf(
                 commonClass, dimsC.getElementCount(), stringVector(), true);
             return ArrayOf(commonClass, dimsC, pT, false);
@@ -65,15 +64,15 @@ RightDivide(ArrayOf A, ArrayOf B, bool& needToOverload)
         return DotRightDivide(A, B, needToOverload);
     }
     ArrayOf R;
-    A = ComplexTranspose(A, needToOverload);
+    ArrayOf _A = ComplexTranspose(A, needToOverload);
     if (needToOverload) {
         return R;
     }
-    B = ComplexTranspose(B, needToOverload);
+    ArrayOf _B = ComplexTranspose(B, needToOverload);
     if (needToOverload) {
         return R;
     }
-    R = LeftDivide(B, A, needToOverload);
+    R = LeftDivide(_B, _A, needToOverload);
     if (needToOverload) {
         return R;
     }

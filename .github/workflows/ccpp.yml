@@ -23,7 +23,7 @@ jobs:
           export BUILD_ROOT=$(pwd);
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: CMake
         run: |
@@ -60,7 +60,7 @@ jobs:
           brew install eigen
           export BUILD_ROOT=$(pwd);
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: CMake
         run: |
@@ -96,7 +96,7 @@ jobs:
           sudo apt -y install libeigen3-dev;
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: CMake
         run: cmake -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
@@ -149,7 +149,7 @@ jobs:
           sudo make install;
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: CMake
         run: cmake -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release -G "Ninja" .
       - name: make with Ninja
@@ -175,7 +175,7 @@ jobs:
           pacman -S git --noconfirm
           git config --global --add safe.directory /__w/nelson/nelson
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
@@ -193,7 +193,7 @@ jobs:
       - name: Trust repo directory
         run: git config --global --add safe.directory /__w/nelson/nelson
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: CMake
         run: cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
       - name: Make
@@ -230,7 +230,7 @@ jobs:
           dnf install -y cmake
           dnf install -y eigen3-devel
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: CMake
         run: |
           cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" .
@@ -259,7 +259,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1.3
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
@@ -291,7 +291,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1.3
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
@@ -322,7 +322,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1.3
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install eigen dependency
         run: |

@@ -13,7 +13,6 @@
 #include <vector>
 #include "FunctionDef.hpp"
 #include "nlsInterpreter_exports.h"
-#include "Overload.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -21,11 +20,13 @@ class NLSINTERPRETER_IMPEXP FunctionsInMemory
 {
 private:
     //=============================================================================
-    std::vector<std::pair<std::string, FunctionDefPtr>> _macroFunctionsInMemory;
-    std::vector<std::pair<std::string, FunctionDefPtr>> _mexFunctionsInMemory;
+    std::unordered_map<std::string, FunctionDefPtr> _macroFunctionsInMemory;
+    std::unordered_map<std::string, FunctionDefPtr> _mexFunctionsInMemory;
     std::unordered_map<std::string, FunctionDefPtr> _builtinFunctionInMemory;
     //=============================================================================
     std::unordered_map<std::string, FunctionDefPtr> _lastFunctionsInMemory;
+    //=============================================================================
+    std::unordered_map<std::string, bool> _notExistingFunctionsInMemory;
     //=============================================================================
     FunctionsInMemory();
     //=============================================================================
@@ -42,6 +43,9 @@ private:
     bool
     findBuiltin(const std::string& functionName, FunctionDefPtr& function);
     //=============================================================================
+    void
+    declareAsNotExistingFunction(const std::string& functionName);
+
 public:
     //=============================================================================
     enum FIND_FUNCTION_TYPE
@@ -60,10 +64,6 @@ public:
     //=============================================================================
     void
     add(const std::string& functionName, FunctionDefPtr function);
-    //=============================================================================
-    void
-    add(Overload::OverloadClass overloadClass, const std::string& functionName,
-        FunctionDefPtr function);
     //=============================================================================
     bool
     deleteMFunction(const std::string& functionName);
@@ -92,6 +92,9 @@ public:
     //=============================================================================
     wstringVector
     getMexInMemory(bool withCompleteNames);
+    //=============================================================================
+    bool
+    isNotExistingFunction(const std::string& functionName);
     //=============================================================================
 };
 //=============================================================================

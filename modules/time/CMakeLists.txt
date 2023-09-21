@@ -92,7 +92,6 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsInterpreter
-  nlsOverload
   nlsStream_manager
   nlsTypes)
 # ==============================================================================

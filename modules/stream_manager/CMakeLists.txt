@@ -91,7 +91,6 @@ target_link_libraries(
   nlsI18n
   nlsInterpreter
   nlsNelson_manager
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 include(GNUInstallDirs)

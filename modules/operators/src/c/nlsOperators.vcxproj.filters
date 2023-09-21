@@ -33,15 +33,6 @@
     <ClCompile Include="..\cpp\DotRightDivide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\Equals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\GreaterEquals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\GreaterThan.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\LessEquals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,9 +58,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\UnaryMinus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\HorzCat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\VertCat.cpp">
@@ -105,27 +93,6 @@
     <ClCompile Include="..\cpp\BinaryOperatorsHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\FindCommonClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\FindConcatenateClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\dllMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\All.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Any.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\IsMember.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\LeastSquareSolver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\SVDDecompositionDouble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -145,6 +112,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\BitwiseOperators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\BitwiseOperators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Equals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\GreaterEquals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\GreaterThan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\HorzCat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\All.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Any.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\IsMember.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,28 +272,16 @@
     <ClInclude Include="..\include\BinaryOperatorsHelpers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\FindCommonClass.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\FindConcatenateClass.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\SVDDecompositionComplexTemplate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\SVDDecompositionRealTemplate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\LeastSquareSolver.hpp">
+    <ClInclude Include="..\include\BitwiseOperators.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\LeftDivide.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\LinearEquationSolver.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\RightDivide.hpp">
+    <ClInclude Include="..\cpp\BitwiseInteger.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

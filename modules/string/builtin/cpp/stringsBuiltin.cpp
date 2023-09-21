@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include "stringsBuiltin.hpp"
@@ -17,7 +18,7 @@
 using namespace Nelson;
 //=============================================================================
 ArrayOfVector
-Nelson::StringGateway::stringsBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+Nelson::StringGateway::stringsBuiltin(int nLhs, const ArrayOfVector& argIn)
 {
     ArrayOfVector retval;
     nargoutcheck(nLhs, 0, 1);

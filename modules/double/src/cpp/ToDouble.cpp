@@ -74,10 +74,9 @@ ToDouble(const ArrayOf& A, bool& needToOverload)
         }
         return R;
     } break;
-    case NLS_CELL_ARRAY: {
-        needToOverload = true;
-        return {};
-    } break;
+    case NLS_CELL_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRUCT_ARRAY: {
         needToOverload = true;
         return {};
@@ -125,14 +124,16 @@ ToDouble(const ArrayOf& A, bool& needToOverload)
             needToOverload = true;
             return {};
         }
-        double* pDouble = (double*)ArrayOf::allocateArrayOf(
-            NLS_SCOMPLEX, A.getElementCount() * 2, stringVector(), false);
-        ArrayOf r = ArrayOf(NLS_SCOMPLEX, A.getDimensions(), pDouble, A.isSparse());
-        auto* pSingle = (float*)A.getDataPointer();
+        ompIndexType nbElements = A.getElementCount();
+        double* pDouble
+            = (double*)ArrayOf::allocateArrayOf(NLS_DCOMPLEX, nbElements, stringVector(), false);
+        ArrayOf r = ArrayOf(NLS_DCOMPLEX, A.getDimensions(), pDouble, false);
+        auto* pSingle
+            = static_cast<single*>(const_cast<void*>(static_cast<const void*>(A.getDataPointer())));
 #if defined(_NLS_WITH_OPENMP)
 #pragma omp parallel for
 #endif
-        for (ompIndexType k = 0; k < (ompIndexType)A.getElementCount() * 2; k++) {
+        for (ompIndexType k = 0; k < (ompIndexType)(nbElements * 2); k++) {
             pDouble[k] = static_cast<double>(pSingle[k]);
         }
         return r;

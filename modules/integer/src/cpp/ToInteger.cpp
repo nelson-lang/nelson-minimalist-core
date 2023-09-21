@@ -19,7 +19,7 @@ ArrayOf
 ToInteger(NelsonType destinationClass, const ArrayOf& A)
 {
 
-    std::wstring destType = ClassToString(destinationClass);
+    std::wstring destType = ClassToStringW(destinationClass);
     if (A.isSparse()) {
         Error(_W("Conversion to '") + destType + _W("' from sparse matrix is not possible."));
     }
@@ -40,13 +40,15 @@ ToInteger(NelsonType destinationClass, const ArrayOf& A)
     case NLS_CELL_ARRAY: {
         Error(_W("Conversion to '") + destType + _W("' from cell is not possible."));
     } break;
+    case NLS_FUNCTION_HANDLE: {
+        Error(_W("Conversion to '") + destType + _W("' from function_handle is not possible."));
+    } break;
+    case NLS_CLASS_ARRAY: {
+        Error(_W("Undefined function '") + destType + _W("' for input arguments of type '")
+            + utf8_to_wstring(A.getClassType()) + L"'.");
+    } break;
     case NLS_STRUCT_ARRAY: {
-        if (A.getStructType() != "struct") {
-            Error(_W("Undefined function '") + destType + _W("' for input arguments of type '")
-                + utf8_to_wstring(A.getStructType()) + L"'.");
-        } else {
-            Error(_W("Conversion to '") + destType + _W("' from struct is not possible."));
-        }
+        Error(_W("Conversion to '") + destType + _W("' from struct is not possible."));
     } break;
     case NLS_LOGICAL:
     case NLS_UINT8:

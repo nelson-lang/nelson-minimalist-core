@@ -11,12 +11,12 @@
 #include "Error.hpp"
 #include "i18n.hpp"
 #include "IsValidFieldname.hpp"
-#include "OverloadFunction.hpp"
+#include "OverloadRequired.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
 ArrayOfVector
-Nelson::DataStructuresGateway::structBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+Nelson::DataStructuresGateway::structBuiltin(int nLhs, const ArrayOfVector& argIn)
 {
     ArrayOfVector retval(nLhs);
     if (argIn.empty()) {
@@ -25,23 +25,18 @@ Nelson::DataStructuresGateway::structBuiltin(Evaluator* eval, int nLhs, const Ar
     }
     if (argIn.size() == 1) {
         if (argIn[0].isHandle()) {
-            bool bSuccess = false;
-            retval = OverloadFunction(eval, nLhs, argIn, "struct", bSuccess);
-            if (bSuccess) {
-                return retval;
-            }
+            OverloadRequired("struct");
         }
-        if (argIn[0].isClassStruct()) {
-            if (argIn[0].isFunctionHandle()) {
-                Error(_("Conversion to 'struct' to 'function_handle' is not possible."),
-                    "Nelson:invalidConversion");
-            } else {
-                ArrayOf asStruct = argIn[0];
-                asStruct.ensureSingleOwner();
-                asStruct.setStructType(NLS_STRUCT_ARRAY_STR);
-                retval << asStruct;
-                return retval;
-            }
+        if (argIn[0].isFunctionHandle()) {
+            Error(_("Conversion to 'struct' to 'function_handle' is not possible."),
+                "Nelson:invalidConversion");
+        }
+        if (argIn[0].isClassType()) {
+            ArrayOf asStruct = argIn[0];
+            asStruct.ensureSingleOwner();
+            asStruct.promoteType(NLS_STRUCT_ARRAY);
+            retval << asStruct;
+            return retval;
         } else if (!argIn[0].isEmpty()) {
             Error(_W("struct([]) expected."));
         }

@@ -37,6 +37,22 @@ ArrayOf::allocateArrayOf(
         }
         return dp;
     } break;
+    case NLS_FUNCTION_HANDLE: {
+        auto n = static_cast<indexType>(length * names.size());
+        auto* dp = new_with_exception<ArrayOf>(n, false);
+        for (indexType i = 0; i < (n); i++) {
+            dp[i] = ArrayOf(NLS_DOUBLE);
+        }
+        return dp;
+    } break;
+    case NLS_CLASS_ARRAY: {
+        auto n = static_cast<indexType>(length * names.size());
+        auto* dp = new_with_exception<ArrayOf>(n, false);
+        for (indexType i = 0; i < (n); i++) {
+            dp[i] = ArrayOf(NLS_DOUBLE);
+        }
+        return dp;
+    } break;
     case NLS_STRUCT_ARRAY: {
         if (!haveValidFieldNames(names)) {
             Error(_W("Field names must be valid."));
@@ -113,6 +129,14 @@ ArrayOf::deleteArrayOf(void* dp, NelsonType dataclass)
         delete[] rp;
     } break;
     case NLS_CELL_ARRAY: {
+        auto* rp = static_cast<ArrayOf*>(dp);
+        delete[] rp;
+    } break;
+    case NLS_FUNCTION_HANDLE: {
+        auto* rp = static_cast<ArrayOf*>(dp);
+        delete[] rp;
+    } break;
+    case NLS_CLASS_ARRAY: {
         auto* rp = static_cast<ArrayOf*>(dp);
         delete[] rp;
     } break;

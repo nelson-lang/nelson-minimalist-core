@@ -18,10 +18,9 @@ namespace Nelson {
 std::string
 ClassName(const ArrayOf& In)
 {
-    std::string classString = wstring_to_utf8(ClassToString(In.getDataClass()));
-    if (In.getDataClass() == NLS_GO_HANDLE) {
-        classString = NLS_GO_HANDLE_STR;
-    } else if (In.getDataClass() == NLS_HANDLE) {
+    std::string classString = {};
+    switch (In.getDataClass()) {
+    case NLS_HANDLE: {
         classString = NLS_HANDLE_STR;
         /* handle can be 'handle' or another type but not mixed */
         auto* qp = (nelson_handle*)In.getDataPointer();
@@ -31,18 +30,27 @@ ClassName(const ArrayOf& In)
                 nelson_handle hl = qp[k];
                 HandleGenericObject* hlObj = HandleManager::getInstance()->getPointer(hl);
                 if (hlObj != nullptr) {
-                    std::string current = wstring_to_utf8(hlObj->getCategory());
+                    std::string current = hlObj->getCategory();
                     if (classString != current && current != NLS_HANDLE_STR) {
                         classString = std::move(current);
                     }
                 }
             }
         }
-    } else if (In.getDataClass() == NLS_STRUCT_ARRAY) {
-        classString = In.getStructType();
-    }
-    if (In.isSparse()) {
-        classString = std::string(NLS_SPARSE_STR) + classString;
+        return classString;
+    } break;
+    case NLS_FUNCTION_HANDLE: {
+        classString = NLS_FUNCTION_HANDLE_STR;
+    } break;
+    case NLS_CLASS_ARRAY: {
+        classString = In.getClassType();
+    } break;
+    default: {
+        if (In.isSparse()) {
+            return std::string(NLS_SPARSE_STR) + ClassToString(In.getDataClass());
+        }
+        classString = ClassToString(In.getDataClass());
+    } break;
     }
     return classString;
 }

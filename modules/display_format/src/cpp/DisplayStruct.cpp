@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include <fmt/xchar.h>
@@ -85,7 +86,8 @@ DisplayScalarStruct(Interface* io, const ArrayOf& A, const std::wstring& name,
         if (!name.empty()) {
             io->outputMessage(L"\n");
         }
-        ArrayOf* ap = (ArrayOf*)A.getDataPointer();
+        ArrayOf* ap = static_cast<ArrayOf*>(
+            const_cast<void*>(static_cast<const void*>(A.getDataPointer())));
         for (size_t k = 0; k < fieldnames.size(); ++k) {
             std::wstring beginning = BLANKS_AT_BOL
                 + completeWithBlanksAtBeginning(utf8_to_wstring(fieldnames[k]), maxLen) + L": ";

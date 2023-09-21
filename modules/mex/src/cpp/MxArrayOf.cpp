@@ -316,8 +316,8 @@ MxArraySparseToSparseDoubleArrayOf(const mxArray* pm)
 
     Eigen::Index n = 0;
     for (Eigen::Index k = 0; k < sm.outerSize() && n < nnz; ++k) {
-        for (Eigen::MappedSparseMatrix<double, 0, signedIndexType>::InnerIterator it(sm, k); it;
-             ++it) {
+        for (Eigen::Map<Eigen::SparseMatrix<double, 0, signedIndexType>>::InnerIterator it(sm, k);
+             it; ++it) {
             if (n < nnz) {
                 i.push_back((SPARSE_INDEX_TYPE)it.row() + 1);
                 j.push_back((SPARSE_INDEX_TYPE)it.col() + 1);
@@ -370,8 +370,8 @@ MxArraySparseToSparseDoubleComplexArrayOf(const mxArray* pm)
 
         Eigen::Index n = 0;
         for (Eigen::Index k = 0; k < sm.outerSize() && n < nnz; ++k) {
-            for (Eigen::MappedSparseMatrix<doublecomplex, 0, signedIndexType>::InnerIterator it(
-                     sm, k);
+            for (Eigen::Map<Eigen::SparseMatrix<doublecomplex, 0, signedIndexType>>::InnerIterator
+                     it(sm, k);
                  it; ++it) {
                 if (n < nnz) {
                     i.push_back((SPARSE_INDEX_TYPE)it.row() + 1);
@@ -416,8 +416,8 @@ MxArraySparseToSparseDoubleComplexArrayOf(const mxArray* pm)
 
         Eigen::Index n = 0;
         for (Eigen::Index k = 0; k < sm.outerSize() && n < nnz; ++k) {
-            for (Eigen::MappedSparseMatrix<doublecomplex, 0, signedIndexType>::InnerIterator it(
-                     sm, k);
+            for (Eigen::Map<Eigen::SparseMatrix<doublecomplex, 0, signedIndexType>>::InnerIterator
+                     it(sm, k);
                  it; ++it) {
                 if (n < nnz) {
                     i.push_back((SPARSE_INDEX_TYPE)it.row() + 1);
@@ -468,8 +468,8 @@ MxArraySparseToSparseLogicalArrayOf(const mxArray* pm)
 
     Eigen::Index n = 0;
     for (Eigen::Index k = 0; k < sm.outerSize() && n < nnz; ++k) {
-        for (Eigen::MappedSparseMatrix<logical, 0, signedIndexType>::InnerIterator it(sm, k); it;
-             ++it) {
+        for (Eigen::Map<Eigen::SparseMatrix<logical, 0, signedIndexType>>::InnerIterator it(sm, k);
+             it; ++it) {
             if (n < nnz) {
                 i.push_back((SPARSE_INDEX_TYPE)it.row() + 1);
                 j.push_back((SPARSE_INDEX_TYPE)it.col() + 1);
@@ -588,6 +588,8 @@ ArrayOfToMxArray(const ArrayOf& nlsArrayOf, bool interleavedComplex)
             }
         }
     } break;
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRUCT_ARRAY: {
         res = mxNewArray();
         if (res != nullptr) {
@@ -726,7 +728,7 @@ MxArrayToArrayOf(const mxArray* pm)
         Dimensions dims(1, 0);
         return ArrayOf::emptyConstructor(dims);
     }
-    NelsonType destClass = NLS_NOT_TYPED;
+    NelsonType destClass = NLS_UNKNOWN;
     Dimensions dim;
     void* cp = nullptr;
     for (mwSize i = 0; i < pm->number_of_dims; i++) {

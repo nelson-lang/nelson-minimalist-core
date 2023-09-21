@@ -17,8 +17,7 @@
 #include "ProfilerHelpers.hpp"
 #include "characters_encoding.hpp"
 #include "CallMexBuiltin.hpp"
-#include "Error.hpp"
-#include "i18n.hpp"
+#include "OverloadHelpers.hpp"
 //=============================================================================
 #define BUFFER_LENGTH_NAME 4096
 #define MEXFILEREQUIREDAPIVERSION_ENTRY "mexfilerequiredapiversion"
@@ -29,7 +28,13 @@
 //=============================================================================
 namespace Nelson {
 //=============================================================================
-MexFunctionDef::MexFunctionDef(const std::wstring& filename, const std::wstring& name)
+using PROC_MexFileRequiredApiVersion = void (*)(int*, int*);
+using PROC_MexClearAtExit = void (*)();
+using PROC_MexIsLocked = bool (*)();
+//=============================================================================
+MexFunctionDef::MexFunctionDef(
+    const std::wstring& filename, const std::wstring& name, bool isOverload)
+    : FunctionDef(isOverload)
 {
     Error(_W("Not supported."));
 }
@@ -45,9 +50,46 @@ MexFunctionDef::~MexFunctionDef() { }
 ArrayOfVector
 MexFunctionDef::evaluateFunction(Evaluator* eval, const ArrayOfVector& inputs, int nargout)
 {
-    ArrayOfVector retval;
-    Error(_W("Not supported."));
-    return retval;
+    if (eval->withOverload && inputs.size() > 0 && !this->isOverload()
+        && this->overloadAutoMode == NLS_OVERLOAD_AUTO_ON) {
+        bool wasFound = false;
+        ArrayOfVector res = callOverloadedFunction(eval,
+            NelsonConfiguration::getInstance()->getOverloadLevelCompatibility(), nargout, inputs,
+            getName(), ClassName(inputs[0]), inputs[0].getDataClass(), wasFound);
+        if (wasFound) {
+            return res;
+        }
+    }
+
+    ArrayOfVector outputs;
+    eval->callstack.pushDebug(this->getName(), std::string("built-in ") + this->getName());
+    size_t stackDepth = eval->callstack.size();
+    uint64 tic = 0;
+    try {
+        tic = Profiler::getInstance()->tic();
+        CallMexBuiltin(mexFunctionPtr, inputs, nargout, outputs, interleavedComplex);
+        if (tic != 0) {
+            internalProfileFunction stack
+                = computeProfileStack(eval, this->getName(), this->getFilename());
+            Profiler::getInstance()->toc(tic, stack);
+        }
+        while (eval->callstack.size() > stackDepth) {
+            eval->callstack.pop_back();
+        }
+        eval->callstack.popDebug();
+        return outputs;
+    } catch (const Exception&) {
+        if (tic != 0) {
+            internalProfileFunction stack
+                = computeProfileStack(eval, this->getName(), this->getFilename());
+            Profiler::getInstance()->toc(tic, stack);
+        }
+        while (eval->callstack.size() > stackDepth) {
+            eval->callstack.pop_back();
+        }
+        eval->callstack.popDebug();
+        throw;
+    }
 }
 //=============================================================================
 bool

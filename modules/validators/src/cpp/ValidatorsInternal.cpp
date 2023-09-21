@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include <fmt/xchar.h>
@@ -14,32 +15,11 @@
 #include "ValidatorsInternal.hpp"
 #include "ClassName.hpp"
 #include "Error.hpp"
-#include "isfiniteBuiltin.hpp"
-#include "isemptyBuiltin.hpp"
-#include "isscalarBuiltin.hpp"
-#include "IsValidVariableName.hpp"
-#include "isdirBuiltin.hpp"
-#include "isfileBuiltin.hpp"
-#include "isvectorBuiltin.hpp"
-#include "isfloatBuiltin.hpp"
-#include "isnumericBuiltin.hpp"
-#include "isrealBuiltin.hpp"
-#include "isnanBuiltin.hpp"
-#include "issparseBuiltin.hpp"
-#include "isrealBuiltin.hpp"
-#include "floorBuiltin.hpp"
-#include "ismissingBuiltin.hpp"
-#include "strlengthBuiltin.hpp"
-#include "ismemberBuiltin.hpp"
-#include "gtBuiltin.hpp"
-#include "geBuiltin.hpp"
-#include "ltBuiltin.hpp"
-#include "leBuiltin.hpp"
-#include "eqBuiltin.hpp"
-#include "allBuiltin.hpp"
-#include "anyBuiltin.hpp"
 #include "i18n.hpp"
 #include "NelsonConfiguration.hpp"
+#include "PredefinedErrorMessages.hpp"
+#include "IsValidVariableName.hpp"
+#include "Operators.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -53,12 +33,27 @@ invalidPositionMessage(int argPosition)
     return msg;
 }
 //=============================================================================
+static ArrayOfVector
+evaluateFunction(const ArrayOfVector& args, int nLhs, const std::string& functionName)
+{
+    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
+    FunctionDef* fptr = nullptr;
+    bool found = _eval->getContext()->lookupFunction(functionName, fptr);
+    ArrayOfVector argOut;
+    if (found) {
+        argOut = fptr->evaluateFunction(_eval, args, nLhs);
+    }
+    if (argOut.size() < 1) {
+        Error(ERROR_WRONG_NUMBERS_OUTPUT_ARGS);
+    }
+    return argOut;
+}
+//=============================================================================
 void
 mustBeLogical(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isemptyBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isempty");
     if (!argOut[0].getContentAsLogicalScalar()) {
         bool isLogical = (arg.isLogical() || ClassName(arg) == "logical");
         if (!isLogical) {
@@ -78,9 +73,8 @@ mustBeFinite(const ArrayOf& arg, int argPosition, bool asCaller)
     Dimensions dimsV(1, dimsA.getElementCount());
     ArrayOf asVector = argIn[0];
     asVector.reshape(dimsV);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isfiniteBuiltin(_eval, 1, asVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(asVector, 1, "isfinite");
+    argOut = evaluateFunction(argOut, 1, "all");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be finite.");
         std::wstring id = L"Nelson:validators:mustBeFinite";
@@ -92,8 +86,7 @@ void
 mustBeNonempty(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isemptyBuiltin(_eval, 1, arg);
+    ArrayOfVector argOut = evaluateFunction(arg, 1, "isempty");
     if (argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must not be empty.");
         std::wstring id = L"Nelson:validators:mustBeNonempty";
@@ -107,8 +100,7 @@ mustBeLogicalScalar(const ArrayOf& arg, int argPosition, bool asCaller)
     bool isLogical = (arg.isLogical() || ClassName(arg) == "logical");
     if (isLogical) {
         ArrayOfVector argIn(arg);
-        Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-        ArrayOfVector argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argIn);
+        ArrayOfVector argOut = evaluateFunction(argIn, 1, "isscalar");
         if (argOut[0].getContentAsLogicalScalar()) {
             return;
         }
@@ -122,10 +114,9 @@ void
 mustBeScalarOrEmpty(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isemptyBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isempty");
     if (!argOut[0].getContentAsLogicalScalar()) {
-        argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argIn);
+        argOut = evaluateFunction(argIn, 1, "isscalar");
         if (!argOut[0].getContentAsLogicalScalar()) {
             std::wstring msg
                 = invalidPositionMessage(argPosition) + _W("Value must be scalar or empty.");
@@ -181,7 +172,7 @@ mustBeFolder(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
     mustBeTextScalar(arg, argPosition, asCaller);
-    ArrayOfVector argOut = FilesFoldersGateway::isdirBuiltin(1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isdir");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be folder.");
         std::wstring id = L"Nelson:validators:mustBeFolder";
@@ -194,7 +185,7 @@ mustBeFile(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
     mustBeTextScalar(arg, argPosition, asCaller);
-    ArrayOfVector argOut = FilesFoldersGateway::isfileBuiltin(1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isfile");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be file.");
         std::wstring id = L"Nelson:validators:mustBeFile";
@@ -206,12 +197,11 @@ void
 mustBeVector(const ArrayOf& arg, bool allowsAllEmpties, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isvectorBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isvector");
     bool isVectorOrEmpty = argOut[0].getContentAsLogicalScalar();
 
     if (!isVectorOrEmpty && allowsAllEmpties) {
-        argOut = TypeGateway::isemptyBuiltin(_eval, 1, argIn);
+        argOut = evaluateFunction(argIn, 1, "isempty");
         isVectorOrEmpty = argOut[0].getContentAsLogicalScalar();
     }
     if (!isVectorOrEmpty) {
@@ -225,8 +215,7 @@ void
 mustBeFloat(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isfloatBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isfloat");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be a float.");
         std::wstring id = L"Nelson:validators:mustBeFloat";
@@ -238,8 +227,7 @@ void
 mustBeNumeric(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isnumeric");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be numeric.");
         std::wstring id = L"Nelson:validators:mustBeNumeric";
@@ -286,8 +274,7 @@ mustBePositive(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     mustBeNumericOrLogical(arg, argPosition, asCaller);
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
@@ -300,8 +287,8 @@ mustBePositive(const ArrayOf& arg, int argPosition, bool asCaller)
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
     vAsArrayOfVector.push_back(ArrayOf::doubleConstructor(0));
-    argOut = OperatorsGateway::gtBuiltin(_eval, 1, vAsArrayOfVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(vAsArrayOfVector, 1, GT_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     bool isPositive = argOut[0].getContentAsLogicalScalar();
     if (!isPositive) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be positive.");
@@ -315,8 +302,7 @@ mustBeNonpositive(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     mustBeNumericOrLogical(arg, argPosition, asCaller);
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
@@ -329,8 +315,8 @@ mustBeNonpositive(const ArrayOf& arg, int argPosition, bool asCaller)
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
     vAsArrayOfVector.push_back(ArrayOf::doubleConstructor(0));
-    argOut = OperatorsGateway::leBuiltin(_eval, 1, vAsArrayOfVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(vAsArrayOfVector, 1, LE_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     bool isNonpositive = argOut[0].getContentAsLogicalScalar();
     if (!isNonpositive) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be non positive.");
@@ -344,8 +330,7 @@ mustBeNonnegative(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     mustBeNumericOrLogical(arg, argPosition, asCaller);
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
@@ -358,8 +343,8 @@ mustBeNonnegative(const ArrayOf& arg, int argPosition, bool asCaller)
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
     vAsArrayOfVector.push_back(ArrayOf::doubleConstructor(0));
-    argOut = OperatorsGateway::geBuiltin(_eval, 1, vAsArrayOfVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(vAsArrayOfVector, 1, GE_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     bool isNonnegative = argOut[0].getContentAsLogicalScalar();
     if (!isNonnegative) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be nonnegative.");
@@ -372,9 +357,8 @@ void
 mustBeNegative(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     mustBeNumericOrLogical(arg, argPosition, asCaller);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
     ArrayOfVector argIn(arg);
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
@@ -387,8 +371,8 @@ mustBeNegative(const ArrayOf& arg, int argPosition, bool asCaller)
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
     vAsArrayOfVector.push_back(ArrayOf::doubleConstructor(0));
-    argOut = OperatorsGateway::ltBuiltin(_eval, 1, vAsArrayOfVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(vAsArrayOfVector, 1, LT_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     bool isNegative = argOut[0].getContentAsLogicalScalar();
     if (!isNegative) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be negative.");
@@ -401,15 +385,14 @@ void
 mustBeNonNan(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isemptyBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isempty");
     if (!argOut[0].getContentAsLogicalScalar()) {
         Dimensions dimsA = argIn[0].getDimensions();
         Dimensions dimsV(1, dimsA.getElementCount());
         ArrayOf asVector = argIn[0];
         asVector.reshape(dimsV);
-        ArrayOfVector argOut = ElementaryFunctionsGateway::isnanBuiltin(_eval, 1, asVector);
-        argOut = OperatorsGateway::anyBuiltin(_eval, 1, argOut);
+        argOut = evaluateFunction(asVector, 1, "isnan");
+        argOut = evaluateFunction(argOut, 1, "any");
         bool isNaN = argOut[0].getContentAsLogicalScalar();
         if (isNaN) {
             std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must not be NaN.");
@@ -429,9 +412,8 @@ mustBeNonZero(const ArrayOf& arg, int argPosition, bool asCaller)
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
     vAsArrayOfVector.push_back(ArrayOf::doubleConstructor(0));
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::eqBuiltin(_eval, 1, vAsArrayOfVector);
-    argOut = OperatorsGateway::anyBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(vAsArrayOfVector, 1, EQ_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "any");
     if (argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must not be zero.");
         std::wstring id = L"Nelson:validators:mustBeNonZero";
@@ -443,8 +425,7 @@ void
 mustBeNonSparse(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::issparseBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "issparse");
     if (argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must not be sparse.");
         std::wstring id = L"Nelson:validators:mustBeNonSparse";
@@ -456,8 +437,7 @@ void
 mustBeReal(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
         std::wstring id = L"Nelson:validators:mustBeReal";
@@ -470,8 +450,7 @@ mustBeInteger(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     mustBeNumericOrLogical(arg, argPosition, asCaller);
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be real.");
@@ -483,17 +462,17 @@ mustBeInteger(const ArrayOf& arg, int argPosition, bool asCaller)
     ArrayOf asVector = arg;
     asVector.reshape(dimsV);
     ArrayOfVector vAsArrayOfVector(asVector);
-    argOut = ElementaryFunctionsGateway::isfiniteBuiltin(_eval, 1, asVector);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(asVector, 1, "isfinite");
+    argOut = evaluateFunction(argOut, 1, "all");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be integer.");
         std::wstring id = L"Nelson:validators:mustBeInteger";
         Error(msg, id, asCaller);
     }
-    argOut = ElementaryFunctionsGateway::floorBuiltin(_eval, 1, asVector);
+    argOut = evaluateFunction(asVector, 1, "floor");
     argOut.push_back(asVector);
-    argOut = OperatorsGateway::eqBuiltin(_eval, 1, argOut);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    argOut = evaluateFunction(argOut, 1, EQ_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be integer.");
         std::wstring id = L"Nelson:validators:mustBeInteger";
@@ -508,9 +487,8 @@ mustBeNonmissing(const ArrayOf& arg, int argPosition, bool asCaller)
     Dimensions dimsV(1, dimsA.getElementCount());
     ArrayOf asVector = arg;
     asVector.reshape(dimsV);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = DataAnalysisGateway::ismissingBuiltin(_eval, 1, asVector);
-    argOut = OperatorsGateway::anyBuiltin(_eval, 1, argOut[0]);
+    ArrayOfVector argOut = evaluateFunction(asVector, 1, "ismissing");
+    argOut = evaluateFunction(argOut[0], 1, "any");
     if (argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition) + _W("Value must be non missing.");
         std::wstring id = L"Nelson:validators:mustBeNonmissing";
@@ -591,24 +569,22 @@ mustBeGreaterThan(const ArrayOf& arg, const ArrayOf& c)
     asVector.reshape(dimsV);
     ArrayOfVector params(asVector);
     params.push_back(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::gtBuiltin(_eval, 1, params);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(params, 1, GT_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     return argOut[0].getContentAsLogicalScalar();
 }
 //=============================================================================
 void
 mustBeGreaterThan(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCaller)
 {
-    ArrayOfVector argC(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argC);
+    ArrayOfVector argIn(arg);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isscalar");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = _W("Second input to function 'mustBeGreaterThan' must be a scalar.");
         std::wstring id = L"Nelson:validatorUsage:nonScalarSecondInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argIn, 1, "isnumeric");
     bool isLogical = (c.isLogical() || ClassName(c) == "logical");
     bool isNumeric = argOut[0].getContentAsLogicalScalar();
     if (!isNumeric && !isLogical) {
@@ -616,26 +592,11 @@ mustBeGreaterThan(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool as
         std::wstring id = L"Nelson:validatorUsage:nonNumericOrLogicalInput";
         Error(msg, id, asCaller);
     }
-    ArrayOfVector argIn(arg);
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
-    isLogical = (arg.isLogical() || ClassName(arg) == "logical");
-    if (!isNumeric && !isLogical) {
-        std::wstring msg = _W("Value must be numeric or logical.");
-        std::wstring id = L"Nelson:validators:mustBeNumericOrLogical";
-        Error(msg, id, asCaller);
-    }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Inputs to function 'mustBeGreaterThan' must be real.");
         std::wstring id = L"Nelson:validatorUsage:nonRealInput";
-        Error(msg, id, asCaller);
-    }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
-    isReal = argOut[0].getContentAsLogicalScalar();
-    if (!isReal) {
-        std::wstring msg = _W("Value must be real.");
-        std::wstring id = L"Nelson:validators:mustBeReal";
         Error(msg, id, asCaller);
     }
     if (!mustBeGreaterThan(arg, c)) {
@@ -656,9 +617,8 @@ mustBeLessThan(const ArrayOf& arg, const ArrayOf& c)
     asVector.reshape(dimsV);
     ArrayOfVector params(asVector);
     params.push_back(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::ltBuiltin(_eval, 1, params);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(params, 1, LT_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     return argOut[0].getContentAsLogicalScalar();
 }
 //=============================================================================
@@ -666,14 +626,13 @@ void
 mustBeLessThan(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCaller)
 {
     ArrayOfVector argC(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argC);
+    ArrayOfVector argOut = evaluateFunction(argC, 1, "isscalar");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = _W("Second input to function 'mustBeLessThan' must be a scalar.");
         std::wstring id = L"Nelson:validatorUsage:nonScalarSecondInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isnumeric");
     bool isLogical = (c.isLogical() || ClassName(c) == "logical");
     bool isNumeric = argOut[0].getContentAsLogicalScalar();
     if (!isNumeric && !isLogical) {
@@ -682,21 +641,21 @@ mustBeLessThan(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCal
         Error(msg, id, asCaller);
     }
     ArrayOfVector argIn(arg);
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isnumeric");
     isLogical = (arg.isLogical() || ClassName(arg) == "logical");
     if (!isNumeric && !isLogical) {
         std::wstring msg = _W("Value must be numeric or logical.");
         std::wstring id = L"Nelson:validators:mustBeNumericOrLogical";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Inputs to function 'mustBeLessThan' must be real.");
         std::wstring id = L"Nelson:validatorUsage:nonRealInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Value must be real.");
@@ -721,9 +680,8 @@ mustBeGreaterThanOrEqual(const ArrayOf& arg, const ArrayOf& c)
     asVector.reshape(dimsV);
     ArrayOfVector params(asVector);
     params.push_back(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::geBuiltin(_eval, 1, params);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(params, 1, GE_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     return argOut[0].getContentAsLogicalScalar();
 }
 //=============================================================================
@@ -731,15 +689,14 @@ void
 mustBeGreaterThanOrEqual(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCaller)
 {
     ArrayOfVector argC(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argC);
+    ArrayOfVector argOut = evaluateFunction(argC, 1, "isscalar");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg
             = _W("Second input to function 'mustBeGreaterThanOrEqual' must be a scalar.");
         std::wstring id = L"Nelson:validatorUsage:nonScalarSecondInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isnumeric");
     bool isLogical = (c.isLogical() || ClassName(c) == "logical");
     bool isNumeric = argOut[0].getContentAsLogicalScalar();
     if (!isNumeric && !isLogical) {
@@ -749,21 +706,21 @@ mustBeGreaterThanOrEqual(const ArrayOf& arg, const ArrayOf& c, int argPosition, 
         Error(msg, id, asCaller);
     }
     ArrayOfVector argIn(arg);
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isnumeric");
     isLogical = (arg.isLogical() || ClassName(arg) == "logical");
     if (!isNumeric && !isLogical) {
         std::wstring msg = _W("Value must be numeric or logical.");
         std::wstring id = L"Nelson:validators:mustBeNumericOrLogical";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Inputs to function 'mustBeGreaterThanOrEqual' must be real.");
         std::wstring id = L"Nelson:validatorUsage:nonRealInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Value must be real.");
@@ -788,9 +745,8 @@ mustBeLessThanOrEqual(const ArrayOf& arg, const ArrayOf& c)
     asVector.reshape(dimsV);
     ArrayOfVector params(asVector);
     params.push_back(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::leBuiltin(_eval, 1, params);
-    argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+    ArrayOfVector argOut = evaluateFunction(params, 1, LE_OPERATOR_STR);
+    argOut = evaluateFunction(argOut, 1, "all");
     return argOut[0].getContentAsLogicalScalar();
 }
 //=============================================================================
@@ -798,14 +754,13 @@ void
 mustBeLessThanOrEqual(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCaller)
 {
     ArrayOfVector argC(c);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argC);
+    ArrayOfVector argOut = evaluateFunction(argC, 1, "isscalar");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = _W("Second input to function 'mustBeLessThanOrEqual' must be a scalar.");
         std::wstring id = L"Nelson:validatorUsage:nonScalarSecondInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isnumeric");
     bool isLogical = (c.isLogical() || ClassName(c) == "logical");
     bool isNumeric = argOut[0].getContentAsLogicalScalar();
     if (!isNumeric && !isLogical) {
@@ -815,21 +770,21 @@ mustBeLessThanOrEqual(const ArrayOf& arg, const ArrayOf& c, int argPosition, boo
         Error(msg, id, asCaller);
     }
     ArrayOfVector argIn(arg);
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isnumeric");
     isLogical = (arg.isLogical() || ClassName(arg) == "logical");
     if (!isNumeric && !isLogical) {
         std::wstring msg = _W("Value must be numeric or logical.");
         std::wstring id = L"Nelson:validators:mustBeNumericOrLogical";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argC);
+    argOut = evaluateFunction(argC, 1, "isreal");
     bool isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Inputs to function 'mustBeLessThanOrEqual' must be real.");
         std::wstring id = L"Nelson:validatorUsage:nonRealInput";
         Error(msg, id, asCaller);
     }
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     isReal = argOut[0].getContentAsLogicalScalar();
     if (!isReal) {
         std::wstring msg = _W("Value must be real.");
@@ -849,8 +804,7 @@ void
 mustBeNumericOrLogical(const ArrayOf& arg, int argPosition, bool asCaller)
 {
     ArrayOfVector argIn(arg);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isnumeric");
     bool isLogical = (arg.isLogical() || ClassName(arg) == "logical");
     bool isNumeric = argOut[0].getContentAsLogicalScalar();
     if (!isNumeric && !isLogical) {
@@ -874,12 +828,11 @@ mustBeNonzeroLengthText(const ArrayOf& arg, int argPosition, bool asCaller)
         Error(msg, id, asCaller);
     } else {
         ArrayOfVector argIn(arg);
-        Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-        ArrayOfVector argOut = StringGateway::strlengthBuiltin(_eval, 1, argIn);
+        ArrayOfVector argOut = evaluateFunction(argIn, 1, "strlength");
         argOut.push_back(ArrayOf::doubleConstructor(0));
-        argOut = OperatorsGateway::gtBuiltin(_eval, 1, argOut);
+        argOut = evaluateFunction(argOut, 1, GT_OPERATOR_STR);
         argOut.push_back(ArrayOf::characterArrayConstructor("all"));
-        argOut = OperatorsGateway::allBuiltin(_eval, 1, argOut);
+        argOut = evaluateFunction(argOut, 1, "all");
         if (!argOut[0].getContentAsLogicalScalar()) {
             std::wstring msg
                 = invalidPositionMessage(argPosition) + _W("Value must be non zero length text.");
@@ -894,13 +847,12 @@ mustBeMember(const ArrayOf& arg, const ArrayOf& c, int argPosition, bool asCalle
 {
     ArrayOfVector argIn(arg);
     argIn << c;
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = OperatorsGateway::ismemberBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "ismember");
     Dimensions dims = argOut[0].getDimensions();
     Dimensions dimsV(1, dims.getElementCount());
     ArrayOf asVector = argOut[0];
     asVector.reshape(dimsV);
-    argOut = OperatorsGateway::anyBuiltin(_eval, 1, asVector);
+    argOut = evaluateFunction(asVector, 1, "any");
     if (!argOut[0].getContentAsLogicalScalar()) {
         std::wstring msg = invalidPositionMessage(argPosition)
             + _W("Value must be member of the compared value.");
@@ -952,12 +904,11 @@ mustBeInRange(const ArrayOf& value, const ArrayOf& lower, const ArrayOf& upper,
     mustBeReal(value, 1, asCaller);
 
     ArrayOfVector argIn(lower);
-    Evaluator* _eval = (Evaluator*)NelsonConfiguration::getInstance()->getMainEvaluator();
-    ArrayOfVector argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    ArrayOfVector argOut = evaluateFunction(argIn, 1, "isnumeric");
     bool isnumeric = argOut[0].getContentAsLogicalScalar();
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     bool isreal = argOut[0].getContentAsLogicalScalar();
-    argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isscalar");
     bool isscalar = argOut[0].getContentAsLogicalScalar();
     bool isLogical = (argOut[0].isLogical() || ClassName(argOut[0]) == "logical");
     if (!((isnumeric && isreal) || isLogical) || !isscalar) {
@@ -968,11 +919,11 @@ mustBeInRange(const ArrayOf& value, const ArrayOf& lower, const ArrayOf& upper,
     }
 
     argIn = upper;
-    argOut = TypeGateway::isnumericBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isnumeric");
     isnumeric = argOut[0].getContentAsLogicalScalar();
-    argOut = TypeGateway::isrealBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isreal");
     isreal = argOut[0].getContentAsLogicalScalar();
-    argOut = ElementaryFunctionsGateway::isscalarBuiltin(_eval, 1, argIn);
+    argOut = evaluateFunction(argIn, 1, "isscalar");
     isscalar = argOut[0].getContentAsLogicalScalar();
     isLogical = (argOut[0].isLogical() || ClassName(argOut[0]) == "logical");
     if (!((isnumeric && isreal) || isLogical) || !isscalar) {

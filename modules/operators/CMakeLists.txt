@@ -92,7 +92,6 @@ target_link_libraries(
   nlsI18n
   nlsInterpreter
   nlsLinear_algebra
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 include(GNUInstallDirs)

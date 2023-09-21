@@ -10,6 +10,7 @@
 #pragma once
 //=============================================================================
 #include <vector>
+#include <unordered_map>
 #include <string>
 #include "BuiltInFunctionDef.hpp"
 #include "nlsInterpreter_exports.h"
@@ -25,7 +26,8 @@ public:
     bool
     add(const std::string& name, void* fptr, int argc_in, int argc_out,
         const std::wstring& dynlibname, const std::wstring& modulename, size_t builtinPrototype,
-        bool interleavedComplex);
+        bool interleavedComplex,
+        FunctionOverloadAutoMode builtinOverloadAutoMode = NLS_OVERLOAD_AUTO_ON);
 
     bool
     remove(const std::string& name);
@@ -59,6 +61,7 @@ private:
     BuiltInFunctionDefManager();
     static BuiltInFunctionDefManager* m_pInstance;
     std::vector<FunctionDefPtr> builtinVector;
+    std::unordered_map<std::string, FunctionDefPtr> builtinHashMap;
 };
 //=============================================================================
 } // namespace Nelson

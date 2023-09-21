@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include <fmt/xchar.h>
@@ -15,7 +16,7 @@
 #include "Error.hpp"
 #include "i18n.hpp"
 #include "characters_encoding.hpp"
-#include "PathFuncManager.hpp"
+#include "PathFunctionIndexerManager.hpp"
 #include "StringHelpers.hpp"
 //=============================================================================
 namespace Nelson {
@@ -57,7 +58,7 @@ ChangeDirectory(const std::wstring& newpath, bool doException, bool trimPath)
     std::string errorMessage;
     FileSystemWrapper::Path::current_path(pathApplied, errorMessage);
     if (errorMessage.empty()) {
-        PathFuncManager::getInstance()->setCurrentUserPath(
+        PathFunctionIndexerManager::getInstance()->setCurrentUserPath(
             FileSystemWrapper::Path::current_path().generic_wstring());
         return true;
     }

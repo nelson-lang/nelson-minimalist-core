@@ -195,6 +195,11 @@
       <Project>{a3442367-d7ee-4523-a9f8-356e211eb38b}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\commons\src\c\nlsCommons.vcxproj">
+      <Project>{867f2f84-cc27-4bd8-b44b-5ef4f69c6e15}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

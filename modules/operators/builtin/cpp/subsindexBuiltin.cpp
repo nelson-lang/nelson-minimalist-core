@@ -8,8 +8,6 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "subsindexBuiltin.hpp"
-#include "Error.hpp"
-#include "OverloadUnaryOperator.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -17,9 +15,7 @@ using namespace Nelson;
 ArrayOfVector
 Nelson::OperatorsGateway::subsindexBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
-    ArrayOfVector retval;
     nargincheck(argIn, 1, 1);
-    retval << OverloadUnaryOperator(eval, argIn[0], "subsindex");
-    return retval;
+    return eval->subsindexOperator(argIn);
 }
 //=============================================================================

@@ -7,12 +7,13 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include "FileSystemWrapper.hpp"
 #include "addpathBuiltin.hpp"
 #include "Error.hpp"
-#include "PathFuncManager.hpp"
+#include "PathFunctionIndexerManager.hpp"
 #include "Warning.hpp"
 #include "i18n.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
@@ -20,7 +21,7 @@
 using namespace Nelson;
 //=============================================================================
 ArrayOfVector
-Nelson::FunctionsGateway::addpathBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
+Nelson::FunctionsGateway::addpathBuiltin(int nLhs, const ArrayOfVector& argIn)
 {
     ArrayOfVector retval;
     nargoutcheck(nLhs, 0, 1);
@@ -87,10 +88,10 @@ Nelson::FunctionsGateway::addpathBuiltin(Evaluator* eval, int nLhs, const ArrayO
                 fmt::sprintf(ERROR_WRONG_ARGUMENT_X_TYPE_STRING_EXPECTED, static_cast<int>(k) + 1));
         }
     }
-    std::wstring previousPaths = PathFuncManager::getInstance()->getPathNameAsString();
+    std::wstring previousPaths = PathFunctionIndexerManager::getInstance()->getPathNameAsString();
     for (const std::wstring& param : params) {
         if (FileSystemWrapper::Path::is_directory(param)) {
-            PathFuncManager::getInstance()->addPath(param, beginOption, frozenOption);
+            PathFunctionIndexerManager::getInstance()->addPath(param, beginOption, frozenOption);
         } else {
             Warning(_W("Warning: Not a directory:") + L" " + param + L"\n");
         }

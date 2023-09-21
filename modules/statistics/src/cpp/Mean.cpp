@@ -286,6 +286,8 @@ MeanAll(const ArrayOf& A, bool omitNaN, MEAN_OUT_TYPE outType, bool& needToOverl
     case NLS_HANDLE:
     case NLS_CELL_ARRAY:
     case NLS_STRUCT_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRING_ARRAY:
     default: {
         needToOverload = true;
@@ -438,6 +440,8 @@ Mean(const ArrayOf& A, indexType dim, bool omitNaN, MEAN_OUT_TYPE outType, bool&
     case NLS_HANDLE:
     case NLS_CELL_ARRAY:
     case NLS_STRUCT_ARRAY:
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRING_ARRAY:
     default: {
         needToOverload = true;

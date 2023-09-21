@@ -95,7 +95,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -105,7 +105,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,7 +117,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -126,7 +127,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,7 +141,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -151,7 +153,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,7 +167,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NLSOPERATORS_BUILTIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)modules/operators/builtin/include;$(SolutionDir)modules/operators/src/include;$(SolutionDir)modules/commons/src/include;$(SolutionDir)modules/interpreter/src/include;$(SolutionDir)modules/types/src/include;$(SolutionDir)modules/stream_manager/src/include;$(SolutionDir)modules/overload/src/include;$(SolutionDir)modules/linear_algebra/src/include;$(SolutionDir)modules/error_manager/src/include;$(SolutionDir)modules/nelson_manager/src/include;$(SolutionDir)modules/i18n/no-src/include;$(SolutionDir)../NelSon-thirdparty-$(PlatformName)/Eigen</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
       <DisableSpecificWarnings>4190</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -176,7 +179,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -208,8 +212,6 @@
     <ClCompile Include="..\cpp\plusBuiltin.cpp" />
     <ClCompile Include="..\cpp\powerBuiltin.cpp" />
     <ClCompile Include="..\cpp\rdivideBuiltin.cpp" />
-    <ClCompile Include="..\cpp\shortcutandBuiltin.cpp" />
-    <ClCompile Include="..\cpp\shortcutorBuiltin.cpp" />
     <ClCompile Include="..\cpp\subsindexBuiltin.cpp" />
     <ClCompile Include="..\cpp\timesBuiltin.cpp" />
     <ClCompile Include="..\cpp\transposeBuiltin.cpp" />
@@ -230,9 +232,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\linear_algebra\src\c\nlsLinear_algebra.vcxproj">
       <Project>{0229f943-6e1a-4cdd-8a0b-cf0f211b6c13}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\overload\src\c\nlsOverload.vcxproj">
-      <Project>{937bee8b-e934-45f1-98ef-33aaf951e5e9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\c\nlsTypes.vcxproj">
       <Project>{ab85e897-56b7-4792-8a8e-f3797be2b7cc}</Project>

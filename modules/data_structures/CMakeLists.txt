@@ -48,7 +48,6 @@ target_link_libraries(
   nlsError_manager
   nlsI18n
   nlsInterpreter
-  nlsOverload
   nlsTypes)
 # ==============================================================================
 file(GLOB DATA_STRUCTURE_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/builtin/include/*.hpp"

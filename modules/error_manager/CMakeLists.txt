@@ -78,7 +78,6 @@ target_link_libraries(
   ${module_library_builtin_name}
   ${module_library_name}
   nlsInterpreter
-  nlsOverload
   nlsDebugger
   nlsTypes
   nlsI18n)

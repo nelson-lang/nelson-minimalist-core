@@ -22,21 +22,22 @@ Nelson::FunctionsGateway::builtinBuiltin(Evaluator* eval, int nLhs, const ArrayO
     Context* context = eval->getContext();
     FunctionDef* funcDef = nullptr;
     ArrayOf param1 = argIn[0];
-    std::string fname;
-    if (param1.isFunctionHandle()) {
-        function_handle fh = param1.getContentAsFunctionHandle();
-        fname = fh.name;
-    } else {
-        fname = argIn[0].getContentAsCString();
-    }
+    std::string fname = argIn[0].getContentAsCString();
     if (!context->lookupFunction(fname, funcDef, true)) {
         Error(_W("function \'") + utf8_to_wstring(fname) + _W("\' is not a builtin."));
     }
     ArrayOfVector newarg(argIn);
     newarg.pop_front();
-    eval->disableOverload();
-    ArrayOfVector retval = funcDef->evaluateFunction(eval, newarg, nLhs);
-    eval->enableOverload();
+    ArrayOfVector retval;
+    try {
+        eval->withOverload = false;
+        retval = funcDef->evaluateFunction(eval, newarg, nLhs);
+        eval->withOverload = true;
+    } catch (const Exception&) {
+        eval->withOverload = true;
+        throw;
+    }
+
     return retval;
 }
 //=============================================================================

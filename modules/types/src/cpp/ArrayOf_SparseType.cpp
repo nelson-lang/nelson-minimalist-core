@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#include <Eigen/Sparse>
 #include "ArrayOf.hpp"
 #include "Data.hpp"
 #include "SparseDynamicFunctions.hpp"
@@ -75,24 +76,28 @@ ArrayOf::getNonzeros() const
 void
 ArrayOf::makeSparse()
 {
-    if (!is2D()) {
-        Error(_W("Cannot make n-dimensional arrays sparse."));
-    }
-    if (isEmpty()) {
-        dp = dp->putData(dp->dataClass, dp->dimensions, nullptr, true, dp->fieldNames);
-        return;
-    }
-    if (isReferenceType() || isCharacterArray()) {
-        Error(_W("Cannot make strings or reference types sparse."));
-    }
-    if (isSparse()) {
-        return;
-    }
     if ((dp->dataClass == NLS_DOUBLE) || (dp->dataClass == NLS_DCOMPLEX)
         || (dp->dataClass == NLS_LOGICAL)) {
         ensureSingleOwner();
     } else {
         Error(_W("Cannot make sparse."));
+    }
+    if (isSparse()) {
+        return;
+    }
+    if (isReferenceType() || isCharacterArray()) {
+        Error(_W("Cannot make strings or reference types sparse."));
+    }
+    if (!is2D()) {
+        Error(_W("Cannot make n-dimensional arrays sparse."));
+    }
+    if (isEmpty()) {
+        void* cp = ArrayOf::allocateArrayOf(dp->dataClass, 0, stringVector(), true);
+        dp = dp->putData(dp->dataClass, dp->dimensions,
+            MakeSparseArrayOfDynamicFunction(
+                dp->dataClass, dp->dimensions[0], dp->dimensions[1], cp),
+            true, dp->fieldNames);
+        return;
     }
     dp = dp->putData(dp->dataClass, dp->dimensions,
         MakeSparseArrayOfDynamicFunction(
@@ -100,6 +105,5 @@ ArrayOf::makeSparse()
         true, dp->fieldNames);
 }
 //=============================================================================
-
 } // namespace Nelson
 //=============================================================================

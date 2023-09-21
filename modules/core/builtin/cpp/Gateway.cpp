@@ -27,6 +27,7 @@
 #include "pauseBuiltin.hpp"
 #include "runBuiltin.hpp"
 #include "inputnameBuiltin.hpp"
+#include "versionBuiltin.hpp"
 //=============================================================================
 using namespace Nelson;
 //=============================================================================
@@ -55,6 +56,8 @@ static const nlsGateway gateway[] = {
     { "namelengthmax", (ptrBuiltin)Nelson::CoreGateway::namelengthmaxBuiltin, 1, 1 },
     { "inputname", (ptrBuiltin)Nelson::CoreGateway::inputnameBuiltin, 1, 1,
         CPP_BUILTIN_WITH_EVALUATOR },
+    { "version", (ptrBuiltin)Nelson::CoreGateway::versionBuiltin, 2, 1 },
+
 };
 //=============================================================================
 int

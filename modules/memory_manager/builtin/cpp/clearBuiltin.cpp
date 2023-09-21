@@ -7,6 +7,7 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
+#define FMT_HEADER_ONLY
 #include <fmt/printf.h>
 #include <fmt/format.h>
 #include "clearBuiltin.hpp"
@@ -20,7 +21,7 @@
 #include "characters_encoding.hpp"
 #include "NelsonGateway.hpp"
 #include "MexFunctionDef.hpp"
-#include "PathFuncManager.hpp"
+#include "PathFunctionIndexerManager.hpp"
 #include "FunctionsInMemory.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
 #include "PredefinedErrorMessages.hpp"

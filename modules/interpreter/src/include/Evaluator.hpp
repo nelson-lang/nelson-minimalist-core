@@ -43,8 +43,6 @@ class NLSINTERPRETER_IMPEXP Evaluator
 {
     wstringVector commandLineArguments;
 
-    bool bAllowOverload;
-
     /**
      * The context that the intepreter operates in.
      */
@@ -88,12 +86,6 @@ class NLSINTERPRETER_IMPEXP Evaluator
 
     bool bQuietMode = false;
 
-    // by default, overload on basic types is called after hardcoded operators.
-    // faster but double, single, char, logical, integers does not allow overload.
-    // "overloadbasictypes(true)" modify this behavior.
-    // overload on basic types can be usefull (example: code generator).
-    bool overloadOnBasicTypes = false;
-
 public:
     size_t
     getID();
@@ -103,6 +95,8 @@ public:
     bool isReadyToUse = false;
 
     CallStack callstack;
+
+    bool withOverload = true;
 
     void
     setCLI(bool bCLI);
@@ -177,36 +171,6 @@ public:
     State
     getState();
     /**
-     * Get current overload state (enabled by default)
-     */
-    bool
-    isOverloadAllowed();
-    /**
-     * disable overload
-     */
-    void
-    disableOverload();
-    /**
-     * enable overload
-     */
-    void
-    enableOverload();
-    /**
-     *  return current overload basic types
-     */
-    bool
-    mustOverloadBasicTypes();
-    /**
-     * enable overload basic type
-     */
-    void
-    enableOverloadBasicTypes();
-    /**
-     * disable overload basic type
-     */
-    void
-    disableOverloadBasicTypes();
-    /**
      * Get exit code.
      */
     int
@@ -268,6 +232,11 @@ public:
      * valid if we are a subindexing expression list (i.e.,
      * VAR(exprssionlist)), in which case dim != nullptr.
      */
+    ArrayOf
+    expressionOperator(AbstractSyntaxTreePtr t);
+    ArrayOf
+    expressionReserved(AbstractSyntaxTreePtr t);
+
     ArrayOfVector
     expressionList(AbstractSyntaxTreePtr t);
     ArrayOfVector
@@ -333,7 +302,7 @@ public:
     ArrayOf
     simpleSubindexExpression(ArrayOf& r, AbstractSyntaxTreePtr t);
     ArrayOfVector
-    subsindex(const ArrayOfVector& m);
+    subsindexOperator(const ArrayOfVector& m);
 
     indexType
     countLeftHandSides(AbstractSyntaxTreePtr t);
@@ -686,63 +655,75 @@ public:
     void
     resetLastWarningException();
 
-    using UnaryFunction = ArrayOf (*)(const ArrayOf&);
-    using BinaryFunction = ArrayOf (*)(ArrayOf&, ArrayOf&, bool, bool&);
-    using TernaryFunction = ArrayOf (*)(ArrayOf&, ArrayOf&, ArrayOf&, bool, bool&);
-
-    ArrayOf
-    doBinaryOperatorOverload(
-        ArrayOf& A, ArrayOf& B, BinaryFunction functionOperator, const std::string& functionName);
-
     ArrayOf
     colonUnitOperator(const ArrayOf& A, const ArrayOf& B);
     ArrayOf
     colonOperator(const ArrayOf& A, const ArrayOf& B, const ArrayOf& C);
 
     ArrayOf
-    additionOperator(const ArrayOf& A, const ArrayOf& B);
+    uplusOperator(const ArrayOf& A);
     ArrayOf
-    subtractionOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    timesOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    mtimesOperator(const ArrayOf& A, const ArrayOf& B);
+    uminusOperator(const ArrayOf& A);
 
     ArrayOf
-    rightDivideOperator(const ArrayOf& A, const ArrayOf& B);
+    transposeOperator(const ArrayOf& A);
+    ArrayOf
+    complexTransposeOperator(const ArrayOf& A);
 
     ArrayOf
-    leftDivideOperator(const ArrayOf& A, const ArrayOf& B);
+    mpowerOperator(const ArrayOfVector& args);
+    ArrayOf
+    powerOperator(const ArrayOfVector& args);
 
     ArrayOf
-    dotRightDivideOperator(const ArrayOf& A, const ArrayOf& B);
+    plusOperator(const ArrayOfVector& args);
+    ArrayOf
+    minusOperator(const ArrayOfVector& args);
+    ArrayOf
+    timesOperator(const ArrayOfVector& args);
+    ArrayOf
+    mtimesOperator(const ArrayOfVector& args);
 
     ArrayOf
-    dotLeftDivideOperator(const ArrayOf& A, const ArrayOf& B);
+    rightDivideOperator(const ArrayOfVector& args);
 
     ArrayOf
-    eqOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    gtOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    geOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    leOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    ltOperator(const ArrayOf& A, const ArrayOf& B);
-    ArrayOf
-    neOperator(const ArrayOf& A, const ArrayOf& B);
+    leftDivideOperator(const ArrayOfVector& args);
 
     ArrayOf
-    shortCutOrOperator(const ArrayOf& A, const ArrayOf& B);
+    dotRightDivideOperator(const ArrayOfVector& args);
+
     ArrayOf
-    shortCutAndOperator(const ArrayOf& A, const ArrayOf& B);
+    dotLeftDivideOperator(const ArrayOfVector& args);
+
     ArrayOf
-    orOperator(const ArrayOf& A, const ArrayOf& B);
+    eqOperator(const ArrayOfVector& args);
     ArrayOf
-    andOperator(const ArrayOf& A, const ArrayOf& B);
+    gtOperator(const ArrayOfVector& args);
+    ArrayOf
+    geOperator(const ArrayOfVector& args);
+    ArrayOf
+    leOperator(const ArrayOfVector& args);
+    ArrayOf
+    ltOperator(const ArrayOfVector& args);
+    ArrayOf
+    neOperator(const ArrayOfVector& args);
+
+    ArrayOf
+    orOperator(const ArrayOfVector& args);
+    ArrayOf
+    andOperator(const ArrayOfVector& args);
     ArrayOf
     notOperator(const ArrayOf& A);
+
+    ArrayOf
+    vertcatOperator(const ArrayOfVector& v);
+    ArrayOf
+    horzcatOperator(const ArrayOfVector& v);
+
+    void
+    display(
+        const ArrayOf& A, const std::string& name, bool asDispBuiltin, bool withProfiling = false);
 
 private:
     ArrayOfVector
@@ -761,16 +742,6 @@ private:
     size_t
     countSubExpressions(AbstractSyntaxTreePtr t);
 
-    ArrayOf
-    doUnaryOperatorOverload(
-        AbstractSyntaxTreePtr t, UnaryFunction functionOperator, const std::string& functionName);
-    ArrayOf
-    doBinaryOperatorOverload(
-        AbstractSyntaxTreePtr t, BinaryFunction functionOperator, const std::string& functionName);
-    ArrayOf
-    doTernaryOperatorOverload(
-        AbstractSyntaxTreePtr t, TernaryFunction functionOperator, const std::string& functionName);
-
     /**
      * Handles the logistics of shortcut evaluation
      */
@@ -782,6 +753,16 @@ private:
     orOperator(AbstractSyntaxTreePtr t);
     ArrayOf
     andOperator(AbstractSyntaxTreePtr t);
+
+    ArrayOf
+    mpowerOperator(AbstractSyntaxTreePtr t);
+    ArrayOf
+    powerOperator(AbstractSyntaxTreePtr t);
+
+    ArrayOf
+    functionHandleNamedOperator(AbstractSyntaxTreePtr t);
+    ArrayOf
+    functionHandleAnonymousOperator(AbstractSyntaxTreePtr t);
 
     /**
      * Evaluate a unit colon expression.  The AST input should look like:
@@ -811,9 +792,9 @@ private:
     colonOperator(AbstractSyntaxTreePtr t);
 
     ArrayOf
-    additionOperator(AbstractSyntaxTreePtr t);
+    plusOperator(AbstractSyntaxTreePtr t);
     ArrayOf
-    subtractionOperator(AbstractSyntaxTreePtr t);
+    minusOperator(AbstractSyntaxTreePtr t);
     ArrayOf
     timesOperator(AbstractSyntaxTreePtr t);
     ArrayOf
@@ -845,6 +826,16 @@ private:
     neOperator(AbstractSyntaxTreePtr t);
     ArrayOf
     notOperator(AbstractSyntaxTreePtr t);
+
+    ArrayOf
+    uplusOperator(AbstractSyntaxTreePtr t);
+    ArrayOf
+    uminusOperator(AbstractSyntaxTreePtr t);
+
+    ArrayOf
+    transposeOperator(AbstractSyntaxTreePtr t);
+    ArrayOf
+    complexTransposeOperator(AbstractSyntaxTreePtr t);
 
     bool
     needToOverloadOperator(const ArrayOf& a);

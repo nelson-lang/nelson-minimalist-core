@@ -58,8 +58,7 @@ Transpose(const ArrayOf& A, bool& needToOverload)
 {
     needToOverload = false;
     NelsonType classA = A.getDataClass();
-    if ((classA < NLS_LOGICAL || A.isSparse())
-        && !(A.isCell() || A.isStruct() || A.isStringArray())) {
+    if ((classA > NLS_CHAR) && !(A.isCell() || A.isStruct() || A.isStringArray())) {
         needToOverload = true;
         return {};
     }
@@ -79,6 +78,10 @@ Transpose(const ArrayOf& A, bool& needToOverload)
     }
     switch (classA) {
     case NLS_LOGICAL: {
+        if (A.isSparse()) {
+            needToOverload = true;
+            return {};
+        }
         logical* ptrRes = (logical*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount());
         Res = ArrayOf(classA, dimsRes, ptrRes);
         transposeRealTemplate<logical>(
@@ -138,6 +141,10 @@ Transpose(const ArrayOf& A, bool& needToOverload)
             dimsA, (single*)A.getDataPointer(), (single*)Res.getDataPointer());
     } break;
     case NLS_DOUBLE: {
+        if (A.isSparse()) {
+            needToOverload = true;
+            return {};
+        }
         double* ptrRes = (double*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount());
         Res = ArrayOf(classA, dimsRes, ptrRes);
         transposeRealTemplate<double>(
@@ -150,6 +157,10 @@ Transpose(const ArrayOf& A, bool& needToOverload)
             dimsA, (single*)A.getDataPointer(), (single*)Res.getDataPointer());
     } break;
     case NLS_DCOMPLEX: {
+        if (A.isSparse()) {
+            needToOverload = true;
+            return {};
+        }
         double* ptrRes = (double*)ArrayOf::allocateArrayOf(classA, dimsRes.getElementCount() * 2);
         Res = ArrayOf(classA, dimsRes, ptrRes);
         transposeComplexTemplate<double>(
@@ -161,6 +172,8 @@ Transpose(const ArrayOf& A, bool& needToOverload)
         transposeRealTemplate<charType>(
             dimsA, (charType*)A.getDataPointer(), (charType*)Res.getDataPointer());
     } break;
+    case NLS_CLASS_ARRAY:
+    case NLS_FUNCTION_HANDLE:
     case NLS_STRUCT_ARRAY:
     case NLS_STRING_ARRAY:
     case NLS_CELL_ARRAY: {

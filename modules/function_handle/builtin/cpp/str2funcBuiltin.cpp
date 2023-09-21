@@ -23,14 +23,14 @@ Nelson::FunctionHandleGateway::str2funcBuiltin(
     ArrayOfVector retval;
     nargoutcheck(nLhs, 0, 1);
     nargincheck(argIn, 1, 1);
-    std::wstring wfunctionname;
+    std::string functionname;
     if (argIn[0].isRowVectorCharacterArray()) {
-        wfunctionname = argIn[0].getContentAsWideString();
+        functionname = argIn[0].getContentAsCString();
     } else {
         Error(ERROR_WRONG_ARGUMENT_1_TYPE_STRING_EXPECTED);
     }
-    function_handle fptr = StringToFunctionHandle(eval, wfunctionname);
-    if (fptr.name.empty() && fptr.anonymousHandle == nullptr) {
+    function_handle fptr = StringToFunctionHandle(eval, functionname);
+    if (fptr.anonymousHandle == nullptr) {
         Error(_W("A valid function name expected."));
     }
     retval << ArrayOf::functionHandleConstructor(fptr);

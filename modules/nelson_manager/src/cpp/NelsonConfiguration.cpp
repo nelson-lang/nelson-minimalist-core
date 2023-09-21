@@ -18,11 +18,13 @@ NelsonConfiguration* NelsonConfiguration::m_pInstance = nullptr;
 NelsonConfiguration::NelsonConfiguration()
 {
     InterruptPending.clear();
+    currentOverloadLevelCompatibility = NLS_OVERLOAD_ALL_TYPES;
     currentNumericFormatDisplay = NLS_NUMERIC_FORMAT_SHORT;
     currentLineSpacingDisplay = NLS_LINE_SPACING_LOOSE;
     modulesProtected = false;
     nelsonRootPath = L"";
     ipcEnabled = false;
+    fileWatcherEnabled = true;
     mainGuiObject = nullptr;
     mainEvaluator = nullptr;
     FileManager = nullptr;
@@ -116,6 +118,24 @@ bool
 NelsonConfiguration::isModulesProtected()
 {
     return modulesProtected;
+}
+//=============================================================================
+void
+NelsonConfiguration::enableFileWatcher()
+{
+    fileWatcherEnabled = true;
+}
+//=============================================================================
+void
+NelsonConfiguration::disableFileWatcher()
+{
+    fileWatcherEnabled = false;
+}
+//=============================================================================
+bool
+NelsonConfiguration::isFileWatcherEnabled()
+{
+    return fileWatcherEnabled;
 }
 //=============================================================================
 void
@@ -308,6 +328,22 @@ NelsonConfiguration::getLastWarningException(size_t ID)
         return this->lastWarningException[ID];
     }
     return nullptr;
+}
+//=============================================================================
+OverloadLevelCompatibility
+NelsonConfiguration::setOverloadLevelCompatibility(
+    OverloadLevelCompatibility desiredOverloadLevelCompatibility)
+{
+    OverloadLevelCompatibility previousOverloadLevelCompatibility
+        = currentOverloadLevelCompatibility;
+    currentOverloadLevelCompatibility = desiredOverloadLevelCompatibility;
+    return previousOverloadLevelCompatibility;
+}
+//=============================================================================
+OverloadLevelCompatibility
+NelsonConfiguration::getOverloadLevelCompatibility()
+{
+    return currentOverloadLevelCompatibility;
 }
 //=============================================================================
 } // namespace Nelson

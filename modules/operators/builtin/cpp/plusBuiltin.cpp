@@ -8,7 +8,6 @@
 // LICENCE_BLOCK_END
 //=============================================================================
 #include "plusBuiltin.hpp"
-#include "Error.hpp"
 #include "InputOutputArgumentsCheckers.hpp"
 //=============================================================================
 using namespace Nelson;
@@ -16,11 +15,8 @@ using namespace Nelson;
 ArrayOfVector
 Nelson::OperatorsGateway::plusBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn)
 {
-    ArrayOfVector retval;
     nargincheck(argIn, 2, 2);
-    ArrayOf A = argIn[0];
-    ArrayOf B = argIn[1];
-    retval << eval->additionOperator(A, B);
-    return retval;
+    nargoutcheck(nLhs, 0, 1);
+    return eval->plusOperator(argIn);
 }
 //=============================================================================

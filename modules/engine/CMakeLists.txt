@@ -97,7 +97,6 @@ target_link_libraries(
   nlsAssert_functions_builtin
   nlsDouble_builtin
   nlsInteger_builtin
-  nlsOverload_builtin
   nlsDebugger_builtin
   nlsInterpreter_builtin
   nlsConsole_builtin

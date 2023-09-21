@@ -22,18 +22,18 @@ namespace Nelson {
 //=============================================================================
 enum NODE_TYPE
 {
-    non_terminal,
-    id_node,
+    const_double_node = 0,
     const_int_node,
-    const_double_node,
     const_float_node,
     const_character_array_node,
     const_string_node,
-    null_node,
-    reserved_node,
     const_dcomplex_node,
     const_complex_node,
-    const_uint64_node
+    const_uint64_node,
+    reserved_node,
+    non_terminal,
+    id_node,
+    null_node,
 };
 //=============================================================================
 enum OP_TYPE
@@ -64,11 +64,11 @@ enum OP_TYPE
     OP_DOT_TIMES,
     OP_DOT_RDIV,
     OP_DOT_LDIV,
-    OP_NEG,
-    OP_POS,
+    OP_UMINUS,
+    OP_UPLUS,
     OP_NOT,
+    OP_MPOWER,
     OP_POWER,
-    OP_DOT_POWER,
     OP_TRANSPOSE,
     OP_DOT_TRANSPOSE,
     OP_EMPTY,
@@ -78,18 +78,16 @@ enum OP_TYPE
     OP_BRACKETS,
     OP_DOT,
     OP_ALL,
-    OP_INDEX_LIST,
-    OP_ROW_DEF,
     OP_SEMICOLON,
     OP_NULL,
     OP_RSTATEMENT,
     OP_QSTATEMENT,
     OP_SCALL,
-    OP_CCALL,
-    OP_SAVE,
-    OP_LOAD,
     OP_KEYWORD,
-    OP_DOTDYN
+    OP_DOTDYN,
+    OP_FUNCTION_HANDLE_ANONYMOUS,
+    OP_FUNCTION_HANDLE_NAMED
+
 };
 //=============================================================================
 class AbstractSyntaxTree;
@@ -188,6 +186,10 @@ public:
      */
     stringVector
     toStringList();
+
+    std::string
+    toString();
+
     /** Test for an empty tree
      * Returns true if the current node is unallocated or is not a reserved node
      * with an empty text string.

@@ -21,21 +21,16 @@
 namespace Nelson {
 //=============================================================================
 static bool
-isIntegerClass(NelsonType variableClass)
-{
-    return variableClass >= NLS_UINT8 && variableClass <= NLS_INT64;
-}
-//=============================================================================
-static bool
 mustCastIntegerAsLongDouble(NelsonType variableClass)
 {
-    return isIntegerClass(variableClass) && (variableClass >= NLS_UINT64);
+    return IS_INTEGER_TYPE(variableClass)
+        && ((variableClass == NLS_UINT64) || (variableClass == NLS_INT64));
 }
 //=============================================================================
 static bool
 mustCastIntegerAsDouble(NelsonType variableClass)
 {
-    return (isIntegerClass(variableClass)
+    return (IS_INTEGER_TYPE(variableClass)
         && (variableClass == NLS_UINT32 || variableClass == NLS_INT32));
 }
 //=============================================================================
@@ -83,14 +78,14 @@ template <class T>
 T
 scalar_scalar_integer_bitand(T a, T b)
 {
-    return (T)(a & b);
+    return T(a & b);
 }
 //=============================================================================
 template <class T>
 T
 scalar_scalar_integer_bitor(T a, T b)
 {
-    return (T)(a | b);
+    return T(a | b);
 }
 //=============================================================================
 template <class T>

@@ -109,7 +109,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,7 +131,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,7 +158,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -182,7 +185,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -195,24 +199,15 @@
     <ClCompile Include="..\cpp\Colon.cpp" />
     <ClCompile Include="..\cpp\ComplexTranspose.cpp" />
     <ClCompile Include="..\cpp\ConcatenateNdArray.cpp" />
-    <ClCompile Include="..\cpp\dllMain.cpp" />
     <ClCompile Include="..\cpp\DotLeftDivide.cpp" />
     <ClCompile Include="..\cpp\DotPower.cpp" />
     <ClCompile Include="..\cpp\DotRightDivide.cpp" />
     <ClCompile Include="..\cpp\EmptyHelpers.cpp" />
-    <ClCompile Include="..\cpp\FindCommonClass.cpp" />
-    <ClCompile Include="..\cpp\FindConcatenateClass.cpp" />
     <ClCompile Include="..\cpp\Equals.cpp" />
     <ClCompile Include="..\cpp\GreaterEquals.cpp" />
     <ClCompile Include="..\cpp\GreaterThan.cpp" />
     <ClCompile Include="..\cpp\HorzCat.cpp" />
     <ClCompile Include="..\cpp\IsMember.cpp" />
-    <ClCompile Include="..\cpp\LeastSquareSolver.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
     <ClCompile Include="..\cpp\LeftDivide.cpp" />
     <ClCompile Include="..\cpp\LessEquals.cpp" />
     <ClCompile Include="..\cpp\LessThan.cpp" />
@@ -282,17 +277,12 @@
     <ClInclude Include="..\include\DotPower.hpp" />
     <ClInclude Include="..\include\DotRightDivide.hpp" />
     <ClInclude Include="..\include\Equals.hpp" />
-    <ClInclude Include="..\include\FindCommonClass.hpp" />
-    <ClInclude Include="..\include\FindConcatenateClass.hpp" />
     <ClInclude Include="..\include\GreaterEquals.hpp" />
     <ClInclude Include="..\include\GreaterThan.hpp" />
     <ClInclude Include="..\include\HorzCat.hpp" />
     <ClInclude Include="..\include\IsMember.hpp" />
-    <ClInclude Include="..\include\LeastSquareSolver.hpp" />
-    <ClInclude Include="..\include\LeftDivide.hpp" />
     <ClInclude Include="..\include\LessEquals.hpp" />
     <ClInclude Include="..\include\LessThan.hpp" />
-    <ClInclude Include="..\include\LinearEquationSolver.hpp" />
     <ClInclude Include="..\include\MatrixMultiplication.hpp" />
     <ClInclude Include="..\include\Negate.hpp" />
     <ClInclude Include="..\include\nlsOperators_exports.h" />
@@ -300,7 +290,6 @@
     <ClInclude Include="..\include\NotEquals.hpp" />
     <ClInclude Include="..\include\Or.hpp" />
     <ClInclude Include="..\include\RelationOperator.hpp" />
-    <ClInclude Include="..\include\RightDivide.hpp" />
     <ClInclude Include="..\include\StringArrayAddition.hpp" />
     <ClInclude Include="..\include\Subtraction.hpp" />
     <ClInclude Include="..\include\ElementWiseMultiplication.hpp" />
