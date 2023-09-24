@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - nelson 0.7.9 merged in nelson-minimalist-core
 - nelson 0.7.4 merged in nelson-minimalist-core
 
+### Changed
+
+- some modules (nig, modules_manager, help_browser) reworked to use private functions.
+
 ### Fixed
 
 - Apply conda-forge/nelson-core-feedstock patches.
