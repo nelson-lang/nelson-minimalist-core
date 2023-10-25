@@ -11,6 +11,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - nelson 0.7.9 merged in nelson-minimalist-core
 - nelson 0.7.4 merged in nelson-minimalist-core
 
+- `flintmax('like', p)` syntax added.
+- `int64`, `uint64` warning about double-precision.
+- syntax extended to facilitate the creation of literal integers without loss of precision:
+  - example: `18446744073709551615u64`, `18446744073709551615i64` (similar to rust syntax)
+
 ### Changed
 
 - some modules (nig, modules_manager, help_browser) reworked to use private functions.
