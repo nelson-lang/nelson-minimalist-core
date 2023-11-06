@@ -66,10 +66,7 @@ textToDouble(const std::string& str)
 single
 textToSingle(const std::string& str)
 {
-    std::string s(str);
-    std::replace(s.begin(), s.end(), 'D', 'E');
-    std::replace(s.begin(), s.end(), 'd', 'e');
-    return std::abs(static_cast<single>(atof(s.c_str())));
+    return static_cast<single>(textToDouble(str));
 }
 //=============================================================================
 uint8
