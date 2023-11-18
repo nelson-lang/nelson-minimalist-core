@@ -47,66 +47,12 @@ list(
   single
   logical
   data_structures
-<<<<<<< HEAD
   assert_functions
   double
   integer
   console
   validators
   engine)
-=======
-  history_manager
-  terminal
-  handle
-  engine
-  profiler
-  mex
-  ipc
-  sio_client
-  file_archiver)
-# ==============================================================================
-list(
-  APPEND
-  modules_fully_disabled
-  GUI
-  FFTW
-  SLICOT
-  VALIDATORS
-  F2C
-  MPI
-  AUDIO
-  WEBTOOLS
-  PARALLEL
-  GRAPHICS
-  QML_ENGINE
-  SIGNAL_PROCESSING
-  DATA_ANALYSIS
-  HDF5
-  MATIO
-  HELP_TOOLS
-  HELP_BROWSER
-  TEXT_EDITOR
-  DYNAMIC_LINK
-  TESTS_MANAGER
-  JSON
-  NIG
-  ASSERT_FUNCTIONS
-  SPECIAL_FUNCTIONS
-  STATISTICS
-  TRIGONOMETRIC_FUNCTIONS
-  POLYNOMIAL_FUNCTIONS
-  RANDOM
-  TEXT_COMPLETION
-  GEOMETRY
-  CONTROL_SYSTEM)
-
-foreach(mod ${modules_fully_disabled})
-  if(NOT WITHOUT_${mod}_MODULE)
-    string(TOLOWER ${mod} mod)
-    list(APPEND moduleslist ${mod})
-  endif()
-endforeach(mod)
->>>>>>> 0ac7fa347 (better error message about addgateway)
 # ==============================================================================
 list(APPEND moduleslist main)
 # ==============================================================================
