@@ -7,21 +7,15 @@
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // LICENCE_BLOCK_END
 //=============================================================================
-#include "AsciiToDouble.hpp"
-#include <string>
-#include <algorithm>
-#include <cstdlib>
+#pragma once
 //=============================================================================
-namespace Nelson {
+#include "ArrayOf.hpp"
+#include "Evaluator.hpp"
 //=============================================================================
-double
-asciiToDouble(const std::string& str)
-{
-    std::string s(str);
-    std::replace(s.begin(), s.end(), 'D', 'E');
-    std::replace(s.begin(), s.end(), 'd', 'e');
-    return atof(s.c_str());
-}
+namespace Nelson::OperatorsGateway {
 //=============================================================================
-}; // namespace Nelson
+ArrayOfVector
+subsrefBuiltin(Evaluator* eval, int nLhs, const ArrayOfVector& argIn);
+//=============================================================================
+} // namespace Nelson
 //=============================================================================
