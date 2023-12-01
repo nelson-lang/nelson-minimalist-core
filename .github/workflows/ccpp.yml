@@ -264,7 +264,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd ..
-          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-win32.git
+          git clone https://github.com/nelson-lang/nelson-thirdparty-win32.git
           cd nelson-thirdparty-win32
 
       - name: Build nelson-minimalist-core
@@ -296,7 +296,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd ..
-          git clone https://github.com/Nelson-numerical-software/nelson-thirdparty-x64.git
+          git clone https://github.com/nelson-lang/nelson-thirdparty-x64.git
 
       - name: Build nelson-minimalist-core
         run: |
