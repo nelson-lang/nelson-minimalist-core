@@ -105,6 +105,12 @@ Evaluator::setState(State newState)
     return previousState;
 }
 //=============================================================================
+bool
+Evaluator::isQuitOrForceQuitState()
+{
+    return ((state == NLS_STATE_QUIT) || (state == NLS_STATE_FORCE_QUIT));
+}
+//=============================================================================
 State
 Evaluator::getState()
 {
@@ -1095,7 +1101,7 @@ Evaluator::whileStatement(AbstractSyntaxTreePtr t)
     context->enterLoop();
     while (conditionTrue && !breakEncountered) {
         block(codeBlock);
-        if (state == NLS_STATE_RETURN || state == NLS_STATE_ABORT || state == NLS_STATE_QUIT) {
+        if (state == NLS_STATE_RETURN || state == NLS_STATE_ABORT || isQuitOrForceQuitState()) {
             break;
         }
         if (state == NLS_STATE_CONTINUE) {
@@ -1127,7 +1133,7 @@ Evaluator::whileStatement(AbstractSyntaxTreePtr t)
 //@]
 // Alternately, the parenthesis can be eliminated
 //@[
-//  for variable=expression
+//  for variable=expr
 //     statements
 //  end
 //@]
@@ -1191,7 +1197,7 @@ ForStatementRowVectorComplexHelper(AbstractSyntaxTreePtr codeBlock, NelsonType i
             break;
         }
         if (eval->getState() == NLS_STATE_RETURN || eval->getState() == NLS_STATE_ABORT
-            || eval->getState() == NLS_STATE_QUIT) {
+            || eval->isQuitOrForceQuitState()) {
             break;
         }
         if (eval->getState() == NLS_STATE_CONTINUE) {
@@ -1225,7 +1231,7 @@ ForStatementRowVectorHelper(AbstractSyntaxTreePtr codeBlock, NelsonType indexCla
             break;
         }
         if (eval->getState() == NLS_STATE_RETURN || eval->getState() == NLS_STATE_ABORT
-            || eval->getState() == NLS_STATE_QUIT) {
+            || eval->isQuitOrForceQuitState()) {
             break;
         }
         if (eval->getState() == NLS_STATE_CONTINUE) {
@@ -1246,7 +1252,7 @@ ForStatemenRowVectorGenericHelper(AbstractSyntaxTreePtr codeBlock, ArrayOf& inde
         }
         eval->block(codeBlock);
         if (eval->getState() == NLS_STATE_RETURN || eval->getState() == NLS_STATE_ABORT
-            || eval->getState() == NLS_STATE_QUIT) {
+            || eval->isQuitOrForceQuitState()) {
             break;
         }
         if (eval->getState() == NLS_STATE_CONTINUE) {
@@ -1276,7 +1282,7 @@ ForStatemenMatrixGenericHelper(AbstractSyntaxTreePtr codeBlock, ArrayOf& indexSe
         }
         eval->block(codeBlock);
         if (eval->getState() == NLS_STATE_RETURN || eval->getState() == NLS_STATE_ABORT
-            || eval->getState() == NLS_STATE_QUIT) {
+            || eval->isQuitOrForceQuitState()) {
             break;
         }
         if (eval->getState() == NLS_STATE_CONTINUE) {
@@ -1798,9 +1804,6 @@ Evaluator::statementType(AbstractSyntaxTreePtr t, bool printIt)
         case NLS_KEYWORD_TRY:
             tryStatement(t->down);
             break;
-        case NLS_KEYWORD_QUIT:
-            state = NLS_STATE_QUIT;
-            break;
         case NLS_KEYWORD_ABORT:
             state = NLS_STATE_ABORT;
             if (depth != 0) {
@@ -1880,7 +1883,7 @@ Evaluator::statementType(AbstractSyntaxTreePtr t, bool printIt)
                 display(b, "ans", false, true);
             }
         }
-        if (state == NLS_STATE_QUIT || state == NLS_STATE_ABORT) {
+        if (isQuitOrForceQuitState() || state == NLS_STATE_ABORT) {
             callstack.popID();
             return;
         }
@@ -1933,7 +1936,7 @@ Evaluator::block(AbstractSyntaxTreePtr t)
         if (state < NLS_STATE_QUIT) {
             resetState();
         }
-        while ((state < NLS_STATE_QUIT) && s != nullptr) {
+        while ((state < NLS_STATE_QUIT || state == NLS_STATE_CANCEL_QUIT) && s != nullptr) {
             if (NelsonConfiguration::getInstance()->getInterruptPending(ID)) {
                 if (ID == 0) {
                     NelsonConfiguration::getInstance()->setInterruptPending(false, ID);
@@ -1945,7 +1948,7 @@ Evaluator::block(AbstractSyntaxTreePtr t)
             }
             statement(s);
             if (state == NLS_STATE_BREAK || state == NLS_STATE_CONTINUE || state == NLS_STATE_RETURN
-                || state == NLS_STATE_ABORT || state == NLS_STATE_QUIT) {
+                || state == NLS_STATE_ABORT || isQuitOrForceQuitState()) {
                 break;
             }
             s = s->right;
@@ -4390,8 +4393,7 @@ Evaluator::evalCLI()
             while (callstack.size() > stackdepth) {
                 callstack.pop_back();
             }
-            if (!evalResult || this->getState() == NLS_STATE_QUIT
-                || this->getState() == NLS_STATE_ABORT) {
+            if (!evalResult || isQuitOrForceQuitState() || this->getState() == NLS_STATE_ABORT) {
                 InCLI = false;
                 return;
             }

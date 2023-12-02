@@ -10,7 +10,12 @@
 #pragma once
 //=============================================================================
 #include "nlsCore_builtin_exports.h"
-//=============================================================================
 NLSCORE_BUILTIN_IMPEXP int
 CoreGateway(void* eval, const wchar_t* moduleFilename);
+========
+namespace Nelson {
+NLSENGINE_IMPEXP bool
+RunFinishScripts(Evaluator* eval);
+}
+>>>>>>>> 57f668ed7 (fix #775 exit, quit, startup.m, finish.m rework for compatibility):modules/engine/src/include/RunFinishScripts.hpp
 //=============================================================================
