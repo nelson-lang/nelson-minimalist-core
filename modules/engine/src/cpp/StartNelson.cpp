@@ -175,11 +175,12 @@ NelsonMainStates(Evaluator* eval, bool haveNoStartup, bool haveNoUserStartup,
     bool haveNoUserModules, const std::wstring& commandToExecute, const std::wstring& fileToExecute,
     const wstringVector& filesToOpen, const wstringVector& filesToLoad)
 {
+    bool isForceQuit = false;
     eval->resetState();
     if (!haveNoStartup) {
         StartNelsonMainScript(eval);
         eval->clearStacks();
-        if (eval->getState() == NLS_STATE_QUIT) {
+        if (eval->isQuitOrForceQuitState()) {
             goto FINISH;
         }
         eval->resetState();
@@ -210,7 +211,7 @@ FINISH:
             eval->resetState();
         }
         FinishNelsonMainScript(eval);
-        if (eval->getState() == NLS_STATE_QUIT) {
+        if (eval->isQuitOrForceQuitState()) {
             goto EXIT;
         }
     }
