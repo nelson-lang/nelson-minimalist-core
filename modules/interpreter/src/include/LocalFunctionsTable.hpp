@@ -13,6 +13,7 @@
 #include <string>
 #include "nlsInterpreter_exports.h"
 #include "FunctionDef.hpp"
+#include "GenericTable.hpp"
 #include "nlsInterpreter_exports.h"
 //=============================================================================
 namespace Nelson {
@@ -20,7 +21,7 @@ namespace Nelson {
 class NLSINTERPRETER_IMPEXP LocalFunctionsTable
 {
 private:
-    void* cachedLocalFunctionsTable;
+    GenericTable<std::string, FunctionDefPtr> cachedLocalFunctionsTable;
 
 public:
     LocalFunctionsTable();
