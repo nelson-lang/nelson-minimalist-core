@@ -12,8 +12,7 @@
 #include <nlohmann/detail/iterators/primitive_iterator.hpp>
 
 NLOHMANN_JSON_NAMESPACE_BEGIN
-namespace detail
-{
+namespace detail {
 
 /*!
 @brief an iterator value
@@ -21,7 +20,7 @@ namespace detail
 @note This structure could easily be a union, but MSVC currently does not allow
 unions members with complex constructors, see https://github.com/nlohmann/json/pull/105.
 */
-template<typename BasicJsonType> struct internal_iterator
+template <typename BasicJsonType> struct internal_iterator
 {
     /// iterator for JSON objects
     typename BasicJsonType::object_t::iterator object_iterator {};
@@ -31,5 +30,5 @@ template<typename BasicJsonType> struct internal_iterator
     primitive_iterator_t primitive_iterator {};
 };
 
-}  // namespace detail
+} // namespace detail
 NLOHMANN_JSON_NAMESPACE_END

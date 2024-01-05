@@ -21,7 +21,7 @@ add_library(${module_library_name} ${COMMONS_SRC})
 if(WIN32)
     target_compile_definitions(${module_library_name} PUBLIC "NLSCOMMONS_EXPORTS")
 endif()
-target_compile_definitions(${module_library_name} PRIVATE FMT_EXPORT)
+target_compile_definitions(${module_library_name} PRIVATE FMT_HEADER_ONLY FMT_LIB_EXPORT)
 set(COMMONS_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src/include
                          ${CMAKE_CURRENT_SOURCE_DIR}/src/fmt/include)
 target_include_directories(

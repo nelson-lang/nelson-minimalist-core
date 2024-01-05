@@ -30,8 +30,7 @@ for tests_directory = tests_directories'
       fprintf('%s PASSED\n', file.name);
     catch ex
       fprintf('%s FAILED\n', file.name);      
-      throw(ex)
-
+      disp(lasterror())
       exit(1);
     end
   end
