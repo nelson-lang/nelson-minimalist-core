@@ -183,6 +183,14 @@ DisplayFormatOptionsToArray(
 bool
 setDisplayOption(const std::wstring& param1, const std::wstring& param2)
 {
+    if (param1 == L"JSON" && param2.empty()) {
+        NelsonConfiguration::getInstance()->setOutputJson(true);
+        return true;
+    }
+    if (param1 == L"TEXT" && param2.empty()) {
+        NelsonConfiguration::getInstance()->setOutputJson(false);
+        return true;
+    }
     if (param1 == L"DEFAULT" && param2.empty()) {
         NelsonConfiguration::getInstance()->setLineSpacingDisplay(NLS_LINE_SPACING_LOOSE);
         NelsonConfiguration::getInstance()->setNumericFormatDisplay(NLS_NUMERIC_FORMAT_SHORT);

@@ -188,6 +188,11 @@ public:
     OverloadLevelCompatibility
     getOverloadLevelCompatibility();
     //=============================================================================
+    void
+    setOutputJson(bool asJson);
+    bool
+    isOutputJson();
+    //=============================================================================
 private:
     NelsonConfiguration();
     //=============================================================================
@@ -207,6 +212,8 @@ private:
      * Current line spacing
      */
     LineSpacingDisplay currentLineSpacingDisplay;
+    //=============================================================================
+    bool asJsonOutput;
     //=============================================================================
     bool modulesProtected;
     //=============================================================================

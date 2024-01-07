@@ -13,6 +13,9 @@
 #include "OverloadRequired.hpp"
 #include "Profiler.hpp"
 #include "ProfilerHelpers.hpp"
+#include "Interface.hpp"
+#include "JsonInterface.hpp"
+#include "NelsonConfiguration.hpp"
 //=============================================================================
 namespace Nelson {
 //=============================================================================
@@ -35,9 +38,17 @@ Evaluator::display(
         return;
     }
     uint64 ticProfile = withProfiling ? Profiler::getInstance()->tic() : 0U;
-
     bool needToOverload = false;
-    DisplayVariable(this->getID(), this->getInterface(), A, name, asDispBuiltin, needToOverload);
+    Interface* io = this->getInterface();
+    if (NelsonConfiguration::getInstance()->isOutputJson()) {
+        JsonInterface* jsonInterface = new JsonInterface();
+        DisplayVariable(this->getID(), jsonInterface, A, name, asDispBuiltin, needToOverload);
+        io->outputMessage(jsonInterface->stringify() + "\n");
+        delete jsonInterface;
+    } else {
+        DisplayVariable(this->getID(), io, A, name, asDispBuiltin, needToOverload);
+    }
+
     if (ticProfile != 0U) {
         internalProfileFunction stack = computeProfileStack(this, functionName, L"evaluator");
         Profiler::getInstance()->toc(ticProfile, stack);
