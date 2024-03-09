@@ -33,6 +33,7 @@ NelsonConfiguration::NelsonConfiguration()
     engineMode = 0;
     lastErrorException.clear();
     lastWarningException.clear();
+    asJsonOutput = false;
 }
 //=============================================================================
 NelsonConfiguration*
@@ -344,6 +345,18 @@ OverloadLevelCompatibility
 NelsonConfiguration::getOverloadLevelCompatibility()
 {
     return currentOverloadLevelCompatibility;
+}
+//=============================================================================
+void
+NelsonConfiguration::setOutputJson(bool asJson)
+{
+    asJsonOutput = asJson;
+}
+//=============================================================================
+bool
+NelsonConfiguration::isOutputJson()
+{
+    return asJsonOutput;
 }
 //=============================================================================
 } // namespace Nelson

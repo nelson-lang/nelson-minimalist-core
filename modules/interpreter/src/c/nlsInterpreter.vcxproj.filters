@@ -4,7 +4,19 @@
     <ClCompile Include="..\cpp\AbstractSyntaxTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\AbstractSyntaxTreeHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\AndOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\AnonymousMacroFunctionDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\BuiltInFunctionDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\CallMexBuiltin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\BuiltInFunctionDefManager.cpp">
@@ -13,10 +25,31 @@
     <ClCompile Include="..\cpp\CheckIfWhileCondition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\Operators\ColonOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\Comments.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\operators\ComplexTransposeOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\Context.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\DisplayVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\dllMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\DotLeftDivideOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\DotRightDivideOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\EqOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\EvaluateBuiltinCatchRuntimeException.cpp">
@@ -34,16 +67,70 @@
     <ClCompile Include="..\cpp\FunctionDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\operators\FunctionHandleOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\FunctionsInMemory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\GatewayHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\HorzCatOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\GeOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\GtOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\Keywords.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\LeftDivideOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\LeOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\LocalFunctionsTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\Operators\LtOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\MacroFunctionDef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\MexFunctionDef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\MinusOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\operators\MpowerOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\MtimesOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\NelsonLexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\grammar\NelSonParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\grammar\NelsonParserHelpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\NeOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\NotOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\OrOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\ParseFile.cpp">
@@ -55,176 +142,78 @@
     <ClCompile Include="..\cpp\PathFunctionIndexerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\Scope.cpp">
+    <ClCompile Include="..\cpp\Operators\PlusOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\StackEntry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\VariablesTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\grammar\NelSonParser.cpp">
+    <ClCompile Include="..\cpp\operators\PowerOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\ProfilerHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\GatewayHelpers.cpp">
+    <ClCompile Include="..\cpp\operators\RelationOperatorsHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\CallMexBuiltin.cpp">
+    <ClCompile Include="..\cpp\Operators\RightDivideOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\Operators\VertCatOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\VariablesTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\operators\UnaryPlusOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\operators\UnaryMinusOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\operators\TransposeOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\TimesOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\StackEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\ShortCutOrOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Operators\ShortCutAndOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Scope.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\operators\SubsindexOperator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\TextToNumber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\grammar\NelsonParserHelpers.cpp">
+    <ClCompile Include="..\cpp\JsonInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\MexFunctionDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\FunctionsInMemory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\AnonymousMacroFunctionDef.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\dllMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\PlusOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\AndOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\ColonOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\DotLeftDivideOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\DotRightDivideOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\EqOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\GeOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\GtOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\HorzCatOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\LeftDivideOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\LeOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\LtOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\MtimesOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\NeOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\NotOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\OrOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\RightDivideOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\ShortCutAndOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\ShortCutOrOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\MinusOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\TimesOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\Operators\VertCatOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\SubsindexOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\UnaryPlusOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\UnaryMinusOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\ComplexTransposeOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\TransposeOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\MpowerOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\PowerOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\DisplayVariable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\RelationOperatorsHelpers.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\AbstractSyntaxTreeHelpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\operators\FunctionHandleOperator.cpp">
-      <Filter>Source Files\Operators</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{96bb54a9-5b97-41dd-9679-d0c93c4c7f00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{3b1d8bac-7a2d-42da-931c-0d6dcfe0737b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{04fce3e5-fd51-4f25-a11f-3e5c25f03f02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Grammar">
-      <UniqueIdentifier>{dc5a2d5b-92de-4517-ad38-bc077bd745e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Operators">
-      <UniqueIdentifier>{05a1fd33-fa4b-4d56-8c5b-c3940b6bc4a2}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="resources.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\AbstractSyntaxTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\BuiltInFunctionDef.hpp">
+    <ClInclude Include="..\include\AnonymousMacroFunctionDef.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\BuiltInFunctionDefManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\BuiltInFunctionDef.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\CallMexBuiltin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CallStack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\CheckIfWhileCondition.hpp">
@@ -248,31 +237,55 @@
     <ClInclude Include="..\include\FileParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\FileWatcher.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\include\FunctionDef.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\FunctionsInMemory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GatewayHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GenericTable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Keywords.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\LexerInterface.hpp">
+    <ClInclude Include="..\include\LocalFunctionsTable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\LocalFunctionsTable.hpp">
+    <ClInclude Include="..\include\LexerInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\MacroFunctionDef.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\NelsonGateway.hpp">
+    <ClInclude Include="..\include\MexFunctionDef.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\grammar\NelSonParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\grammar\NelsonParserHelpers.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\nlsInterpreter_exports.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\NelsonGateway.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Operators.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\ParseFile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\grammar\ParseRHS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\ParserInterface.hpp">
@@ -290,59 +303,40 @@
     <ClInclude Include="..\include\PositionScript.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\ProfilerHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\operators\RelationOperatorsHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\VariablesTable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\TextToNumber.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\include\Scope.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\StackEntry.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\VariablesTable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\grammar\NelSonParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\ProfilerHelpers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\GatewayHelpers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\GenericTable.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\CallMexBuiltin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\CallStack.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\TextToNumber.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\grammar\NelsonParserHelpers.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\MexFunctionDef.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\FunctionsInMemory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\grammar\ParseRHS.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\AnonymousMacroFunctionDef.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\FileWatcher.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\operators\RelationOperatorsHelpers.hpp">
+    <ClInclude Include="..\cpp\JsonInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
     <Text Include="..\..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{d686a277-3ca9-4072-b45f-6b0f36830b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{254c86a4-da51-4257-8ad7-c4dfc1fdf711}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
